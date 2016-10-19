@@ -4,7 +4,6 @@ import promise from 'redux-promise';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers'
 
-//dunno what it does
 export default function configureStore(initialState) {
   const logger = createLogger();
   const store = createStore(
@@ -12,7 +11,7 @@ export default function configureStore(initialState) {
     initialState,
     applyMiddleware(thunk, promise, logger)
   );
-
+   
   if (module.hot) {
     // Enable hot module replacement for reducers
     module.hot.accept('../reducers', () => {

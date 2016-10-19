@@ -1,4 +1,3 @@
-//The Method trys to send a post request to the server //not sure about it
 export function submitContactForm(name, email, message) {
   return (dispatch) => {
     dispatch({
