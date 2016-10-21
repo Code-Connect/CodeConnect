@@ -28,8 +28,7 @@ class Header extends React.Component {
       </ul>
     ) : (
       <ul className="nav navbar-nav navbar-right">
-        <li><Link to="/login" activeStyle={active}>Log in</Link></li>
-        <li><Link to="/signup" activeStyle={active}>Sign up</Link></li>
+        <li><Link to="/login" activeStyle={active}>Log in with Github</Link></li>
       </ul>
     );
     return (
@@ -42,7 +41,7 @@ class Header extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <IndexLink to="/" className="navbar-brand">Project name</IndexLink>
+            <IndexLink to="/" className="navbar-brand">Code Connect</IndexLink>
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">
