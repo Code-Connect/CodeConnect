@@ -50,10 +50,12 @@ if (app.get('env') === 'development') {
 
 // Controllers
 var contactController = require('./controllers/contact');
+var gitloginController = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
-app.post('/github', contactController.contactPost);
 
+// Controllers -Gitlogin --Khiem
+gitloginController.login(app);
 
 // React server rendering
 app.use(function(req, res) {
