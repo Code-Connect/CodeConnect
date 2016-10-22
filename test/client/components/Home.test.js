@@ -1,11 +1,10 @@
-import React from 'react';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { shallow } from 'enzyme';
-import { expect } from 'chai';
-
-import Home from '../../../app/components/Home';
-import Messages from '../../../app/components/Messages';
+import React from "react";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import {shallow} from "enzyme";
+import {expect} from "chai";
+import Home from "../../../app/components/Home";
+import Messages from "../../../app/components/Messages";
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -18,7 +17,7 @@ describe('Home component', () => {
   });
 
   it('contains 3 headings', () => {
-    expect(component.find('h3')).to.have.length(3);
+      expect(component.find('h3')).to.have.length(2);
   });
 
   it('contains flash messages component', () => {
