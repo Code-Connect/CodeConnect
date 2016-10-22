@@ -1,4 +1,4 @@
-#boilerPlateConnect
+#CodeConnect
 
 ## Install
     npm install
