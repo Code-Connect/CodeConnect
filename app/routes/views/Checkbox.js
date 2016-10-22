@@ -1,5 +1,12 @@
 import React, {Component, PropTypes} from "react";
-import {Panel, ListGroup, ListGroupItem, Input, Button, FieldGroup} from "react-bootstrap";
+import {
+    Panel,
+    ListGroup,
+    ListGroupItem,
+    Input,
+    Button,
+    FieldGroup
+} from "react-bootstrap";
 
 //import SelectButton from  "./SelectButton";
 
@@ -20,8 +27,9 @@ class SearchFilter extends Component {
             listGroupItems = filter.options.map((option, i) => {
                 return (
                     <dev>
-                        <Button block onClick={this.handleClick(option)}>{option} </Button>
-                        <Input key={i} onChange={this.handleChange(option) } type="checkbox" label={option}></Input>
+                        <Button block onClick={this.handleClick(option)}>{option}
+                        </Button>
+                        <Input key={i} onChange={this.handleChange(option)} type="checkbox" label={option}></Input>
                     </dev>
                 );
             });
