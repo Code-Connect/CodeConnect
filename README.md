@@ -10,5 +10,8 @@ you should create an .env file in the root directory with your arguments of
 ## Build
     npm run build
     
-## Run
+## Run Application
     npm run serve
+    
+## Run Tests
+    npm test
