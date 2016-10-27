@@ -32,6 +32,7 @@
     "morgan": "^1.7.0",
     "node-sass-middleware": "^0.9.7",
     "nodemailer": "^2.3.0",
+    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
     "react": "^15.3.2",
@@ -63,7 +64,8 @@
     "redux-mock-store": "^1.0.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
-    "supertest": "^1.2.0"
+    "supertest": "^1.2.0",
+    "nodemon": "1.11.0"
   },
   "engines": {
     "node": "6.1.0"
