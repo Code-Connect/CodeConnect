@@ -13,10 +13,10 @@ const NavBar = () => (
 
         <Navbar.Collapse>
             <Nav pullCenter>
-                <NavItem href="/contributor" bsStyle="success">
+                <NavItem href="/contributor">
                     Contributor
                 </NavItem>
-                <NavItem href="/mentor" bsStyle="warning">
+                <NavItem href="/mentor">
                     Mentor
                 </NavItem>
                 <NavItem href="/about">
@@ -24,7 +24,6 @@ const NavBar = () => (
                 </NavItem>
 
             </Nav>
-
 
             <Nav pullRight>
                 <NavItem href="/auth/github">
