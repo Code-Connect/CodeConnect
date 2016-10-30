@@ -8,40 +8,34 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Grid fluid={ true }
-                >
-                    <Row style={ {paddingTop: '100px'} }
-                    >
-                        <Col xs={ 5 }
-                             md={ 5 }
-                             sm={ 5 }
-                             lg={ 5 }
-                        ></Col>
-                        <Col xs={ 2 }
-                             md={ 2 }
-                             sm={ 2 }
-                             lg={ 2 }
-                             style={ {} }
-                        >
+                <Grid fluid={true}>
+                    <Row>
+                        <Col xs={ 4 }
+                             md={ 4 }
+                             sm={ 4 }
+                             lg={ 4 }> </Col>
+                        <Col xs={ 4 }
+                             md={ 4 }
+                             sm={ 4 }
+                             lg={ 4 }
+                             xsHidden={true}>
                             <Image
                                 src="https://raw.githubusercontent.com/Gott50/Code-Connect/master/uibuilder/src/client/assets/CClogo.png"
-                                rounded={ false }
-                                circle={ false }
-                                thumbnail={ false }
-                                style={ {maxHeight: '300px', cssFloat: 'center'} }
+                                responsive={true}
                             ></Image>
                         </Col>
-                        <Col xs={ 5 }
-                             md={ 5 }
-                             sm={ 5 }
-                             lg={ 5 }
-                        ></Col>
+                        <Col xs={ 4 }
+                             md={ 4 }
+                             sm={ 4 }
+                             lg={ 4 }
+                        > </Col>
                     </Row>
                 </Grid>
-                <PageHeader style={ {fontFamily: 'awesome', textAlign: 'center'} }
-                >
-                    <span style={ {fontSize: '90px'} }
-                    >Code Connect</span>
+
+                <PageHeader style={ {fontFamily: 'awesome', textAlign: 'center'} }>
+                    <span style={ {fontSize: '200%'} }>
+                        Code Connect
+                    </span>
                 </PageHeader>
                 <Grid fluid={ true }
                 >
@@ -275,7 +269,7 @@ class HomePage extends Component {
                              md={ 3 }
                              sm={ 3 }
                              lg={ 3 }
-                        ></Col>
+                        > </Col>
                     </Row>
                 </Grid>
             </div>
