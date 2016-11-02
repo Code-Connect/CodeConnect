@@ -53,6 +53,10 @@ var contactController = require('./controllers/contact');
 var gitloginController = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
+app.post('/users', function(req, res){
+  console.log("fdsafdsf");
+  res.send("fds")
+});
 
 // Controllers -Gitlogin --Khiem
 gitloginController.login(app);
