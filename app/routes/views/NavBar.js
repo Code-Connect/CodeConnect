@@ -3,10 +3,9 @@ import {NavbarHeader, Navbar, Nav, NavItem, NavDropdown, MenuItem} from "react-b
 
 
 const NavBar = () => (
-    <Navbar inverse style={ {height: "10%"} }>
-
+    <Navbar inverse>
         <Navbar.Header pullLeft>
-            <Navbar.Brand style={ {"fontFamily": 'awesome', "fontSize": '3,7%'} }>
+            <Navbar.Brand>
                 <a href="/home">Code Connect</a>
             </Navbar.Brand>
             <Navbar.Toggle />
@@ -14,10 +13,10 @@ const NavBar = () => (
 
         <Navbar.Collapse>
             <Nav pullCenter>
-                <NavItem href="/contributor" bsStyle="success">
+                <NavItem href="/contributor">
                     Contributor
                 </NavItem>
-                <NavItem href="/mentor" bsStyle="warning">
+                <NavItem href="/mentor">
                     Mentor
                 </NavItem>
                 <NavItem href="/about">
@@ -25,7 +24,6 @@ const NavBar = () => (
                 </NavItem>
 
             </Nav>
-
 
             <Nav pullRight>
                 <NavItem href="/auth/github">

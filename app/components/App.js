@@ -1,12 +1,12 @@
-import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
+import React from "react";
+import Footer from "./Footer";
+import NavBar from "../routes/views/NavBar";
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Header/>
+          <NavBar/>
         {this.props.children}
         <Footer/>
       </div>

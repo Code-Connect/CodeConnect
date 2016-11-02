@@ -1,4 +1,6 @@
-#boilerPlateConnect
+#CodeConnect
+##Description
+Open Source Platform for Open Source Projects. Contributers are welcome!
 
 ## Install
     npm install
