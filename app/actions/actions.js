@@ -35,7 +35,7 @@ export function submitContactForm(name, email, message) {
     };
 }
 
-export function ajaxRequest(body) {
+export function postRequest(body) {
     return (dispatch) => {
         fetch('/users', {
             method: 'post',
@@ -50,6 +50,18 @@ export function ajaxRequest(body) {
         }).then((response) => {
             dispatch({
                 type: 'AJAX'
+            });
+        });
+    };
+}
+
+export function getRequest() {
+    return (dispatch) => {
+        fetch('/test', {
+            method: 'get'
+        }).then((response) => {
+            dispatch({
+                type: 'GET'
             });
         });
     };

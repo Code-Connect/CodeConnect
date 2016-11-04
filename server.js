@@ -40,6 +40,7 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 if (app.get('env') === 'development') {
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
@@ -53,9 +54,15 @@ var contactController = require('./controllers/contact');
 var gitloginController = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
+
 app.post('/users', function(req, res){
-  console.log("fdsafdsf");
-  res.send("fds")
+  console.log("post Request inc");
+  res.send("post res")
+});
+
+app.get('/test', function(req, res){
+  console.log("get Request inc");
+  res.send("get res");
 });
 
 // Controllers -Gitlogin --Khiem

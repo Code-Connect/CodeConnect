@@ -26,45 +26,40 @@ exports.login = function(app) {
     //   and deserialized.
     passport.serializeUser(function(user, done) {
         done(null, user);
-        console.log(user);
+        console.log("the user is: " + user);
     });
 
     passport.deserializeUser(function(obj, done) {
         done(null, obj);
     });
 
-
-    // Use the GitHubStrategy within Passport.
+    //   Use the GitHubStrategy within Passport.
     //   Strategies in Passport require a `verify` function, which accept
     //   credentials (in this case, an accessToken, refreshToken, and GitHub
     //   profile), and invoke a callback with a user object.
     passport.use(new GitHubStrategy({
             clientID: GITHUB_CLIENT_ID,
             clientSecret: GITHUB_CLIENT_SECRET,
-            callbackURL: "http://127.0.0.1:3000/"
+            callbackURL: "http://127.0.0.1:3000/home"
         },
         function(accessToken, refreshToken, profile, done) {
-            // asynchronous verification, for effect...
-            console.log(accessToken);
-
-            process.nextTick(function() {
-                // To keep the example simple, the user's GitHub profile is returned to
-                // represent the logged-in user.  In a typical application, you would want
-                // to associate the GitHub account with a user record in your database,
-                // and return that user instead.
-                return done(null, profile);
-            });
+            console.log("gdsagf");
         }
     ));
 
+    app.use(session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: false
+    }));
 
     app.use(passport.initialize());
     app.use(passport.session());
 
-
     app.get('/auth/github',
         passport.authenticate('github', {
-            scope: ['user:email']
+            scope: ['user:email'],
+            successFlash: 'Welcome'
         }),
         function(req, res) {
             // The request will be redirected to GitHub for authentication, so this
@@ -80,6 +75,5 @@ exports.login = function(app) {
         });
 
     //////////////////////////////////////////////////////////
-
     return;
 }

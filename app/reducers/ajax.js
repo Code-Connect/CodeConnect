@@ -10,6 +10,11 @@ export default function messages(state = {}, action) {
                 khiem: "itworked"
             };
             break;
+        case 'GET':
+            return {
+                get: "Get worked"
+            };
+            break;
         default:
             return state;
     }

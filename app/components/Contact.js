@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { submitContactForm, ajaxRequest } from '../actions/actions';
+import { submitContactForm, postRequest, getRequest } from '../actions/actions';
 import Messages from './Messages';
 
 class Contact extends React.Component {
@@ -15,7 +15,7 @@ class Contact extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(ajaxRequest());
+    this.props.dispatch(getRequest());
   }
 
   render() {
