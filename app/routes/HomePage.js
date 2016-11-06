@@ -10,71 +10,64 @@ class HomePage extends Component {
             <div>
                 <Grid fluid={true}>
                     <Row>
-                        <Col xs={ 4 }
+                        <Col xs={ 0 }
                              md={ 4 }
                              sm={ 4 }
-                             lg={ 4 }> </Col>
-                        <Col xs={ 4 }
+                             lg={ 5 }> </Col>
+                        <Col xs={ 3 }
                              md={ 4 }
                              sm={ 4 }
-                             lg={ 4 }
-                             xsHidden={true}>
+                             lg={ 2 }
+                             xsHidden={false}>
                             <Image
                                 src="https://raw.githubusercontent.com/Gott50/Code-Connect/master/uibuilder/src/client/assets/CClogo.png"
                                 responsive={true}
                             ></Image>
                         </Col>
-                        <Col xs={ 4 }
-                             md={ 4 }
-                             sm={ 4 }
-                             lg={ 4 }
-                        > </Col>
+                        <Col xs={ 9 }
+                             md={ 12 }
+                             sm={ 12 }
+                             lg={ 12 }>
+                            <PageHeader style={ {fontFamily: 'awesome', textAlign: 'center'} }>
+                                <span style={ {fontSize: '150%'} }>
+                                Code Connect
+                                </span>
+                            </PageHeader>
+                        </Col>
                     </Row>
                 </Grid>
 
-                <PageHeader style={ {fontFamily: 'awesome', textAlign: 'center'} }>
-                    <span style={ {fontSize: '200%'} }>
-                        Code Connect
-                    </span>
-                </PageHeader>
-                <Grid fluid={ true }
-                >
+
+                <Grid fluid={ true }>
                     <Row>
                         <Col xs={ 12 }
                              md={ 6 }
                              sm={ 12 }
                              lg={ 6 }
-                        >
-                            <IndexLink to="/contributor"
-                            >
-                                <Button bsStyle="success"
-                                        style={ {
-                                            textAlign: 'center',
-                                            cssFloat: 'right',
+                             style={ {
+                                 textAlign: 'right'
+                             }}>
+                            <Button href="/contributor"
+                                    bsStyle="success"
+                                    style={ {
                                             paddingLeft: '6%',
                                             paddingRight: '6%',
                                             marginTop: '0px'
                                         } }
-                                        bsSize="large"
-                                >
-                                    <span
-                                    >Browse Projects</span>
+                                    bsSize="large">
+                                Browse Projects
                                 </Button>
-                            </IndexLink>
                         </Col>
                         <Col xs={ 12 }
                              md={ 6 }
                              sm={ 12 }
-                             lg={ 6 }
-                        >
-                            <IndexLink to="/mentor"
-                            >
+                             lg={ 6 }>
+                            <IndexLink to="/mentor">
                                 <Button bsStyle="warning"
                                         style={ {textAlign: 'center', paddingRight: '10%', paddingLeft: '10%'} }
                                         block={ false }
                                         bsSize="large"
-                                        disabled={ false }
-                                >
+                                        disabled={ false }>
                                     <span
                                     >Add Project</span>
                                 </Button>
@@ -85,18 +78,15 @@ class HomePage extends Component {
                 <h3 style={ {padding: '1em', textAlign: 'center', paddingTop: '110px'} }
                 ><span
                 >Newest Projects</span></h3>
-                <Grid fluid={ true }
-                >
+                <Grid fluid={ true }>
                     <Row>
                         <Col xs={ 4 }
                              md={ 4 }
                              sm={ 4 }
-                             lg={ 4 }
-                        >
-                            <Panel header={ <h3><span
-                            >Code Connect</span></h3> }
-                                   bsStyle="warning"
-                            >
+                             lg={ 4 }>
+                            <Panel header={ <h3><span>
+                                Code Connect</span></h3> }
+                                   bsStyle="warning">
                                 <span>The platform for coders to connect</span>
                                 <Panel header={ <h5><span
                                 >Tasks</span></h5> }
