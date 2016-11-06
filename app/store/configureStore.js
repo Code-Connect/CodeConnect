@@ -11,7 +11,7 @@ export default function configureStore(initialState) {
     initialState,
     applyMiddleware(thunk, promise, logger)
   );
-   
+
   if (module.hot) {
     // Enable hot module replacement for reducers
     module.hot.accept('../reducers', () => {
