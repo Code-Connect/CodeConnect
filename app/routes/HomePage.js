@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from "react";
-import {IndexLink} from "react-router";
 import {Grid, Row, Col, Button, Panel, Input, Image, ListGroup, ListGroupItem, PageHeader} from "react-bootstrap";
 
 
@@ -40,41 +39,34 @@ class HomePage extends Component {
 
                 <Grid fluid={ true }>
                     <Row>
-                        <Col xs={ 12 }
+                        <Col xs={ 6 }
                              md={ 6 }
-                             sm={ 12 }
+                             sm={ 6 }
                              lg={ 6 }
                              style={ {
                                  textAlign: 'right'
                              }}>
                             <Button href="/contributor"
                                     bsStyle="success"
-                                    style={ {
-                                            paddingLeft: '6%',
-                                            paddingRight: '6%',
-                                            marginTop: '0px'
-                                        } }
+                                    style={ {paddingLeft: '6%', paddingRight: '6%'} }
                                     bsSize="large">
                                 Browse Projects
                                 </Button>
                         </Col>
-                        <Col xs={ 12 }
+                        <Col xs={ 6 }
                              md={ 6 }
-                             sm={ 12 }
+                             sm={ 6 }
                              lg={ 6 }>
-                            <IndexLink to="/mentor">
-                                <Button bsStyle="warning"
-                                        style={ {textAlign: 'center', paddingRight: '10%', paddingLeft: '10%'} }
-                                        block={ false }
-                                        bsSize="large"
-                                        disabled={ false }>
-                                    <span
-                                    >Add Project</span>
+                            <Button href="/mentor"
+                                    bsStyle="warning"
+                                    style={ {paddingRight: '10%', paddingLeft: '10%'} }
+                                    bsSize="large">
+                                Add Project
                                 </Button>
-                            </IndexLink>
                         </Col>
                     </Row>
                 </Grid>
+
                 <h3 style={ {padding: '1em', textAlign: 'center', paddingTop: '110px'} }
                 ><span
                 >Newest Projects</span></h3>
