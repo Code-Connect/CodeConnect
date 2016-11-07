@@ -12,7 +12,8 @@ export default function messages(state = {}, action) {
             break;
         case 'GET':
             return {
-                get: "Get worked"
+                get: "Get worked",
+                response: action.text
             };
             break;
         default:

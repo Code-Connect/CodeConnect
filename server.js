@@ -25,7 +25,7 @@ require('babel-polyfill');
 
 //mongoose DB
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://fuckyou:yoo@ds021016.mlab.com:21016/killanova');
+mongoose.connect(process.env.MONGODB_LOGIN);
 
 // React and Server-Side Rendering
 var routes = require('./app/routes');
@@ -63,26 +63,36 @@ var passportGithub = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
 
-// git login//
-app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: false}));
+var MongoDBStore = require('connect-mongodb-session')(session);
+var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
+
+// git login with session
+app.use(session({
+    secret: process.env.SECRET,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 8 // 8 hours
+    },
+    store: store,
+    resave: true,
+    saveUninitialized: true
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-app.get('/account', function(req,res, next){
+app.get('/account', function(req, res) {
     //do something only if user is authenticated
-    console.log(req.user);
-    next();
+    console.log(req.cookies);
+    res.send(req.cookies);
 });
-
 
 app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email']}));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/login'}), function(req, res) {
     // Successful authentication
-    res.json(req.user);
-});
+    //res.json(req.user);
+    res.json(JSON.stringify(req.session));
 
+});
 
 // React server rendering
 app.use(function(req, res) {

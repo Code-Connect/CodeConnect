@@ -5,9 +5,9 @@ var User = require('../models/user');
 
 
 passport.use(new GitHubStrategy({
-        clientID: "c40cd4a33d5dfe4aa2fd",
-        clientSecret: "12fcd087101c17487acc77f388e86e4c58bbd7a2",
-        callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+        clientID: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        callbackURL: process.env.CALLBACK
     },
     function(accessToken, refreshToken, profile, done) {
         console.log(accessToken);
@@ -34,7 +34,6 @@ passport.use(new GitHubStrategy({
             }
         });
     }
-
 ));
 
 // serialize user into the session
