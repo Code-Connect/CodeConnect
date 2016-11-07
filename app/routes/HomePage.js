@@ -1,42 +1,16 @@
 import React, {Component, PropTypes} from "react";
-import {Grid, Row, Col, Button, Panel, Input, Image, ListGroup, ListGroupItem, PageHeader} from "react-bootstrap";
+import {Grid, Row, Col, Button, Panel, Input, ListGroup, ListGroupItem} from "react-bootstrap";
 import UserButtons from "./homepage/UserButtons";
+import Logo from "./homepage/Logo";
 
 class HomePage extends Component {
 
     render() {
         return (
             <div>
-                <Grid fluid={true}>
-                    <Row>
-                        <Col xs={ 0 }
-                             md={ 4 }
-                             sm={ 4 }
-                             lg={ 5 }> </Col>
-                        <Col xs={ 3 }
-                             md={ 4 }
-                             sm={ 4 }
-                             lg={ 2 }
-                             xsHidden={false}>
-                            <Image
-                                src="https://raw.githubusercontent.com/Gott50/Code-Connect/master/uibuilder/src/client/assets/CClogo.png"
-                                responsive={true}
-                            ></Image>
-                        </Col>
-                        <Col xs={ 9 }
-                             md={ 12 }
-                             sm={ 12 }
-                             lg={ 12 }>
-                            <PageHeader style={ {fontFamily: 'awesome', textAlign: 'center'} }>
-                                <span style={ {fontSize: '150%'} }>
-                                Code Connect
-                                </span>
-                            </PageHeader>
-                        </Col>
-                    </Row>
-                </Grid>
 
-                <UserButtons> </UserButtons>
+                <Logo/>
+                <UserButtons/>
 
                 <h3 style={ {padding: '1em', textAlign: 'center', paddingTop: '110px'} }
                 ><span
