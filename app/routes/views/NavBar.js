@@ -26,7 +26,7 @@ const NavBar = () => (
             </Nav>
 
             <Nav>
-                <NavItem href="/contact">
+                <NavItem href="/auth/github">
                     Login
                 </NavItem>
                 <NavDropdown title="Profile"
