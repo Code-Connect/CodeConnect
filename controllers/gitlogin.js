@@ -21,16 +21,14 @@ passport.use(new GitHubStrategy({
         };
 
         var options = {
-            upsert: false
+            upsert: true
         };
 
         // update the user if s/he exists or add a new user
         User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
             if (err) {
-                console.log("error");
                 return done(err);
             } else {
-                console.log("no error");
                 return done(null, user);
             }
         });

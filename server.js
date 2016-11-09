@@ -109,7 +109,6 @@ app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:ema
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/auth/github'}), function(req, res) {
     // Successful authentication
     //res.json(req.user);
-    console.log("callback");
     res.json(JSON.stringify(req.session));
 });
 
