@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from "react";
 import {Grid, Row, Col} from "react-bootstrap";
 import ProjectPreview from "./ProjectPreview";
 
-const tasks = [
+const projects = [
     {
         headerName: "Code Connect",
         description: "The platform for coders to connect",
@@ -47,7 +47,7 @@ class NewestProjects extends Component {
                 <h3 style={ {padding: '1em', textAlign: 'center', paddingTop: '110px'} }>Newest Projects</h3>
                 <Grid fluid={ true }>
                     <Row>
-                        {this.buildCols(tasks)}
+                        {this.buildCols(projects)}
                     </Row>
                 </Grid>
             </div>
@@ -56,25 +56,26 @@ class NewestProjects extends Component {
 
     }
 
-    buildCols(tasks) {
+    buildCols(projects) {
         let cols;
-        if (tasks && tasks.length > 0)
-            cols = tasks.map((task) => {
+        let size = 12 / projects.length;
+
+        if (projects && projects.length > 0)
+            cols = projects.map((project) => {
                 return (
-                    <Col xs={ 4 }
-                         md={ 4 }
-                         sm={ 4 }
-                         lg={ 4 }>
+                    <Col xs={ size }
+                         md={ size }
+                         sm={ size }
+                         lg={ size }>
                         <ProjectPreview
-                            headerName={task.headerName}
-                            description={task.description}
-                            tasks={task.tasks}
+                            headerName={project.headerName}
+                            description={project.description}
+                            tasks={project.tasks}
                         />
                     </Col>
                 );
             });
         return cols;
-
     }
 }
 export default NewestProjects;
