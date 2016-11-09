@@ -10,6 +10,7 @@ You should create an .env file in the root directory with your arguments of
 
     MAILGUN_USERNAME =      'YOUR_MAILGUN_USERNAME'
     MAILGUN_PASSWORD =      'YOUR_MAILGUN_PASSWORD'
+    
     GITHUB_CLIENT_ID =      'YOUR_GITHUB_CLIENT_ID'
     GITHUB_CLIENT_SECRET =  'YOUR_GITHUB_CLIENT_SECRET'
     CALLBACK =              'YOUR_CALLBACK_URL'

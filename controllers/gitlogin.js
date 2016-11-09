@@ -10,40 +10,43 @@ passport.use(new GitHubStrategy({
         callbackURL: process.env.CALLBACK
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(accessToken);
 
         var searchQuery = {
-            name: profile.displayName
+            name: profile.username
         };
 
         var updates = {
-            name: profile.displayName,
+            name: profile.username,
             someID: profile.id
         };
 
         var options = {
-            upsert: true
+            upsert: false
         };
 
         // update the user if s/he exists or add a new user
         User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
             if (err) {
+                console.log("error");
                 return done(err);
             } else {
+                console.log("no error");
                 return done(null, user);
             }
         });
     }
 ));
 
-// serialize user into the session
-var User = require('../models/user');
 
 passport.serializeUser(function(user, done) {
+    console.log("serialize");
+
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
+    console.log("deserialize");
+
     User.findById(id, function(err, user) {
         done(err, user);
     });

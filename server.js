@@ -65,7 +65,15 @@ app.post('/contact', contactController.contactPost);
 
 //The Sessions gets connected to the MongoDB
 var MongoDBStore = require('connect-mongodb-session')(session);
+var PostgreSQLStore = require('connect-pg-simple')(session);
+var pg = require('pg');
+
 var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
+/*var store = new PostgreSQLStore({
+    pg: pg, // Use global pg-module
+    conString: process.env.DB_HOST, // Connect using something else than default DATABASE_URL env variable
+    tableName: 'user_sessions'
+});*/
 
 // git login with session
 app.use(session({
@@ -84,8 +92,8 @@ app.use(passport.session());
 app.use(function(req, res, next) {
     if (req.user) {
         console.log("Logged in");
-    }else{
-      console.log("not logged in");
+    } else {
+        console.log("not logged in");
     }
     next();
 });
@@ -97,10 +105,11 @@ app.get('/account', function(req, res) {
     res.send(req.sessionID);
 });
 
-app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email profile repo']}));
-app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/login'}), function(req, res) {
+app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email']}));
+app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/auth/github'}), function(req, res) {
     // Successful authentication
     //res.json(req.user);
+    console.log("callback");
     res.json(JSON.stringify(req.session));
 });
 
