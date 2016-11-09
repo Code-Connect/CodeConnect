@@ -1,200 +1,80 @@
 import React, {Component, PropTypes} from "react";
-import {Grid, Row, Col, Button, Panel, ListGroup, ListGroupItem} from "react-bootstrap";
+import {Grid, Row, Col} from "react-bootstrap";
+import ProjectPreview from "./ProjectPreview";
+
+const tasks = [
+    {
+        headerName: "Code Connect",
+        description: "The platform for coders to connect",
+        tasks: [
+            {
+                name: "10: Search Functionality in Navigation Bar",
+                link: "https://github.com/nithishr/codeConnect"
+            }, {
+                name: "12: Improve load times",
+                link: "https://github.com/nithishr/codeConnect"
+            }
+        ]
+    }, {
+        headerName: "TowerDefense",
+        description: "The platform for coders to connect",
+        tasks: [
+            {
+                name: "11: Add Advertising",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "13: Add MuteButton",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "14: Redesign MainMenu",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "16: Redesign Icon",
+                link: "https://github.com/gapsong/TowerDefense"
+            }
+        ]
+    },
+];
 
 class NewestProjects extends Component {
+
     render() {
         return (
             <div>
-                <h3 style={ {padding: '1em', textAlign: 'center', paddingTop: '110px'} }
-                ><span
-                >Newest Projects</span></h3>
+                <h3 style={ {padding: '1em', textAlign: 'center', paddingTop: '110px'} }>Newest Projects</h3>
                 <Grid fluid={ true }>
                     <Row>
-                        <Col xs={ 4 }
-                             md={ 4 }
-                             sm={ 4 }
-                             lg={ 4 }>
-                            <Panel header={ <h3><span>
-                                Code Connect</span></h3> }
-                                   bsStyle="warning">
-                                <span>The platform for coders to connect</span>
-                                <Panel header={ <h5><span
-                                >Tasks</span></h5> }
-                                       style={ {overflow: 'auto'} }
-                                       collapsible={ true }
-                                       defaultExpanded={ true }
-                                       bsStyle="success"
-                                >
-                                    <ListGroup fill={ true }
-                                    >
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/nithishr/codeConnect"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >10: Search Functionality in Navigation Bar</span>
-                                        </ListGroupItem>
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/nithishr/codeConnect"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >12: Improve load times</span>
-                                        </ListGroupItem>
-                                    </ListGroup>
-                                </Panel>
-                            </Panel>
-                        </Col>
-                        <Col xs={ 4 }
-                             md={ 4 }
-                             sm={ 4 }
-                             lg={ 4 }
-                        >
-                            <Panel header={ <h3><span
-                            >TowerDefense</span></h3> }
-                                   bsStyle="warning"
-                            >
-                                <span>The platform for coders to connect</span>
-                                <Panel header={ <h5><span
-                                >Tasks</span></h5> }
-                                       style={ {overflow: 'auto'} }
-                                       collapsible={ true }
-                                       defaultExpanded={ true }
-                                       bsStyle="success"
-                                >
-                                    <ListGroup fill={ true }
-                                    >
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/gapsong/TowerDefense"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >11: Add Advertising</span>
-                                        </ListGroupItem>
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/gapsong/TowerDefense"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >13: Add MuteButton</span>
-                                        </ListGroupItem>
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/gapsong/TowerDefense"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >14: Redesign MainMenu</span>
-                                        </ListGroupItem>
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/gapsong/TowerDefense"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >16: Redesign Icon</span>
-                                        </ListGroupItem>
-                                    </ListGroup>
-                                </Panel>
-                            </Panel>
-                        </Col>
-                        <Col xs={ 4 }
-                             md={ 4 }
-                             sm={ 4 }
-                             lg={ 4 }
-                        >
-                            <Panel header={ <h3><span
-                            >IceSlider</span></h3> }
-                                   bsStyle="warning"
-                            >
-                                <span>The platform for coders to connect</span>
-                                <Panel header={ <h5><span
-                                >Tasks</span></h5> }
-                                       style={ {overflow: 'auto'} }
-                                       collapsible={ true }
-                                       defaultExpanded={ true }
-                                       bsStyle="success"
-                                >
-                                    <ListGroup fill={ true }
-                                    >
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/gapsong/TowerDefense"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >5: Redesign MainMenu</span>
-                                        </ListGroupItem>
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/gapsong/TowerDefense"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >9: Redesign Icon</span>
-                                        </ListGroupItem>
-                                        <ListGroupItem href="#"
-                                                       active={ false }
-                                                       style={ {minHeight: '50px'} }
-                                        >
-                                            <Button bsStyle="success"
-                                                    style={ {cssFloat: 'right'} }
-                                                    href="https://github.com/gapsong/TowerDefense"
-                                            >
-                                                <span>Default</span>
-                                            </Button><span
-                                        >15: Add MuteButton</span>
-                                        </ListGroupItem>
-                                    </ListGroup>
-                                </Panel>
-                            </Panel>
-                        </Col>
-                        <Col xs={ 3 }
-                             md={ 3 }
-                             sm={ 3 }
-                             lg={ 3 }
-                        > </Col>
+                        {this.buildCols(tasks)}
                     </Row>
                 </Grid>
             </div>
         )
+
+
     }
 
+    buildCols(tasks) {
+        let cols;
+        if (tasks && tasks.length > 0)
+            cols = tasks.map((task) => {
+                return (
+                    <Col xs={ 4 }
+                         md={ 4 }
+                         sm={ 4 }
+                         lg={ 4 }>
+                        <ProjectPreview
+                            headerName={task.headerName}
+                            description={task.description}
+                            tasks={task.tasks}
+                        />
+                    </Col>
+                );
+            });
+        return cols;
+
+    }
 }
 export default NewestProjects;

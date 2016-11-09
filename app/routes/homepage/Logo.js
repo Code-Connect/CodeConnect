@@ -8,12 +8,12 @@ class Logo extends Component {
                     <Col xs={ 0 }
                          md={ 4 }
                          sm={ 4 }
-                         lg={ 5 }> </Col>
+                         lg={ 5 }
+                         xsHidden={true}> </Col>
                     <Col xs={ 3 }
                          md={ 4 }
                          sm={ 4 }
-                         lg={ 2 }
-                         xsHidden={false}>
+                         lg={ 2 }>
                         <Image
                             src="https://raw.githubusercontent.com/Gott50/Code-Connect/master/uibuilder/src/client/assets/CClogo.png"
                             responsive={true}
