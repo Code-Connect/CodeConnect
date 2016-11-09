@@ -40,6 +40,8 @@
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",
+    "pg":"6.1.0",
+    "pg-simple":"0.2.2",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-cookie": "^0.4.5",
