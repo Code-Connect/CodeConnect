@@ -4,7 +4,7 @@ import {NavbarHeader, Navbar, Nav, NavItem, NavDropdown, MenuItem} from "react-b
 
 const NavBar = () => (
     <Navbar inverse>
-        <Navbar.Header pullLeft>
+        <Navbar.Header>
             <Navbar.Brand>
                 <a href="/home">Code Connect</a>
             </Navbar.Brand>
@@ -12,7 +12,7 @@ const NavBar = () => (
         </Navbar.Header>
 
         <Navbar.Collapse>
-            <Nav pullCenter>
+            <Nav>
                 <NavItem href="/contributor">
                     Contributor
                 </NavItem>
@@ -25,7 +25,7 @@ const NavBar = () => (
 
             </Nav>
 
-            <Nav pullRight>
+            <Nav>
                 <NavItem href="/auth/github">
                     Login
                 </NavItem>

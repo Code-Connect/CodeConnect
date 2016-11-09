@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import cookie from 'react-cookie';
 
 export function submitContactForm(name, email, message) {
     return (dispatch) => {
@@ -35,7 +36,7 @@ export function submitContactForm(name, email, message) {
     };
 }
 
-export function ajaxRequest(body) {
+export function postRequest(body) {
     return (dispatch) => {
         fetch('/users', {
             method: 'post',
@@ -50,6 +51,20 @@ export function ajaxRequest(body) {
         }).then((response) => {
             dispatch({
                 type: 'AJAX'
+            });
+        });
+    };
+}
+
+export function getRequest() {
+    return (dispatch) => {
+        fetch('/account', {
+            method: 'get'
+        }).then((response) => {
+          //cookie.save('token', response.token, { expires: moment().add(1, 'hour').toDate() });
+            dispatch({
+                type: 'GET',
+                text : response.body
             });
         });
     };
