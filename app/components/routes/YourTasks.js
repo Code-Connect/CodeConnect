@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from "react";
-import {Button, Panel, Input, Tab, Pagination, ListGroup, ListGroupItem, PageHeader} from "react-bootstrap";
+import {Button, Panel, Input, ListGroup, ListGroupItem, PageHeader} from "react-bootstrap";
 
 
 class YourTasks extends Component {

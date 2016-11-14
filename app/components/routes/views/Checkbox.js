@@ -1,12 +1,5 @@
 import React, {Component, PropTypes} from "react";
-import {
-    Panel,
-    ListGroup,
-    ListGroupItem,
-    Input,
-    Button,
-    FieldGroup
-} from "react-bootstrap";
+import {Panel, ListGroup, Input, Button, FieldGroup} from "react-bootstrap";
 
 //import SelectButton from  "./SelectButton";
 

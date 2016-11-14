@@ -3,11 +3,11 @@ import {IndexRoute, Route} from "react-router";
 import App from "./components/App";
 import Contact from "./components/Contact";
 import NotFound from "./components/NotFound";
-import HomePage from "./routes/HomePage";
-import Contributor from "./routes/Contributor";
-import YourProject from "./routes/YourProject";
-import YourTasks from "./routes/YourTasks";
-import MentorLandingPage from "./routes/MentorLandingPage";
+import HomePage from "./components/routes/HomePage";
+import Contributor from "./components/routes/Contributor";
+import YourProject from "./components/routes/YourProject";
+import YourTasks from "./components/routes/YourTasks";
+import MentorLandingPage from "./components/routes/MentorLandingPage";
 
 export default function getRoutes(store) {
   const clearMessages = () => {
