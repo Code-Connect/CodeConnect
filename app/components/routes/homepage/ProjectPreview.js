@@ -17,14 +17,15 @@ class ProjectPreview extends Component {
                        bsStyle="success">
                     <ListGroup fill={ true }>
                         {this.makeListGroupItems(this.props.tasks)}
-
-                        <Button bsStyle="success"
-                                style={ {cssFloat: 'right'} }
-                                href={task.link}>
-                            <span>Contribute</span>
-                        </Button>
                     </ListGroup>
+
                 </Panel>
+
+                <Button bsStyle="success"
+                        style={ {cssFloat: 'right'} }
+                        href={task.link}>
+                    <span>Contribute</span>
+                </Button>
             </Panel>
         )
     }
