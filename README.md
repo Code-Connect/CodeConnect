@@ -15,7 +15,7 @@ You should create an .env file in the root directory with your arguments of
     GITHUB_CLIENT_SECRET =  'YOUR_GITHUB_CLIENT_SECRET'
     CALLBACK =              'YOUR_CALLBACK_URL'
 
-    POSTGRESQL_DB =         'YOUR_POSTGRESQL_DB'
+    DATABASE_URL =          'YOUR_POSTGRESQL_DB'
     SECRET =                'A_RANDOM_SECURITY_SECRET'
 
 ## Build
