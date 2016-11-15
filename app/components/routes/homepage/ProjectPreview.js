@@ -12,7 +12,6 @@ class ProjectPreview extends Component {
                 <span style={{fontSize: "larger"}}>{this.props.description}</span>
 
                 <Panel header={ <h5>Tasks</h5> }
-                    //style={ {overflow: 'auto'} }
                        collapsible={ true }
                        defaultExpanded={ true }
                        bsStyle="success">
