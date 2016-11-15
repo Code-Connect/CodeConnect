@@ -65,25 +65,30 @@ app.post('/contact', contactController.contactPost);
 
 //The Sessions gets connected to the MongoDB
 var MongoDBStore = require('connect-mongodb-session')(session);
-var PostgreSQLStore = require('connect-pg-simple')(session);
 var pg = require('pg');
 
 var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
-/*var store = new PostgreSQLStore({
-    pg: pg, // Use global pg-module
-    conString: process.env.DB_HOST, // Connect using something else than default DATABASE_URL env variable
-    tableName: 'user_sessions'
-});*/
+const KnexSessionStore = require('connect-session-knex')(session);
 
+const Knex = require('knex');
+const knex = Knex({
+    client: 'pg',
+    connection: process.env.DATABASE_URL
+});
+
+const store2 = new KnexSessionStore({
+    knex: knex,
+    tablename: 'sessions' // optional. Defaults to 'sessions'
+});
 // git login with session
 app.use(session({
     secret: process.env.SECRET,
     cookie: {
         maxAge: 1000 * 60 * 8 // 8 hours
     },
-    store: store,
-    resave: true,
-    saveUninitialized: true
+    store: store2,
+    resave: false,
+    saveUninitialized: false
 }));
 
 app.use(passport.initialize());
