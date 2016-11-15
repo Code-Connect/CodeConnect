@@ -80,6 +80,7 @@ const store2 = new KnexSessionStore({
     knex: knex,
     tablename: 'sessions' // optional. Defaults to 'sessions'
 });
+
 // git login with session
 app.use(session({
     secret: process.env.SECRET,
