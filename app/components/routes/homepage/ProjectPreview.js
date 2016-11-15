@@ -6,12 +6,13 @@ class ProjectPreview extends Component {
         let task = this.props.tasks[0];
 
         return (
-            <Panel header={ <h3><span>
-                                {this.props.headerName}</span></h3> }
+            <Panel
+                header={<h3>{this.props.headerName}</h3>}
                    bsStyle="warning">
-                <span>{this.props.description}</span>
-                <Panel header={ <h5><span>Tasks</span></h5> }
-                       style={ {overflow: 'auto'} }
+                <span style={{fontSize: "larger"}}>{this.props.description}</span>
+
+                <Panel header={ <h5>Tasks</h5> }
+                    //style={ {overflow: 'auto'} }
                        collapsible={ true }
                        defaultExpanded={ true }
                        bsStyle="success">
@@ -20,9 +21,8 @@ class ProjectPreview extends Component {
                     </ListGroup>
 
                 </Panel>
-
                 <Button bsStyle="success"
-                        style={ {cssFloat: 'right'} }
+                        style={ {float: 'right'} }
                         href={task.link}>
                     <span>Contribute</span>
                 </Button>
