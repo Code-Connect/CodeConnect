@@ -14,7 +14,7 @@ class ProjectPreview extends Component {
 
                 <Panel header={ <h5>Tasks</h5> }
                        collapsible={ true }
-                       defaultExpanded={ true }
+                       defaultExpanded={ this.props.defaultExpanded}
                        bsStyle="success">
                     <ListGroup
                         fill={ true }

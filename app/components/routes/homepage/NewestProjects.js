@@ -36,8 +36,9 @@ const projects = [
                 link: "https://github.com/gapsong/TowerDefense"
             }
         ]
-    },
+    }
 ];
+//*/
 
 class NewestProjects extends Component {
 
@@ -72,6 +73,7 @@ class NewestProjects extends Component {
                             headerName={project.headerName}
                             description={project.description}
                             tasks={project.tasks}
+                            defaultExpanded={true}
                         />
                     </Col>
                 );
