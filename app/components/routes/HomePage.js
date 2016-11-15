@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from "react";
-import {Input} from "react-bootstrap";
 import UserButtons from "./homepage/UserButtons";
 import Logo from "./homepage/Logo";
 import NewestProjects from "./homepage/NewestProjects";
