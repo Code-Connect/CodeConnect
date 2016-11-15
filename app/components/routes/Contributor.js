@@ -3,6 +3,44 @@ import {Grid, Row, Col, PageHeader} from "react-bootstrap";
 import SearchFilter from "./views/SearchFilter.js";
 import ProjectPreview from "./homepage/ProjectPreview";
 
+
+const projects = [
+    {
+        headerName: "Code Connect",
+        description: "The platform for coders to connect",
+        tasks: [
+            {
+                name: "10: Search Functionality in Navigation Bar",
+                link: "https://github.com/nithishr/codeConnect"
+            }, {
+                name: "12: Improve load times",
+                link: "https://github.com/nithishr/codeConnect"
+            }
+        ]
+    }, {
+        headerName: "TowerDefense",
+        description: "A mobile TD Game",
+        tasks: [
+            {
+                name: "11: Add Advertising",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "13: Add MuteButton",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "14: Redesign MainMenu",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "16: Redesign Icon",
+                link: "https://github.com/gapsong/TowerDefense"
+            }
+        ]
+    }
+];
+
 class Contributor extends Component {
     buildPanels(projects) {
         let cols;
@@ -57,40 +95,3 @@ class Contributor extends Component {
 
 export default Contributor;
 
-
-const projects = [
-    {
-        headerName: "Code Connect",
-        description: "The platform for coders to connect",
-        tasks: [
-            {
-                name: "10: Search Functionality in Navigation Bar",
-                link: "https://github.com/nithishr/codeConnect"
-            }, {
-                name: "12: Improve load times",
-                link: "https://github.com/nithishr/codeConnect"
-            }
-        ]
-    }, {
-        headerName: "TowerDefense",
-        description: "A mobile TD Game",
-        tasks: [
-            {
-                name: "11: Add Advertising",
-                link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
-                name: "13: Add MuteButton",
-                link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
-                name: "14: Redesign MainMenu",
-                link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
-                name: "16: Redesign Icon",
-                link: "https://github.com/gapsong/TowerDefense"
-            }
-        ]
-    }
-];
