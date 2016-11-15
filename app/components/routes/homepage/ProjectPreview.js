@@ -6,16 +6,19 @@ class ProjectPreview extends Component {
         let task = this.props.tasks[0];
 
         return (
+            <div>
             <Panel
                 header={<h3>{this.props.headerName}</h3>}
-                   bsStyle="warning">
+                bsStyle="warning">
                 <span style={{fontSize: "larger"}}>{this.props.description}</span>
 
                 <Panel header={ <h5>Tasks</h5> }
                        collapsible={ true }
                        defaultExpanded={ true }
                        bsStyle="success">
-                    <ListGroup fill={ true }>
+                    <ListGroup
+                        fill={ true }
+                    >
                         {this.makeListGroupItems(this.props.tasks)}
                     </ListGroup>
 
@@ -26,6 +29,7 @@ class ProjectPreview extends Component {
                     <span>Contribute</span>
                 </Button>
             </Panel>
+            </div>
         )
     }
 
@@ -34,9 +38,7 @@ class ProjectPreview extends Component {
         if (tasks && tasks.length > 0)
             listGroupItems = tasks.map((task) => {
                 return (
-                    <ListGroupItem
-                        active={ false }
-                        style={ {minHeight: '50px'} }>
+                    <ListGroupItem>
                         <span>{task.name}</span>
                     </ListGroupItem>
                 );

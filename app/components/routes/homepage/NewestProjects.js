@@ -17,7 +17,7 @@ const projects = [
         ]
     }, {
         headerName: "TowerDefense",
-        description: "The platform for coders to connect",
+        description: "A mobile TD Game",
         tasks: [
             {
                 name: "11: Add Advertising",
@@ -45,7 +45,8 @@ class NewestProjects extends Component {
         return (
             <div>
                 <h3 style={ {padding: '1em', textAlign: 'center', paddingTop: '110px'} }>Newest Projects</h3>
-                <Grid fluid={ true }>
+                <Grid
+                    fluid={ true }>
                     <Row>
                         {this.buildCols(projects)}
                     </Row>
