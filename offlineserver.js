@@ -23,10 +23,6 @@ dotenv.load();
 require('babel-core/register');
 require('babel-polyfill');
 
-//mongoose DB
-var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_LOGIN);
-
 // React and Server-Side Rendering
 var routes = require('./app/routes');
 var configureStore = require('./app/store/configureStore').default;
@@ -62,60 +58,6 @@ var contactController = require('./controllers/contact');
 var passportGithub = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
-
-//The Sessions gets connected to the MongoDB
-var MongoDBStore = require('connect-mongodb-session')(session);
-var pg = require('pg');
-
-var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
-const KnexSessionStore = require('connect-session-knex')(session);
-
-const Knex = require('knex');
-const knex = Knex({
-    client: 'pg',
-    connection: process.env.DATABASE_URL
-});
-
-const store2 = new KnexSessionStore({
-    knex: knex,
-    tablename: 'sessions' // optional. Defaults to 'sessions'
-});
-// git login with session
-app.use(session({
-    secret: process.env.SECRET,
-    cookie: {
-        maxAge: 1000 * 60 * 8 // 8 hours
-    },
-    store: store2,
-    resave: false,
-    saveUninitialized: false
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.use(function(req, res, next) {
-    if (req.user) {
-        console.log("Logged in");
-    } else {
-        console.log("not logged in");
-    }
-    next();
-});
-
-app.get('/account', function(req, res) {
-    //do something only if user is authenticated
-    console.log(req.sessionID);
-    console.log(req.user);
-    res.send(req.sessionID);
-});
-
-app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email']}));
-app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/auth/github'}), function(req, res) {
-    // Successful authentication
-    //res.json(req.user);
-    res.json(JSON.stringify(req.session));
-});
 
 // React server rendering
 app.use(function(req, res) {
