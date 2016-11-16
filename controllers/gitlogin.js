@@ -1,7 +1,7 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
-var User = require('../models/user');
-
+var knex = require('../knexfile');
+var User = require('../models/User');
 
 passport.use(new GitHubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
@@ -9,28 +9,14 @@ passport.use(new GitHubStrategy({
         callbackURL: process.env.CALLBACK
     },
     function(accessToken, refreshToken, profile, done) {
-
-        var searchQuery = {
-            name: profile.username
-        };
-
-        var updates = {
-            name: profile.username,
-            someID: profile.id
-        };
-
-        var options = {
-            upsert: true
-        };
-
-        // update the user if s/he exists or add a new user
-        User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
-            if (err) {
-                return done(err);
-            } else {
-                return done(null, user);
-            }
-        });
+      console.log(profile);
+        User.where('username', profile.login).save().then(user => {
+            console.log("Successful");
+            done(null, user);
+        }).catch(err => {
+            console.log("doesnt work");
+            done(err);
+        })
     }
 ));
 
@@ -41,12 +27,15 @@ passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser((id, done) => {
     console.log("deserialize");
-
-    User.findById(id, function(err, user) {
-        done(err, user);
-    });
+    knex('users').where('id', id).first()
+        .then((user) => {
+            done(null, user);
+        })
+        .catch((err) => {
+            done(err, null);
+        });
 });
 
 

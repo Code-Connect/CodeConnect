@@ -24,8 +24,8 @@ require('babel-core/register');
 require('babel-polyfill');
 
 //mongoose DB
-var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_LOGIN);
+//var mongoose = require('mongoose');
+//mongoose.connect(process.env.MONGODB_LOGIN);
 
 // React and Server-Side Rendering
 var routes = require('./app/routes');
@@ -64,17 +64,14 @@ var passportGithub = require('./controllers/gitlogin');
 app.post('/contact', contactController.contactPost);
 
 //The Sessions gets connected to the MongoDB
-var MongoDBStore = require('connect-mongodb-session')(session);
+//var MongoDBStore = require('connect-mongodb-session')(session);
 var pg = require('pg');
 
-var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
+//var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
 const KnexSessionStore = require('connect-session-knex')(session);
 
 const Knex = require('knex');
-const knex = Knex({
-    client: 'pg',
-    connection: process.env.DATABASE_URL
-});
+const knex = Knex(require('./knexfile'));
 
 const store2 = new KnexSessionStore({
     knex: knex,
@@ -112,7 +109,7 @@ app.get('/account', function(req, res) {
 });
 
 app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email']}));
-app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/auth/github'}), function(req, res) {
+app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
     // Successful authentication
     //res.json(req.user);
     res.json(JSON.stringify(req.session));
