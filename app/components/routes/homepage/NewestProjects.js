@@ -63,12 +63,13 @@ class NewestProjects extends Component {
         let size = 12 / projects.length;
 
         if (projects && projects.length > 0)
-            cols = projects.map((project) => {
+            cols = projects.map((project, i) => {
                 return (
                     <Col xs={ size }
                          md={ size }
                          sm={ size }
-                         lg={ size }>
+                         lg={ size }
+                         key={i}>
                         <ProjectPreview
                             headerName={project.headerName}
                             description={project.description}

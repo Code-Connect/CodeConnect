@@ -36,9 +36,9 @@ class ProjectPreview extends Component {
     makeListGroupItems(tasks) {
         let listGroupItems;
         if (tasks && tasks.length > 0)
-            listGroupItems = tasks.map((task) => {
+            listGroupItems = tasks.map((task, i) => {
                 return (
-                    <ListGroupItem>
+                    <ListGroupItem key={i}>
                         <span>{task.name}</span>
                     </ListGroupItem>
                 );

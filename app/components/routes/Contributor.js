@@ -46,13 +46,13 @@ class Contributor extends Component {
         let cols;
 
         if (projects && projects.length > 0)
-            cols = projects.map((project) => {
+            cols = projects.map((project, i) => {
                 return (
-                    <ProjectPreview
-                        headerName={project.headerName}
-                        description={project.description}
-                        tasks={project.tasks}
-                        defaultExpanded={false}
+                    <ProjectPreview key={i}
+                                    headerName={project.headerName}
+                                    description={project.description}
+                                    tasks={project.tasks}
+                                    defaultExpanded={false}
                     />
                 );
             });
@@ -73,7 +73,10 @@ class Contributor extends Component {
                                  lg={ 2 }
                             >
                                 <SearchFilter
-                                    filter={ [{title: 'Platform'}, {title: 'Language'}, {title: 'Difficulty'}] }
+                                    filter={ [{
+                                        title: 'Platform',
+                                        options: [1, 2, 3]
+                                    }, {title: 'Language'}, {title: 'Difficulty'}] }
                                 />
                             </Col>
 

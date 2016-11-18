@@ -2,9 +2,9 @@ import React, {Component, PropTypes} from "react";
 import {Grid, Row, Col, Button, OverlayTrigger, Tooltip} from "react-bootstrap";
 
 
-const browseProjectsTooltip = (<Tooltip id="tooltip"><strong>Looking for real-world Projects to work on?</strong>
+const browseProjectsTooltip = (<Tooltip id="tooltip"><strong>Looking for real-world Projects to work on? </strong>
     These mentored Projects a what you seek</Tooltip>);
-const addProjectTooltip = (<Tooltip id="tooltip"><strong>Want your project to get worked on?</strong>
+const addProjectTooltip = (<Tooltip id="tooltip"><strong>Want your project to get worked on? </strong>
     Add it to this AWESOME platform</Tooltip>);
 
 class UserButtons extends Component {
