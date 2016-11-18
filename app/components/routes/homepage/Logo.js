@@ -5,11 +5,10 @@ class Logo extends Component {
     render() {
         return (<Grid fluid={true}>
                 <Row>
-                    <Col xs={ 0 }
+                    <Col xs={ 1 }
                          md={ 4 }
                          sm={ 4 }
-                         lg={ 5 }
-                         xsHidden={true}> </Col>
+                         lg={ 5 }> </Col>
                     <Col xs={ 3 }
                          md={ 4 }
                          sm={ 4 }
@@ -17,13 +16,13 @@ class Logo extends Component {
                         <Image
                             src="https://raw.githubusercontent.com/Gott50/Code-Connect/master/uibuilder/src/client/assets/CClogo.png"
                             responsive={true}
-                        ></Image>
+                        />
                     </Col>
-                    <Col xs={ 9 }
+                    <Col xs={ 8 }
                          md={ 12 }
                          sm={ 12 }
                          lg={ 12 }>
-                        <PageHeader style={ {fontFamily: 'awesome', textAlign: 'center'} }>
+                        <PageHeader style={ {textAlign: 'center'} }>
                                 <span style={ {fontSize: '150%'} }>
                                 Code Connect
                                 </span>
