@@ -5,20 +5,16 @@ class Logo extends Component {
     render() {
         return (<Grid fluid={true}>
                 <Row>
-                    <Col xs={ 1 }
-                         md={ 4 }
-                         sm={ 4 }
-                         lg={ 5 }> </Col>
-                    <Col xs={ 3 }
-                         md={ 4 }
-                         sm={ 4 }
-                         lg={ 2 }>
+                    <Col xs={ 4 } xsOffset={1}
+                         md={ 4 } mdOffset={4}
+                         sm={ 4 } smOffset={4}
+                         lg={ 2 } lgOffset={5}>
                         <Image
                             src="https://raw.githubusercontent.com/Gott50/Code-Connect/master/uibuilder/src/client/assets/CClogo.png"
                             responsive={true}
                         />
                     </Col>
-                    <Col xs={ 8 }
+                    <Col xs={ 6 }
                          md={ 12 }
                          sm={ 12 }
                          lg={ 12 }>
@@ -28,6 +24,8 @@ class Logo extends Component {
                                 </span>
                         </PageHeader>
                     </Col>
+
+                    <Col xs={ 1 }/>
                 </Row>
             </Grid>
         )
