@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from "react";
 import {Panel, ListGroup, ListGroupItem, Button} from "react-bootstrap";
 
 class ProjectPreview extends Component {
+
+
     render() {
         let task = this.props.tasks[0];
 
@@ -45,6 +47,9 @@ class ProjectPreview extends Component {
             });
         return listGroupItems;
     }
-
 }
+ProjectPreview.defaultProps = {
+    defaultExpanded: false
+};
+
 export default ProjectPreview;
