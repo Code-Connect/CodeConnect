@@ -1,15 +1,7 @@
-var passport = require('passport');
-var GitHubStrategy = require('passport-github2').Strategy;
-var Model = require('../models/User');
-var User = Model.User;
+var Projectmodel = require('../models/Project');
+var Project = Projectmodel.User;
 
-
-passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK
-}, function(token, refreshToken, profile, done) {
-    //console.log(profile);
+exports.projectGet = function(req, res) {
     process.nextTick(function() {
         new Model.Github({
             github_id: profile.id
@@ -34,24 +26,10 @@ passport.use(new GitHubStrategy({
                         method: 'insert'
                     }).then(function(github) {
                         return done(null, newGHUser);
-                  });
+                    });
                 });
             }
         });
     });
-}));
 
-
-passport.serializeUser(function(user, done) {
-    console.log(user);
-    done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-    Model.grabUserCredentials(id, function(err, user) {
-        done(err, user);
-    });
-});
-
-
-module.exports = passport;
+};

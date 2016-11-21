@@ -59,9 +59,12 @@ if (app.get('env') === 'development') {
 
 // Controllers
 var contactController = require('./controllers/contact');
+var projectController = require('./controllers/project');
+
 var passportGithub = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
+app.get('/project', projectController.projectGet);
 
 //The Sessions gets connected to the MongoDB
 //var MongoDBStore = require('connect-mongodb-session')(session);
@@ -107,6 +110,7 @@ app.get('/account', function(req, res) {
     console.log(req.user);
     res.send(req.sessionID);
 });
+
 
 app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email']}));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
