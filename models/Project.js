@@ -1,17 +1,15 @@
 var bookshelf = require('../config/bookshelf');
 
-var DB = require('../config/bookshelf').DB,
-    knex = DB.knex;
 
-var Project = DB.Model.extend({
+var Project = bookshelf.Model.extend({
     tableName: 'project',
-    idAttribute: 'id',
+    idAttribute: 'project_id',
     Task: function() {
-        return this.hasOne(Task, 'id');
+        return this.hasOne(Task, 'project_id');
     }
 });
 
-var Task = DB.Model.extend({
+var Task = bookshelf.Model.extend({
     tableName: 'task',
     idAttribute: 'task_id',
     Project: function() {

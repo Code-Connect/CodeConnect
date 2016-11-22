@@ -1,9 +1,7 @@
 var bookshelf = require('../config/bookshelf');
+var knex = bookshelf.knex;
 
-var DB = require('../config/bookshelf').DB,
-    knex = DB.knex;
-
-var User = DB.Model.extend({
+var User = bookshelf.Model.extend({
     tableName: 'users',
     idAttribute: 'id',
     Github: function() {
@@ -11,7 +9,7 @@ var User = DB.Model.extend({
     }
 });
 
-var Github = DB.Model.extend({
+var Github = bookshelf.Model.extend({
     tableName: 'github',
     idAttribute: 'id',
     User: function() {
@@ -63,29 +61,29 @@ function grabUserCredentials(userId, callback) {
     // SQL joins to get all credentials/tokens of a single user
     // to fill in loginUser JSON.
     knex.select('users.id', 'users.username', 'users.password',
-                'github.token as gh_token', 'github.name as gh_name')
-                .from('users')
-                .leftOuterJoin('github', 'github.id', '=', 'users.id')
-                .where('users.id', '=', userId).then(function(row) {
-        row = row[0];
+            'github.token as gh_token', 'github.name as gh_name')
+        .from('users')
+        .leftOuterJoin('github', 'github.id', '=', 'users.id')
+        .where('users.id', '=', userId).then(function(row) {
+            row = row[0];
 
-        if (!row) {
-            callback('Could not find user with that ID', null);
-        } else {
-            // Fill in loginUser JSON
-            loginUser.local.username      = row.username;
-            loginUser.local.password      = row.password;
+            if (!row) {
+                callback('Could not find user with that ID', null);
+            } else {
+                // Fill in loginUser JSON
+                loginUser.local.username = row.username;
+                loginUser.local.password = row.password;
 
-            loginUser.github.token      = row.gh_token;
-            loginUser.github.name       = row.gh_name;
-            callback(null, loginUser);
-        }
-    });
+                loginUser.github.token = row.fb_token;
+                loginUser.github.name = row.fb_name;
+                callback(null, loginUser);
+            }
+        });
 };
 
 module.exports = {
-    createNewUser       : createNewUser,
-    grabUserCredentials : grabUserCredentials,
-    User                : User,
-    Github              : Github,
+    createNewUser: createNewUser,
+    grabUserCredentials: grabUserCredentials,
+    User: User,
+    Github: Github,
 };
