@@ -42,7 +42,7 @@ app.use(sass({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public')
 }));
-//app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(expressValidator());
@@ -64,7 +64,7 @@ var projectController = require('./controllers/project');
 var passportGithub = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
-app.get('/project', projectController.projectGet);
+app.get('/project', projectController.getProject);
 
 //The Sessions gets connected to the MongoDB
 //var MongoDBStore = require('connect-mongodb-session')(session);
@@ -95,12 +95,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+var tempdata = {};
+
 app.use(function(req, res, next) {
     if (req.user) {
         console.log("Logged in");
     } else {
         console.log("not logged in");
     }
+    console.log(tempdata);
     next();
 });
 
@@ -121,9 +124,7 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-    var initialState = {
-        messages: {}
-    };
+    var initialState = projectController.getProject();;
 
     var store = configureStore(initialState);
 

@@ -21,7 +21,6 @@ passport.use(new GitHubStrategy({
                 // If there is no user found, then create one
                 new User().save().then(function(user) {
                     var newUserId = user.toJSON().id;
-
                     var newGHUser = {
                         id: newUserId,
                         token: token,
