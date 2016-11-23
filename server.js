@@ -101,7 +101,7 @@ app.use(function(req, res, next) {
     if (req.user) {
         console.log("Hello user Logged in");
     } else {
-        console.log("not logged in");
+        console.log("not logged in11123");
     }
     console.log(tempdata);
     next();
