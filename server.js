@@ -96,7 +96,7 @@ app.use(passport.session());
 
 app.use(function(req, res, next) {
     if (req.user) {
-        console.log("Logged in");
+        console.log("Hello user Logged in");
     } else {
         console.log("not logged in");
     }
