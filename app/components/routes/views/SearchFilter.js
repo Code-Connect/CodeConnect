@@ -1,17 +1,25 @@
 import React, {Component, PropTypes} from "react";
-import {Panel, ListGroup, Checkbox, FieldGroup} from "react-bootstrap";
+import {Panel, ListGroup, FieldGroup, FormControl, FormGroup, ControlLabel, HelpBlock} from "react-bootstrap";
 
 //import SelectButton from  "./SelectButton";
 
 class SearchFilter extends Component {
-    handleClick(option) {
-        console.log(option);
-
+    constructor() {
+        super();
+        this.state = {
+            value: ''
+        };
     }
 
-    handleChange(option) {
-        console.log(option);
-//<Button block onClick={this.handleClick(option)}>{option} </Button>
+    getValidationState() {
+        const length = this.state.value.length;
+        if (length > 10) return 'success';
+        else if (length > 5) return 'warning';
+        else if (length > 0) return 'error';
+    }
+
+    handleChange(e) {
+        this.setState({value: e.target.value});
     }
 
     makeListGroupItems(filter) {
@@ -19,15 +27,35 @@ class SearchFilter extends Component {
         if (filter.options && filter.options.length > 0)
             listGroupItems = filter.options.map((option, i) => {
                 return (
-                    <Checkbox key={i}>{option}</Checkbox>
+                    <div>empty Inside</div>
                 );
             });
         return listGroupItems;
     }
 
+    buildForm() {
+        return (
+            <form>
+                <FormGroup
+                    controlId="formBasicText"
+                    validationState={this.getValidationState()}
+                >
+                    <ControlLabel>Working example with validation</ControlLabel>
+                    <FormControl
+                        type="text"
+                        value={this.state.value}
+                        placeholder="Enter text"
+                        onChange={this.handleChange}
+                    />
+                    <FormControl.Feedback />
+                    <HelpBlock>Validation is based on string length.</HelpBlock>
+                </FormGroup>
+            </form>
+        );
+    }
     render() {
-        let panels;
 
+        let panels;
         if (this.props.filter && this.props.filter.length > 0) {
             panels = this.props.filter.map((filter, i) => {
                 return (
@@ -41,8 +69,11 @@ class SearchFilter extends Component {
             })
         }
 
+
         return (
             <div>
+                {this.buildForm}
+
                 {panels}
             </div>
         );

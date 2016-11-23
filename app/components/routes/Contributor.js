@@ -73,9 +73,10 @@ class Contributor extends Component {
                                  lg={ 2 }
                             >
                                 <SearchFilter
+                                    value=''
                                     filter={ [{
                                         title: 'Platform',
-                                        options: [1, 2, 3]
+                                        options: [1]
                                     }, {title: 'Language'}, {title: 'Difficulty'}] }
                                 />
                             </Col>
