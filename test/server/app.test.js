@@ -9,10 +9,10 @@ describe('GET /', function() {
   });
 });
 
-describe('GET /contact', function() {
+describe('GET /project', function() {
   it('should render ok', function(done) {
     request(server)
-      .get('/contact')
+      .get('/project')
       .expect(200, done);
   });
 });

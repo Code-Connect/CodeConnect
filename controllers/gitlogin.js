@@ -1,50 +1,53 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
-var User = require('../models/user');
+var Model = require('../models/User');
+var User = Model.User;
 
 
 passport.use(new GitHubStrategy({
-        clientID: process.env.GITHUB_CLIENT_ID,
-        clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: process.env.CALLBACK
-    },
-    function(accessToken, refreshToken, profile, done) {
-
-        var searchQuery = {
-            name: profile.username
-        };
-
-        var updates = {
-            name: profile.username,
-            someID: profile.id
-        };
-
-        var options = {
-            upsert: true
-        };
-
-        // update the user if s/he exists or add a new user
-        User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
-            if (err) {
-                return done(err);
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK
+}, function(token, refreshToken, profile, done) {
+    //console.log(profile);
+    process.nextTick(function() {
+        new Model.Github({
+            github_id: profile.id
+        }).fetch().then(function(ghUser) {
+            if (ghUser) {
+                // TODO: Handle case where there IS user, but no facebook user
+                return done(null, ghUser);
             } else {
-                return done(null, user);
+                // If there is no user found, then create one
+                new User().save().then(function(user) {
+                    var newUserId = user.toJSON().id;
+                    var newGHUser = {
+                        id: newUserId,
+                        token: token,
+                        github_id: profile.id,
+                        name: profile.username
+                    };
+
+                    // Create new Facebook user with token.
+                    new Model.Github(newGHUser).save({}, {
+                        method: 'insert'
+                    }).then(function(github) {
+                        return done(null, newGHUser);
+                  });
+                });
             }
         });
-    }
-));
+    });
+}));
 
 
 passport.serializeUser(function(user, done) {
-    console.log("serialize");
-
+    console.log(user);
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    console.log("deserialize");
-
-    User.findById(id, function(err, user) {
+    Model.grabUserCredentials(id, function(err, user) {
         done(err, user);
     });
 });

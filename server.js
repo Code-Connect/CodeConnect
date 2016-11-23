@@ -24,8 +24,8 @@ require('babel-core/register');
 require('babel-polyfill');
 
 //mongoose DB
-var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_LOGIN);
+//var mongoose = require('mongoose');
+//mongoose.connect(process.env.MONGODB_LOGIN);
 
 // React and Server-Side Rendering
 var routes = require('./app/routes');
@@ -42,7 +42,7 @@ app.use(sass({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public')
 }));
-//app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(expressValidator());
@@ -59,32 +59,33 @@ if (app.get('env') === 'development') {
 
 // Controllers
 var contactController = require('./controllers/contact');
+var projectController = require('./controllers/project');
+
 var passportGithub = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
+app.get('/project', projectController.getProject);
 
 //The Sessions gets connected to the MongoDB
-var MongoDBStore = require('connect-mongodb-session')(session);
+//var MongoDBStore = require('connect-mongodb-session')(session);
 var pg = require('pg');
 
-var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
+//var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
 const KnexSessionStore = require('connect-session-knex')(session);
 
 const Knex = require('knex');
-const knex = Knex({
-    client: 'pg',
-    connection: process.env.DATABASE_URL
-});
+const knex = Knex(require('./knexfile'));
 
 const store2 = new KnexSessionStore({
     knex: knex,
     tablename: 'sessions' // optional. Defaults to 'sessions'
 });
+
 // git login with session
 app.use(session({
     secret: process.env.SECRET,
     cookie: {
-        maxAge: 1000 * 60 * 8 // 8 hours
+        maxAge: 1000 * 60 * 60 * 8 // 8 hours
     },
     store: store2,
     resave: false,
@@ -94,12 +95,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+var tempdata = {};
+
 app.use(function(req, res, next) {
     if (req.user) {
         console.log("Logged in");
     } else {
         console.log("not logged in");
     }
+    console.log(tempdata);
     next();
 });
 
@@ -110,8 +114,9 @@ app.get('/account', function(req, res) {
     res.send(req.sessionID);
 });
 
+
 app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email']}));
-app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/auth/github'}), function(req, res) {
+app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
     // Successful authentication
     //res.json(req.user);
     res.json(JSON.stringify(req.session));
@@ -119,9 +124,7 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-    var initialState = {
-        messages: {}
-    };
+    var initialState = projectController.getProject();;
 
     var store = configureStore(initialState);
 
