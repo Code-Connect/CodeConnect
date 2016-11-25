@@ -98,4 +98,3 @@ class Contributor extends Component {
 
 
 export default Contributor;
-

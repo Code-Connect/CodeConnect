@@ -8,7 +8,7 @@ class YourProject extends Component {
         return (
             <div>
                 <PageHeader style={ {textAlign: 'center'} }>
-                    <span style={ {} }>Koddmm mal auf dein life klar</span>
+                    <span style={ {} }>Koddn life klar</span>
                 </PageHeader>
                 <ListGroup>
                     <ListGroupItem href="#">

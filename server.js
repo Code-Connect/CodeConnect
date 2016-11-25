@@ -64,6 +64,10 @@ var projectController = require('./controllers/project');
 var passportGithub = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
+app.post('/submitrepo', function(req, res) {
+    console.log("submitrepo");
+    res.send("hallo");
+});
 app.get('/project', projectController.getProject);
 
 //The Sessions gets connected to the MongoDB
@@ -77,8 +81,7 @@ const Knex = require('knex');
 const knex = Knex(require('./knexfile'));
 
 const store2 = new KnexSessionStore({
-    knex: knex,
-    tablename: 'sessions' // optional. Defaults to 'sessions'
+    knex: knex, tablename: 'sessions' // optional. Defaults to 'sessions'
 });
 
 // git login with session
@@ -114,7 +117,6 @@ app.get('/account', function(req, res) {
     res.send(req.sessionID);
 });
 
-
 app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email']}));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
     // Successful authentication
@@ -124,7 +126,10 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-    var initialState = projectController.getProject();;
+    var initialState = {
+        'hallo': 'yo',
+        'server': 'state'
+    };
 
     var store = configureStore(initialState);
 

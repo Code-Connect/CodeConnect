@@ -1,8 +1,8 @@
 export default function messages(state = {}, action) {
     switch (action.type) {
-        case 'AJAX':
+        case 'submitRepo':
             return {
-                thiensen: "oida"
+                "nice": action.repoLink
             };
             break;
         case 'POST':
