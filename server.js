@@ -117,18 +117,26 @@ app.get('/account', function(req, res) {
     res.send(req.sessionID);
 });
 
-app.get('/auth/github', passportGithub.authenticate('github', {scope: ['user:email']}));
+app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
     // Successful authentication
     //res.json(req.user);
+    console.log(req.user);
     res.json(JSON.stringify(req.session));
 });
 
 // React server rendering
 app.use(function(req, res) {
     var initialState = {
-        'hallo': 'yo',
-        'server': 'state'
+        ajax: {
+            history: [
+                {
+                    text: "server",
+                    completed: false
+                }
+            ]
+        },
+        messages: 'state'
     };
 
     var store = configureStore(initialState);

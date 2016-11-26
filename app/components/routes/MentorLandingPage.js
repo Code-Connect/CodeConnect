@@ -38,6 +38,8 @@ class MentorLandingPage extends React.Component {
                                     );
                                 })}
                             </ul>
+                            <input type="submit" value="Submit" />
+
                             <button className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Upload Project</button>
                         </div>
                     </div>

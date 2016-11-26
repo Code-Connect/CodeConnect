@@ -1,5 +1,5 @@
 var passport = require('passport');
-var GitHubStrategy = require('passport-github2').Strategy;
+var GitHubStrategy = require('passport-github').Strategy;
 var Model = require('../models/User');
 var User = Model.User;
 
@@ -7,9 +7,10 @@ var User = Model.User;
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK
+    callbackURL: process.env.CALLBACK,
+    scope: ['user:email']
 }, function(token, refreshToken, profile, done) {
-    //console.log(profile);
+    console.log(profile);
     process.nextTick(function() {
         new Model.Github({
             github_id: profile.id
@@ -24,6 +25,7 @@ passport.use(new GitHubStrategy({
                     var newGHUser = {
                         id: newUserId,
                         token: token,
+                        email: profile.emails[0].value,
                         github_id: profile.id,
                         name: profile.username
                     };
@@ -42,7 +44,7 @@ passport.use(new GitHubStrategy({
 
 
 passport.serializeUser(function(user, done) {
-    console.log(user);
+    //console.log(user);
     done(null, user.id);
 });
 

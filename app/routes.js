@@ -10,6 +10,11 @@ import YourTasks from "./components/routes/YourTasks";
 import MentorLandingPage from "./components/routes/MentorLandingPage";
 
 export default function getRoutes(store) {
+    console.log(store.getState());
+    //the store comes from the server
+    const setUpStore = () => {
+        store.dispatch({type: 'STATE_FROM_SERVER', state : store.getState});
+    }
     const clearMessages = () => {
         store.dispatch({type: 'CLEAR_MESSAGES'});
     };
