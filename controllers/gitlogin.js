@@ -10,7 +10,7 @@ passport.use(new GitHubStrategy({
     callbackURL: process.env.CALLBACK,
     scope: ['user:email']
 }, function(token, refreshToken, profile, done) {
-    console.log(profile);
+    //console.log(profile);
     process.nextTick(function() {
         new Model.Github({
             github_id: profile.id
@@ -35,7 +35,7 @@ passport.use(new GitHubStrategy({
                         method: 'insert'
                     }).then(function(github) {
                         return done(null, newGHUser);
-                  });
+                    });
                 });
             }
         });
@@ -44,7 +44,6 @@ passport.use(new GitHubStrategy({
 
 
 passport.serializeUser(function(user, done) {
-    //console.log(user);
     done(null, user.id);
 });
 

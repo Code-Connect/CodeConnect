@@ -46,14 +46,11 @@ function createNewUser(callback) {
 function grabUserCredentials(userId, callback) {
     // Skeleton JSON
     var loginUser = {
-        local: {
-            username: null,
-            password: null,
-        },
         github: {
             id: userId,
             token: null,
             email: null,
+            github_id: null,
             name: null,
         }
     };
@@ -61,7 +58,7 @@ function grabUserCredentials(userId, callback) {
     // SQL joins to get all credentials/tokens of a single user
     // to fill in loginUser JSON.
     knex.select('users.id', 'users.username', 'users.password',
-            'github.token as gh_token', 'github.name as gh_name')
+            'github.token as gh_token', 'github.name as gh_name', 'github.email as gh_email', 'github.github_id as gh_id')
         .from('users')
         .leftOuterJoin('github', 'github.id', '=', 'users.id')
         .where('users.id', '=', userId).then(function(row) {
@@ -70,12 +67,11 @@ function grabUserCredentials(userId, callback) {
             if (!row) {
                 callback('Could not find user with that ID', null);
             } else {
-                // Fill in loginUser JSON
-                loginUser.local.username = row.username;
-                loginUser.local.password = row.password;
-
-                loginUser.github.token = row.fb_token;
-                loginUser.github.name = row.fb_name;
+                // Fill in loginUser JSON which is the deserialized User
+                loginUser.github.token = row.gh_token;
+                loginUser.github.email = row.gh_email;
+                loginUser.github.github_id = row.gh_id;
+                loginUser.github.name = row.gh_name;
                 callback(null, loginUser);
             }
         });

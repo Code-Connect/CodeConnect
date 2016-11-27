@@ -10,7 +10,7 @@ import YourTasks from "./components/routes/YourTasks";
 import MentorLandingPage from "./components/routes/MentorLandingPage";
 
 export default function getRoutes(store) {
-    console.log(store.getState());
+    //console.log(store.getState());
     //the store comes from the server
     const setUpStore = () => {
         store.dispatch({type: 'STATE_FROM_SERVER', state : store.getState});
@@ -27,7 +27,6 @@ export default function getRoutes(store) {
             <Route path="/yourproject" component={YourProject}/>
             <Route path="/yourtasks" component={YourTasks}/>
             <Route path="/mentor" component={MentorLandingPage}/>
-
             <Route path="*" component={NotFound} onLeave={clearMessages}/>
         </Route>
     );

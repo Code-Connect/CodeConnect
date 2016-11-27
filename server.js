@@ -100,13 +100,11 @@ app.use(passport.session());
 
 var tempdata = {};
 
-app.use(function(req, res, next) {
-    if (req.user) {
+app.use(function(req, res, next) { //request to the server
+    if (req.user)
         console.log("Hello user Logged in");
-    } else {
-        console.log("not logged in11123");
-    }
-    console.log(tempdata);
+    else
+        console.log("Not logged in");
     next();
 });
 
@@ -114,14 +112,17 @@ app.get('/account', function(req, res) {
     //do something only if user is authenticated
     console.log(req.sessionID);
     console.log(req.user);
-    res.send(req.sessionID);
+    res.json(req.user);
 });
 
 app.get('/auth/github', passportGithub.authenticate('github'));
-app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
+app.get('/auth/github/callback', passportGithub.authenticate('github', {
+    successRedirect: '/',
+    failureRedirect: '/'
+}), function(req, res) {
     // Successful authentication
     //res.json(req.user);
-    console.log(req.user);
+    //console.log(req.user);
     res.json(JSON.stringify(req.session));
 });
 
@@ -136,7 +137,7 @@ app.use(function(req, res) {
                 }
             ]
         },
-        messages: 'state'
+        user: req.user
     };
 
     var store = configureStore(initialState);
