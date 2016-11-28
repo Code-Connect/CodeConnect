@@ -56,7 +56,7 @@ class Header extends React.Component {
                                 <IndexLink to="/" activeStyle={active}>Home</IndexLink>
                             </li>
                             <li>
-                                <Link to="/contact" activeStyle={active}>Contact</Link>
+                                <Link to="/mentor" activeStyle={active}>Mentor1</Link>
                             </li>
                             <li>
                                 <Link to="/mentor" activeStyle={active}>Mentor</Link>

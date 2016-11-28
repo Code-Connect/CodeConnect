@@ -1,21 +1,22 @@
 import 'whatwg-fetch';
 
-export function submitRepo(repoLink) {
+export function getRequest(link) {
     return (dispatch) => {
-        fetch('/submitrepo', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                repo: repoLink,
-            })
-        }).then((response) => {
-            dispatch({
-                type: 'submitRepo',
-                repoLink: 'link123'
+        fetch(link).then((response) => {
+            return response.json().then(function(json) {
+                var array = json.map((item) => {
+                    return {
+                        name: item.name,
+                        repourl: item.html_url,
+                        description: item.description
+                    }
+                });
+                console.log("check");
+                return {
+                    type: 'GET_REPOS',
+                    repos: array
+                };
             });
-        });
+        }).then((action) => dispatch(action));
     };
 }

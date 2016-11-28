@@ -8,9 +8,9 @@ passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: process.env.CALLBACK,
-    scope: ['user:email']
+    scope: ['user:email', 'repo']
 }, function(token, refreshToken, profile, done) {
-    //console.log(profile);
+    console.log(profile);
     process.nextTick(function() {
         new Model.Github({
             github_id: profile.id

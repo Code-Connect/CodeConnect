@@ -137,7 +137,10 @@ app.use(function(req, res) {
                 }
             ]
         },
-        user: req.user
+        user: req.user,
+        projects: {
+            repos: []
+        }
     };
 
     var store = configureStore(initialState);
