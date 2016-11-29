@@ -11,7 +11,7 @@ class Header extends React.Component {
         const active = {
             borderBottomColor: '#3f51b5'
         };
-        var rightNav = this.props.user
+        const rightNav = this.props.user
             ? (
                 <ul className="nav navbar-nav navbar-right">
                     <li className="dropdown">
@@ -38,6 +38,15 @@ class Header extends React.Component {
                     </li>
                 </ul>
             );
+        const mentorNav = this.props.user
+            ? (
+                <li>
+                    <Link to="/mentor" activeStyle={active}>Mentor</Link>
+                </li>
+            )
+            : (
+                <div></div>
+            );
         return (
             <nav className="navbar navbar-default navbar-static-top">
                 <div className="container">
@@ -55,12 +64,7 @@ class Header extends React.Component {
                             <li>
                                 <IndexLink to="/" activeStyle={active}>Home</IndexLink>
                             </li>
-                            <li>
-                                <Link to="/mentor" activeStyle={active}>Mentor1</Link>
-                            </li>
-                            <li>
-                                <Link to="/mentor" activeStyle={active}>Mentor</Link>
-                            </li>
+                            {mentorNav}
                         </ul>
                         {rightNav}
                     </div>

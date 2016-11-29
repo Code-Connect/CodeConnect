@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getRequest} from '../actions/mentor';
+import {getReposGithub} from '../actions/mentor';
 
 class Mentor extends React.Component {
     constructor(props) {
@@ -9,7 +9,12 @@ class Mentor extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.dispatch(getRequest('https://api.github.com/users/gapsong/repos'));
+
+    }
+
+    componentDidMount() {
+        console.log("fresh");
+        this.props.dispatch(getReposGithub('https://api.github.com/users/' + this.props.github_name + '/repos'));
     }
 
     render() {
@@ -30,7 +35,6 @@ class Mentor extends React.Component {
                                     );
                                 })}
                             </ul>
-                            <input type="submit" value="Submit"/>
                             <button className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Upload Project</button>
                         </div>
                     </div>
@@ -42,8 +46,8 @@ class Mentor extends React.Component {
 
 const mapStateToProps = (state) => {
     console.log("mentor map states to props");
-    console.log(state.projects);
-    return {repos: state.projects.repos};
+    console.log(state);
+    return {repos: state.projects.repos, github_name: state.user.github.name};
 };
 
 export default connect(mapStateToProps)(Mentor);

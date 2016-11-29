@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-export function getRequest(link) {
+export function getReposGithub(link) {
     return (dispatch) => {
         fetch(link).then((response) => {
             return response.json().then(function(json) {
