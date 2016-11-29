@@ -117,13 +117,17 @@ app.get('/account', function(req, res) {
 
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {
-    successRedirect: '/',
     failureRedirect: '/'
 }), function(req, res) {
     // Successful authentication
-    //res.json(req.user);
-    //console.log(req.user);
-    res.json(JSON.stringify(req.session));
+    var user = req.user;
+    req.login(user, function(error) {
+        if (!error) {
+            console.log('succcessfully updated user');
+        }
+    });
+    res.end();
+    res.redirect('/');
 });
 
 // React server rendering
