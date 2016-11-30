@@ -10,7 +10,7 @@ passport.use(new GitHubStrategy({
     callbackURL: process.env.CALLBACK,
     scope: ['user:email', 'repo']
 }, function(token, refreshToken, profile, done) {
-    console.log(profile);
+    //console.log(profile);
     process.nextTick(function() {
         new Model.Github({
             github_id: profile.id

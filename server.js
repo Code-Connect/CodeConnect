@@ -108,10 +108,9 @@ app.use(function(req, res, next) { //request to the server
     next();
 });
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.end();
-  res.redirect('/');
+app.get('/logout', function(req, res) {
+    //req.logout();
+    res.redirect('/');
 });
 
 app.get('/account', function(req, res) {
@@ -122,19 +121,18 @@ app.get('/account', function(req, res) {
 });
 
 app.get('/auth/github', passportGithub.authenticate('github'));
-app.get('/auth/github/callback', passportGithub.authenticate('github', {
-    failureRedirect: '/'
-}), function(req, res) {
+app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
     // Successful authentication
-
+    /*
     var user = req.user;
     req.login(user, function(error) {
         if (!error) {
             console.log('succcessfully updated user');
         }
+    });*/
+    req.session.save(function(err) {
+        res.redirect('/');
     });
-    res.end();
-    res.redirect('/');
 });
 
 // React server rendering
