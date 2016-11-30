@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from "react";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
     Button,
     Panel,
@@ -88,9 +88,7 @@ class YourTasks extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    messages: state.messages
-  };
+    return {messages: state.messages};
 };
 
 export default connect(mapStateToProps)(YourTasks);

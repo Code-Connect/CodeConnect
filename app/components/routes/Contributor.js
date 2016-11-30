@@ -3,7 +3,6 @@ import {Grid, Row, Col, PageHeader} from "react-bootstrap";
 import SearchFilter from "./views/SearchFilter.js";
 import ProjectPreview from "./homepage/ProjectPreview";
 
-
 const projects = [
     {
         headerName: "Code Connect",
@@ -24,16 +23,13 @@ const projects = [
             {
                 name: "11: Add Advertising",
                 link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
+            }, {
                 name: "13: Add MuteButton",
                 link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
+            }, {
                 name: "14: Redesign MainMenu",
                 link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
+            }, {
                 name: "16: Redesign Icon",
                 link: "https://github.com/gapsong/TowerDefense"
             }
@@ -47,54 +43,43 @@ class Contributor extends Component {
 
         if (projects && projects.length > 0)
             cols = projects.map((project, i) => {
-                return (
-                    <ProjectPreview key={i}
-                                    headerName={project.headerName}
-                                    description={project.description}
-                                    tasks={project.tasks}
-                                    defaultExpanded={false}
-                    />
-                );
+                return (<ProjectPreview key={i} headerName={project.headerName} description={project.description} tasks={project.tasks} defaultExpanded={false}/>);
             });
         return cols;
     }
     render() {
         return (
             <div>
-                <PageHeader style={ {textAlign: 'center'} }>
+                <PageHeader style={{
+                    textAlign: 'center'
+                }}>
                     Select your Project
                 </PageHeader>
 
-                <Grid fluid={ true }>
-                        <Row>
-                            <Col xs={ 3 }
-                                 md={ 2 }
-                                 sm={ 2 }
-                                 lg={ 2 }
-                            >
-                                <SearchFilter
-                                    value=''
-                                    filter={ [{
-                                        title: 'Platform',
-                                        options: [1]
-                                    }, {title: 'Language'}, {title: 'Difficulty'}] }
-                                />
-                            </Col>
+                <Grid fluid={true}>
+                    <Row>
+                        <Col xs={3} md={2} sm={2} lg={2}>
+                            <SearchFilter value='' filter={[
+                                {
+                                    title: 'Platform',
+                                    options: [1]
+                                }, {
+                                    title: 'Language'
+                                }, {
+                                    title: 'Difficulty'
+                                }
+                            ]}/>
+                        </Col>
 
-                            <Col xs={ 6 }
-                                 md={ 10 }
-                                 sm={ 10 }
-                                 lg={ 10 }
-                            >
-                                {this.buildPanels(projects)}
+                        <Col xs={6} md={10} sm={10} lg={10}>
+                            {this.buildPanels(projects)}
 
-                            </Col>
-                        </Row>
-                    </Grid>
+                        </Col>
+                    </Row>
+                </Grid>
             </div>
         );
     }
 }
-
 
 export default Contributor;

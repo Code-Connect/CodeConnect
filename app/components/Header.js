@@ -40,13 +40,20 @@ class Header extends React.Component {
             );
         const mentorNav = this.props.user
             ? (
-                <li>
-                    <Link to="/mentor" activeStyle={active}>Mentor</Link>
-                </li>
+                <ul className="nav navbar-nav navbar-right">
+                    <li>
+                        <Link to="/contributor" activeStyle={active}>Contributor</Link>
+                    </li>
+                    <li>
+                        <Link to="/mentor" activeStyle={active}>Mentor</Link>
+                    </li>
+                </ul>
+
             )
             : (
                 <div></div>
             );
+
         return (
             <nav className="navbar navbar-default navbar-static-top">
                 <div className="container">
@@ -57,13 +64,10 @@ class Header extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <IndexLink to="/" className="navbar-brand">Project name</IndexLink>
+                        <IndexLink to="/" className="navbar-brand">Code Connect</IndexLink>
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
-                            <li>
-                                <IndexLink to="/" activeStyle={active}>Home</IndexLink>
-                            </li>
                             {mentorNav}
                         </ul>
                         {rightNav}
