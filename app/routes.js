@@ -3,7 +3,7 @@ import {IndexRoute, Route} from "react-router";
 import App from "./components/App";
 import Mentor from "./components/Mentor";
 import NotFound from "./components/NotFound";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/routes/HomePage";
 import Contributor from "./components/routes/Contributor";
 import YourProject from "./components/routes/YourProject";
 import YourTasks from "./components/routes/YourTasks";
