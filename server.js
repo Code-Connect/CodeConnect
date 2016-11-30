@@ -108,6 +108,12 @@ app.use(function(req, res, next) { //request to the server
     next();
 });
 
+app.get('/logout', function(req, res){
+  req.logout();
+  res.end();
+  res.redirect('/');
+});
+
 app.get('/account', function(req, res) {
     //do something only if user is authenticated
     console.log(req.sessionID);
@@ -120,6 +126,8 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {
     failureRedirect: '/'
 }), function(req, res) {
     // Successful authentication
+    req.logout();
+    
     var user = req.user;
     req.login(user, function(error) {
         if (!error) {
