@@ -126,8 +126,7 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {
     failureRedirect: '/'
 }), function(req, res) {
     // Successful authentication
-    req.logout();
-    
+
     var user = req.user;
     req.login(user, function(error) {
         if (!error) {
