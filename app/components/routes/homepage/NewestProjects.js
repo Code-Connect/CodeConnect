@@ -36,6 +36,69 @@ const projects = [
                 link: "https://github.com/gapsong/TowerDefense"
             }
         ]
+    }, {
+        headerName: "TowerDefense",
+        description: "A mobile TD Game",
+        tasks: [
+            {
+                name: "11: Add Advertising",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "13: Add MuteButton",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "14: Redesign MainMenu",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "16: Redesign Icon",
+                link: "https://github.com/gapsong/TowerDefense"
+            }
+        ]
+    }, {
+        headerName: "TowerDefense",
+        description: "A mobile TD Game",
+        tasks: [
+            {
+                name: "11: Add Advertising",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "13: Add MuteButton",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "14: Redesign MainMenu",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "16: Redesign Icon",
+                link: "https://github.com/gapsong/TowerDefense"
+            }
+        ]
+    }, {
+        headerName: "TowerDefense",
+        description: "A mobile TD Game",
+        tasks: [
+            {
+                name: "11: Add Advertising",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "13: Add MuteButton",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "14: Redesign MainMenu",
+                link: "https://github.com/gapsong/TowerDefense"
+            },
+            {
+                name: "16: Redesign Icon",
+                link: "https://github.com/gapsong/TowerDefense"
+            }
+        ]
     }
 ];
 //*/
@@ -60,7 +123,7 @@ class NewestProjects extends Component {
 
     buildCols(projects) {
         let cols;
-        let size = 12 / projects.length;
+        let size = Math.floor(12 / projects.length);
 
         if (projects && projects.length > 0)
             cols = projects.map((project, i) => {
