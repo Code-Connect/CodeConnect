@@ -125,13 +125,7 @@ app.get('/account', function(req, res) {
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
     // Successful authentication
-    /*
-    var user = req.user;
-    req.login(user, function(error) {
-        if (!error) {
-            console.log('succcessfully updated user');
-        }
-    });*/
+
     req.session.save(function(err) {
         res.redirect('/');
     });
@@ -151,7 +145,40 @@ app.use(function(req, res) {
         user: req.user,
         projects: {
             repos: [],
-            codeconnect_repos: []
+            publicprojects: [
+                {
+                    headerName: "Code Connect",
+                    description: "The platform for coders to connect",
+                    tasks: [
+                        {
+                            name: "10: Search Functionality in Navigation Bar",
+                            link: "https://github.com/nithishr/codeConnect"
+                        }, {
+                            name: "12: Improve load times",
+                            link: "https://github.com/nithishr/codeConnect"
+                        }
+                    ]
+                }, {
+                    headerName: "TowerDefense",
+                    description: "A mobile TD Game",
+                    tasks: [
+                        {
+                            name: "11: Add Advertising",
+                            link: "https://github.com/gapsong/TowerDefense"
+                        }, {
+                            name: "13: Add MuteButton",
+                            link: "https://github.com/gapsong/TowerDefense"
+                        }, {
+                            name: "14: Redesign MainMenu",
+                            link: "https://github.com/gapsong/TowerDefense"
+                        }, {
+                            name: "16: Redesign Icon",
+                            link: "https://github.com/gapsong/TowerDefense"
+                        }
+                    ]
+                }
+            ],
+            ccrepos: []
         }
     };
 
