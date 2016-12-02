@@ -47,7 +47,7 @@ class Mentor extends React.Component {
 
                         <div className="panel-body">
                             <ul className="list-group">
-                                {this.props.repos.map(function(item) {
+                                {this.props.ccrepos.map(function(item) {
                                     return (
                                         <li className="list-group-item">
                                             <span className="tag tag-default tag-pill float-xs-right">{item.name}</span>
@@ -68,7 +68,7 @@ const mapStateToProps = (state) => {
     console.log("mentor map states to props");
     console.log(state);
 
-    return {repos: state.projects.repos, github_name: state.user.github.name};
+    return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, github_name: state.user.github.name};
 };
 
 export default connect(mapStateToProps)(Mentor);
