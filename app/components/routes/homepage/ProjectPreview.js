@@ -10,12 +10,13 @@ class ProjectPreview extends Component {
             <div>
                 <Panel header={< h3 > {
                     this.props.headerName
-                } < /h3>} bsStyle="warning">
+                } </h3>} bsStyle="warning">
                     <span style={{
                         fontSize: "larger"
                     }}>{this.props.description}</span>
 
-                    <Panel header={< h5 > Tasks < /h5>} collapsible={true} defaultExpanded={this.props.defaultExpanded} bsStyle="success">
+                    <Panel header={< h5 > Tasks </h5>} collapsible={true} defaultExpanded={this.props.defaultExpanded}
+                           bsStyle="success">
                         <ListGroup fill={true}>
                             {this.makeListGroupItems(this.props.tasks)}
                         </ListGroup>
