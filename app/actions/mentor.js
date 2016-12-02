@@ -20,3 +20,9 @@ export function getReposGithub(link) {
         }).then((action) => dispatch(action));
     };
 }
+export function addProjectsToCodeConnect(project){
+  return {
+    type: 'ADD_PROJECT_TO_CC',
+    project: project
+  }
+}

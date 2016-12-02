@@ -109,8 +109,10 @@ app.use(function(req, res, next) { //request to the server
 });
 
 app.get('/logout', function(req, res) {
-    //req.logout();
-    res.redirect('/');
+    req.logout();
+    req.session.save(function(err) {
+        res.redirect('/');
+    });
 });
 
 app.get('/account', function(req, res) {
@@ -148,7 +150,8 @@ app.use(function(req, res) {
         },
         user: req.user,
         projects: {
-            repos: []
+            repos: [],
+            codeconnect_repos: []
         }
     };
 

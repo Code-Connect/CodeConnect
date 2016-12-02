@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getReposGithub} from '../actions/mentor';
+import {getReposGithub, addProjectsToCodeConnect} from '../actions/mentor';
 
 class Mentor extends React.Component {
     constructor(props) {
@@ -9,6 +9,11 @@ class Mentor extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+    }
+
+    addProject(project) {
+        console.log("added project to codeconnect");
+        this.props.dispatch(addProjectsToCodeConnect(project));
     }
 
     //gets called, when the component gets loaded
@@ -27,11 +32,9 @@ class Mentor extends React.Component {
                         </div>
                         <div className="panel-body">
                             <ul className="list-group">
-                                {this.props.repos.map(function(item) {
+                                {this.props.repos.map((item) => {
                                     return (
-                                        <li className="list-group-item">
-                                            <span className="tag tag-default tag-pill float-xs-right">{item.name}</span>
-                                        </li>
+                                        <button className="list-group-item" onClick={() => this.addProject(item)}>{item.name}</button>
                                     );
                                 })}
                             </ul>

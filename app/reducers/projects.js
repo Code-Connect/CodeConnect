@@ -7,6 +7,11 @@ export default function messages(state = {}, action) {
                 repos: action.repos
             }
             break;
+        case 'ADD_PROJECT_TO_CC':
+            console.log("projects added");
+            return Object.assign({}, state, {
+                ccrepos: action.project
+            })
         default:
             return state;
     }
