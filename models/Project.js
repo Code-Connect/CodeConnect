@@ -1,5 +1,6 @@
 var bookshelf = require('../config/bookshelf');
-
+var Model = require('./User');
+var Github = Model.Github;
 
 var Project = bookshelf.Model.extend({
     tableName: 'project',
@@ -16,6 +17,17 @@ var Task = bookshelf.Model.extend({
         return this.belongsTo(Project, 'task_id'); //could be 'id' aswell
     }
 });
+
+var Projectmentor = bookshelf.Model.extend({
+    tableName: 'projectmentor',
+    user_id: function() {
+        return this.hasOne(Github, 'github_id');
+    },
+    project_id: function() {
+        return this.hasOne(Project, 'project_id');
+    }
+});
+
 
 function getProject(userId, callback) {
     // Skeleton JSON
@@ -35,6 +47,7 @@ function getProject(userId, callback) {
 
 module.exports = {
     getProject : getProject,
+    Projectmentor : Projectmentor,
     Project: Project,
-    Task: Task,
+    Task: Task
 };

@@ -1,19 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getReposGithub, addProjectsToCodeConnect} from '../actions/mentor';
+import {getReposGithub, addProjectsToCodeConnect, postProject} from '../actions/mentor';
 
 class Mentor extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit() {
+        console.log("handlesubmit");
+        console.log(this.props.ccrepos);
+        this.props.dispatch(postProject(this.props.ccrepos));
     }
 
     addProject(project) {
         console.log("added project to codeconnect");
-        this.props.dispatch(addProjectsToCodeConnect(project));
+        this.props.dispatch(addProjectsToCodeConnect(project, this.props.github_id));
     }
 
     //gets called, when the component gets loaded
@@ -38,7 +40,7 @@ class Mentor extends React.Component {
                                     );
                                 })}
                             </ul>
-                            <button className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Upload Project</button>
+                            <button className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Update Project</button>
                         </div>
 
                         <div className="panel-heading">
@@ -55,7 +57,6 @@ class Mentor extends React.Component {
                                     );
                                 })}
                             </ul>
-                            <button className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Upload Project</button>
                         </div>
                     </div>
                 </div>
@@ -68,7 +69,7 @@ const mapStateToProps = (state) => {
     console.log("mentor map states to props");
     console.log(state);
 
-    return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, github_name: state.user.github.name};
+    return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, github_id: state.user.github.github_id, github_name: state.user.github.name};
 };
 
 export default connect(mapStateToProps)(Mentor);

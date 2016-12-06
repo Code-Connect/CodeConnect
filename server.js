@@ -65,10 +65,14 @@ var passportGithub = require('./controllers/gitlogin');
 
 app.post('/contact', contactController.contactPost);
 app.post('/submitrepo', function(req, res) {
-    console.log("submitrepo");
+    console.log(req);
     res.send("hallo");
 });
+
+
 app.get('/project', projectController.getProject);
+
+app.post('/postccrepo', projectController.saveProject);
 
 //The Sessions gets connected to the MongoDB
 //var MongoDBStore = require('connect-mongodb-session')(session);
