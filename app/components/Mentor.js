@@ -10,12 +10,12 @@ class Mentor extends React.Component {
     handleSubmit() {
         console.log("handlesubmit");
         console.log(this.props.ccrepos);
-        this.props.dispatch(postProject(this.props.ccrepos));
+        this.props.dispatch(postProject(this.props.ccrepos, this.props.github_id));
     }
 
     addProject(project) {
         console.log("added project to codeconnect");
-        this.props.dispatch(addProjectsToCodeConnect(project, this.props.github_id));
+        this.props.dispatch(addProjectsToCodeConnect(project));
     }
 
     //gets called, when the component gets loaded

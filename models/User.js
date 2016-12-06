@@ -1,22 +1,10 @@
 var bookshelf = require('../config/bookshelf');
 var knex = bookshelf.knex;
 
-var User = bookshelf.Model.extend({
-    tableName: 'users',
-    idAttribute: 'id',
-    Github: function() {
-        return this.hasOne(Github, 'id');
-    }
-});
-
 var Github = bookshelf.Model.extend({
     tableName: 'github',
-    idAttribute: 'id',
-    User: function() {
-        return this.belongsTo(User, 'id');
-    }
+    idAttribute: 'github_id'
 });
-
 
 // ------------------------------
 // createNewUser
@@ -43,27 +31,23 @@ function createNewUser(callback) {
 //          ...
 //     }
 // }
-function grabUserCredentials(userId, callback) {
+function grabUserCredentials(github_id, callback) {
     // Skeleton JSON
     var loginUser = {
         github: {
-            id: userId,
             token: null,
             email: null,
-            github_id: null,
+            github_id: github_id,
             name: null,
         }
     };
 
     // SQL joins to get all credentials/tokens of a single user
     // to fill in loginUser JSON.
-    knex.select('users.id', 'users.username', 'users.password',
-            'github.token as gh_token', 'github.name as gh_name', 'github.email as gh_email', 'github.github_id as gh_id')
-        .from('users')
-        .leftOuterJoin('github', 'github.id', '=', 'users.id')
-        .where('users.id', '=', userId).then(function(row) {
+    knex.select('github.token as gh_token', 'github.name as gh_name', 'github.email as gh_email', 'github.github_id as gh_id')
+        .from('github')
+        .where('github.github_id', '=', github_id).then(function(row) {
             row = row[0];
-
             if (!row) {
                 callback('Could not find user with that ID', null);
             } else {
@@ -80,6 +64,5 @@ function grabUserCredentials(userId, callback) {
 module.exports = {
     createNewUser: createNewUser,
     grabUserCredentials: grabUserCredentials,
-    User: User,
     Github: Github,
 };

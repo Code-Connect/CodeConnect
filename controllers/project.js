@@ -78,7 +78,7 @@ exports.saveProject = function(req, res) {
                 console.log("fdsa");
                 new Projectmentor({
                     project_id: project.repoid, //if project is not there create one
-                    user_id: req.body.github_id,
+                    user_id: req.body.github_id
                 }).save(null, { //save project in database
                     method: 'insert'
                 });

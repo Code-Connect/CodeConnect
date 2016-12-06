@@ -20,12 +20,6 @@ var Task = bookshelf.Model.extend({
 
 var Projectmentor = bookshelf.Model.extend({
     tableName: 'projectmentor',
-    user_id: function() {
-        return this.hasOne(Github, 'github_id');
-    },
-    project_id: function() {
-        return this.hasOne(Project, 'project_id');
-    }
 });
 
 

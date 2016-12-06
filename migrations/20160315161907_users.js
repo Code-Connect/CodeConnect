@@ -1,16 +1,15 @@
 exports.up = function(knex, Promise) {
-  return Promise.all([
-    knex.schema.createTable('users', function(table) {
-      table.string('id');
-      table.string('name');
-      table.string('gitID');
-      table.timestamps();
-    })
-  ]);
+  return knex.schema.createTable('books', function(table) {
+    table.increments('id').primary();
+    table.string('name');
+  }).createTable('summaries', function(table) {
+    table.increments('id').primary();
+    table.string('details');
+    table.integer('book_id').unique().references('books.id');
+  });
 };
 
 exports.down = function(knex, Promise) {
-  return Promise.all([
-    knex.schema.dropTable('users')
-  ])
+  return knex.schema.dropTable('books')
+    .dropTable('summaries');
 };
