@@ -69,6 +69,7 @@ exports.saveProject = function(req, res) {
             }
         });
 
+
         new Projectmentor({
             project_id: project.project_id //looks for project_id in database
         }).fetch().then(function(model) { //fetch will create a promise
