@@ -19,7 +19,7 @@ var Task = bookshelf.Model.extend({
 });
 
 var Projectmentor = bookshelf.Model.extend({
-    tableName: 'projectmentor',
+    tableName: 'projectmentor'
 });
 
 
