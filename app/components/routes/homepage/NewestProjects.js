@@ -1,44 +1,8 @@
 import React, {Component, PropTypes} from "react";
+import {connect} from "react-redux";
 import {Grid, Row, Col} from "react-bootstrap";
 import ProjectPreview from "./ProjectPreview";
 
-const projects = [
-    {
-        headerName: "Code Connect",
-        description: "The platform for coders to connect",
-        tasks: [
-            {
-                name: "10: Search Functionality in Navigation Bar",
-                link: "https://github.com/nithishr/codeConnect"
-            }, {
-                name: "12: Improve load times",
-                link: "https://github.com/nithishr/codeConnect"
-            }
-        ]
-    }, {
-        headerName: "TowerDefense",
-        description: "A mobile TD Game",
-        tasks: [
-            {
-                name: "11: Add Advertising",
-                link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
-                name: "13: Add MuteButton",
-                link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
-                name: "14: Redesign MainMenu",
-                link: "https://github.com/gapsong/TowerDefense"
-            },
-            {
-                name: "16: Redesign Icon",
-                link: "https://github.com/gapsong/TowerDefense"
-            }
-        ]
-    }
-];
-//*/
 
 class NewestProjects extends Component {
 
@@ -49,7 +13,7 @@ class NewestProjects extends Component {
                 <Grid
                     fluid={ true }>
                     <Row>
-                        {this.buildCols(projects)}
+                        {this.buildCols(this.props.projects)}
                     </Row>
                 </Grid>
             </div>
@@ -60,15 +24,13 @@ class NewestProjects extends Component {
 
     buildCols(projects) {
         let cols;
-        let size = 12 / projects.length;
-
         if (projects && projects.length > 0)
             cols = projects.map((project, i) => {
                 return (
-                    <Col xs={ size }
-                         md={ size }
-                         sm={ size }
-                         lg={ size }
+                    <Col xs={ this.calculateSize(projects, 7) }
+                         md={ this.calculateSize(projects, 5) }
+                         sm={ this.calculateSize(projects, 4) }
+                         lg={ this.calculateSize(projects, 3) }
                          key={i}>
                         <ProjectPreview
                             headerName={project.headerName}
@@ -81,5 +43,21 @@ class NewestProjects extends Component {
             });
         return cols;
     }
+
+    calculateSize(projects, min) {
+        min = min || 4;
+        let size = Math.floor(12 / projects.length);
+        while (size < min || 12 % size != 0)
+            size++;
+        return size;
+    }
 }
-export default NewestProjects;
+
+const mapStateToProps = (state) => {
+    console.log("mentor map states to props");
+    console.log(state);
+
+    return {projects: state.projects.publicprojects};
+};
+
+export default connect(mapStateToProps)(NewestProjects);
