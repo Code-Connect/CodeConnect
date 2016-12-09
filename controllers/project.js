@@ -31,7 +31,7 @@ exports.setProject = function(req, res) {
 };
 
 exports.getProject = function(initialState, github_id, callback) {
-    knex.select('project.project_id', 'project.name')
+    knex.select('project.project_id')
         .from('project').join('projectmentor', function() {
             this.on('project.project_id', '=', 'projectmentor.project_id')
         })
@@ -51,9 +51,7 @@ exports.saveProject = function(req, res) {
         }).fetch().then(function(model) { //fetch will create a promise
             if (!model) {
                 new Project({
-                    project_id: project.repoid, //if project is not there create one
-                    name: project.name,
-                    contributor: []
+                    project_id: project.repoid //if project is not there create one
                 }).save(null, { //save project in database
                     method: 'insert'
                 });
