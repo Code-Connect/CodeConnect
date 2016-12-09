@@ -22,7 +22,5 @@ export default function configureStore(initialState) {
             store.replaceReducer(nextRootReducer);
         });
     }
-    console.log("store: ");
-    console.log(store.getState());
     return store;
 }

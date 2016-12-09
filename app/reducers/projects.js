@@ -7,7 +7,7 @@ export default function messages(state = {}, action) {
             return Object.assign({}, state, {
                 repos: action.repos.filter((item) =>
                     state.ccrepos.reduce(function(acc, item2) {
-                        return acc && (JSON.stringify(item) !== JSON.stringify(item2))
+                        return acc && (JSON.stringify(item.repoid) !== JSON.stringify(item2.repoid))
                     }, true)
                 )
             })

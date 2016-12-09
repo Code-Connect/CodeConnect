@@ -42,7 +42,7 @@ app.use(sass({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public')
 }));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(expressValidator());
@@ -68,7 +68,6 @@ app.post('/submitrepo', function(req, res) {
     console.log(req);
     res.send("hallo");
 });
-
 
 app.get('/project', projectController.getProject);
 
@@ -105,9 +104,9 @@ app.use(passport.session());
 var tempdata = {};
 
 app.use(function(req, res, next) { //request to the server
-    if (req.user)
+    if (req.user) {
         console.log("Hello user Logged in");
-    else
+    } else
         console.log("Not logged in");
     next();
 });
@@ -137,6 +136,7 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
 
 // React server rendering
 app.use(function(req, res) {
+
     var initialState = {
         ajax: {
             history: [
@@ -186,28 +186,58 @@ app.use(function(req, res) {
         }
     };
 
-    var store = configureStore(initialState);
+    if (req.user) {
+        projectController.getProject(initialState, req.user.github.github_id, function(){
+          var store = configureStore(initialState);
 
-    Router.match({
-        routes: routes.default(store),
-        location: req.url
-    }, function(err, redirectLocation, renderProps) {
-        if (err) {
-            res.status(500).send(err.message);
-        } else if (redirectLocation) {
-            res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
-        } else if (renderProps) {
-            var html = ReactDOM.renderToString(React.createElement(Provider, {
-                store: store
-            }, React.createElement(Router.RouterContext, renderProps)));
-            res.render('layout', {
-                html: html,
-                initialState: store.getState()
-            });
-        } else {
-            res.sendStatus(404);
-        }
-    });
+          Router.match({
+              routes: routes.default(store),
+              location: req.url
+          }, function(err, redirectLocation, renderProps) {
+              if (err) {
+                  res.status(500).send(err.message);
+              } else if (redirectLocation) {
+                  res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
+              } else if (renderProps) {
+                  var html = ReactDOM.renderToString(React.createElement(Provider, {
+                      store: store
+                  }, React.createElement(Router.RouterContext, renderProps)));
+                  res.render('layout', {
+                      html: html,
+                      initialState: store.getState()
+                  });
+              } else {
+                  res.sendStatus(404);
+              }
+          });
+        });
+        //initialState.projects.ccrepos = ;W
+    }else{
+      var store = configureStore(initialState);
+
+      Router.match({
+          routes: routes.default(store),
+          location: req.url
+      }, function(err, redirectLocation, renderProps) {
+          if (err) {
+              res.status(500).send(err.message);
+          } else if (redirectLocation) {
+              res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
+          } else if (renderProps) {
+              var html = ReactDOM.renderToString(React.createElement(Provider, {
+                  store: store
+              }, React.createElement(Router.RouterContext, renderProps)));
+              res.render('layout', {
+                  html: html,
+                  initialState: store.getState()
+              });
+          } else {
+              res.sendStatus(404);
+          }
+      });
+    }
+
+
 });
 
 // Production error handler
