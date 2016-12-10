@@ -30,15 +30,24 @@ exports.setProject = function(req, res) {
     });
 };
 
-exports.getProject = function(initialState, github_id, callback) {
-    knex.select('project.project_id')
+exports.test = function() {
+    return new Promise((resolve, reject) => {
+        if (true) {
+            console.log("resolve");
+            resolve();
+        }
+    });
+}
+
+exports.getProject = function(initialState, github_id) {
+    return knex.select('project.project_id')
         .from('project').join('projectmentor', function() {
             this.on('project.project_id', '=', 'projectmentor.project_id')
         })
         .where('projectmentor.user_id', '=', github_id).then(function(rows) {
             console.log(rows);
             initialState.projects.ccrepos = rows;
-        }).then(callback);
+        });
 }
 
 exports.saveProject = function(req, res) {

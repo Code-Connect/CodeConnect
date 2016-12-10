@@ -120,9 +120,14 @@ app.get('/logout', function(req, res) {
 
 app.get('/account', function(req, res) {
     //do something only if user is authenticated
+    var hallo = 5;
+    projectController.test().then(() => {
+        console.log("bacllback")
+        res.send(hallo);
+    })
     console.log(req.sessionID);
     console.log(req.user);
-    res.json(req.user);
+    //res.json(req.user);
 });
 
 app.get('/auth/github', passportGithub.authenticate('github'));
@@ -186,57 +191,38 @@ app.use(function(req, res) {
         }
     };
 
-    if (req.user) {
-        projectController.getProject(initialState, req.user.github.github_id, function(){
-          var store = configureStore(initialState);
+    new Promise((resolve, reject) => {
+        if (req.user)
+            projectController.getProject(initialState, req.user.github.github_id).then(() => {
+                resolve();
+            });
+        else
+            resolve();
+        }
+    ).then(function() {
+        var store = configureStore(initialState);
 
-          Router.match({
-              routes: routes.default(store),
-              location: req.url
-          }, function(err, redirectLocation, renderProps) {
-              if (err) {
-                  res.status(500).send(err.message);
-              } else if (redirectLocation) {
-                  res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
-              } else if (renderProps) {
-                  var html = ReactDOM.renderToString(React.createElement(Provider, {
-                      store: store
-                  }, React.createElement(Router.RouterContext, renderProps)));
-                  res.render('layout', {
-                      html: html,
-                      initialState: store.getState()
-                  });
-              } else {
-                  res.sendStatus(404);
-              }
-          });
+        Router.match({
+            routes: routes.default(store),
+            location: req.url
+        }, function(err, redirectLocation, renderProps) {
+            if (err) {
+                res.status(500).send(err.message);
+            } else if (redirectLocation) {
+                res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
+            } else if (renderProps) {
+                var html = ReactDOM.renderToString(React.createElement(Provider, {
+                    store: store
+                }, React.createElement(Router.RouterContext, renderProps)));
+                res.render('layout', {
+                    html: html,
+                    initialState: store.getState()
+                });
+            } else {
+                res.sendStatus(404);
+            }
         });
-        //initialState.projects.ccrepos = ;W
-    }else{
-      var store = configureStore(initialState);
-
-      Router.match({
-          routes: routes.default(store),
-          location: req.url
-      }, function(err, redirectLocation, renderProps) {
-          if (err) {
-              res.status(500).send(err.message);
-          } else if (redirectLocation) {
-              res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
-          } else if (renderProps) {
-              var html = ReactDOM.renderToString(React.createElement(Provider, {
-                  store: store
-              }, React.createElement(Router.RouterContext, renderProps)));
-              res.render('layout', {
-                  html: html,
-                  initialState: store.getState()
-              });
-          } else {
-              res.sendStatus(404);
-          }
-      });
-    }
-
+    });
 
 });
 
