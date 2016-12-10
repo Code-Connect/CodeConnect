@@ -1,14 +1,12 @@
 export default function messages(state = {}, action) {
     switch (action.type) {
         case 'GET_REPOS':
-            var temp = [];
-            action.repos.map((item) => {
-                state.ccrepos.map((item2) => {
-                    if (item2.project_id == item.repoid || item2.repoid == item.repoid) {
-                        temp.push(item);
-                    }
-                })
-            })
+            //filter the ccreops from the server
+            var temp = action.repos.filter((item) =>
+                state.ccrepos.reduce(function(acc, item2) {
+                    return acc || (item2.project_id == item.repoid || item2.repoid == item.repoid)
+                }, false)
+            )
             return Object.assign({}, state, {
                 ccrepos: temp,
                 repos: action.repos.filter((item) =>
