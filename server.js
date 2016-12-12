@@ -72,6 +72,11 @@ app.post('/submitrepo', function(req, res) {
 app.get('/project', projectController.getProject);
 
 app.post('/postccrepo', projectController.saveProject);
+app.post('/posttask', function(req, res) {
+    console.log("task inc :");
+    console.log(req.body);
+    res.send("task");
+});
 
 //The Sessions gets connected to the MongoDB
 //var MongoDBStore = require('connect-mongodb-session')(session);

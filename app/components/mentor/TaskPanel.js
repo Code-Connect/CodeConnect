@@ -1,5 +1,13 @@
 import React from 'react';
-import {Panel} from "react-bootstrap";
+import {
+    Panel,
+    Form,
+    FormGroup,
+    ControlLabel,
+    FormControl,
+    Button,
+    Col
+} from "react-bootstrap";
 
 const TaskPanel = React.createClass({
     propTypes: {
@@ -15,7 +23,6 @@ const TaskPanel = React.createClass({
         };
     },
 
-
     render() {
         return (
             <div>
@@ -24,9 +31,36 @@ const TaskPanel = React.createClass({
                     </button>
                 </div>
                 <Panel collapsible expanded={true}>
-                    <button className="list-group-item" onClick={this.props.addTask}>
+                    {/* <button className="list-group-item" onClick={this.props.addTask}>
                         Add Task
-                    </button>
+                    </button> */}
+                    <Form horizontal>
+                        <FormGroup controlId="formHorizontalEmail">
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Task
+                            </Col>
+                            <Col sm={10}>
+                                <FormControl type="text" placeholder="Task"/>
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup controlId="formHorizontalPassword">
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Description
+                            </Col>
+                            <Col sm={10}>
+                                <FormControl type="text" placeholder="Description"/>
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Col smOffset={2} sm={10}>
+                                <Button type="submit" onClick={this.props.addTask}>
+                                    Submit
+                                </Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
                 </Panel>
             </div>
         )

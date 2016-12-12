@@ -1,8 +1,5 @@
 export default function messages(state = {}, action) {
     switch (action.type) {
-        case 'ADD_TASK':
-            
-            return state;
         case 'GET_REPOS':
             //filter the ccreops from the server
             var temp = action.repos.filter((item) => state.ccrepos.reduce(function(acc, item2) {

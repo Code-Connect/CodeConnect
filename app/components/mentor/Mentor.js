@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getReposGithub, addProjectsToCodeConnect, postProject} from './../../actions/mentor';
+import {getReposGithub, addProjectsToCodeConnect, postProject, postTasksToProject} from './../../actions/mentor';
 import {Panel} from "react-bootstrap";
 import TaskPanel from "./TaskPanel";
 import HelloWorld from "./HelloWorld";
@@ -11,19 +11,17 @@ class Mentor extends React.Component {
     }
 
     handleSubmit() {
-        console.log("handlesubmit");
-        console.log(this.props.ccrepos);
         this.props.dispatch(postProject(this.props.ccrepos, this.props.github_id));
     }
 
+
     addProject(project) {
-        console.log("added project to codeconnect");
         this.props.dispatch(addProjectsToCodeConnect(project));
     }
 
-    addTask() {
-        console.log("addTask");
-        this.props.dispatch({type: 'ADD_TASK'});
+    addTask(event, ccrepo_id) {
+        event.preventDefault();
+        this.props.dispatch(postTasksToProject(ccrepo_id, "task", this.props.github_id));
     }
 
     //gets called, when the component gets loaded
@@ -63,7 +61,7 @@ class Mentor extends React.Component {
                         <div className="panel-body">
                             <ul className="list-group">
                                 {this.props.ccrepos.map((item) => {
-                                    return (<TaskPanel projects={item} addTask={() => this.addTask()}/>);
+                                    return (<TaskPanel projects={item} addTask={() => this.addTask(item.repoid)}/>);
                                 })}
                             </ul>
                         </div>
