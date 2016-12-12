@@ -191,7 +191,7 @@ app.use(function(req, res) {
         }
     };
 
-    new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => { //looks for data in the database when logged in
         if (req.user)
             projectController.getProject(initialState, req.user.github.github_id).then(() => {
                 resolve();

@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getReposGithub, addProjectsToCodeConnect, postProject} from '../actions/mentor';
+import {getReposGithub, addProjectsToCodeConnect, postProject} from './../../actions/mentor';
+import {Panel} from "react-bootstrap";
+import TaskPanel from "./TaskPanel";
+import HelloWorld from "./HelloWorld";
 
 class Mentor extends React.Component {
     constructor(props) {
@@ -16,6 +19,11 @@ class Mentor extends React.Component {
     addProject(project) {
         console.log("added project to codeconnect");
         this.props.dispatch(addProjectsToCodeConnect(project));
+    }
+
+    addTask() {
+        console.log("addTask");
+        this.props.dispatch({type: 'ADD_TASK'});
     }
 
     //gets called, when the component gets loaded
@@ -36,7 +44,12 @@ class Mentor extends React.Component {
                             <ul className="list-group">
                                 {this.props.repos.map((item) => {
                                     return (
-                                        <button className="list-group-item" onClick={() => this.addProject(item)}>{item.name}</button>
+                                        <div>
+                                            <button className="list-group-item" onClick={() => this.addProject(item)}>{item.name}</button>
+                                            <Panel collapsible expanded={this.props.toggle}>
+                                                {item.tasks[0].name}
+                                            </Panel>
+                                        </div>
                                     );
                                 })}
                             </ul>
@@ -49,12 +62,8 @@ class Mentor extends React.Component {
 
                         <div className="panel-body">
                             <ul className="list-group">
-                                {this.props.ccrepos.map(function(item) {
-                                    return (
-                                        <li className="list-group-item">
-                                            <span className="tag tag-default tag-pill float-xs-right">{item.name}</span>
-                                        </li>
-                                    );
+                                {this.props.ccrepos.map((item) => {
+                                    return (<TaskPanel projects={item} addTask={() => this.addTask()}/>);
                                 })}
                             </ul>
                         </div>
@@ -68,7 +77,6 @@ class Mentor extends React.Component {
 const mapStateToProps = (state) => {
     console.log("mentor map states to props");
     console.log(state);
-
     return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, github_id: state.user.github.github_id, github_name: state.user.github.name};
 };
 

@@ -41,7 +41,6 @@ class Contributor extends Component {
 
                         <Col xs={6} md={10} sm={10} lg={10}>
                             {this.buildPanels(this.props.projects)}
-
                         </Col>
                     </Row>
                 </Grid>

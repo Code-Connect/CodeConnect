@@ -1,12 +1,12 @@
 export default function messages(state = {}, action) {
   switch (action.type) {
-    case 'CONTACT_FORM_FAILURE':
+    case 'TOGGLE_PANEL':
       return {
-        error: action.messages
+        toggle: !state.toggle
       };
-    case 'CONTACT_FORM_SUCCESS':
+    case 'INIT_TOGGLE':
       return {
-        success: action.messages
+        toggle: false
       };
     case 'CLEAR_MESSAGES':
       return {};

@@ -29,6 +29,7 @@ export function addProjectsToCodeConnect(project) {
     };
 }
 
+//AJAX Requests
 export function postProject(ccrepos, github_id) {
     return (dispatch) => {
         fetch('/postccrepo', {

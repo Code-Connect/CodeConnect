@@ -1,10 +1,10 @@
 import React from "react";
 import {IndexRoute, Route} from "react-router";
 import App from "./components/App";
-import Mentor from "./components/Mentor";
+import Mentor from "./components/mentor/Mentor";
 import NotFound from "./components/NotFound";
 import HomePage from "./components/routes/HomePage";
-import Contributor from "./components/routes/Contributor";
+import Contributor from "./components/Contributor";
 import YourProject from "./components/routes/YourProject";
 import YourTasks from "./components/routes/YourTasks";
 import MentorLandingPage from "./components/routes/MentorLandingPage";
