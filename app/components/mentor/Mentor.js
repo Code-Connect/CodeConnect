@@ -14,13 +14,11 @@ class Mentor extends React.Component {
         this.props.dispatch(postProject(this.props.ccrepos, this.props.github_id));
     }
 
-
     addProject(project) {
         this.props.dispatch(addProjectsToCodeConnect(project));
     }
 
-    addTask(event, ccrepo_id) {
-        event.preventDefault();
+    addTask(ccrepo_id) {
         this.props.dispatch(postTasksToProject(ccrepo_id, "task", this.props.github_id));
     }
 
@@ -57,6 +55,8 @@ class Mentor extends React.Component {
                         <div className="panel-heading">
                             <h3 className="panel-title">Your Code Connect Projects</h3>
                         </div>
+
+                        <TaskPanel projects={{name: "test"}} addTask={() => this.test()}/>
 
                         <div className="panel-body">
                             <ul className="list-group">
