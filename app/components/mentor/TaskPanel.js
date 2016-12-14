@@ -12,6 +12,7 @@ import {
 const TaskPanel = React.createClass({
     propTypes: {
         addTask: React.PropTypes.func,
+        handleChange: React.PropTypes.func,
         projects: React.PropTypes.shape({description: React.PropTypes.string, name: React.PropTypes.string, repoid: React.PropTypes.number, repourl: React.PropTypes.string})
     },
 
@@ -27,35 +28,32 @@ const TaskPanel = React.createClass({
         return (
             <div>
                 <div>
-                    <button className="list-group-item" onClick={() => this.dropPanel()}>{this.props.projects.name}
+                    <button className="list-group-item" onClick={this.props.handleChange}>{this.props.projects.name}
                     </button>
                 </div>
                 <Panel collapsible expanded={true}>
-                    {/* <button className="list-group-item" onClick={this.props.addTask}>
-                        Add Task
-                    </button> */}
                     <Form horizontal>
-                        <FormGroup controlId="formHorizontalEmail">
+                        <FormGroup name="task">
                             <Col componentClass={ControlLabel} sm={2}>
                                 Task
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder="Task"/>
+                                <FormControl type="text" name="task" placeholder="Task" onChange = {this.props.handleChange}/>
                             </Col>
                         </FormGroup>
 
-                        <FormGroup controlId="formHorizontalPassword">
+                        <FormGroup name="description">
                             <Col componentClass={ControlLabel} sm={2}>
                                 Description
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" placeholder="Description"/>
+                                <FormControl type="text" name="description" placeholder="Description" onChange = {this.props.handleChange}/>
                             </Col>
                         </FormGroup>
 
                         <FormGroup>
                             <Col smOffset={2} sm={10}>
-                                <Button type="submit" onClick={this.props.addTask}>
+                                <Button type="submit" name="submit" onClick={this.props.addTask}>
                                     Submit
                                 </Button>
                             </Col>

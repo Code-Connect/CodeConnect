@@ -8,9 +8,19 @@ import HelloWorld from "./HelloWorld";
 class Mentor extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            task: '',
+            description: ''
+        };
     }
 
-    handleSubmit() {
+    handleChange(event) {
+      event.preventDefault();
+      this.setState({[event.target.name]: event.target.value });
+      console.log(this.state);
+    }
+
+    handleSubmit(event) {
         this.props.dispatch(postProject(this.props.ccrepos, this.props.github_id));
     }
 
@@ -18,8 +28,10 @@ class Mentor extends React.Component {
         this.props.dispatch(addProjectsToCodeConnect(project));
     }
 
-    addTask(ccrepo_id) {
-        this.props.dispatch(postTasksToProject(ccrepo_id, "task", this.props.github_id));
+    addTask(event) {
+        console.log(this.state);
+        event.preventDefault();
+        // this.props.dispatch(postTasksToProject(ccrepo_id, "task", this.props.github_id));
     }
 
     //gets called, when the component gets loaded
@@ -56,12 +68,10 @@ class Mentor extends React.Component {
                             <h3 className="panel-title">Your Code Connect Projects</h3>
                         </div>
 
-                        <TaskPanel projects={{name: "test"}} addTask={() => this.test()}/>
-
                         <div className="panel-body">
                             <ul className="list-group">
                                 {this.props.ccrepos.map((item) => {
-                                    return (<TaskPanel projects={item} addTask={() => this.addTask(item.repoid)}/>);
+                                    return (<TaskPanel projects={item} handleChange={this.handleChange.bind(this)} addTask={this.addTask.bind(this)}/>);
                                 })}
                             </ul>
                         </div>
