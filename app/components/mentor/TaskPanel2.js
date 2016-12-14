@@ -29,7 +29,6 @@ class TaskPanel extends React.Component {
             [event.target.name]: event.target.value
         });
         console.log(this.state);
-        //this.props.handleChange;
     }
 
     render() {
@@ -61,7 +60,7 @@ class TaskPanel extends React.Component {
 
                         <FormGroup>
                             <Col smOffset={2} sm={10}>
-                                <Button type="submit" name="submit" repoid={this.props.repoid} onClick={this.props.addTask}>
+                                <Button type="submit" name="submit" value = {this.state} onClick={this.props.addTask}>
                                     Submit
                                 </Button>
                             </Col>

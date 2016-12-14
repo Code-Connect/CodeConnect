@@ -8,6 +8,9 @@ import HelloWorld from "./HelloWorld";
 class Mentor extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            projects: []
+        }
     }
 
     handleSubmit(event) {
@@ -19,9 +22,9 @@ class Mentor extends React.Component {
     }
 
     addTask(event) {
-        console.log(this.state);
         event.preventDefault();
-        // this.props.dispatch(postTasksToProject(ccrepo_id, "task", this.props.github_id));
+        console.log(event.target.value);
+        //this.props.dispatch(postTasksToProject(ccrepo_id, "task", this.props.github_id));
     }
 
     //gets called, when the component gets loaded
@@ -44,9 +47,6 @@ class Mentor extends React.Component {
                                     return (
                                         <div>
                                             <button className="list-group-item" onClick={() => this.addProject(item)}>{item.name}</button>
-                                            <Panel collapsible expanded={this.props.toggle}>
-                                                {item.tasks[0].name}
-                                            </Panel>
                                         </div>
                                     );
                                 })}
@@ -60,7 +60,7 @@ class Mentor extends React.Component {
 
                         <div className="panel-body">
                             <ul className="list-group">
-                                {this.props.ccrepos.map((item) => {
+                                {this.props.ccrepos.map((item, index) => {
                                     return (<TaskPanel projects={item} addTask={this.addTask.bind(this)}/>);
                                 })}
                             </ul>
