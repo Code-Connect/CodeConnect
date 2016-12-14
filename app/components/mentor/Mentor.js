@@ -2,22 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {getReposGithub, addProjectsToCodeConnect, postProject, postTasksToProject} from './../../actions/mentor';
 import {Panel} from "react-bootstrap";
-import TaskPanel from "./TaskPanel";
+import TaskPanel from "./TaskPanel2";
 import HelloWorld from "./HelloWorld";
 
 class Mentor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            task: '',
-            description: ''
-        };
-    }
-
-    handleChange(event) {
-      event.preventDefault();
-      this.setState({[event.target.name]: event.target.value });
-      console.log(this.state);
     }
 
     handleSubmit(event) {
@@ -71,7 +61,7 @@ class Mentor extends React.Component {
                         <div className="panel-body">
                             <ul className="list-group">
                                 {this.props.ccrepos.map((item) => {
-                                    return (<TaskPanel projects={item} handleChange={this.handleChange.bind(this)} addTask={this.addTask.bind(this)}/>);
+                                    return (<TaskPanel projects={item} addTask={this.addTask.bind(this)}/>);
                                 })}
                             </ul>
                         </div>
