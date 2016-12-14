@@ -19,16 +19,16 @@ class TaskPanel extends React.Component {
     }
 
     addTask(event) {
+        this.props.addTask(this.state, this.props.projects.repoid);
         event.preventDefault();
-        this.props.addTask;
     }
 
     handleChange(event) {
-        event.preventDefault();
         this.setState({
             [event.target.name]: event.target.value
         });
         console.log(this.state);
+        event.preventDefault();
     }
 
     render() {
@@ -60,7 +60,7 @@ class TaskPanel extends React.Component {
 
                         <FormGroup>
                             <Col smOffset={2} sm={10}>
-                                <Button type="submit" name="submit" value = {this.state} onClick={this.props.addTask}>
+                                <Button type="submit" name="submit" value={this.state} onClick={this.addTask.bind(this)}>
                                     Submit
                                 </Button>
                             </Col>

@@ -21,10 +21,10 @@ class Mentor extends React.Component {
         this.props.dispatch(addProjectsToCodeConnect(project));
     }
 
-    addTask(event) {
-        event.preventDefault();
-        console.log(event.target.value);
-        //this.props.dispatch(postTasksToProject(ccrepo_id, "task", this.props.github_id));
+    addTask(state, ccrepo_id) {
+        console.log(state);
+        console.log(ccrepo_id);
+        this.props.dispatch(postTasksToProject(ccrepo_id, state, this.props.github_id));
     }
 
     //gets called, when the component gets loaded
