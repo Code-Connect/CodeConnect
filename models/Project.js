@@ -12,10 +12,11 @@ var Project = bookshelf.Model.extend({
 
 var Task = bookshelf.Model.extend({
     tableName: 'task',
-    idAttribute: 'task_id',
-    Project: function() {
-        return this.belongsTo(Project, 'task_id'); //could be 'id' aswell
-    }
+    idAttribute: 'task_id'
+});
+
+var Belongsto = bookshelf.Model.extend({
+    tableName: 'belongsto'
 });
 
 var Projectmentor = bookshelf.Model.extend({

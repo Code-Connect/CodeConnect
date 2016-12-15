@@ -60,6 +60,7 @@ if (app.get('env') === 'development') {
 // Controllers
 var contactController = require('./controllers/contact');
 var projectController = require('./controllers/project');
+var taskController = require ('./controllers/task')
 
 var passportGithub = require('./controllers/gitlogin');
 
@@ -72,11 +73,8 @@ app.post('/submitrepo', function(req, res) {
 app.get('/project', projectController.getProject);
 
 app.post('/postccrepo', projectController.saveProject);
-app.post('/posttask', function(req, res) {
-    console.log("task inc :");
-    console.log(req.body);
-    res.send("task");
-});
+
+app.post('/posttask', taskController.addTask);
 
 //The Sessions gets connected to the MongoDB
 //var MongoDBStore = require('connect-mongodb-session')(session);
