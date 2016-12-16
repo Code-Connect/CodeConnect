@@ -44,7 +44,6 @@ export function postTasksToProject(ccrepo_id, tasks, github_id) { //submit array
             },
             body: JSON.stringify({ccrepo_id: ccrepo_id, tasks: tasks, github_id: github_id})
         }).then((response) => {
-            console.log(response);
             dispatch({type: 'POST_TASK_TO'});
         });
     };

@@ -43,6 +43,7 @@ function getProject(userId, callback) {
 module.exports = {
     getProject : getProject,
     Projectmentor : Projectmentor,
+    Belongsto : Belongsto,
     Project: Project,
     Task: Task
 };
