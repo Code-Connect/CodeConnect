@@ -7,7 +7,6 @@ export function getReposGithub(link) {
                 var array = json.map((item) => {
                     return {repoid: item.id, name: item.name, repourl: item.html_url, description: item.description}
                 });
-                console.log("check");
                 return {type: 'GET_REPOS', repos: array};
             });
         }).then((action) => dispatch(action));

@@ -8,10 +8,8 @@ import HelloWorld from "./HelloWorld";
 class Mentor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            projects: []
-        }
     }
+    
 
     handleSubmit(event) {
         this.props.dispatch(postProject(this.props.ccrepos, this.props.github_id));
@@ -22,8 +20,6 @@ class Mentor extends React.Component {
     }
 
     addTask(state, ccrepo_id) {
-        console.log(state);
-        console.log(ccrepo_id);
         this.props.dispatch(postTasksToProject(ccrepo_id, state, this.props.github_id));
     }
 
@@ -73,8 +69,8 @@ class Mentor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("mentor map states to props");
-    console.log(state);
+    // console.log("mentor map states to props");
+    // console.log(state);
     return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, github_id: state.user.github.github_id, github_name: state.user.github.name};
 };
 

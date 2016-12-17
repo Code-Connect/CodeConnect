@@ -23,10 +23,6 @@ dotenv.load();
 require('babel-core/register');
 require('babel-polyfill');
 
-//mongoose DB
-//var mongoose = require('mongoose');
-//mongoose.connect(process.env.MONGODB_LOGIN);
-
 // React and Server-Side Rendering
 var routes = require('./app/routes');
 var configureStore = require('./app/store/configureStore').default;
@@ -71,16 +67,11 @@ app.post('/submitrepo', function(req, res) {
 });
 
 app.get('/project', projectController.getProject);
-
 app.post('/postccrepo', projectController.saveProject);
-
 app.post('/posttask', taskController.addTask);
 
 //The Sessions gets connected to the MongoDB
-//var MongoDBStore = require('connect-mongodb-session')(session);
 var pg = require('pg');
-
-//var store = new MongoDBStore({uri: process.env.MONGODB_LOGIN, collection: 'mySessions'});
 const KnexSessionStore = require('connect-session-knex')(session);
 
 const Knex = require('knex');
@@ -104,16 +95,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-var tempdata = {};
-
-app.use(function(req, res, next) { //request to the server
-    if (req.user) {
-        console.log("Hello user Logged in");
-    } else
-        console.log("Not logged in");
-    next();
-});
-
 app.get('/logout', function(req, res) {
     req.logout();
     req.session.save(function(err) {
@@ -121,22 +102,9 @@ app.get('/logout', function(req, res) {
     });
 });
 
-app.get('/account', function(req, res) {
-    //do something only if user is authenticated
-    var hallo = 5;
-    projectController.test().then(() => {
-        console.log("bacllback")
-        res.send(hallo);
-    })
-    console.log(req.sessionID);
-    console.log(req.user);
-    //res.json(req.user);
-});
-
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
     // Successful authentication
-
     req.session.save(function(err) {
         res.redirect('/');
     });

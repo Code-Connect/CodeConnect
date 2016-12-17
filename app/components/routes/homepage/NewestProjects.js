@@ -29,7 +29,7 @@ class NewestProjects extends Component {
             cols = projects.map((project, i) => {
                 return (
                     <Col xs={this.calculateSize(projects, 7)} md={this.calculateSize(projects, 5)} sm={this.calculateSize(projects, 4)} lg={this.calculateSize(projects, 3)} key={i}>
-                        <ProjectPreview headerName={project.headerName} description={project.description} tasks={project.tasks} defaultExpanded={true}/>
+                        <ProjectPreview headerName={project.headerName} description={project.description} tasks={project.tasks} defaultExpanded={false}/>
                     </Col>
                 );
             });
