@@ -17,7 +17,7 @@ exports.addTask = function(req, res) {
 exports.getTask = function(req, res) {
     // return knex.select('project.project_id').from('project').join('projectmentor', function() {
     //     this.on('project.project_id', '=', 'projectmentor.project_id')
-    // }).where('projectmentor.user_id', '=', github_id).then(function(rows) {
+    // }).where('projectmentor.user_id', '=', id).then(function(rows) {
     //     console.log(rows);
     //     initialState.projects.ccrepos = rows;
     // });

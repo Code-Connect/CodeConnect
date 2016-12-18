@@ -9,13 +9,13 @@ var Projectmentor = Projectmodel.Projectmentor;
 SELECT project.project_id
 FROM project join projectmentor
 on project.project_id = projectmentor.project_id
-where projectmentor.user_id = "github_id"
+where projectmentor.user_id = "id"
 */
 
-exports.getProject2 = function(initialState, github_id) {
+exports.getProject2 = function(initialState, id) {//gets Projects only
     return knex.select('project.project_id').from('project').join('projectmentor', function() {
         this.on('project.project_id', '=', 'projectmentor.project_id')
-    }).where('projectmentor.user_id', '=', github_id).then(function(rows) {
+    }).where('projectmentor.user_id', '=', id).then(function(rows) {
         console.log("rows");
         console.log(rows);
         initialState.projects.ccrepos = rows;
@@ -32,12 +32,12 @@ join belongsto
 on project.project_id = belongsto.project_id
 where projectmentor.user_id = 15983559
 */
-exports.getProject = function(initialState, github_id) {
+exports.getProject = function(initialState, id) {//gets Projects and Tasks
     return knex.select('project.project_id', "belongsto.task_id").from('project').join('projectmentor', function() {
         this.on('project.project_id', '=', 'projectmentor.project_id')
     }).join('belongsto', function() {
         this.on('project.project_id', '=', 'belongsto.project_id')
-    }).where('projectmentor.user_id', '=', github_id).then(function(rows) {
+    }).where('projectmentor.user_id', '=', id).then(function(rows) {
         console.log("rows");
         console.log(rows);
         initialState.projects.ccrepos = rows;
@@ -66,7 +66,7 @@ exports.saveProject = function(req, res) {
                 console.log("fdsa");
                 new Projectmentor({
                     project_id: project.repoid, //if project is not there create one
-                    user_id: req.body.github_id
+                    user_id: req.body.id
                 }).save(null, { //save project in database
                     method: 'insert'
                 });

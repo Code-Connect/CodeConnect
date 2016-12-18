@@ -11,13 +11,13 @@ passport.use(new GitHubStrategy({
 }, function(token, refreshToken, profile, done) {
     console.log(profile);
     process.nextTick(function() {
-        new Model.Github({github_id: profile.id}).fetch().then(function(ghUser) {
+        new Model.Github({id: profile.id}).fetch().then(function(ghUser) {
             // If there is no user found, then create one
             if (!ghUser) {
                 var newGHUser = {
                     token: token,
                     email: profile.emails[0].value,
-                    github_id: profile.id,
+                    id: profile.id,
                     name: profile.username
                 };
 
@@ -34,10 +34,12 @@ passport.use(new GitHubStrategy({
 
 passport.serializeUser(function(user, done) {
     console.log(user);
-    done(null, user.github_id);
+    console.log("serializeUser");
+    done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
+    console.log("deserialized");
     Model.grabUserCredentials(id, function(err, user) {
         done(err, user);
     });

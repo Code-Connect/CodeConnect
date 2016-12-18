@@ -18,7 +18,7 @@ export function addProjectsToCodeConnect(project) {
 }
 
 //AJAX Requests
-export function postProject(ccrepos, github_id) {
+export function postProject(ccrepos, id) {
     return (dispatch) => {
         fetch('/postccrepo', {
             method: 'post',
@@ -26,14 +26,14 @@ export function postProject(ccrepos, github_id) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ccrepos: ccrepos, github_id: github_id})
+            body: JSON.stringify({ccrepos: ccrepos, id: id})
         }).then((response) => {
             dispatch({type: 'POST_CCREPOS'});
         });
     };
 }
 
-export function postTasksToProject(ccrepo_id, tasks, github_id) { //submit array of tasks to a project
+export function postTasksToProject(ccrepo_id, tasks, id) { //submit array of tasks to a project
     return (dispatch) => {
         fetch('/posttask', {
             method: 'post',
@@ -41,7 +41,7 @@ export function postTasksToProject(ccrepo_id, tasks, github_id) { //submit array
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ccrepo_id: ccrepo_id, tasks: tasks, github_id: github_id})
+            body: JSON.stringify({ccrepo_id: ccrepo_id, tasks: tasks, id: id})
         }).then((response) => {
             dispatch({type: 'POST_TASK_TO'});
         });

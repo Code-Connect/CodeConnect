@@ -12,7 +12,7 @@ class Mentor extends React.Component {
     
 
     handleSubmit(event) {
-        this.props.dispatch(postProject(this.props.ccrepos, this.props.github_id));
+        this.props.dispatch(postProject(this.props.ccrepos, this.props.id));
     }
 
     addProject(project) {
@@ -20,7 +20,7 @@ class Mentor extends React.Component {
     }
 
     addTask(state, ccrepo_id) {
-        this.props.dispatch(postTasksToProject(ccrepo_id, state, this.props.github_id));
+        this.props.dispatch(postTasksToProject(ccrepo_id, state, this.props.id));
     }
 
     //gets called, when the component gets loaded
@@ -71,7 +71,7 @@ class Mentor extends React.Component {
 const mapStateToProps = (state) => {
     // console.log("mentor map states to props");
     // console.log(state);
-    return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, github_id: state.user.github.github_id, github_name: state.user.github.name};
+    return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, id: state.user.github.id, github_name: state.user.github.name};
 };
 
 export default connect(mapStateToProps)(Mentor);

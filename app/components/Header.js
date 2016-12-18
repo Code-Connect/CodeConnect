@@ -16,7 +16,7 @@ class Header extends React.Component {
                 <ul className="nav navbar-nav navbar-right">
                     <li className="dropdown">
                         <a href="#" data-toggle="dropdown" className="navbar-avatar dropdown-toggle">
-                            <img src={'https://avatars.githubusercontent.com/u/' + this.props.user.github_id}/> {' '}{this.props.user.name || this.props.user.email || this.props.user.id}{' '}
+                            <img src={'https://avatars.githubusercontent.com/u/' + this.props.user.id}/> {' '}{this.props.user.name || this.props.user.email || this.props.user.id}{' '}
                             <i className="caret"></i>
                         </a>
                         <ul className="dropdown-menu">
@@ -79,6 +79,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {user: state.user.github};
 };
 

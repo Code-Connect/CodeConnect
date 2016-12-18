@@ -3,7 +3,7 @@ var knex = bookshelf.knex;
 
 var Github = bookshelf.Model.extend({
     tableName: 'github',
-    idAttribute: 'github_id'
+    idAttribute: 'id'
 });
 
 // ------------------------------
@@ -31,22 +31,22 @@ function createNewUser(callback) {
 //          ...
 //     }
 // }
-function grabUserCredentials(github_id, callback) {
+function grabUserCredentials(id, callback) {
     // Skeleton JSON
     var loginUser = {
         github: {
             token: null,
             email: null,
-            github_id: github_id,
+            id: id,
             name: null,
         }
     };
 
     // SQL joins to get all credentials/tokens of a single user
     // to fill in loginUser JSON.
-    knex.select('github.token as gh_token', 'github.name as gh_name', 'github.email as gh_email', 'github.github_id as gh_id')
+    knex.select('github.token as gh_token', 'github.name as gh_name', 'github.email as gh_email', 'github.id as gh_id')
         .from('github')
-        .where('github.github_id', '=', github_id).then(function(row) {
+        .where('github.id', '=', id).then(function(row) {
             row = row[0];
             if (!row) {
                 callback('Could not find user with that ID', null);
@@ -54,7 +54,7 @@ function grabUserCredentials(github_id, callback) {
                 // Fill in loginUser JSON which is the deserialized User
                 loginUser.github.token = row.gh_token;
                 loginUser.github.email = row.gh_email;
-                loginUser.github.github_id = row.gh_id;
+                loginUser.github.id = row.gh_id;
                 loginUser.github.name = row.gh_name;
                 callback(null, loginUser);
             }
