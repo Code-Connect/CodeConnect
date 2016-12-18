@@ -5,16 +5,33 @@ var Project = Projectmodel.Project;
 var Task = Projectmodel.Task;
 var Projectmentor = Projectmodel.Projectmentor;
 
-// exports.getProject = function(initialState, github_id) {
-//     return knex.select('project.project_id').from('project').join('projectmentor', function() {
-//         this.on('project.project_id', '=', 'projectmentor.project_id')
-//     }).where('projectmentor.user_id', '=', github_id).then(function(rows) {
-//         console.log("rows");
-//         console.log(rows);
-//         initialState.projects.ccrepos = rows;
-//     });
-// }
+/*
+SELECT project.project_id
+FROM project join projectmentor
+on project.project_id = projectmentor.project_id
+where projectmentor.user_id = "github_id"
+*/
 
+exports.getProject2 = function(initialState, github_id) {
+    return knex.select('project.project_id').from('project').join('projectmentor', function() {
+        this.on('project.project_id', '=', 'projectmentor.project_id')
+    }).where('projectmentor.user_id', '=', github_id).then(function(rows) {
+        console.log("rows");
+        console.log(rows);
+        initialState.projects.ccrepos = rows;
+    });
+}
+
+
+/*
+SELECT project.project_id, belongsto.task_id
+FROM project
+join projectmentor
+on project.project_id = projectmentor.project_id
+join belongsto
+on project.project_id = belongsto.project_id
+where projectmentor.user_id = 15983559
+*/
 exports.getProject = function(initialState, github_id) {
     return knex.select('project.project_id', "belongsto.task_id").from('project').join('projectmentor', function() {
         this.on('project.project_id', '=', 'projectmentor.project_id')
