@@ -67,8 +67,6 @@ class UserButtons extends Component {
 
 }
 const mapStateToProps = (state) => {
-    console.log("mapStateToProps");
-    console.log(state.user.github);
     return {user: state.user.github};
 };
 
