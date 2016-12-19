@@ -20,7 +20,7 @@ const TaskPanel = React.createClass({
     propTypes: {
         addTask: React.PropTypes.func,
         handleChange: React.PropTypes.func,
-        projects: React.PropTypes.shape({description: React.PropTypes.string, name: React.PropTypes.string, repoid: React.PropTypes.number, repourl: React.PropTypes.string})
+        projects: React.PropTypes.shape({description: React.PropTypes.string, name: React.PropTypes.string, project_id: React.PropTypes.number, repourl: React.PropTypes.string})
     },
 
     getDefaultProps() {
@@ -45,7 +45,7 @@ const TaskPanel = React.createClass({
                                 Task
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" name="task" placeholder="Task" id={this.props.projects.repoid} onChange={this.props.handleChange}/>
+                                <FormControl type="text" name="task" placeholder="Task" id={this.props.projects.project_id} onChange={this.props.handleChange}/>
                             </Col>
                         </FormGroup>
 
@@ -54,13 +54,13 @@ const TaskPanel = React.createClass({
                                 Description
                             </Col>
                             <Col sm={10}>
-                                <FormControl type="text" name="description" placeholder="Description" id={this.props.projects.repoid} onChange={this.props.handleChange}/>
+                                <FormControl type="text" name="description" placeholder="Description" id={this.props.projects.project_id} onChange={this.props.handleChange}/>
                             </Col>
                         </FormGroup>
 
                         <FormGroup>
                             <Col smOffset={2} sm={10}>
-                                <Button type="submit" name="submit" repoid={this.props.repoid} onClick={this.props.addTask}>
+                                <Button type="submit" name="submit" project_id={this.props.project_id} onClick={this.props.addTask}>
                                     Submit
                                 </Button>
                             </Col>

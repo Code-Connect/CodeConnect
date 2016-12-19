@@ -19,7 +19,7 @@ class TaskPanel extends React.Component {
     }
 
     addTask(event) {
-        this.props.addTask(this.state, this.props.projects.repoid);
+        this.props.addTask(this.state, this.props.projects.project_id);
         event.preventDefault();
     }
 
@@ -74,7 +74,7 @@ class TaskPanel extends React.Component {
 
 TaskPanel.propTypes = {
     addTask: React.PropTypes.func,
-    projects: React.PropTypes.shape({description: React.PropTypes.string, name: React.PropTypes.string, repoid: React.PropTypes.number, repourl: React.PropTypes.string})
+    projects: React.PropTypes.shape({description: React.PropTypes.string, name: React.PropTypes.string, project_id: React.PropTypes.number, repourl: React.PropTypes.string})
 }
 
 TaskPanel.defaultProps = {
