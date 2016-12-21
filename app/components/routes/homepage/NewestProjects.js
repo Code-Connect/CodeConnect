@@ -46,6 +46,9 @@ class NewestProjects extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log("mentor map states to props");
+    console.log(state);
+
     return {projects: state.projects.publicprojects};
 };
 
