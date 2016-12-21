@@ -23,26 +23,32 @@ exports.getProject2 = function(initialState, id) { //gets Projects only
 }
 
 /*
-SELECT project.project_id, task.task_id, task.name, task.description
+SELECT project.project_id, belongsto.task_id
 FROM project
 join projectmentor
 on project.project_id = projectmentor.project_id
-join belongsto
+left join belongsto
 on project.project_id = belongsto.project_id
 join task
 on belongsto.task_id = task.task_id
-where projectmentor.user_id = 15983559aa
+where projectmentor.user_id = 15983559
 */
 exports.getProject = function(initialState, id) { //gets Projects and Tasks
-    return knex.select('project.project_id', 'task.task_id', 'task.name', 'task.description').from('project').join('projectmentor', function() {
+    return knex.select('project.project_id', 'belongsto.task_id', 'task.name', 'task.description').from('project').join('projectmentor', function() {
         this.on('project.project_id', '=', 'projectmentor.project_id')
-    }).join('belongsto', function() {
+    }).leftJoin('belongsto', function() {
         this.on('project.project_id', '=', 'belongsto.project_id')
-    }).join('task', function() {
+    }).leftJoin('task', function() {
         this.on('belongsto.task_id', '=', 'task.task_id')
     }).where('projectmentor.user_id', '=', id).then(function(rows) {
-        console.log("rows");
-        console.log(rows);
+
+        rows.map((item) => {//cleans the json
+            if (item.task_id === null) {
+                delete item.description;
+                delete item.task_id;
+                delete item.name;
+            }
+        });
         initialState.projects.ccrepos = rows;
     });
 }

@@ -1,16 +1,21 @@
 export default function messages(state = {}, action) {
     switch (action.type) {
         case 'GET_REPOS':
-            // filter the ccreops from the server
+            console.log("the action repos");
+            console.log(action.repos);
             var temp = action.repos.filter((item) => state.ccrepos.reduce(function(acc, item2) {
-                return acc || (item2.project_id == item.project_id || item2.project_id == item.project_id)
+                return acc || (JSON.stringify(item.project_id) === JSON.stringify(item2.project_id))
             }, false));
-            state.ccrepos.map((item) => temp.map((item2) => {
-                if (JSON.stringify(item.project_id) === JSON.stringify(item2.project_id)) {
-                    delete item.project_id;
-                    item2.tasks.push(item);
-                }
-            }));
+
+            temp.map((item) => {
+                state.ccrepos.map((item2) => {
+                    if (JSON.stringify(item2.name)!= null && JSON.stringify(item.project_id) === JSON.stringify(item2.project_id)) {
+                        delete item2.project_id;
+                        item.tasks.push(item2);
+                    }
+                });
+            });
+
             return Object.assign({}, state, {
                 ccrepos: temp,
                 repos: action.repos.filter((item) => temp.reduce(function(acc, item2) {
@@ -18,6 +23,8 @@ export default function messages(state = {}, action) {
                 }, true))
             });
         case 'ADD_PROJECT_TO_CC':
+            console.log("states");
+            console.log(state);
             //state is state.projects
             return Object.assign({}, state, {
                 repos: state.repos.filter((item) => item.name !== action.project.name),
@@ -30,8 +37,3 @@ export default function messages(state = {}, action) {
             return state;
     }
 }
-/*
-description
-name
-project_id
-task_id*/

@@ -38,6 +38,17 @@ class TaskPanel extends React.Component {
                     <button className="list-group-item" onClick={this.props.handleChange}>{this.props.projects.name}
                     </button>
                 </div>
+                <ul className="list-group">
+                    {this.props.projects.tasks.map((item) => {
+                        console.log(item);
+                        return (
+                            <div>
+                                <Panel>{item.name}</Panel>
+                                <Panel>{item.description}</Panel>
+                            </div>
+                        )
+                    })}
+                </ul>
                 <Panel collapsible expanded={true}>
                     <Form horizontal>
                         <FormGroup name="task">
@@ -79,7 +90,7 @@ TaskPanel.propTypes = {
 
 TaskPanel.defaultProps = {
     projects: {
-        description: 'No Description'
+        tasks: []
     }
 }
 

@@ -10,7 +10,6 @@ class Mentor extends React.Component {
         super(props);
     }
 
-
     handleSubmit(event) {
         this.props.dispatch(postProject(this.props.ccrepos, this.props.id));
     }
@@ -57,6 +56,8 @@ class Mentor extends React.Component {
                         <div className="panel-body">
                             <ul className="list-group">
                                 {this.props.ccrepos.map((item, index) => {
+                                    console.log("ccrepoitem");
+                                    console.log(item);
                                     return (<TaskPanel projects={item} addTask={this.addTask.bind(this)}/>);
                                 })}
                             </ul>
@@ -69,6 +70,8 @@ class Mentor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    // console.log("mentor map states to props");
+    // console.log(state);
     return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, id: state.user.github.id, github_name: state.user.github.name};
 };
 

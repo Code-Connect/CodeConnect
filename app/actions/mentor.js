@@ -1,9 +1,11 @@
 import 'whatwg-fetch';
 
-export function getReposGithub(link) {//gets the Repos from github
+export function getReposGithub(link) {
     return (dispatch) => {
         fetch(link).then((response) => {
             return response.json().then(function(json) {
+                console.log("reposone");
+                console.log(json);
                 var array = json.map((item) => {
                     return {project_id: item.id, name: item.name, repourl: item.html_url, description: item.description, tasks: []}
                 });

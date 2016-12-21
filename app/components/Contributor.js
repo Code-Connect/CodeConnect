@@ -50,6 +50,9 @@ class Contributor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log("contirbutor map states to props");
+    console.log(state);
+
     return {toggle: state.messages.toggle, projects: state.projects.publicprojects};
 };
 
