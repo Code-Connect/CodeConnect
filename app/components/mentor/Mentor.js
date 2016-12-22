@@ -70,8 +70,8 @@ class Mentor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    // console.log("mentor map states to props");
-    // console.log(state);
+     console.log("mentor map states to props");
+     console.log(state);
     return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, id: state.user.github.id, github_name: state.user.github.name};
 };
 

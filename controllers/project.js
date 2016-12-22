@@ -49,7 +49,7 @@ exports.getProject = function(initialState, id) { //gets Projects and Tasks
                 delete item.name;
             }
         });
-        initialState.projects.ccrepos = rows;
+        initialState.projects.temprepos = rows;
     });
 }
 

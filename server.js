@@ -56,7 +56,7 @@ if (app.get('env') === 'development') {
 // Controllers
 var contactController = require('./controllers/contact');
 var projectController = require('./controllers/project');
-var taskController = require ('./controllers/task')
+var taskController = require('./controllers/task')
 
 var passportGithub = require('./controllers/gitlogin');
 
@@ -183,7 +183,8 @@ app.use(function(req, res) {
                 res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
             } else if (renderProps) {
                 var html = ReactDOM.renderToString(React.createElement(Provider, {
-                    store: store
+                    store: store,
+                    exists: false
                 }, React.createElement(Router.RouterContext, renderProps)));
                 res.render('layout', {
                     html: html,

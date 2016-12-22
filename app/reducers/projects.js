@@ -3,12 +3,12 @@ export default function messages(state = {}, action) {
         case 'GET_REPOS':
             console.log("the action repos");
             console.log(action.repos);
-            var temp = action.repos.filter((item) => state.ccrepos.reduce(function(acc, item2) {
+            var temp = action.repos.filter((item) => state.temprepos.reduce(function(acc, item2) {
                 return acc || (JSON.stringify(item.project_id) === JSON.stringify(item2.project_id))
             }, false));
 
             temp.map((item) => {
-                state.ccrepos.map((item2) => {
+                state.temprepos.map((item2) => {
                     if (JSON.stringify(item2.name)!= null && JSON.stringify(item.project_id) === JSON.stringify(item2.project_id)) {
                         delete item2.project_id;
                         item.tasks.push(item2);
