@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
     console.log("contirbutor map states to props");
     console.log(state);
 
-    return {toggle: state.messages.toggle, projects: state.projects.publicprojects};
+    return {toggle: state.messages.toggle, projects: state.projects.publicprojects, ccrepos: state.projects.ccrepos,};
 };
 
 export default connect(mapStateToProps)(Contributor);
