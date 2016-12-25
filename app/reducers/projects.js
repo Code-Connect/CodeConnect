@@ -9,7 +9,7 @@ export default function messages(state = {}, action) {
 
             temp.map((item) => {
                 state.temprepos.map((item2) => {
-                    if (JSON.stringify(item2.name)!= null && JSON.stringify(item.project_id) === JSON.stringify(item2.project_id)) {
+                    if (JSON.stringify(item2.name) != null && JSON.stringify(item.project_id) === JSON.stringify(item2.project_id)) {
                         delete item2.project_id;
                         item.tasks.push(item2);
                     }
@@ -33,6 +33,17 @@ export default function messages(state = {}, action) {
                     action.project
                 ]
             });
+
+        case 'POST_TASK_TO_PROJECT':
+            var newCCrepos = state.ccrepos.map((item) => {
+                if (item.project_id == action.ccrepo_id) {
+                    var temp = item;
+                    temp.tasks.push(action.addedTask);
+                    return temp;
+                }
+                return item
+            });
+            return Object.assign({}, state, {ccrepos: newCCrepos})
         default:
             return state;
     }

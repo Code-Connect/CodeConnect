@@ -56,8 +56,6 @@ class Mentor extends React.Component {
                         <div className="panel-body">
                             <ul className="list-group">
                                 {this.props.ccrepos.map((item, index) => {
-                                    console.log("ccrepoitem");
-                                    console.log(item);
                                     return (<TaskPanel projects={item} addTask={this.addTask.bind(this)}/>);
                                 })}
                             </ul>

@@ -39,7 +39,11 @@ class TaskPanel extends React.Component {
                     </button>
                 </div>
                 {this.props.projects.tasks.map((item) => {
-                  
+                    return <div>
+                        Task
+                        <Panel>{item.name}</Panel>
+                        <Panel>{item.description}</Panel>
+                    </div>
                 })}
                 <Panel collapsible expanded={true}>
                     <Form horizontal>
@@ -75,14 +79,14 @@ class TaskPanel extends React.Component {
     }
 }
 
-// TaskPanel.propTypes = {
-//     addTask: React.PropTypes.func,
-//     projects: React.PropTypes.shape({description: React.PropTypes.string, name: React.PropTypes.string, project_id: React.PropTypes.number, repourl: React.PropTypes.string, tasks: React.PropTypes.array})
-// }
+TaskPanel.propTypes = {
+    addTask: React.PropTypes.func,
+    projects: React.PropTypes.shape({description: React.PropTypes.string, name: React.PropTypes.string, project_id: React.PropTypes.number, repourl: React.PropTypes.string, tasks: React.PropTypes.array})
+}
 
 TaskPanel.defaultProps = {
     projects: {
-      tasks: ["hallo"]
+        tasks: ["hallo"]
     }
 };
 
