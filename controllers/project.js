@@ -49,6 +49,8 @@ exports.getProject = function(initialState, id) { //gets Projects and Tasks
                 delete item.name;
             }
         });
+
+        console.log(rows);
         initialState.projects.temprepos = rows;
     });
 }

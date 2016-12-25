@@ -1,8 +1,6 @@
 export default function messages(state = {}, action) {
     switch (action.type) {
         case 'GET_REPOS':
-            console.log("the action repos");
-            console.log(action.repos);
             var temp = action.repos.filter((item) => state.temprepos.reduce(function(acc, item2) {
                 return acc || (JSON.stringify(item.project_id) === JSON.stringify(item2.project_id))
             }, false));
@@ -10,7 +8,7 @@ export default function messages(state = {}, action) {
             temp.map((item) => {
                 state.temprepos.map((item2) => {
                     if (JSON.stringify(item2.name) != null && JSON.stringify(item.project_id) === JSON.stringify(item2.project_id)) {
-                        delete item2.project_id;
+                        //delete item2.project_id;
                         item.tasks.push(item2);
                     }
                 });
@@ -23,8 +21,6 @@ export default function messages(state = {}, action) {
                 }, true))
             });
         case 'ADD_PROJECT_TO_CC':
-            console.log("states");
-            console.log(state);
             //state is state.projects
             return Object.assign({}, state, {
                 repos: state.repos.filter((item) => item.name !== action.project.name),
