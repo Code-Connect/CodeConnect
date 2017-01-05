@@ -50,7 +50,6 @@ exports.getProject = function(initialState, id) { //gets Projects and Tasks
             }
         });
 
-        console.log(rows);
         initialState.projects.temprepos = rows;
     });
 }
