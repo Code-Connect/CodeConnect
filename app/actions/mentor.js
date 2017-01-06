@@ -35,7 +35,7 @@ export function postProject(ccrepos, id) {
     };
 }
 
-export function postTasksToProject(ccrepo_id, tasks, id) { //submit array of tasks to a project
+export function postTasksToProject(ccrepo_id, task, id) { //submit array of tasks to a project
     return (dispatch) => {
         fetch('/posttask', {
             method: 'post',
@@ -43,7 +43,7 @@ export function postTasksToProject(ccrepo_id, tasks, id) { //submit array of tas
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ccrepo_id: ccrepo_id, tasks: tasks, id: id})
+            body: JSON.stringify({ccrepo_id: ccrepo_id, taskwrapper: task, id: id})
         }).then((response) => {
             return response.json().then(function(json) {
                 dispatch({type: 'POST_TASK_TO_PROJECT', ccrepo_id: ccrepo_id, 'addedTask': json});

@@ -56,16 +56,9 @@ if (app.get('env') === 'development') {
 // Controllers
 var contactController = require('./controllers/contact');
 var projectController = require('./controllers/project');
-var taskController = require('./controllers/task')
-
+var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
 
-app.post('/contact', contactController.contactPost);
-app.post('/submitrepo', function(req, res) {
-    console.log(req);
-    res.send("hallo");
-});
-app.get('/project', projectController.getProject);
 app.post('/postccrepo', projectController.saveProject);
 app.post('/posttask', taskController.addTask);
 
