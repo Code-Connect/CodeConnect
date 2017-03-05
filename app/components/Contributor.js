@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getReposGithub, addProjectsToCodeConnect, postProject} from '../actions/mentor';
+import {getReposGithub, addProjectToCodeConnect} from '../actions/mentor';
 import {Panel} from "react-bootstrap";
 
 class Contributor extends React.Component {
@@ -9,7 +9,6 @@ class Contributor extends React.Component {
     }
 
     dropPanel() {
-        console.log("dropPanel");
         this.props.dispatch({type: 'TOGGLE_PANEL'});
     }
 
@@ -44,15 +43,12 @@ class Contributor extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
+              </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log("contirbutor map states to props");
-    console.log(state);
-
     return {toggle: state.messages.toggle, projects: state.projects.publicprojects, ccrepos: state.projects.ccrepos,};
 };
 
