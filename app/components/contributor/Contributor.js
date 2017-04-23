@@ -22,7 +22,7 @@ class Contributor extends React.Component {
     render() {
         return (
             <div>
-                <TaskBlock titel="function: max()" input="[12;344;523;123;322]" description="Get the max Value" output="523"/>
+                <TaskBlock titel="function: max()" input={[12,344,523,123,322]} description="Get the max Value" output={523}/>
                 <TaskBlock titel="function: filter()" input={{
                     Array1: [
                         {
@@ -42,7 +42,7 @@ class Contributor extends React.Component {
                             alter: 50
                         }
                     ]
-                }} description="Put same objects in seperate array" output="Array:{name:Alice, alter:50}"/>
+                }} description="Put same objects in seperate array" output = {{Array1: {name:"Alice", alter:50}}}/>
             </div>
         );
     }

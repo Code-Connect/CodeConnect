@@ -25,12 +25,12 @@ class TaskBlock extends React.Component {
                             </Col>
                             <Col xs={6} md={4}>
                                 <Panel header={(
-                                    <h3>Blackbox</h3>
+                                    <h3>Description</h3>
                                 )} bsStyle="success">
                                     {this.props.description}
                                 </Panel>
                             </Col>
-                            <Col xsHidden md={4}>
+                            <Col xs={6} md={4}>
                                 <div>
                                     <Panel header={(
                                         <h3>Output</h3>
