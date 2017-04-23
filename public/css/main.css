@@ -5862,7 +5862,7 @@ footer {
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1); }
 
 .panel-heading + .panel-body {
-  padding-top: 0; }
+  padding-top: 10; }
 
 .panel-body h1, .panel-body h2, .panel-body h3, .panel-body h4, .panel-body h5, .panel-body h6 {
   margin-top: 0; }

@@ -4,14 +4,14 @@ import 'whatwg-fetch';
 // @param {string} githublink
 export function getReposGithub(link) {
     return (dispatch) => {
-        fetch(link).then((response) => {
+        return fetch(link).then((response) => {
             return response.json().then(function(json) {
                 var repoarray = json.map((item) => {
                     return {project_id: item.id, name: item.name, repourl: item.html_url, description: item.description, tasks: []}
                 });
-                return {type: 'GET_REPOS', repos: repoarray};
+                dispatch({type: 'GET_REPOS', repos: repoarray});
             });
-        }).then((action) => dispatch(action));
+        });
     };
 }
 

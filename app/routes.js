@@ -4,7 +4,7 @@ import App from "./components/App";
 import Mentor from "./components/mentor/Mentor";
 import NotFound from "./components/NotFound";
 import HomePage from "./components/routes/HomePage";
-import Contributor from "./components/Contributor";
+import Contributor from "./components/contributor/Contributor";
 import YourProject from "./components/routes/YourProject";
 import YourTasks from "./components/routes/YourTasks";
 import MentorLandingPage from "./components/routes/MentorLandingPage";
