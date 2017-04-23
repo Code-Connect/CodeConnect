@@ -4,8 +4,7 @@ var webpack = require('webpack');
 var config = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-hot-middleware/client',
-    './app/main'
+    'webpack-hot-middleware/client', './app/main'
   ],
   output: {
     path: path.join(__dirname, 'public', 'js'),
@@ -28,25 +27,30 @@ var config = {
         loader: 'babel-loader',
         query: {
           plugins: [
-            ['react-transform', {
-              transforms: [
-                {
-                  transform: 'react-transform-hmr',
-                  imports: ['react'],
-                  locals: ['module']
-                }, {
-                  transform: 'react-transform-catch-errors',
-                  imports: ['react', 'redbox-react']
-                }
-              ]
-            }]
+            [
+              'react-transform', {
+                transforms: [
+                  {
+                    transform: 'react-transform-hmr',
+                    imports: ['react'],
+                    locals: ['module']
+                  }, {
+                    transform: 'react-transform-catch-errors',
+                    imports: ['react', 'redbox-react']
+                  }
+                ]
+              }
+            ]
           ]
         }
+      }, {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx']
   }
 };
 
