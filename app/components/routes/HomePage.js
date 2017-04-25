@@ -10,7 +10,7 @@ class HomePage extends Component {
             <div>
                 <Logo/>
                 <UserButtons/>
-                <NewestProjects/>
+                {/* <NewestProjects/> */}
             </div>
         );
     }
