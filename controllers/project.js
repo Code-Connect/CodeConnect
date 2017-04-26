@@ -80,10 +80,8 @@ exports.saveProject = function(req, res) {
                 }).save(null, { //save project in database
                     method: 'insert'
                 });
-            } else {
-                console.log("fdaasassa");
             }
         });
     });
-    res.send("done");
+    res.send("status:success");
 };

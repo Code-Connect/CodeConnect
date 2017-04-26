@@ -12,7 +12,6 @@ class Contributor extends React.Component {
   //gets called, when the component gets loaded
   componentDidMount() {
     //gets the repos from github
-    this.props.dispatch({type: 'INIT_TOGGLE'});
   }
 
   render() {

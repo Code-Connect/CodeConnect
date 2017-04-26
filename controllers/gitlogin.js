@@ -33,13 +33,10 @@ passport.use(new GitHubStrategy({
 }));
 
 passport.serializeUser(function(user, done) {
-    console.log(user);
-    console.log("serializeUser");
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    console.log("deserialized");
     Model.grabUserCredentials(id, function(err, user) {
         done(err, user);
     });
