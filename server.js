@@ -106,50 +106,9 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
 app.use(function(req, res) {
 
     var initialState = {
-        ajax: {
-            history: [
-                {
-                    text: "server",
-                    completed: false
-                }
-            ]
-        },
         user: req.user,
         projects: {
             repos: [],
-            publicprojects: [
-                {
-                    headerName: "Code Connect",
-                    description: "The platform for coders to connect",
-                    tasks: [
-                        {
-                            name: "10: Search Functionality in Navigation Bar",
-                            link: "https://github.com/nithishr/codeConnect"
-                        }, {
-                            name: "12: Improve load times",
-                            link: "https://github.com/nithishr/codeConnect"
-                        }
-                    ]
-                }, {
-                    headerName: "TowerDefense",
-                    description: "A mobile TD Game",
-                    tasks: [
-                        {
-                            name: "11: Add Advertising",
-                            link: "https://github.com/gapsong/TowerDefense"
-                        }, {
-                            name: "13: Add MuteButton",
-                            link: "https://github.com/gapsong/TowerDefense"
-                        }, {
-                            name: "14: Redesign MainMenu",
-                            link: "https://github.com/gapsong/TowerDefense"
-                        }, {
-                            name: "16: Redesign Icon",
-                            link: "https://github.com/gapsong/TowerDefense"
-                        }
-                    ]
-                }
-            ],
             ccrepos: []
         }
     };

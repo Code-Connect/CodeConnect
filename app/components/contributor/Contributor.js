@@ -9,10 +9,6 @@ class Contributor extends React.Component {
     super(props);
   }
 
-  dropPanel() {
-    this.props.dispatch({type: 'TOGGLE_PANEL'});
-  }
-
   //gets called, when the component gets loaded
   componentDidMount() {
     //gets the repos from github
@@ -54,7 +50,7 @@ class Contributor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {toggle: state.messages.toggle, projects: state.projects.publicprojects, ccrepos: state.projects.ccrepos};
+  return {};
 };
 
 export default connect(mapStateToProps)(Contributor);
