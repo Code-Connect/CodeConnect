@@ -8,6 +8,7 @@ import Contributor from "./components/contributor/Contributor";
 import YourProject from "./components/routes/YourProject";
 import YourTasks from "./components/routes/YourTasks";
 import MentorLandingPage from "./components/routes/MentorLandingPage";
+import Editor from "./components/baukasten/Editor";
 
 export default function getRoutes(store) {
 
@@ -24,6 +25,7 @@ export default function getRoutes(store) {
             <Route path="/yourproject" component={YourProject} onLeave={clearMessages}/>
             <Route path="/yourtasks" component={YourTasks} onLeave={clearMessages}/>
             <Route path="/mentor2" component={MentorLandingPage} onLeave={clearMessages}/>
+            <Route path="/editor" component={Editor} onLeave={clearMessages}/>
             <Route path="*" component={NotFound} onLeave={clearMessages}/>
         </Route>
     );

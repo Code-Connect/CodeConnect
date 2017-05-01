@@ -32,6 +32,9 @@ $panel-body-padding: 30px;
 @import url("//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CRaleway:100,300,600,700,800");
 @import "vendor/bootstrap";
 
+// TODO Include the CSS
+// @import "codemirror.css";
+
 // Scaffolding
 // -------------------------
 
@@ -99,7 +102,7 @@ footer {
 }
 
 .panel-heading + .panel-body {
-  padding-top: 10;
+  padding-top: 10px;
 }
 
 .panel-body {
