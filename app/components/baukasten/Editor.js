@@ -1,9 +1,5 @@
-var React = require('react');
-var CodeMirror = require('react-codemirror');
-// require('codemirror/mode/javascript/javascript');
-// require('codemirror/mode/xml/xml');
-// require('codemirror/mode/markdown/markdown');
-
+import React from 'react';
+import CodeMirror from 'react-codemirror';
 
 class Editor extends React.Component {
     constructor(props) {
@@ -11,6 +7,12 @@ class Editor extends React.Component {
         this.state = {
             code: props.code,
         }
+    }
+
+    componentDidMount() {
+        require('codemirror/mode/javascript/javascript');
+        require('codemirror/mode/xml/xml');
+        require('codemirror/mode/markdown/markdown');
     }
 
     render() {
