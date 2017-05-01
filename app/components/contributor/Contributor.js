@@ -17,39 +17,16 @@ class Contributor extends React.Component {
   render() {
     return (
       <div>
-        <TaskBlock titel="function: max()" input={[12, 344, 523, 123, 322]} description="Get the max Value" output={523}/>
-        <TaskBlock titel="function: filter()" input={{
-          Array1: [
-            {
-              name: "Alice",
-              alter: 50
-            }, {
-              name: "Bob",
-              alter: 30
-            }
-          ],
-          Array2: [
-            {
-              name: "Alice",
-              alter: 50
-            }, {
-              name: "Bob",
-              alter: 50
-            }
-          ]
-        }} description="Put same objects in seperate array" output={{
-          Array1: {
-            name: "Alice",
-            alter: 50
-          }
-        }}/>
+        {this.props.mockData.map((item) => {
+          return <TaskBlock titel="function: max()" input={'# Hello world\n it\'s me, some markdown string \n\n ```js\n//but maybe i have code snippets too...\n```'} description="Get the max Value" output={"523"}/>
+        })}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {mockData: state.projects.mockData};
 };
 
 export default connect(mapStateToProps)(Contributor);

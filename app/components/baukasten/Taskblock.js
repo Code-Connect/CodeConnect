@@ -20,7 +20,7 @@ class TaskBlock extends React.Component {
                 <Panel header={(
                   <h3>Input</h3>
                 )} bsStyle="success">
-                  <ReactMarkdown source={JSON.stringify(this.props.input)}/>
+                  <ReactMarkdown source={this.props.input}/>
                 </Panel>
                 <Button bsStyle="success">More Information</Button>
               </Col>
@@ -36,7 +36,7 @@ class TaskBlock extends React.Component {
                   <Panel header={(
                     <h3>Output</h3>
                   )} bsStyle="success">
-                    <ReactMarkdown source={JSON.stringify(this.props.output)}/>
+                    <ReactMarkdown source={this.props.output}/>
                   </Panel>
                 </div>
               </Col>
