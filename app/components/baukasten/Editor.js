@@ -1,8 +1,5 @@
 var React = require('react');
 var CodeMirror = require('react-codemirror');
-// require('codemirror/mode/javascript/javascript');
-// require('codemirror/mode/xml/xml');
-// require('codemirror/mode/markdown/markdown');
 
 
 class Editor extends React.Component {
@@ -26,6 +23,12 @@ class Editor extends React.Component {
         this.setState({
             code: newCode,
         });
+    }
+
+    componentDidMount() {
+        require('codemirror/mode/javascript/javascript');
+        require('codemirror/mode/xml/xml');
+        require('codemirror/mode/markdown/markdown');
     }
 }
 
