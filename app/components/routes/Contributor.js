@@ -30,7 +30,7 @@ class Contributor extends Component {
                             <SearchFilter value='' filter={[
                                 {
                                     title: 'Platform',
-                                    options: [1]
+                                    options: [1, 2, 3]
                                 }, {
                                     title: 'Language'
                                 }, {
@@ -50,7 +50,7 @@ class Contributor extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("mentor map states to props");
+    console.log("contributor map states to props");
     console.log(state);
 
     return {projects: state.projects.publicprojects};
