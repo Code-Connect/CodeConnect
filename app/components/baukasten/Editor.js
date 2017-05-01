@@ -1,8 +1,8 @@
 var React = require('react');
 var CodeMirror = require('react-codemirror');
-// require('codemirror/mode/javascript/javascript');
-// require('codemirror/mode/xml/xml');
-// require('codemirror/mode/markdown/markdown');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/mode/xml/xml');
+require('codemirror/mode/markdown/markdown');
 
 
 class Editor extends React.Component {
@@ -16,12 +16,13 @@ class Editor extends React.Component {
     render() {
         var options = {
             lineNumbers: true,
-            mode: 'javascript',
+            mode: 'markdown',
         };
         return <CodeMirror value={this.state.code} onChange={this.updateCode.bind(this)} options={options}/>
     }
 
     updateCode(newCode) {
+      console.log(newCode);
         this.setState({
             code: newCode,
         });
