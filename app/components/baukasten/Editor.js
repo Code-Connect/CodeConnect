@@ -24,7 +24,7 @@ class Editor extends React.Component {
   }
 
   updateCode(newCode) {
-    // console.log(newCode);
+    this.props.onChange(newCode);    // calls the action methond from above
     this.setState({code: newCode});
   }
 }

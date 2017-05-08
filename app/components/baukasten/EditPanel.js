@@ -3,24 +3,30 @@ import {connect} from 'react-redux'
 import {Panel, Button, Row, Col} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import Editor from './Editor';
+import {updateText} from './../../actions/editor';
 
 //smart Component
 class EditPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { text: '' };
 
-  handleChange(event) {
-    console.log("Editor");
-    console.log(event.target.code);
+  }
+
+  handleChange(code) {
+    this.props.dispatch(updateText(code));
+    console.log(this.props.text);
   }
 
   render() {
     return (
-      <Panel header="Voll viel Zeit" bsStyle="primary">
+      <Panel header="Texteditor" bsStyle="primary">
         <Row>
           <Col xs={6} md={8}>
-            <Editor onChange={this.handleChange.bind(this)}/>
+            <Editor onClickFunction= {() => this.handleChange(item)} onChange={this.handleChange.bind(this)}/>
           </Col>
           <Col xs={6} md={4}>
-            <ReactMarkdown source="fsdafdsfds" onChange={this.handleChange.bind(this)}/>
+            <ReactMarkdown source={this.props.text}/>
           </Col>
         </Row>
       </Panel>
@@ -28,9 +34,9 @@ class EditPanel extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {editor: state.editor.mockData};
-// };
-export default EditPanel;
+const mapStateToProps = (state) => {
+  console.log(state.editor.text);
+  return {text: state.editor.text};
+};
 
-// export default connect(mapStateToProps)(EditPanel);
+export default connect(mapStateToProps)(EditPanel);

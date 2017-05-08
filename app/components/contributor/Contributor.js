@@ -21,7 +21,7 @@ class Contributor extends React.Component {
         {this.props.mockData.map((item) => {
           return <TaskBlock titel="function: max()" input={'# Hello world\n it\'s me, some markdown string \n\n ```js\n//but maybe i have code snippets too...\n```'} description="Get the max Value" output={"523"}/>
         })}
-        <EditPanel />
+        <EditPanel/>
       </div>
     );
   }
