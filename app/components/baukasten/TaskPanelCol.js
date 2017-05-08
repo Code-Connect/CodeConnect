@@ -1,27 +1,22 @@
 import React from 'react';
-import {Panel, Button, Row, Col} from "react-bootstrap";
+import {Panel, Button, Col} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 
+//used in TaskBlock
 class TaskPanelCol extends React.Component {
   render() {
-    return this.props.panelType == 'Input'
-      ? (
-        <Col xs={6} md={4}>
-          <Panel header={(
-            <h3>{this.props.panelType}</h3>
-          )} bsStyle="success">
-            <ReactMarkdown source={this.props.text}/>
-          </Panel>
-          <Button bsStyle="success" name="edit" onClick={this.props.function.bind(this)}>Edit</Button>
-        </Col>
-      )
-      : <Col xs={6} md={4}>
+    return (
+      <Col xs={6} md={4}>
         <Panel header={(
-          <h3>{this.props.panelType}</h3>
-        )} bsStyle="success">
+          <div>
+            <Button className="pull-right" bsStyle="primary" bsSize="small" name="edit" onClick={this.props.function}>Edit</Button>
+            <h3>{this.props.panelType}</h3>
+          </div>
+        )} bsStyle="success" onClick= {()=>{}}>
           <ReactMarkdown source={this.props.text}/>
         </Panel>
-      </Col>;
+      </Col>
+    )
   }
 }
 

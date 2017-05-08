@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {Panel, Button, Row, Col} from "react-bootstrap";
-import ReactMarkdown from 'react-markdown';
+import {Panel, Button, Row} from "react-bootstrap";
 import TaskPanelCol from './TaskPanelCol';
 
 class TaskBlock extends React.Component {
@@ -12,9 +11,11 @@ class TaskBlock extends React.Component {
     };
   }
 
-  handleChange(event) {
+  startTask(event) {
     this.setState({
       [event.target.name]: true
+    }, () => {
+      console.log("buttonclick")
     });
   }
 
@@ -26,10 +27,11 @@ class TaskBlock extends React.Component {
             <h3>{this.props.titel}</h3>
           )} bsStyle="warning">
             <Row className="show-grid">
-              <TaskPanelCol panelType="Input" text={this.props.input} function={this.handleChange.bind(this)}/>
-              <TaskPanelCol panelType="Description" text={this.props.description} function={this.handleChange.bind(this)}/>
-              <TaskPanelCol panelType="Output" text={this.props.output} function={this.handleChange.bind(this)}/>
+              <TaskPanelCol panelType="Input" text={this.props.input} function={this.startTask.bind(this)}/>
+              <TaskPanelCol panelType="Description" text={this.props.description}/>
+              <TaskPanelCol panelType="Output" text={this.props.output}/>
             </Row>
+            <Button bsStyle="success" name="edit" onClick={this.startTask.bind(this)}>Start Task</Button>
           </Panel>
         </div>
       </div>
@@ -42,10 +44,6 @@ TaskBlock.defaultProps = {
   input: "-",
   description: "-",
   output: "-"
-};
-
-const mapStateToProps = (state) => {
-  return {titel: "title", input: "input", description: "description", output: "output"};
 };
 
 export default(TaskBlock);

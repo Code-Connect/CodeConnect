@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {getReposGithub, addProjectToCodeConnect} from '../../actions/mentor';
 import TaskBlock from '../baukasten/Taskblock.js'
+import EditPanel from '../baukasten/EditPanel.js';
 import {Panel, NavItem, Nav, Row, Col} from "react-bootstrap";
 
 class Contributor extends React.Component {
@@ -20,6 +21,7 @@ class Contributor extends React.Component {
         {this.props.mockData.map((item) => {
           return <TaskBlock titel="function: max()" input={'# Hello world\n it\'s me, some markdown string \n\n ```js\n//but maybe i have code snippets too...\n```'} description="Get the max Value" output={"523"}/>
         })}
+        <EditPanel />
       </div>
     );
   }
