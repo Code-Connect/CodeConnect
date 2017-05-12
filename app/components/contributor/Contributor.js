@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {getReposGithub, addProjectToCodeConnect} from '../../actions/mentor';
 import TaskBlock from '../baukasten/Taskblock.js'
 import {Panel, NavItem, Nav, Row, Col} from "react-bootstrap";
+import TaskTable from '../baukasten/taskelement/TaskTable.js'
 
 class Contributor extends React.Component {
   constructor(props) {
@@ -21,7 +22,12 @@ class Contributor extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container" style={{background:'gray',padding: '50px'}}>
+        <div className="row">
+            <TaskTable/>
+        </div>
+
+
         <TaskBlock titel="function: max()" input={[12, 344, 523, 123, 322]} description="Get the max Value" output={523}/>
         <TaskBlock titel="function: filter()" input={{
           Array1: [
