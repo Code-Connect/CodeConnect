@@ -18,17 +18,16 @@ class Contributor extends React.Component {
   render() {
     return (
       <div>
-        {this.props.mockData.map((item) => {
+        {this.props.tasks.map((item) => {
           return <TaskBlock titel="function: max()" input={'# Hello world\n it\'s me, some markdown string \n\n ```js\n//but maybe i have code snippets too...\n```'} description="Get the max Value" output={"523"}/>
         })}
-        <EditPanel/>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {mockData: state.projects.mockData};
+  return {tasks: state.projects.mockData};
 };
 
 export default connect(mapStateToProps)(Contributor);

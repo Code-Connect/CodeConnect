@@ -9,8 +9,9 @@ import {updateText} from './../../actions/editor';
 class EditPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: '' };
-
+    this.state = {
+      text: ''
+    };
   }
 
   handleChange(code) {
@@ -20,16 +21,19 @@ class EditPanel extends React.Component {
 
   render() {
     return (
-      <Panel header="Texteditor" bsStyle="primary">
-        <Row>
-          <Col xs={6} md={8}>
-            <Editor onClickFunction= {() => this.handleChange(item)} onChange={this.handleChange.bind(this)}/>
-          </Col>
-          <Col xs={6} md={4}>
-            <ReactMarkdown source={this.props.text}/>
-          </Col>
-        </Row>
-      </Panel>
+      <div>
+        <Panel header="Name of the function" bsStyle="primary">
+          <Row>
+            <Col xs={6} md={8}>
+              <Editor onClickFunction= {() => this.handleChange(item)} onChange={this.handleChange.bind(this)}/>
+            </Col>
+            <Col xs={6} md={4}>
+              <ReactMarkdown source={this.props.text}/>
+            </Col>
+          </Row>
+          <Button bsSize="large" bsStyle="success">Submit</Button>
+        </Panel>
+      </div>
     )
   }
 }
