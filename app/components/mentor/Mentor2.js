@@ -20,7 +20,7 @@ class Mentor2 extends React.Component {
         } < /h1>} bsStyle="warning">
           <Panel header={(
             <div>
-              <Button className="pull-right" onClick = >Click</Button>
+              <Button className="pull-right">Click</Button>
               <h5>Input</h5>
             </div>
           )}>
