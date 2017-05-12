@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {getReposGithub, addProjectsToCodeConnect, postProject, postTasksToProject} from './../../actions/mentor';
 import {Panel} from "react-bootstrap";
 import TaskPanel from "./TaskPanel2";
-import HelloWorld from "./HelloWorld";
 
 class Mentor extends React.Component {
     constructor(props) {

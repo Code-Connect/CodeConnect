@@ -9,7 +9,7 @@ import {
     Col
 } from "react-bootstrap";
 
-const TaskPanel = React.createClass({
+const Mentor2 = React.createClass({
     getInitialState() {
         return this.state = {
             task: '',

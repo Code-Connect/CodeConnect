@@ -50,7 +50,6 @@ class TaskBlock extends React.Component {
               <Button className="pull-right" style={{
                 textAlign: 'center',
               }} bsStyle="warning" bsSize="small" name="edit" onClick={() => this.refs.customDialog.show()}>Edit</Button>
-              {/* parameter richtig einstellen damit das fenster besser aussieht */}
               <SkyLight overlayStyles={overlayStyles} dialogStyles={myBigGreenDialog} hideOnOverlayClicked ref="customDialog" title="Markdown-Editor">
                 <EditPanel/>
               </SkyLight>
