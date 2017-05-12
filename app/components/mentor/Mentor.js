@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {getReposGithub, addProjectsToCodeConnect, postProject, postTasksToProject} from './../../actions/mentor';
 import {Panel} from "react-bootstrap";
 import TaskPanel from "./TaskPanel2";
-import HelloWorld from "./HelloWorld";
 
 class Mentor extends React.Component {
     constructor(props) {
@@ -68,8 +67,6 @@ class Mentor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-     console.log("mentor map states to props");
-     console.log(state);
     return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, id: state.user.github.id, github_name: state.user.github.name};
 };
 

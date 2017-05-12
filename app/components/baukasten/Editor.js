@@ -1,39 +1,36 @@
-var React = require('react');
-var CodeMirror = require('react-codemirror');
-
+import React from 'react';
+import CodeMirror from 'react-codemirror';
 
 class Editor extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            code: props.code,
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      code: props.code
     }
+  }
 
-    render() {
-        var options = {
-            lineNumbers: true,
-            mode: 'markdown',
-        };
-        return <CodeMirror value={this.state.code} onChange={this.updateCode.bind(this)} options={options}/>
-    }
+  componentDidMount() {
+    require('codemirror/mode/javascript/javascript');
+    require('codemirror/mode/xml/xml');
+    require('codemirror/mode/markdown/markdown');
+  }
 
-    updateCode(newCode) {
-      console.log(newCode);
-        this.setState({
-            code: newCode,
-        });
-    }
+  render() {
+    var options = {
+      lineNumbers: true,
+      mode: 'markdown'
+    };
+    return <CodeMirror value={this.state.code} onChange={this.updateCode.bind(this)} options={options}/>
+  }
 
-    componentDidMount() {
-        require('codemirror/mode/javascript/javascript');
-        require('codemirror/mode/xml/xml');
-        require('codemirror/mode/markdown/markdown');
-    }
+  updateCode(newCode) {
+    this.props.onChange(newCode);    // calls the action methond from above
+    this.setState({code: newCode});
+  }
 }
 
 Editor.defaultProps = {
-    code: "code",
+  code: "code"
 };
 
 export default(Editor);

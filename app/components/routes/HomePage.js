@@ -9,8 +9,9 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Wrapper/>
-                {/* <NewestProjects/> */}
+               <Logo/>
+                <UserButtons/>
+                <NewestProjects/>
             </div>
         );
     }

@@ -5975,7 +5975,9 @@ textarea {
   text-transform: uppercase; }
 
 .ReactCodeMirror {
-  border: 1px solid #ccc; }
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  margin-bottom: 15px; }
 
 .CodeMirror {
   font-family: monospace;

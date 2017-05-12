@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import ajax from './ajax';
-import messages from './messages';
 import user from './user';
 import projects from './projects';
+import editor from './editor';
 
 export default combineReducers({
-  ajax,
-  messages,
+  editor,
   user,
   projects
 });

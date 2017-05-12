@@ -33,6 +33,7 @@ join task
 on belongsto.task_id = task.task_id
 where projectmentor.user_id = 15983559
 */
+
 exports.getProject = function(initialState, id) { //gets Projects and Tasks
     return knex.select('project.project_id', 'belongsto.task_id', 'task.name', 'task.description').from('project').join('projectmentor', function() {
         this.on('project.project_id', '=', 'projectmentor.project_id')
@@ -47,10 +48,12 @@ exports.getProject = function(initialState, id) { //gets Projects and Tasks
                 delete item.description;
                 delete item.task_id;
                 delete item.name;
+                delete item.input;
+                delete item.output;
             }
         });
 
-        initialState.projects.temprepos = rows;
+        initialState.projects.tasks = rows;
     });
 }
 
@@ -81,10 +84,8 @@ exports.saveProject = function(req, res) {
                 }).save(null, { //save project in database
                     method: 'insert'
                 });
-            } else {
-                console.log("fdaasassa");
             }
         });
     });
-    res.send("done");
+    res.send("status:success");
 };

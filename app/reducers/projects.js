@@ -1,12 +1,12 @@
 export default function messages(state = {}, action) {
     switch (action.type) {
         case 'GET_REPOS':
-            var temp = action.repos.filter((item) => state.temprepos.reduce(function(acc, item2) {
+            var temp = action.repos.filter((item) => state.tasks.reduce(function(acc, item2) {
                 return acc || (JSON.stringify(item.project_id) === JSON.stringify(item2.project_id))
             }, false));
 
             temp.map((item) => {
-                state.temprepos.map((item2) => {
+                state.tasks.map((item2) => {
                     if (JSON.stringify(item2.name) != null && JSON.stringify(item.project_id) === JSON.stringify(item2.project_id)) {
                         //delete item2.project_id;
                         item.tasks.push(item2);

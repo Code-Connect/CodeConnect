@@ -1,7 +1,7 @@
 import React from "react";
 import {IndexRoute, Route} from "react-router";
 import App from "./components/App";
-import Mentor from "./components/mentor/Mentor";
+import Mentor from "./components/mentor/Mentor2";
 import NotFound from "./components/NotFound";
 import HomePage from "./components/routes/HomePage";
 import Contributor from "./components/contributor/Contributor";
