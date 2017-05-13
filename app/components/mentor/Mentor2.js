@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Panel, Button} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
+import {updateText} from './../../actions/editor';
 
 class Mentor2 extends React.Component {
   constructor(props) {
@@ -22,10 +23,15 @@ class Mentor2 extends React.Component {
     });
   }
 
+  updateText(code) {
+   this.props.dispatch(updateText(code));
+   console.log(this.props.text);
+ }
+
   createPanel(type) {
     const editPanel = this.state[type]
       ? (<ReactMarkdown source={this.props.data[type]}/>)
-      : (<EditPanel/>);
+      : (<EditPanel onChange= {this.updateText.bind(this)} text ={this.props.text}/>);
     return (
       <div>
         <div>
@@ -64,7 +70,7 @@ class Mentor2 extends React.Component {
 //         name: string}
 
 const mapStateToProps = (state) => {
-  return {data: state.projects.mockData[0]};
+  return {data: state.projects.mockData[0], text: state.editor.text};
 };
 
 export default connect(mapStateToProps)(Mentor2);
