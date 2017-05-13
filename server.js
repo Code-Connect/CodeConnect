@@ -115,7 +115,7 @@ app.use(function(req, res) {
           input: '# Hello world\n it\'s me, some markdown string \n\n ```js\n//but maybe i have code snippets too...\n```',
           output: "output2",
           description: "description2",
-          task_id: "taskid",
+          task_id: 1,
           name: "name1"
         }
       ]

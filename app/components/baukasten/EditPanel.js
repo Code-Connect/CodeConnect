@@ -22,17 +22,15 @@ class EditPanel extends React.Component {
   render() {
     return (
       <div>
-        <Panel header="Name of the function" bsStyle="primary">
-          <Row>
-            <Col xs={6} md={8}>
-              <Editor onClickFunction= {() => this.handleChange(item)} onChange={this.handleChange.bind(this)}/>
-            </Col>
-            <Col xs={6} md={4}>
-              <ReactMarkdown source={this.props.text}/>
-            </Col>
-          </Row>
-          <Button bsSize="large" bsStyle="success">Submit</Button>
-        </Panel>
+        <Row>
+          <Col xs={6} md={8}>
+            <Editor onClickFunction= {() => this.handleChange(item)} onChange={this.handleChange.bind(this)}/>
+          </Col>
+          <Col xs={6} md={4}>
+            <ReactMarkdown source={this.props.text}/>
+          </Col>
+        </Row>
+        <Button bsSize="large" bsStyle="success">Submit</Button>
       </div>
     )
   }

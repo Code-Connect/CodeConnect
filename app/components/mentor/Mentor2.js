@@ -7,9 +7,39 @@ import EditPanel from '../baukasten/EditPanel.js';
 class Mentor2 extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   code: props.code
-    // }
+    this.state = {
+      input: false,
+      output: false,
+      description: false
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: !this.state[event.target.name]
+    }, () => {
+      console.log(this.state)
+    });
+  }
+
+  createPanel(type) {
+    const editPanel = this.state[type]
+      ? (<ReactMarkdown source={this.props.data[type]}/>)
+      : (<EditPanel/>);
+    return (
+      <div>
+        <div>
+          <Panel header={(
+            <div>
+              <Button name={type} className="pull-right" onClick={this.handleChange.bind(this)}>Edit</Button>
+              <h4>{type}</h4>
+            </div>
+          )}>
+            {editPanel}
+          </Panel>
+        </div>
+      </div>
+    )
   }
 
   render() {
@@ -18,19 +48,10 @@ class Mentor2 extends React.Component {
         <Panel header={< h1 > {
           this.props.data.name
         } < /h1>} bsStyle="warning">
-          <Panel header={(
-            <div>
-              <Button className="pull-right">Click</Button>
-              <h5>Input</h5>
-            </div>
-          )}>
-            <ReactMarkdown source={this.props.data.input}/></Panel>
-          <Panel header={< h5 > Output < /h5>}>
-            <ReactMarkdown source={this.props.data.output}/></Panel>
-          <Panel header={< h5 > Description < /h5>}>
-            <ReactMarkdown source={this.props.data.Description}/></Panel>
+          {this.createPanel("input")}
+          {this.createPanel("output")}
+          {this.createPanel("description")}
         </Panel>
-        <EditPanel/>
       </div>
     );
   }
