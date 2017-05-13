@@ -11,7 +11,7 @@ class EditPanel extends React.Component {
       <div>
         <Row>
           <Col xs={6} md={8}>
-            <Editor onChange = {this.props.onChange}/>
+            <Editor text = {this.props.text} onChange = {this.props.onChange}/>
           </Col>
           <Col xs={6} md={4}>
             <ReactMarkdown source={this.props.text}/>

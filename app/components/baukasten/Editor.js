@@ -5,7 +5,7 @@ class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: props.code
+      code: props.text
     }
   }
 
@@ -28,9 +28,5 @@ class Editor extends React.Component {
     this.setState({code: newCode});
   }
 }
-
-Editor.defaultProps = {
-  code: "code"
-};
 
 export default(Editor);

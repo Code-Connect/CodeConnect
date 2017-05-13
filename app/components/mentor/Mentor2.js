@@ -24,14 +24,13 @@ class Mentor2 extends React.Component {
   }
 
   updateText(code) {
-   this.props.dispatch(updateText(code));
-   console.log(this.props.text);
- }
+    this.props.dispatch(updateText(code));
+  }
 
   createPanel(type) {
     const editPanel = this.state[type]
-      ? (<ReactMarkdown source={this.props.data[type]}/>)
-      : (<EditPanel onChange= {this.updateText.bind(this)} text ={this.props.text}/>);
+      ? (<ReactMarkdown source={this.props.tasks[0][type]}/>)
+      : (<EditPanel onChange={this.updateText.bind(this)} text = {this.props.tasks[0][type]}/>);
     return (
       <div>
         <div>
@@ -52,7 +51,7 @@ class Mentor2 extends React.Component {
     return (
       <div>
         <Panel header={< h1 > {
-          this.props.data.name
+          this.props.tasks[0].name
         } < /h1>} bsStyle="warning">
           {this.createPanel("input")}
           {this.createPanel("output")}
@@ -63,14 +62,14 @@ class Mentor2 extends React.Component {
   }
 }
 
-// data = {input: string,
+// tasks[0] = {input: string,
 //         output: string,
 //         description: string,
 //         task_id: integer,
 //         name: string}
 
 const mapStateToProps = (state) => {
-  return {data: state.projects.mockData[0], text: state.editor.text};
+  return {tasks: state.projects.mockData, text: state.editor.text};
 };
 
 export default connect(mapStateToProps)(Mentor2);
