@@ -48,7 +48,7 @@ export default function messages(state = {}, action) {
       });
       console.log("temptask");
       console.log(tempTask);
-      return Object.assign({}, state, {mockData: action.newCode});
+      return Object.assign({}, state);
     default:
       return state;
   }
