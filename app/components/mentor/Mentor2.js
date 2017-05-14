@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Panel, Button} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
+import Editor from '../baukasten/Editor.js';
 import {updateText} from './../../actions/editor';
 
 class Mentor2 extends React.Component {
@@ -23,14 +24,15 @@ class Mentor2 extends React.Component {
     });
   }
 
-  updateText(code) {
-    this.props.dispatch(updateText(code));
+  updateText(task_id, type, code) {
+    this.props.dispatch(updateText(task_id, type, code));
   }
 
   createPanel(type) {
     const editPanel = this.state[type]
-      ? (<ReactMarkdown source={this.props.tasks[0][type]}/>)
-      : (<EditPanel onChange={this.updateText.bind(this)} text = {this.props.tasks[0][type]}/>);
+      ? null
+      // type: input or description or output
+      : (<Editor onChange={this.updateText.bind(this)} task_id={this.props.tasks[0].task_id} type={type} code={this.props.tasks[0][type]}/>);
     return (
       <div>
         <div>
@@ -40,7 +42,7 @@ class Mentor2 extends React.Component {
               <h4>{type}</h4>
             </div>
           )}>
-            {editPanel}
+            <ReactMarkdown source={this.props.tasks[0][type]}/> {editPanel}
           </Panel>
         </div>
       </div>
