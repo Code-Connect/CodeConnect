@@ -43,12 +43,28 @@ export default function messages(state = {}, action) {
 
     case 'UPDATE_TEXT':
       //still in progress
-      var tempTask = mockData.find((item) => {
-        return item[task_id] == action.task_id
-      });
-      console.log("temptask");
-      console.log(tempTask);
-      return Object.assign({}, state);
+      // var tempTask = mockData.find((item) => {
+      //   return item[task_id] == action.task_id
+      // });
+      // console.log("temptask");
+      // console.log(tempTask);
+      return {
+        mockData: [
+          {
+            input: "newCode",
+            output: "output1",
+            description: "description1",
+            task_id: 1,
+            name: "name1"
+          }, {
+            input: "input4",
+            output: "output4",
+            description: "description4",
+            task_id: 4,
+            name: "name4"
+          }
+        ]
+      };
     default:
       return state;
   }

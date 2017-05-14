@@ -5,7 +5,7 @@ import fetchMock from 'fetch-mock';
 import {expect} from 'chai';
 import {assert} from 'chai';
 import * as actions from '../../../app/actions/mentor';
-import * as actionsEditor from '../../../app/actions/editor';
+import reducer from '../../../app/reducers/projects'
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -13,7 +13,7 @@ const mockStore = configureStore(middlewares);
 describe('editor ', () => {
   it('test action for writing', () => {
 
-    const store = mockStore({
+    expect(reducer({
       mockData: [
         {
           input: "input1",
@@ -29,13 +29,15 @@ describe('editor ', () => {
           name: "name4"
         }
       ]
-    });
-
-    store.dispatch(actionsEditor.updateText(1, "input", "newText"));
-    return expect(store.getState()).to.deep.equal({
+    }, {
+      type: 'UPDATE_TEXT',
+      task_id: 1,
+      field: "input",
+      newCode: "newCode"
+    })).to.deep.equal({
       mockData: [
         {
-          input: "newText",
+          input: "newCode",
           output: "output1",
           description: "description1",
           task_id: 1,
