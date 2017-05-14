@@ -24,25 +24,25 @@ class Mentor2 extends React.Component {
     });
   }
 
-  updateText(task_id, type, code) {
-    this.props.dispatch(updateText(task_id, type, code));
+  updateText(task_id, fieldtype, code) {
+    this.props.dispatch(updateText(task_id, fieldtype, code));
   }
 
-  createPanel(type) {
-    const editPanel = this.state[type]
+  createPanel(fieldtype) {
+    const editPanel = this.state[fieldtype]
       ? null
-      // type: input or description or output
-      : (<Editor onChange={this.updateText.bind(this)} task_id={this.props.tasks[0].task_id} type={type} code={this.props.tasks[0][type]}/>);
+      // fieldtype: input or description or output
+      : (<Editor onChange={this.updateText.bind(this)} task_id={this.props.tasks[0].task_id} fieldtype={fieldtype} code={this.props.tasks[0][fieldtype]}/>);
     return (
       <div>
         <div>
           <Panel header={(
             <div>
-              <Button name={type} className="pull-right" onClick={this.handleChange.bind(this)}>Edit</Button>
-              <h4>{type}</h4>
+              <Button name={fieldtype} className="pull-right" onClick={this.handleChange.bind(this)}>Edit</Button>
+              <h4>{fieldtype}</h4>
             </div>
           )}>
-            <ReactMarkdown source={this.props.tasks[0][type]}/> {editPanel}
+            <ReactMarkdown source={this.props.tasks[0][fieldtype]}/> {editPanel}
           </Panel>
         </div>
       </div>

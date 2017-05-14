@@ -7,7 +7,7 @@ class Editor extends React.Component {
     this.state = {
       code: props.code,
       task_id: props.task_id,
-      type: props.type
+      fieldtype: props.fieldtype
     }
   }
 
@@ -26,7 +26,7 @@ class Editor extends React.Component {
   }
 
   updateCode(newCode) {
-    this.props.onChange(this.state.task_id, this.state.type, newCode); // calls the action methond from above
+    this.props.onChange(this.state.task_id, this.state.fieldtype, newCode); // calls the action methond from above
     this.setState({code: newCode});
   }
 }

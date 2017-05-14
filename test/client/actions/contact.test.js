@@ -32,7 +32,7 @@ describe('editor ', () => {
     }, {
       type: 'UPDATE_TEXT',
       task_id: 1,
-      field: "input",
+      fieldtype: "input",
       newCode: "newCode"
     })).to.deep.equal({
       mockData: [
