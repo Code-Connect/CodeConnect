@@ -71,8 +71,7 @@ const knex = Knex(require('./knexfile'));
 
 const store2 = new KnexSessionStore({
   knex: knex, tablename: 'sessions' // optional. Defaults to 'sessions'
-});
-
+})
 // git login with session
 app.use(session({
   secret: process.env.SECRET,
@@ -116,7 +115,91 @@ app.use(function(req, res) {
           output: "output2",
           description: "description2",
           task_id: 1,
-          name: "name1"
+          name: "name1",
+          difficulty: "5",
+          solutions: "3",
+          attempts: "10"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "its me mario yeah yea yeah",
+          task_id: "taskid2",
+          name: "Mario",
+          difficulty: "3",
+          solutions: "2",
+          attempts: "100"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "yeah yea yeah",
+          task_id: "taskid3",
+          name: "T1Yeah",
+          difficulty: "5",
+          solutions: "0",
+          attempts: "5"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "yeah yea yeah",
+          task_id: "taskid4",
+          name: "T1Yeah",
+          difficulty: "5",
+          solutions: "0",
+          attempts: "5"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "yeah yea yeah",
+          task_id: "taskid5",
+          name: "T1Yeah",
+          difficulty: "5",
+          solutions: "0",
+          attempts: "5"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "yeah yea yeah",
+          task_id: "taskid6",
+          name: "T1Yeah",
+          difficulty: "5",
+          solutions: "0",
+          attempts: "5"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "yeah yea yeah",
+          task_id: "taskid7",
+          name: "T1Yeah",
+          difficulty: "5",
+          solutions: "0",
+          attempts: "5"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "yeah yea yeah",
+          task_id: "taskid8",
+          name: "T1Yeah",
+          difficulty: "5",
+          solutions: "0",
+          attempts: "5"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "yeah yea yeah",
+          task_id: "taskid9",
+          name: "T1Yeah",
+          difficulty: "5",
+          solutions: "0",
+          attempts: "5"
+        }, {
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "yeah yea yeah",
+          task_id: "taskid10",
+          name: "T1Yeah",
+          difficulty: "5",
+          solutions: "0",
+          attempts: "5"
         }
       ]
     }

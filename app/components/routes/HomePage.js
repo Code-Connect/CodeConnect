@@ -8,7 +8,7 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Logo/>
+               <Logo/>
                 <UserButtons/>
                 <NewestProjects/>
             </div>
