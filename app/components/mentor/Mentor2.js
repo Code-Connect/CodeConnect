@@ -4,7 +4,6 @@ import {Panel, Button} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
-import {updateText} from './../../actions/editor';
 
 class Mentor2 extends React.Component {
   constructor(props) {
@@ -24,8 +23,14 @@ class Mentor2 extends React.Component {
     });
   }
 
-  updateText(task_id, fieldtype, code) {
-    this.props.dispatch(updateText(task_id, fieldtype, code));
+  saveChange(event){
+    this.handleChange(event);
+    // TODO save the text in the database
+
+  }
+
+  updateText(task_id, fieldtype, newCode) {
+    this.props.dispatch({type: 'UPDATE_TEXT', task_id: task_id, fieldtype: fieldtype, newCode: newCode});
   }
 
   createPanel(fieldtype) {
@@ -33,12 +38,16 @@ class Mentor2 extends React.Component {
       ? null
       // fieldtype: input or description or output
       : (<Editor onChange={this.updateText.bind(this)} task_id={this.props.tasks[0].task_id} fieldtype={fieldtype} code={this.props.tasks[0][fieldtype]}/>);
+    const editOrSaveButton = this.state[fieldtype]
+      ? <Button name={fieldtype} className="pull-right" onClick={this.handleChange.bind(this)}>Edit</Button>
+      : <Button name={fieldtype} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
+
     return (
       <div>
         <div>
           <Panel header={(
             <div>
-              <Button name={fieldtype} className="pull-right" onClick={this.handleChange.bind(this)}>Edit</Button>
+              {editOrSaveButton}
               <h4>{fieldtype}</h4>
             </div>
           )}>
