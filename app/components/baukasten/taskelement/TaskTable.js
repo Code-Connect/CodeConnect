@@ -34,7 +34,7 @@ class TaskTable extends Component {
 		return (
         <div className="row" style={{ background: 'white'}}>
         
-		<StickyContainer style={{ padding: '0 30px' }}>
+		<StickyContainer style={{height: '500'}}> 
 		<div className="col-md-6">
             <Table striped bordered condensed hover>
                 <thead>
@@ -61,11 +61,11 @@ class TaskTable extends Component {
             {
               ({ isSticky, wasSticky, style, distanceFromTop, distanceFromBottom, calculatedHeight }) => {
                 console.log({ isSticky, wasSticky, style, distanceFromTop, distanceFromBottom, calculatedHeight });
-                return <div style={style}>
+                return (<div style={style}>
 				{ isSticky?<div style={{height: '80px'}}></div>:null
 				}
 				<TaskPreview title={this.state.current_title}
-            description={this.state.current_description}/></div>
+            description={this.state.current_description}/></div>)
               }
             }
           </Sticky>
