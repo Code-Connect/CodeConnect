@@ -18,9 +18,13 @@ class Contributor extends React.Component {
 
   render() {
     return (
-      <div className="container" style={{borderRadius:'10px',background:'white',padding: '50px'}}>
+      <div className="container" style={{
+        borderRadius: '10px',
+        background: 'white',
+        padding: '50px'
+      }}>
         <div className="row">
-            <TaskTable tasks={this.props.tasks}/>
+          <TaskTable tasks={this.props.tasks}/>
         </div>
       </div>
     );
