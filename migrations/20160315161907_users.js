@@ -1,5 +1,5 @@
 var githubTable = function(table) {
-  table.string('id').primary();
+  table.integer('id').primary();
   table.string('token');
   table.string('name');
   table.string('email');
@@ -18,8 +18,8 @@ var taskTable = function(table) {
 }
 
 var participate = function(table) {
-  table.integer('user_id').unique();
-  table.integer('project_id').unique();
+  table.integer('user_id').references('github.id');
+  table.integer('task_id').references('tasks.id');
   table.timestamps();
 }
 
