@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import {Popover, OverlayTrigger} from "react-bootstrap"
 
 
 class ListItem extends Component {
@@ -7,14 +8,21 @@ class ListItem extends Component {
         super(props)
     }
 
+   activate(){
+        this.props.activate( {
+            title: this.props.title,
+            description: this.props.description
+        })
+    }
+
     render () {
         return (
-        <tr>
-            <td>{this.props.id}</td>
-            <td>{this.props.title}</td>
-            <td>{this.props.difficulty}</td>
-            <td>{this.props.solutions}</td>
-            <td>{this.props.status}</td>
+        <tr onMouseEnter={this.activate.bind(this)}>
+            <td className="col-md-2">{this.props.id}</td>
+            <td className="col-md-4">{this.props.title}</td>
+            <td className="col-md-2">{this.props.difficulty}</td>
+            <td className="col-md-1">{this.props.solutions}</td>
+            <td className="col-md-3">{this.props.status}</td>
         </tr>
         )
 
