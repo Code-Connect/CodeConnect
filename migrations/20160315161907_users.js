@@ -1,4 +1,4 @@
-var userTable = function(table) {
+var githubTable = function(table) {
   table.string('id').primary();
   table.string('token');
   table.string('name');
@@ -7,7 +7,7 @@ var userTable = function(table) {
 }
 
 var taskTable = function(table){
-  table.increment('id').primary();
+  table.increments('id').primary();
   table.string('input');
   table.string('output');
   table.string('description');
@@ -18,9 +18,9 @@ var taskTable = function(table){
 }
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('user', githubTable).create('project', projectTable);
+  return knex.schema.createTable('github', githubTable).createTable('tasks', taskTable);
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('user').dropTable('project');
+  return knex.schema.dropTable('github').dropTable('tasks');
 };
