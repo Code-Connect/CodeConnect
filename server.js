@@ -54,7 +54,6 @@ if (app.get('env') === 'development') {
 }
 
 // Controllers
-var contactController = require('./controllers/contact');
 var projectController = require('./controllers/project');
 var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
