@@ -36,12 +36,13 @@ class Mentor2 extends React.Component {
 
   createPanel(fieldtype, task) {
     const editPanel = this.state[fieldtype]
-      ? null
+      ?
       // fieldtype: input or description or output
-      : (<Editor onChange={this.updateText.bind(this)} task_id={[task].task_id} fieldtype={fieldtype} code={[task][fieldtype]}/>);
+      (<Editor onChange={this.updateText.bind(this)} task_id={task.task_id} fieldtype={fieldtype} code={task[fieldtype]}/>)
+      : null;
     const editOrSaveButton = this.state[fieldtype]
-      ? <Button name={fieldtype} className="pull-right" onClick={this.toggleButton.bind(this)}>Edit</Button>
-      : <Button name={fieldtype} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
+      ? <Button name={fieldtype} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
+      : <Button name={fieldtype} className="pull-right" onClick={this.toggleButton.bind(this)}>Edit</Button>
 
     return (
       <div>
@@ -52,7 +53,7 @@ class Mentor2 extends React.Component {
               <h4>{fieldtype}</h4>
             </div>
           )}>
-            <ReactMarkdown source={this.props.tasks[0][fieldtype]}/> {editPanel}
+            <ReactMarkdown source={task[fieldtype]}/> {editPanel}
           </Panel>
         </div>
       </div>
