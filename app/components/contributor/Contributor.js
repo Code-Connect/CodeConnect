@@ -32,7 +32,7 @@ class Contributor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {tasks: state.projects.mockData};
+  return {tasks: state.tasks.mockData};
 };
 
 export default connect(mapStateToProps)(Contributor);

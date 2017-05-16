@@ -80,7 +80,7 @@ class Mentor2 extends React.Component {
 //         name: string}
 
 const mapStateToProps = (state) => {
-  return {tasks: state.projects.mockData, text: state.editor.text};
+  return {tasks: state.tasks.mockData, text: state.editor.text};
 };
 
 export default connect(mapStateToProps)(Mentor2);
