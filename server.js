@@ -206,11 +206,11 @@ app.use(function(req, res) {
   };
 
   new Promise((resolve, reject) => { //looks for data in the database when logged in
-    if (req.user)
-      projectController.getProject(initialState, req.user.github.id).then(() => {
-        resolve();
-      });
-    else
+    // if (req.user)
+    //   projectController.getProject(initialState, req.user.github.id).then(() => {
+    //     resolve();
+    //   });
+    // else
       resolve();
     }
   ).then(function() {

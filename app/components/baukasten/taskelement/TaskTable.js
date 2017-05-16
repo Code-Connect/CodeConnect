@@ -66,14 +66,6 @@ class TaskTable extends Component {
                 distanceFromBottom,
                 calculatedHeight
               }) => {
-                console.log({
-                  isSticky,
-                  wasSticky,
-                  style,
-                  distanceFromTop,
-                  distanceFromBottom,
-                  calculatedHeight
-                });
                 return (
                   <div style={style}>
                     {isSticky

@@ -1,5 +1,5 @@
-#CodeConnect
-##Description
+# CodeConnect
+## Description  
 Open Source Platform for Open Source Projects. Contributers are welcome!
 
 ## Install
@@ -26,3 +26,6 @@ You should create an .env file in the root directory with your arguments of
 
 ## Run Tests
     npm test
+
+## Start Swagger Doc  
+swagger project edit
