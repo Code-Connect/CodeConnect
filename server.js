@@ -59,7 +59,7 @@ var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
 
 app.post('/postccrepo', projectController.saveProject);
-app.post('/posttask', taskController.addTask);
+app.post('/updatetask', taskController.addTask);
 
 //The Sessions gets connected to the MongoDB
 var pg = require('pg');
@@ -113,6 +113,16 @@ app.use(function(req, res) {
           description: "description2",
           task_id: 1,
           name: "name1",
+          difficulty: "5",
+          solutions: "3",
+          attempts: "10"
+        },
+        {
+          input: '# Helfdsafsdaf \n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "description2",
+          task_id: 2,
+          name: "1234",
           difficulty: "5",
           solutions: "3",
           attempts: "10"

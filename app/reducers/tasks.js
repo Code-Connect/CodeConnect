@@ -1,7 +1,7 @@
 export default function messages(state = {}, action) {
   switch (action.type) {
     case 'UPDATE_TEXT':
-    //updates the text form the editor for the markdownpanel
+      //updates the text form the editor for the markdownpanel
       var temp = state.mockData.map(function(item) {
         return item.task_id == action.task_id
           ? Object.assign(item, {
@@ -11,6 +11,9 @@ export default function messages(state = {}, action) {
       });
       return Object.assign({}, state, {mockData: temp});
 
+    case 'TASK_POST_SUCCESSFUL':
+      return state;
+      
     default:
       return state;
   }

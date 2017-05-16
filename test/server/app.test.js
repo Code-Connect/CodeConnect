@@ -9,10 +9,10 @@ describe('GET /', function() {
   });
 });
 
-describe('GET /project', function() {
+describe('POST /updatetask', function() {
   it('should render ok', function(done) {
     request(server)
-      .get('/project')
-      .expect(200, done);
+      .post('/updatetask')
+      .expect(200, {test:true}, done);
   });
 });

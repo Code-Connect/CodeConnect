@@ -5,7 +5,7 @@ import fetchMock from 'fetch-mock';
 import {expect} from 'chai';
 import {assert} from 'chai';
 import * as actions from '../../../app/actions/mentor';
-import reducer from '../../../app/reducers/projects'
+import reducer from '../../../app/reducers/tasks'
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

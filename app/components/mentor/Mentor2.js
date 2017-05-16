@@ -4,6 +4,7 @@ import {Panel, Button} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
+import {postTask} from '../../actions/taskActions';
 
 class Mentor2 extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Mentor2 extends React.Component {
     }
   }
 
-  handleChange(event) {
+  toggleButton(event) {
     this.setState({
       [event.target.name]: !this.state[event.target.name]
     }, () => {
@@ -24,22 +25,22 @@ class Mentor2 extends React.Component {
   }
 
   saveChange(event) {
-    this.handleChange(event);
+    this.toggleButton(event);
     // TODO save the text in the database
-
+    this.props.dispatch(postTask(this.props.tasks));
   }
 
   updateText(task_id, fieldtype, newCode) {
     this.props.dispatch({type: 'UPDATE_TEXT', task_id: task_id, fieldtype: fieldtype, newCode: newCode});
   }
 
-  createPanel(fieldtype) {
+  createPanel(fieldtype, task) {
     const editPanel = this.state[fieldtype]
       ? null
       // fieldtype: input or description or output
-      : (<Editor onChange={this.updateText.bind(this)} task_id={this.props.tasks[0].task_id} fieldtype={fieldtype} code={this.props.tasks[0][fieldtype]}/>);
+      : (<Editor onChange={this.updateText.bind(this)} task_id={[task].task_id} fieldtype={fieldtype} code={[task][fieldtype]}/>);
     const editOrSaveButton = this.state[fieldtype]
-      ? <Button name={fieldtype} className="pull-right" onClick={this.handleChange.bind(this)}>Edit</Button>
+      ? <Button name={fieldtype} className="pull-right" onClick={this.toggleButton.bind(this)}>Edit</Button>
       : <Button name={fieldtype} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
 
     return (
@@ -61,13 +62,17 @@ class Mentor2 extends React.Component {
   render() {
     return (
       <div>
-        <Panel header={< h1 > {
-          this.props.tasks[0].name
-        } < /h1>} bsStyle="warning">
-          {this.createPanel("input")}
-          {this.createPanel("output")}
-          {this.createPanel("description")}
-        </Panel>
+        {this.props.tasks.map((task) => {
+          return (
+            <Panel header={< h1 > {
+              task.name
+            } < /h1>} bsStyle="warning">
+              {this.createPanel("input", task)}
+              {this.createPanel("output", task)}
+              {this.createPanel("description", task)}
+            </Panel>
+          )
+        })}
       </div>
     );
   }
