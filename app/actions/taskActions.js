@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-export function postTask(task_id, fieldtype, value) {
+export function postTask(task_id, fieldtype, newCode) {
   //TODO hier muss noch die richtige action gedispatcht werden
   return (dispatch) => {
     fetch('/updatetask', {
@@ -9,7 +9,7 @@ export function postTask(task_id, fieldtype, value) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({task_id: task_id, fieldtype: fieldtype, value: value})
+      body: JSON.stringify({task_id: task_id, fieldtype: fieldtype, newCode: newCode})
     }).then((response) => {
       dispatch({type: 'AJAX'});
     });

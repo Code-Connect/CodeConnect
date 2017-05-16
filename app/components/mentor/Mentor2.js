@@ -36,10 +36,10 @@ class Mentor2 extends React.Component {
 
   createPanel(fieldtype, task) {
     const editPanel = this.state[fieldtype]
-      ?
-      // fieldtype: input or description or output
+      ?// fieldtype: input or description or output
       (<Editor onChange={this.updateText.bind(this)} task_id={task.task_id} fieldtype={fieldtype} code={task[fieldtype]}/>)
       : null;
+      
     const editOrSaveButton = this.state[fieldtype]
       ? <Button id={task.task_id} name={fieldtype} value = {task[fieldtype]} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
       : <Button name={fieldtype} className="pull-right" onClick={this.toggleButton.bind(this)}>Edit</Button>
