@@ -23,7 +23,7 @@ class Mentor2 extends React.Component {
     });
   }
 
-  saveChange(event){
+  saveChange(event) {
     this.handleChange(event);
     // TODO save the text in the database
 
@@ -80,7 +80,7 @@ class Mentor2 extends React.Component {
 //         name: string}
 
 const mapStateToProps = (state) => {
-  return {tasks: state.tasks.mockData, text: state.editor.text};
+  return {tasks: state.tasks.mockData};
 };
 
 export default connect(mapStateToProps)(Mentor2);

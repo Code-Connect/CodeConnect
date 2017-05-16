@@ -41,17 +41,6 @@ export default function messages(state = {}, action) {
       });
       return Object.assign({}, state, {ccrepos: newCCrepos});
 
-    case 'UPDATE_TEXT':
-      //still in progress
-      var temp = state.mockData.map(function(item) {
-        return item.task_id == action.task_id
-          ? Object.assign(item, {
-            [action.fieldtype]: action.newCode
-          })
-          : item;
-      });
-
-      return Object.assign({}, state, {mockData: temp});
     default:
       return state;
   }

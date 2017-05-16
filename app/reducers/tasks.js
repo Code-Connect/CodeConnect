@@ -1,7 +1,7 @@
-export default function modifyCode(state = {}, action) {
+export default function messages(state = {}, action) {
   switch (action.type) {
     case 'UPDATE_TEXT':
-      //still in progress
+    //updates the text form the editor for the markdownpanel
       var temp = state.mockData.map(function(item) {
         return item.task_id == action.task_id
           ? Object.assign(item, {
@@ -9,6 +9,8 @@ export default function modifyCode(state = {}, action) {
           })
           : item;
       });
+      return Object.assign({}, state, {mockData: temp});
+
     default:
       return state;
   }
