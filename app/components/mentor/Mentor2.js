@@ -27,7 +27,7 @@ class Mentor2 extends React.Component {
   saveChange(event) {
     this.toggleButton(event);
     // TODO save the text in the database
-    this.props.dispatch(postTask(this.props.tasks));
+    this.props.dispatch(postTask(event.target.id, event.target.name, event.target.value));
   }
 
   updateText(task_id, fieldtype, newCode) {
@@ -41,7 +41,7 @@ class Mentor2 extends React.Component {
       (<Editor onChange={this.updateText.bind(this)} task_id={task.task_id} fieldtype={fieldtype} code={task[fieldtype]}/>)
       : null;
     const editOrSaveButton = this.state[fieldtype]
-      ? <Button name={fieldtype} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
+      ? <Button id={task.task_id} name={fieldtype} value = {task[fieldtype]} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
       : <Button name={fieldtype} className="pull-right" onClick={this.toggleButton.bind(this)}>Edit</Button>
 
     return (
