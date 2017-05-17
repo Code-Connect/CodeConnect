@@ -18,7 +18,7 @@ class TaskPanel extends React.Component {
   toggleButton(event) {
     this.setState({
       [event.target.name]: !this.state[event.target.name]
-    };
+    });
   }
 
   saveChange(event) {
