@@ -11,38 +11,29 @@ class TaskPanel extends React.Component {
     this.state = {
       input: false,
       output: false,
-      description: false,
-      task: this.props.task
+      description: false
     }
   }
 
   toggleButton(event) {
     this.setState({
       [event.target.name]: !this.state[event.target.name]
-    }, () => {
-      console.log(this.state)
-    });
+    };
   }
 
   saveChange(event) {
     this.toggleButton(event);
-    // TODO hier muss das gedispatcht werden
-    // this.props.dispatch(postTask(event.target.id, event.target.name, event.target.value));
     this.props.saveChange(event);
   }
 
-  updateText(task_id, fieldtype, newCode) {
-    this.props.updateText(task_id, fieldtype, newCode);
-  }
-
-  createPanel(fieldtype, task) {
+  createPanel(fieldtype) {
     const editPanel = this.state[fieldtype]
       ? // fieldtype: input or description or output
-      (<Editor onChange={this.updateText.bind(this)} task_id={task.task_id} fieldtype={fieldtype} code={task[fieldtype]}/>)
+      (<Editor onChange={this.props.updateText.bind(this)} task_id={this.props.task.task_id} fieldtype={fieldtype} code={this.props.task[fieldtype]}/>)
       : null;
 
     const editOrSaveButton = this.state[fieldtype]
-      ? <Button id={task.task_id} name={fieldtype} value={task[fieldtype]} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
+      ? <Button id={this.props.task.task_id} name={fieldtype} value={this.props.task[fieldtype]} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
       : <Button name={fieldtype} className="pull-right" onClick={this.toggleButton.bind(this)}>Edit</Button>
 
     return (
