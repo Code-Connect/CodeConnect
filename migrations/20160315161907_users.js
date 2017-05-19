@@ -1,3 +1,6 @@
+var bookshelf = require('../config/bookshelf');
+var knex = bookshelf.knex;
+
 var githubTable = function(table) {
   table.integer('id').primary();
   table.string('token');
@@ -14,7 +17,7 @@ var taskTable = function(table) {
   table.string('name');
   table.string('difficulty');
   table.string('tag');
-  table.timestamps();
+  table.timestamps()
 }
 
 var participate = function(table) {
