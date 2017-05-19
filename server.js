@@ -59,7 +59,7 @@ var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
 
 app.post('/postccrepo', projectController.saveProject);
-app.post('/updatetask', taskController.addTask);
+app.post('/updatetask', taskController.updateTask);
 
 //The Sessions gets connected to the MongoDB
 var pg = require('pg');

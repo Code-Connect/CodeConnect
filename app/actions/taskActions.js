@@ -11,7 +11,7 @@ export function postTask(task_id, fieldtype, newCode) {
       },
       body: JSON.stringify({task_id: task_id, fieldtype: fieldtype, newCode: newCode})
     }).then((response) => {
-      dispatch({type: 'AJAX'});
+      dispatch({type: 'TASK_POST_SUCCESSFUL'});
     });
   };
 }

@@ -1,11 +1,10 @@
 var bookshelf = require('../config/bookshelf');
 var knex = bookshelf.knex;
-var Projectmodel = require('../models/Project');
-var Task = Projectmodel.Task;
-var Belongsto = Projectmodel.Belongsto;
 
-exports.addTask = function(req, res) {
-    console.log("body");
-    console.log(req.body);
-    res.json({test:true});
+exports.updateTask = function(req, res) {
+  knex('tasks').where('id', '=', req.body.task_id).update({
+    [req.body.fieldtype]: req.body.newCode
+  }).then(() => {
+    res.json({success: true, message: 'ok'}); // respond back to request
+  });
 }
