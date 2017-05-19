@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Panel, Button} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import Editor from '../baukasten/Editor.js';
-import {postTask} from '../../actions/taskActions';
+import {updateTask} from '../../actions/taskActions';
 
 class TaskPanel extends React.Component {
   constructor(props) {

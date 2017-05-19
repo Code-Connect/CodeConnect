@@ -4,7 +4,7 @@ import {Panel, Button} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
-import {postTask} from '../../actions/taskActions';
+import {updateTask} from '../../actions/taskActions';
 import TaskPanel from './TaskPanel';
 
 class Mentor2 extends React.Component {
@@ -13,7 +13,7 @@ class Mentor2 extends React.Component {
   }
 
   saveChange(event) {
-    this.props.dispatch(postTask(event.target.id, event.target.name, event.target.value));
+    this.props.dispatch(updateTask(event.target.id, event.target.name, event.target.value));
   }
 
   updateText(task_id, fieldtype, newCode) {

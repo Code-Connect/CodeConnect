@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-export function postTask(task_id, fieldtype, newCode) {
+export function updateTask(task_id, fieldtype, newCode) {
   //TODO hier muss noch die richtige action gedispatcht werden
   return (dispatch) => {
     fetch('/updatetask', {
