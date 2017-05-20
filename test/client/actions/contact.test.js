@@ -10,6 +10,53 @@ import reducer from '../../../app/reducers/tasks'
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
+
+describe('tasks ', () => {
+  it('test action for adding task', () => {
+
+    expect(reducer({
+      mockData: [
+        {
+          input: "input1",
+          output: "output1",
+          description: "description1",
+          task_id: 1,
+          name: "name1"
+        }, {
+          input: "input4",
+          output: "output4",
+          description: "description4",
+          task_id: 4,
+          name: "name4"
+        }
+      ]
+    }, {
+      type: 'ADD_TASK_SUCCESSFUL',
+      name: "kewin"
+    })).to.deep.equal({
+      mockData: [
+        {
+          input: "input1",
+          output: "output1",
+          description: "description1",
+          task_id: 1,
+          name: "name1"
+        }, {
+          input: "input4",
+          output: "output4",
+          description: "description4",
+          task_id: 4,
+          name: "name4"
+        },
+        {
+          name: "kewin"
+        }
+      ]
+    });
+  });
+});
+
+
 describe('editor ', () => {
   it('test action for writing', () => {
 

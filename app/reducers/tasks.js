@@ -11,9 +11,15 @@ export default function messages(tasks = {}, action) {
       });
       return Object.assign({}, tasks, {mockData: temp});
 
-    case 'TASK_POST_SUCCESSFUL':
+    case 'ADD_TASK_SUCCESSFUL':
       // TODO task post successful feedback like a toast message
-      return tasks;
+      return Object.assign({}, tasks, {
+        mockData: [
+          ...tasks.mockData, {
+            name: action.name
+          }
+        ]
+      });
 
     default:
       return tasks;
