@@ -16,7 +16,8 @@ export default function messages(tasks = {}, action) {
       return Object.assign({}, tasks, {
         mockData: [
           ...tasks.mockData, {
-            name: action.name
+            name: action.name,
+            task_id: action.task_id
           }
         ]
       });

@@ -13,7 +13,7 @@ exports.updateTask = function(req, res) {
 
 exports.addTask = function(req, res) {
   console.log("request kommt rein");
-  knex('tasks').insert({name: req.body.name}).then(() => {
-    res.json({success: true, message: 'ok'}); // respond back to request
+  knex('tasks').insert({name: req.body.name}).returning('id').then((id) => {
+    res.json({success: true, task_id: id[0]}); 
   });
 }

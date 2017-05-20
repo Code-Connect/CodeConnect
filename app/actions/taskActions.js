@@ -17,8 +17,6 @@ export function updateTask(task_id, fieldtype, newCode) {
 }
 
 export function addTask(name) {
-  console.log("request kommt raus");
-
   return (dispatch) => {
     fetch('/addtask', {
       method: 'post',
@@ -28,7 +26,11 @@ export function addTask(name) {
       },
       body: JSON.stringify({name: name})
     }).then((response) => {
-      dispatch({type: 'ADD_TASK_SUCCESSFUL', name: name});
+      return response.json().then(function(json) {
+        console.log("json: ")
+        console.log(json);
+        dispatch({type: 'ADD_TASK_SUCCESSFUL', name: name, task_id: json.task_id});
+      });
     });
   }
 }
