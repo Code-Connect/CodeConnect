@@ -12,15 +12,7 @@ exports.updateTask = function(req, res) {
 }
 
 exports.addTask = function(req, res) {
-  knex('tasks').insert({
-    name: req.body.name,
-    input: req.body.input,
-    output: req.body.output,
-    description: req.body.description,
-    difficulty: req.body.difficulty,
-    tag: req.body.tag,
-    updated_at: knex.fn.now()
-  }).then(() => {
+  knex('tasks').insert({name: req.body.name}).then(() => {
     res.json({success: true, message: 'ok'}); // respond back to request
   });
 }

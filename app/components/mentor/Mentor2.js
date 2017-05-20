@@ -4,7 +4,7 @@ import {Panel, Button} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
-import {updateTask} from '../../actions/taskActions';
+import {updateTask, addTask} from '../../actions/taskActions';
 import TaskPanel from './TaskPanel';
 
 class Mentor2 extends React.Component {
@@ -20,9 +20,16 @@ class Mentor2 extends React.Component {
     this.props.dispatch({type: 'UPDATE_TEXT', task_id: task_id, fieldtype: fieldtype, newCode: newCode});
   }
 
+  addTask(event){
+    // TODO muss noch gemacht werden
+    this.props.dispatch(addTask("1 kewin"));
+  }
+
   render() {
     return (
       <div>
+        <Button bsStyle = "success" onClick = {this.addTask.bind(this)} >Add new Task</Button>
+
         {this.props.tasks.map((task) => {
           return (<TaskPanel task={task} updateText={this.updateText.bind(this)} saveChange={this.saveChange.bind(this)}/>)
         })}

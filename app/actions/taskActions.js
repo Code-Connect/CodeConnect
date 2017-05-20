@@ -15,3 +15,18 @@ export function updateTask(task_id, fieldtype, newCode) {
     });
   };
 }
+
+export function addTask(name) {
+  return (dispatch) => {
+    fetch('/addtask', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({name: name})
+    }).then((response) => {
+      dispatch({type: 'TASK_POST_SUCCESSFUL'});
+    });
+  }
+}

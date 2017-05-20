@@ -62,7 +62,7 @@ app.post('/postccrepo', projectController.saveProject);
 app.post('/updatetask', taskController.updateTask);
 app.post('/addtask', taskController.addTask);
 
-//The Sessions gets connected to the MongoDB
+//The Sessions gets connected to the Postgres
 var pg = require('pg');
 const KnexSessionStore = require('connect-session-knex')(session);
 
