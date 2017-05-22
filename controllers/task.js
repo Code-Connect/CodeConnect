@@ -1,33 +1,20 @@
 var bookshelf = require('../config/bookshelf');
 var knex = bookshelf.knex;
-var Projectmodel = require('../models/Project');
-var Task = Projectmodel.Task;
-var Belongsto = Projectmodel.Belongsto;
 
-exports.addTask = function(req, res) {
-    console.log("body");
-    console.log(req.body);
-    var temp = {
-        name: req.body.taskwrapper.task,
-        description: req.body.taskwrapper.description
-    };
-    new Task(temp).save(null, {method: 'insert'}).then(function(item) { //then answer
-
-        new Belongsto({project_id: req.body.ccrepo_id, task_id: item.attributes.task_id}).save(null, { //save project in database
-            method: 'insert'
-        });
-        return (item.id);
-    }).then((task_id) => {
-        temp.task_id = task_id;
-        res.json(temp);
-    });
+exports.updateTask = function(req, res) {
+  knex('tasks').where('id', '=', req.body.task_id).update({
+    [req.body.fieldtype]: req.body.newCode,
+    // TODO versuchen das zu vermeiden eig kann die datenbank das von alleine
+    updated_at: knex.fn.now()
+  }).then(() => {
+    res.json({success: true, message: 'ok'}); // respond back to request
+  });
 }
 
-exports.getTask = function(req, res) {
-    // return knex.select('project.project_id').from('project').join('projectmentor', function() {
-    //     this.on('project.project_id', '=', 'projectmentor.project_id')
-    // }).where('projectmentor.user_id', '=', id).then(function(rows) {
-    //     console.log(rows);
-    //     initialState.projects.ccrepos = rows;
-    // });
+exports.addTask = function(req, res) {
+  knex('tasks').insert({name: req.body.name}).returning('id').then((id) => {
+    knex('belongsTo').insert({user_id: req.user.github.id, task_id: id[0]}).then(() => {
+      res.json({success: true, task_id: id[0]});
+    });
+  });
 }

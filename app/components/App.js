@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "./Footer";
-import NavBar from "./routes/views/NavBar";
 import Header from "./Header";
 
 class App extends React.Component {

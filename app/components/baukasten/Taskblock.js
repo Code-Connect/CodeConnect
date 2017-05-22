@@ -17,7 +17,6 @@ class TaskBlock extends React.Component {
     this.setState({
       [event.target.name]: true
     }, () => {
-      console.log("buttonclick")
     });
   }
 

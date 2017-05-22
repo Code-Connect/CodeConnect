@@ -1,5 +1,4 @@
 import React, {Component} from "react"
-import ReactBootstrapSlider from 'react-bootstrap-slider';
 import {HelpBlock, FormControl, ControlLabel, FormGroup, Checkbox} from 'react-bootstrap'
 
 class TableFilter extends Component {
@@ -30,7 +29,7 @@ class TableFilter extends Component {
         return (
             tagList.reduce(
                 (acc, tag)=>
-                {   
+                {
                     if(tag==""){
                         return true
                     }
@@ -41,7 +40,7 @@ class TableFilter extends Component {
     }
 
     handleInputChange(e){
-        this.setState( {value: e.target.value}, 
+        this.setState( {value: e.target.value},
             ()=>(this.props.filterTasks((task)=>{return this.filterByText(task)||this.filterByTags(task.tags)})))
         //this.props.filterTasks(this.filterText)
     }
@@ -74,8 +73,7 @@ class TableFilter extends Component {
                         <HelpBlock>Validation is based on string length.</HelpBlock>
                     </FormGroup>
                 </form>
-                <ReactBootstrapSlider/>
-                dass du über deine eigenen witze lachen kannst 
+                dass du über deine eigenen witze lachen kannst
             </div>
         )
 
