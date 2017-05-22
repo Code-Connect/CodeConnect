@@ -13,6 +13,8 @@ exports.updateTask = function(req, res) {
 
 exports.addTask = function(req, res) {
   knex('tasks').insert({name: req.body.name}).returning('id').then((id) => {
-    res.json({success: true, task_id: id[0]});
+    knex('belongsTo').insert({user_id: req.user.github.id, task_id: id[0]}).then(() => {
+      res.json({success: true, task_id: id[0]});
+    });
   });
 }

@@ -91,13 +91,7 @@ var passportGithub = require('./controllers/gitlogin');
 
 app.post('/postccrepo', projectController.saveProject);
 app.post('/updatetask', taskController.updateTask);
-app.post('/addtask2', taskController.addTask);
-
-app.post('/addtask',function(req, res) {
-  // If this function gets called, authentication was successful.
-  // `req.user` contains the authenticated user.
-  res.json({success: true, task_id: 123});
-});
+app.post('/addtask', taskController.addTask);
 
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {

@@ -26,10 +26,16 @@ var participate = function(table) {
   table.timestamps();
 }
 
+var belongsTo = function(table) {
+  table.integer('user_id').references('github.id');
+  table.integer('task_id').references('tasks.id');
+  table.timestamps();
+}
+
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('github', githubTable).createTable('tasks', taskTable).createTable('participate', participate);
+  return knex.schema.createTable('github', githubTable).createTable('tasks', taskTable).createTable('participate', participate).createTable('belongsTo', belongsTo);
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('github').dropTable('tasks').dropTable('participate');
+  return knex.schema.dropTable('github').dropTable('tasks').dropTable('participate').dropTable('belongsTo');
 };
