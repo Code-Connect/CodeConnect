@@ -9,10 +9,7 @@ class ListItem extends Component {
     }
 
    activate(){
-        this.props.activate( {
-            title: this.props.title,
-            description: this.props.description
-        })
+        this.props.activate( this.props.id)
     }
 
     render () {

@@ -111,19 +111,63 @@ app.use(function(req, res) {
       ccrepos: [],
       mockData: [
         {
-          input: '# Hello world\n it\'s me, some markdown string \n\n ```js\n//but maybe i have code snippets too...\n```',
-          output: "output2",
-          description: "description2",
+          input: 'No input required here!',
+          output: "Hello World!",
+          description: "Program a simple js function that returns hello world",
           task_id: "taskid",
-          name: "name1",
-            difficulty: "5",
+          name: "Hello World in JS",
+          difficulty: "0",
+          solutions: "3",
+          attempts: "10",
+          tags: ["#basics","#beginner", "#javascript"]
+        },
+        {
+          input: 'No input required here!',
+          output: "Hello World!",
+          description: "Program a simple c function that returns hello world",
+          task_id: "taskid-",
+          name: "Hello World in C",
+            difficulty: "0",
             solutions: "3",
-            attempts: "10"
+            attempts: "10",
+            tags: ["#basics","#beginner", "#c"]
+        },
+        {
+          input: 'No input required here!',
+          output: "Hello World!",
+          description: "Program a simple c# function that returns hello world",
+          task_id: "taskid-1",
+          name: "Hello World in C#",
+            difficulty: "0",
+            solutions: "3",
+            attempts: "10",
+            tags:["#basics","#beginner", "#c#"]
+        },{
+          input: 'No input required here!',
+          output: "Hello World!",
+          description: "Program a simple python function that returns hello world",
+          task_id: "taskid-2",
+          name: "Hello World in python",
+            difficulty: "0",
+            solutions: "3",
+            attempts: "10",
+            tags:["#basics","#beginner", "#python"]
+        },{
+          input: 'No input required here!',
+          output: "Hello World!",
+          description: "Program a simple rust function that returns hello world",
+          task_id: "taskid-3",
+          name: "Hello World in rust",
+            difficulty: "0",
+            solutions: "3",
+            attempts: "10",
+            tags:["#basics","#beginner", "#rust"]
         },
         {
           input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
           output: "output2",
           description: "its me mario yeah yea yeah",
+            tags: ["#just","#a","#mockUp","#ml"],
           task_id: "taskid2",
           name: "Mario",
             difficulty: "3",
@@ -133,11 +177,22 @@ app.use(function(req, res) {
         {
           input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
           output: "output2",
-          description: "yeah yea yeah",
+          description: "its me mario yeah yea yeah",
+          task_id: "taskid2ß00",
+            tags: ["#just","#a","#mockUp","#neuralnetwork"],
+          name: "Mario",
+            difficulty: "3",
+            solutions: "2",
+            attempts: "100"
+        },{
+          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
+          output: "output2",
+          description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
           task_id: "taskid3",
           name: "T1Yeah",
             difficulty: "5",
             solutions: "0",
+            tags: ["#just","#a","#mockUp","#html"],
             attempts: "5"
         },
         {
@@ -148,6 +203,7 @@ app.use(function(req, res) {
           name: "T1Yeah",
             difficulty: "5",
             solutions: "0",
+            tags: ["#just","#a","#mockUp","#jsrocks"],
             attempts: "5"
         }
 ,
@@ -159,6 +215,7 @@ app.use(function(req, res) {
           name: "T1Yeah",
             difficulty: "5",
             solutions: "0",
+            tags: ["#just","#a","#mockUp","#reactrocks"],
             attempts: "5"
         }
 ,
@@ -170,6 +227,7 @@ app.use(function(req, res) {
           name: "T1Yeah",
             difficulty: "5",
             solutions: "0",
+            tags: ["#yeaa","#a","#mockUp"],
             attempts: "5"
         },
         {
@@ -177,6 +235,7 @@ app.use(function(req, res) {
           output: "output2",
           description: "yeah yea yeah",
           task_id: "taskid7",
+            tags: ["#just","#a","#mockUp"],
           name: "T1Yeah",
             difficulty: "5",
             solutions: "0",
@@ -187,6 +246,7 @@ app.use(function(req, res) {
           output: "output2",
           description: "yeah yea yeah",
           task_id: "taskid8",
+            tags: ["#just","#a","#mockUp"],
           name: "T1Yeah",
             difficulty: "5",
             solutions: "0",
@@ -200,6 +260,7 @@ app.use(function(req, res) {
           name: "T1Yeah",
             difficulty: "5",
             solutions: "0",
+            tags: ["#why","#a","#mockUp"],
             attempts: "5"
         },
         {
@@ -207,6 +268,7 @@ app.use(function(req, res) {
           output: "output2",
           description: "yeah yea yeah",
           task_id: "taskid10",
+            tags: ["#beginner","#a","#mockUp"],
           name: "T1Yeah",
             difficulty: "5",
             solutions: "0",

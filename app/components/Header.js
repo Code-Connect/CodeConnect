@@ -53,9 +53,10 @@ class Header extends React.Component {
             : (
                 <div></div>
             );
+        const navbarStyle = {backgroundColor: "#FFD480"}
 
         return (
-            <nav className="navbar navbar-default navbar-static-top">
+            <nav className="navbar navbar-default navbar-static-top" style={navbarStyle}>
                 <div className="container">
                     <div className="navbar-header">
                         <button type="button" data-toggle="collapse" data-target="#navbar" className="navbar-toggle collapsed">
@@ -64,7 +65,7 @@ class Header extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <IndexLink to="/" className="navbar-brand">Code Connect</IndexLink>
+                        <IndexLink to="/" className="navbar-brand"><b>Code Connect</b></IndexLink>
                     </div>
                     <div id="navbar" className="navbar-collapse collapse">
                         <ul className="nav navbar-nav">
