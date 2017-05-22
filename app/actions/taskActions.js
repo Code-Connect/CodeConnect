@@ -9,6 +9,7 @@ export function updateTask(task_id, fieldtype, newCode) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'same-origin', // By default, fetch won't send any cookies to the server
       body: JSON.stringify({task_id: task_id, fieldtype: fieldtype, newCode: newCode})
     }).then((response) => {
       dispatch({type: 'UPDATE_TASK_SUCCESSFUL'});

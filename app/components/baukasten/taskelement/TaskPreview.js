@@ -10,16 +10,6 @@ class TaskPreview extends Component {
 
   }
 
-  //getStyle(){
-  //    console.log(this.refs.Parent)
-  //    if (this.refs.Parent == undefined){
-  //        return {position: 'fixed', width: '100px'}
-  //    }
-  //    console.log("return val: "+ ("yeah"+this.refs.Parent.clientWidth+"px"))
-
-  //    return {position: 'fixed', width: (this.refs.Parent.clientWidth+'px')}
-  //}
-
   render() {
 
     return (

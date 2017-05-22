@@ -9,7 +9,6 @@ passport.use(new GitHubStrategy({
     callbackURL: process.env.CALLBACK,
     scope: ['user:email', 'repo']
 }, function(token, refreshToken, profile, done) {
-    console.log(profile);
     process.nextTick(function() {
         new Model.Github({id: profile.id}).fetch().then(function(ghUser) {
             // If there is no user found, then create one

@@ -96,8 +96,6 @@ app.post('/addtask2', taskController.addTask);
 app.post('/addtask',function(req, res) {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
-  console.log("authenticated");
-  console.log(req.user);
   res.json({success: true, task_id: 123});
 });
 

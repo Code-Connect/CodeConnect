@@ -19,7 +19,6 @@ exports.getUser = function() {
                 res.send("bäm")
             });
         } else {
-            console.log(model.attributes.data);
             return model.attributes.data;
         }
     })

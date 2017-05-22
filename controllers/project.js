@@ -16,8 +16,6 @@ exports.getProject2 = function(initialState, id) { //gets Projects only
     return knex.select('project.project_id').from('project').join('projectmentor', function() {
         this.on('project.project_id', '=', 'projectmentor.project_id')
     }).where('projectmentor.user_id', '=', id).then(function(rows) {
-        console.log("rows");
-        console.log(rows);
         initialState.projects.ccrepos = rows;
     });
 }
@@ -77,7 +75,6 @@ exports.saveProject = function(req, res) {
             project_id: project.project_id //looks for project_id in database
         }).fetch().then(function(model) { //fetch will create a promise
             if (!model) {
-                console.log("fdsa");
                 new Projectmentor({
                     project_id: project.project_id, //if project is not there create one
                     user_id: req.body.id
