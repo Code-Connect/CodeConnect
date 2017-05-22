@@ -24,11 +24,10 @@ export function addTask(name) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'same-origin', // By default, fetch won't send any cookies to the server
       body: JSON.stringify({name: name})
     }).then((response) => {
       return response.json().then(function(json) {
-        console.log("json: ")
-        console.log(json);
         dispatch({type: 'ADD_TASK_SUCCESSFUL', name: name, task_id: json.task_id});
       });
     });

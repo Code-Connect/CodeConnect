@@ -53,15 +53,6 @@ if (app.get('env') === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-// Controllers
-var projectController = require('./controllers/project');
-var taskController = require('./controllers/task');
-var passportGithub = require('./controllers/gitlogin');
-
-app.post('/postccrepo', projectController.saveProject);
-app.post('/updatetask', taskController.updateTask);
-app.post('/addtask', taskController.addTask);
-
 //The Sessions gets connected to the Postgres
 var pg = require('pg');
 const KnexSessionStore = require('connect-session-knex')(session);
@@ -93,6 +84,23 @@ app.get('/logout', function(req, res) {
   });
 });
 
+// Controllers
+var projectController = require('./controllers/project');
+var taskController = require('./controllers/task');
+var passportGithub = require('./controllers/gitlogin');
+
+app.post('/postccrepo', projectController.saveProject);
+app.post('/updatetask', taskController.updateTask);
+app.post('/addtask2', taskController.addTask);
+
+app.post('/addtask',function(req, res) {
+  // If this function gets called, authentication was successful.
+  // `req.user` contains the authenticated user.
+  console.log("authenticated");
+  console.log(req.user);
+  res.json({success: true, task_id: 123});
+});
+
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
   // Successful authentication
@@ -117,8 +125,7 @@ app.use(function(req, res) {
           difficulty: "5",
           solutions: "3",
           attempts: "10"
-        },
-        {
+        }, {
           input: '# Helfdsafsdaf \n\n ```js\n//but maybe i have code snippets too...\n```',
           output: "output2",
           description: "description2",
@@ -138,9 +145,8 @@ app.use(function(req, res) {
     //     resolve();
     //   });
     // else
-      resolve();
-    }
-  ).then(function() {
+    resolve();
+  }).then(function() {
     var store = configureStore(initialState);
 
     Router.match({
