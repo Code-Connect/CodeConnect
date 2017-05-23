@@ -10,7 +10,7 @@ var githubTable = function(table) {
 }
 
 var taskTable = function(table) {
-  table.increments('id').primary();
+  table.increments('task_id').primary();
   table.string('input').defaultTo('Add input');
   table.string('output').defaultTo('Add output');
   table.string('description').defaultTo('Add description');
@@ -23,13 +23,13 @@ var taskTable = function(table) {
 
 var participate = function(table) {
   table.integer('user_id').references('github.id');
-  table.integer('task_id').references('tasks.id');
+  table.integer('task_id').references('tasks.task_id');
   table.timestamps();
 }
 
 var belongsTo = function(table) {
   table.integer('user_id').references('github.id');
-  table.integer('task_id').references('tasks.id');
+  table.integer('task_id').references('tasks.task_id');
   table.timestamps();
 }
 

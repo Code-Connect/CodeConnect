@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-export function updateTask(task_id, fieldtype, newCode) {
+export function updateTask(task) {
   //TODO hier muss noch die richtige action gedispatcht werden
   return (dispatch) => {
     fetch('/updatetask', {
@@ -10,7 +10,7 @@ export function updateTask(task_id, fieldtype, newCode) {
         'Content-Type': 'application/json'
       },
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
-      body: JSON.stringify({task_id: task_id, fieldtype: fieldtype, newCode: newCode})
+      body: JSON.stringify({task: task})
     }).then((response) => {
       dispatch({type: 'UPDATE_TASK_SUCCESSFUL'});
     });

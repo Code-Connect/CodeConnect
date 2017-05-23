@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {Panel, Button, FormGroup, InputGroup, FormControl} from "react-bootstrap";
+import { Button, FormGroup, InputGroup, FormControl} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
@@ -15,8 +15,8 @@ class Mentor2 extends React.Component {
     };
   }
 
-  saveChange(event) {
-    this.props.dispatch(updateTask(event.target.id, event.target.name, event.target.value));
+  saveChange(task) {
+    this.props.dispatch(updateTask(task));
   }
 
   updateText(task_id, fieldtype, newCode) {
