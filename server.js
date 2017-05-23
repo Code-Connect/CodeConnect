@@ -103,46 +103,13 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-
-  var initialState = {
-    user: req.user,
-    tasks: {
-      mockData: [
-        {
-          input: 'No input required here!',
-          output: "Hello World!",
-          description: "Program a simple js function that returns hello world",
-          task_id: 1,
-          name: "Hello World in JS",
-          difficulty: "0",
-          solutions: "3",
-          attempts: "10",
-          tags: ["#basics", "#beginner", "#javascript"]
-        }, {
-          input: '# it\'s me, some mario\n\n ```js\n//but maybe i have code snippets too...\n```',
-          output: "output2",
-          description: "yeah yea yeah",
-          task_id: 2,
-          tags: [
-            "#beginner", "#a", "#mockUp"
-          ],
-          name: "T1Yeah",
-          difficulty: "5",
-          solutions: "0",
-          attempts: "5"
-        }
-      ]
-    }
-  };
-
-  new Promise((resolve, reject) => { //looks for data in the database when logged in
-    // if (req.user)
-    //   projectController.getProject(initialState, req.user.github.id).then(() => {
-    //     resolve();
-    //   });
-    // else
-    resolve();
-  }).then(function() {
+  taskController.getTasks().then(function(tasks) {
+    var initialState = {
+      user: req.user,
+      tasks: {
+        mockData: tasks
+      }
+    };
     var store = configureStore(initialState);
 
     Router.match({

@@ -18,3 +18,7 @@ exports.addTask = function(req, res) {
     });
   });
 }
+
+exports.getTasks = function() {
+  return knex.select('id as task_id', 'input','output','description','name', 'difficulty','tags', 'attempts').from('tasks');
+}

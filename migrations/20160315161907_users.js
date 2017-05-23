@@ -17,7 +17,7 @@ var taskTable = function(table) {
   table.string('name').defaultTo('Add projectname');
   table.string('difficulty').defaultTo('NA');
   table.integer('attempts').defaultTo(0);
-  table.string('tag');
+  table.specificType('tags', 'jsonb[]').defaultTo('{}');
   table.timestamps()
 }
 
