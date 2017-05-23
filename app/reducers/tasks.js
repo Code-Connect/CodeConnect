@@ -17,7 +17,13 @@ export default function messages(tasks = {}, action) {
         mockData: [
           ...tasks.mockData, {
             name: action.name,
-            task_id: action.task_id
+            task_id: action.task_id,
+            input: "Add input",
+            output: "Add output",
+            description: "Add description",
+            attempts: 0,
+            difficulty: "NA",
+            tags:[]
           }
         ]
       });

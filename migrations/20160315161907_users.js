@@ -11,11 +11,12 @@ var githubTable = function(table) {
 
 var taskTable = function(table) {
   table.increments('id').primary();
-  table.string('input');
-  table.string('output');
-  table.string('description');
-  table.string('name');
-  table.string('difficulty');
+  table.string('input').defaultTo('Add input');
+  table.string('output').defaultTo('Add output');
+  table.string('description').defaultTo('Add description');
+  table.string('name').defaultTo('Add projectname');
+  table.string('difficulty').defaultTo('NA');
+  table.integer('attempts').defaultTo(0);
   table.string('tag');
   table.timestamps()
 }
@@ -37,5 +38,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('github').dropTable('tasks').dropTable('participate').dropTable('belongsTo');
+  return knex.schema.dropTable('participate').dropTable('belongsTo').dropTable('github').dropTable('tasks');
 };

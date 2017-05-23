@@ -17,39 +17,63 @@ describe('tasks ', () => {
     expect(reducer({
       mockData: [
         {
-          input: "input1",
-          output: "output1",
-          description: "description1",
+          name: "name1",
           task_id: 1,
-          name: "name1"
+          input: "Add input",
+          output: "Add output",
+          description: "Add description",
+          attempts: 0,
+          difficulty: "NA",
+          tags:[]
+
         }, {
-          input: "input4",
-          output: "output4",
-          description: "description4",
-          task_id: 4,
-          name: "name4"
+          name: "name2",
+          task_id: 2,
+          input: "Add input",
+          output: "Add output",
+          description: "Add description",
+          attempts: 0,
+          difficulty: "NA",
+          tags:[]
+
         }
       ]
     }, {
       type: 'ADD_TASK_SUCCESSFUL',
-      name: "kewin"
+      name: "kewin",
+      task_id: 3
     })).to.deep.equal({
       mockData: [
         {
-          input: "input1",
-          output: "output1",
-          description: "description1",
+          name: "name1",
           task_id: 1,
-          name: "name1"
+          input: "Add input",
+          output: "Add output",
+          description: "Add description",
+          attempts: 0,
+          difficulty: "NA",
+          tags:[]
+
         }, {
-          input: "input4",
-          output: "output4",
-          description: "description4",
-          task_id: 4,
-          name: "name4"
-        },
-        {
-          name: "kewin"
+          name: "name2",
+          task_id: 2,
+          input: "Add input",
+          output: "Add output",
+          description: "Add description",
+          attempts: 0,
+          difficulty: "NA",
+          tags:[]
+
+        }, {
+          name: "kewin",
+          task_id: 3,
+          input: "Add input",
+          output: "Add output",
+          description: "Add description",
+          attempts: 0,
+          difficulty: "NA",
+          tags:[]
+
         }
       ]
     });
