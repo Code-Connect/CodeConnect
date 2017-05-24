@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { Button, FormGroup, InputGroup, FormControl} from "react-bootstrap";
+import {Button, FormGroup, InputGroup, FormControl} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
@@ -19,12 +19,16 @@ class Mentor2 extends React.Component {
     this.props.dispatch(updateTask(task));
   }
 
-  deleteTask(task){
+  deleteTask(task) {
     this.props.dispatch(deleteTask(task));
   }
 
   updateText(task_id, fieldtype, newCode) {
     this.props.dispatch({type: 'UPDATE_TEXT', task_id: task_id, fieldtype: fieldtype, newCode: newCode});
+  }
+
+  renameTask(task){
+    //TODO rename task
   }
 
   addTask(event) {
@@ -33,23 +37,29 @@ class Mentor2 extends React.Component {
   }
 
   handleInputChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   render() {
     return (
-      <div>
+
+      <div className="container" style={{
+        borderRadius: '10px',
+        background: 'white',
+        padding: '50px'
+      }}>
         <FormGroup>
           <InputGroup>
-            <FormControl type="text" name = "inputfield" placeholder="Projectname" value={this.state.inputfield} onChange={this.handleInputChange.bind(this)}/>
+            <FormControl type="text" name="inputfield" placeholder="Projectname" value={this.state.inputfield} onChange={this.handleInputChange.bind(this)}/>
             <InputGroup.Button>
               <Button bsStyle="success" onClick={this.addTask.bind(this)}>Add new Task</Button>
             </InputGroup.Button>
           </InputGroup>
         </FormGroup>
-
         {this.props.tasks.map((task) => {
-          return (<TaskPanel task={task} deleteTask = {this.deleteTask.bind(this)}updateText={this.updateText.bind(this)} saveChange={this.saveChange.bind(this)}/>)
+          return (<TaskPanel updateText={this.updateText.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>)
         })}
       </div>
     );

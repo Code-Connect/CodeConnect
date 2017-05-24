@@ -16,11 +16,11 @@ exports.addTask = function(req, res) {
 }
 
 exports.getTasks = function() {
-  return knex.select('task_id', 'input','output','description','name', 'difficulty','tags', 'attempts').from('tasks');
+  return knex.select('task_id', 'input', 'output', 'description', 'name', 'difficulty', 'tags', 'attempts').from('tasks');
 }
 
-exports.deleteTask = function(req, res){
-  console.log(req.user);
-  console.log(req.body.task_id);
-  res.json({success:true});
+exports.deleteTask = function(req, res) {
+  knex('tasks').where('task_id', req.body.task_id).del().then(() => {
+    res.json({success: true});
+  });
 }

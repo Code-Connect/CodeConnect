@@ -28,6 +28,10 @@ class TaskPanel extends React.Component {
     });
   }
 
+  renameTask(event) {
+    this.props.rename(this.props.task);
+  }
+
   saveChange(event) {
     this.toggleButton(event);
     this.props.saveChange(this.props.task);
@@ -69,7 +73,9 @@ class TaskPanel extends React.Component {
           <DropdownButton title="Modify" id="dropdown-size-medium">
             <MenuItem eventKey="1" onClick={this.toggleButton.bind(this)}>Edit</MenuItem>
             <MenuItem divider/>
-            <MenuItem eventKey="2" onClick={this.deleteTask.bind(this)}>Delete</MenuItem>
+            <MenuItem eventKey="2" onClick={this.renameTask.bind(this)}>Rename</MenuItem>
+            <MenuItem divider/>
+            <MenuItem eventKey="3" bsStyle="success" onClick={this.deleteTask.bind(this)}>Delete</MenuItem>
           </DropdownButton>
         </ButtonToolbar>
       )
