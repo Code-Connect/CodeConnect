@@ -20,7 +20,9 @@ exports.getTasks = function() {
 }
 
 exports.deleteTask = function(req, res) {
-  knex('tasks').where('task_id', req.body.task_id).del().then(() => {
-    res.json({success: true});
+  knex('belongsTo').where('task_id', req.body.task_id).del().then(() => {
+    knex('tasks').where('task_id', req.body.task_id).del().then(() => {
+      res.json({success: true});
+    });
   });
 }

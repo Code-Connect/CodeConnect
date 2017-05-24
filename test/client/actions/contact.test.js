@@ -10,8 +10,9 @@ import reducer from '../../../app/reducers/tasks'
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-
 describe('tasks ', () => {
+  //TODO
+
   it('test action for adding task', () => {
 
     expect(reducer({
@@ -24,7 +25,7 @@ describe('tasks ', () => {
           description: "Add description",
           attempts: 0,
           difficulty: "NA",
-          tags:[]
+          tags: []
 
         }, {
           name: "name2",
@@ -34,7 +35,53 @@ describe('tasks ', () => {
           description: "Add description",
           attempts: 0,
           difficulty: "NA",
-          tags:[]
+          tags: []
+
+        }
+      ]
+    }, {
+      type: 'DELETE_TASK_SUCCESSFUL',
+      task_id: 1
+    })).to.deep.equal({
+      mockData: [
+        {
+          name: "name2",
+          task_id: 2,
+          input: "Add input",
+          output: "Add output",
+          description: "Add description",
+          attempts: 0,
+          difficulty: "NA",
+          tags: []
+
+        }
+      ]
+    });
+  });
+
+  it('test action for adding task', () => {
+
+    expect(reducer({
+      mockData: [
+        {
+          name: "name1",
+          task_id: 1,
+          input: "Add input",
+          output: "Add output",
+          description: "Add description",
+          attempts: 0,
+          difficulty: "NA",
+          tags: []
+
+        }, {
+          name: "name2",
+          task_id: 2,
+          input: "Add input",
+          output: "Add output",
+          description: "Add description",
+          attempts: 0,
+          difficulty: "NA",
+          tags: []
 
         }
       ]
@@ -52,7 +99,7 @@ describe('tasks ', () => {
           description: "Add description",
           attempts: 0,
           difficulty: "NA",
-          tags:[]
+          tags: []
 
         }, {
           name: "name2",
@@ -62,7 +109,7 @@ describe('tasks ', () => {
           description: "Add description",
           attempts: 0,
           difficulty: "NA",
-          tags:[]
+          tags: []
 
         }, {
           name: "kewin",
@@ -72,14 +119,13 @@ describe('tasks ', () => {
           description: "Add description",
           attempts: 0,
           difficulty: "NA",
-          tags:[]
+          tags: []
 
         }
       ]
     });
   });
 });
-
 
 describe('editor ', () => {
   it('test action for writing', () => {

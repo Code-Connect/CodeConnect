@@ -23,10 +23,18 @@ export default function messages(tasks = {}, action) {
             description: "Add description",
             attempts: 0,
             difficulty: "NA",
-            tags:[]
+            tags: []
           }
         ]
       });
+
+    case 'DELETE_TASK_SUCCESSFUL':
+      //TODO new state has to get an update and has to delete the task from tasks.mockData[]
+      var index = tasks.mockData.indexOf(action);
+
+      return Object.assign({}, tasks, {
+        mockData: tasks.mockData.filter((item) => item.task_id !== action.task_id)
+      })
 
     default:
       return tasks;
