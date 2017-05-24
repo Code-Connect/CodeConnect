@@ -18,3 +18,9 @@ exports.addTask = function(req, res) {
 exports.getTasks = function() {
   return knex.select('task_id', 'input','output','description','name', 'difficulty','tags', 'attempts').from('tasks');
 }
+
+exports.deleteTask = function(req, res){
+  console.log(req.user);
+  console.log(req.body.task_id);
+  res.json({success:true});
+}

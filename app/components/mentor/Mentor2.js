@@ -4,7 +4,7 @@ import { Button, FormGroup, InputGroup, FormControl} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
-import {updateTask, addTask} from '../../actions/taskActions';
+import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
 import TaskPanel from './TaskPanel';
 
 class Mentor2 extends React.Component {
@@ -17,6 +17,10 @@ class Mentor2 extends React.Component {
 
   saveChange(task) {
     this.props.dispatch(updateTask(task));
+  }
+
+  deleteTask(task){
+    this.props.dispatch(deleteTask(task));
   }
 
   updateText(task_id, fieldtype, newCode) {
@@ -45,7 +49,7 @@ class Mentor2 extends React.Component {
         </FormGroup>
 
         {this.props.tasks.map((task) => {
-          return (<TaskPanel task={task} updateText={this.updateText.bind(this)} saveChange={this.saveChange.bind(this)}/>)
+          return (<TaskPanel task={task} deleteTask = {this.deleteTask.bind(this)}updateText={this.updateText.bind(this)} saveChange={this.saveChange.bind(this)}/>)
         })}
       </div>
     );

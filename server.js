@@ -92,6 +92,7 @@ var passportGithub = require('./controllers/gitlogin');
 app.post('/postccrepo', projectController.saveProject);
 app.post('/updatetask', taskController.updateTask);
 app.post('/addtask', taskController.addTask);
+app.delete('/deletetask', taskController.deleteTask);
 
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {

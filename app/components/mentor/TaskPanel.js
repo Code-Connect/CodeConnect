@@ -1,6 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {Panel, Button} from "react-bootstrap";
+import {
+  Panel,
+  Button,
+  Grid,
+  Col,
+  Row,
+  ButtonToolbar,
+  MenuItem,
+  DropdownButton
+} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import Editor from '../baukasten/Editor.js';
 import {updateTask} from '../../actions/taskActions';
@@ -24,6 +33,10 @@ class TaskPanel extends React.Component {
     this.props.saveChange(this.props.task);
   }
 
+  deleteTask(event) {
+    this.props.deleteTask(this.props.task);
+  }
+
   createPanel(fieldtype) {
     const editPanel = this.state.toggle
       ? // fieldtype: input or description or output
@@ -34,8 +47,16 @@ class TaskPanel extends React.Component {
       <div>
         <hr/>
         <h4>{fieldtype}</h4>
-        {/* {editOrSaveButton} */}
-        <ReactMarkdown source={this.props.task[fieldtype]}/> {editPanel}
+        <Grid>
+          <Row className="show-grid">
+            <Col sm={6} md={4}>
+              <ReactMarkdown source={this.props.task[fieldtype]}/>
+            </Col>
+            <Col sm={6} md={8}>
+              {editPanel}
+            </Col>
+          </Row>
+        </Grid>
       </div>
     )
   }
@@ -43,7 +64,15 @@ class TaskPanel extends React.Component {
   render() {
     const editOrSaveButton = this.state.toggle
       ? <Button className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
-      : <Button className="pull-right" onClick={this.toggleButton.bind(this)}>Edit</Button>
+      : (
+        <ButtonToolbar className="pull-right">
+          <DropdownButton title="Modify" id="dropdown-size-medium">
+            <MenuItem eventKey="1" onClick={this.toggleButton.bind(this)}>Edit</MenuItem>
+            <MenuItem divider/>
+            <MenuItem eventKey="2" onClick={this.deleteTask.bind(this)}>Delete</MenuItem>
+          </DropdownButton>
+        </ButtonToolbar>
+      )
 
     return (
       <div>

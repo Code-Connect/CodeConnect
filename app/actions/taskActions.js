@@ -34,3 +34,21 @@ export function addTask(name) {
     });
   }
 }
+
+export function deleteTask(task){
+  return (dispatch) => {
+    fetch('/deleteTask',{
+      method:'delete',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin', // By default, fetch won't send any cookies to the server
+      body: JSON.stringify({task_id: task.task_id})
+    }).then((response) => {
+      return response.json().then(function(json) {
+        dispatch({type: 'DELETE_TASK_SUCCESSFUL'});
+      });
+    })
+  }
+}
