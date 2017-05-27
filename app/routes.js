@@ -6,6 +6,7 @@ import NotFound from "./components/NotFound";
 import HomePage from "./components/HomePage";
 import Contributor from "./components/contributor/Contributor";
 import Editor from "./components/baukasten/Editor";
+import TaskView from "./components/taskView/TaskView";
 
 export default function getRoutes(store) {
 
@@ -20,6 +21,7 @@ export default function getRoutes(store) {
             <Route path="/home" component={HomePage} onLeave={clearMessages}/>
             <Route path="/contributor" component={Contributor} onLeave={clearMessages}/>
             <Route path="/editor" component={Editor} onLeave={clearMessages}/>
+            <Route path="/:task" component={TaskView} onLeave={clearMessages}/>
             <Route path="*" component={NotFound} onLeave={clearMessages}/>
         </Route>
     );
