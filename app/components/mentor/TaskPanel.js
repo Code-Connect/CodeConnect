@@ -8,7 +8,10 @@ import {
   Row,
   ButtonToolbar,
   MenuItem,
-  DropdownButton
+  DropdownButton,
+  FormGroup,
+  InputGroup,
+  FormControl
 } from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import Editor from '../baukasten/Editor.js';
@@ -18,18 +21,21 @@ class TaskPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggle: false
+      toggle: false,
+      rename: false,
+      inputfield: this.props.task.name
     }
   }
 
   toggleButton(event) {
     this.setState({
-      toggle: !this.state.toggle
+      [event.target.name]: !this.state[event.target.name]
     });
   }
 
   renameTask(event) {
-    this.props.rename(this.props.task);
+    this.toggleButton(event);
+    this.props.saveChange(this.props.task);
   }
 
   saveChange(event) {
@@ -41,10 +47,18 @@ class TaskPanel extends React.Component {
     this.props.deleteTask(this.props.task);
   }
 
+  //bis jetzt nur für name
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+    this.props.updateTaskAttribute(this.props.task.task_id, "name", event.target.value);
+  }
+
   createPanel(fieldtype) {
     const editPanel = this.state.toggle
       ? // fieldtype: input or description or output
-      (<Editor onChange={this.props.updateText.bind(this)} task_id={this.props.task.task_id} fieldtype={fieldtype} code={this.props.task[fieldtype]}/>)
+      (<Editor onChange={this.props.updateTaskAttribute.bind(this)} task_id={this.props.task.task_id} fieldtype={fieldtype} code={this.props.task[fieldtype]}/>)
       : null;
 
     return (
@@ -66,26 +80,39 @@ class TaskPanel extends React.Component {
   }
 
   render() {
-    const editOrSaveButton = this.state.toggle
-      ? <Button className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
-      : (
-        <ButtonToolbar className="pull-right">
-          <DropdownButton title="Modify" id="dropdown-size-medium">
-            <MenuItem eventKey="1" onClick={this.toggleButton.bind(this)}>Edit</MenuItem>
-            <MenuItem divider/>
-            <MenuItem eventKey="2" onClick={this.renameTask.bind(this)}>Rename</MenuItem>
-            <MenuItem divider/>
-            <MenuItem eventKey="3" bsStyle="success" onClick={this.deleteTask.bind(this)}>Delete</MenuItem>
-          </DropdownButton>
-        </ButtonToolbar>
-      )
+    const editOrSaveButton = this.state.rename
+      ? null
+      : this.state.toggle
+        ? <Button className="pull-right" name = "toggle" onClick={this.saveChange.bind(this)}>Save</Button>
+        : (
+          <ButtonToolbar className="pull-right">
+            <DropdownButton title="Modify" id="dropdown-size-medium">
+              <MenuItem eventKey="1" name = "toggle" onClick={this.toggleButton.bind(this)}>Edit</MenuItem>
+              <MenuItem divider/>
+            <MenuItem eventKey="2" name = "rename" onClick={this.toggleButton.bind(this)}>Rename</MenuItem>
+              <MenuItem divider/>
+              <MenuItem eventKey="3" bsStyle="success" onClick={this.deleteTask.bind(this)}>Delete</MenuItem>
+            </DropdownButton>
+          </ButtonToolbar>
+        )
+
+    const headerOrRenameForm = this.state.rename
+      ? <FormGroup>
+          <InputGroup>
+            <FormControl type="text" name="inputfield" onChange ={this.handleChange.bind(this)} placeholder="Projectname" value={this.state.inputfield}/>
+            <InputGroup.Button>
+              <Button bsStyle="success" name = "rename" onClick={this.renameTask.bind(this)}>Rename</Button>
+            </InputGroup.Button>
+          </InputGroup>
+        </FormGroup>
+      : <h1>
+        {this.props.task.name}
+      </h1>
 
     return (
       <div>
         {editOrSaveButton}
-        <h1>
-          {this.props.task.name}
-        </h1>
+        {headerOrRenameForm}
         {this.createPanel("input", this.props.task)}
         {this.createPanel("output", this.props.task)}
         {this.createPanel("description", this.props.task)}
