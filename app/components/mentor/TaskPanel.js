@@ -47,7 +47,7 @@ class TaskPanel extends React.Component {
     this.props.deleteTask(this.props.task);
   }
 
-  //bis jetzt nur für name
+  //bis jetzt 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value

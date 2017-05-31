@@ -31,6 +31,7 @@ function createNewUser(callback) {
 //          ...
 //     }
 // }
+
 function grabUserCredentials(id, callback) {
     // Skeleton JSON
     var loginUser = {
