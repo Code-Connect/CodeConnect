@@ -28,6 +28,14 @@ export default function messages(tasks = {}, action) {
         ]
       });
 
+    case 'UPDATE_TASK_SUCCESSFUL':
+      return Object.assign({}, tasks, {
+        mockData: [
+          ...tasks.mockData,
+          action.task
+        ]
+      })
+
     case 'DELETE_TASK_SUCCESSFUL':
       return Object.assign({}, tasks, {
         mockData: tasks.mockData.filter((item) => item.task_id !== action.task_id)

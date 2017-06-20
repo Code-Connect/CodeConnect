@@ -23,58 +23,50 @@ class TaskPanel extends React.Component {
     this.state = {
       toggle: false,
       rename: false,
-      inputfield: this.props.task.name
+      renametextfield: this.props.task.name,
+      task_id: this.props.task.task_id,
+      input: this.props.task.input,
+      output: this.props.task.output,
+      description: this.props.task.description,
+      task: this.props.task
     }
   }
 
-  toggleButton(event) {
+  handleChange(event) {
     this.setState({
       [event.target.name]: !this.state[event.target.name]
     });
   }
 
   renameTask(event) {
-    this.toggleButton(event);
+    this.handleChange(event);
     this.props.saveChange(this.props.task);
   }
 
   saveChange(event) {
-    this.toggleButton(event);
-    this.props.saveChange(this.props.task);
+    this.handleChange(event);
+    //TODO hier ist die aktuelle baustelle save muss einfach mit den neuen state attributen aufgerufen werden
+    this.props.saveChange({task_id: this.state.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
   }
 
   deleteTask(event) {
     this.props.deleteTask(this.props.task);
   }
 
-  //bis jetzt 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-    this.props.updateTaskAttribute(this.props.task.task_id, "name", event.target.value);
+  updateCode(fieldtype, newCode) {
+    this.setState({[fieldtype]: newCode});
   }
 
   createPanel(fieldtype) {
     const editPanel = this.state.toggle
-      ? // fieldtype: input or description or output
-      (<Editor onChange={this.props.updateTaskAttribute.bind(this)} task_id={this.props.task.task_id} fieldtype={fieldtype} code={this.props.task[fieldtype]}/>)
-      : null;
+      ? (<Editor fieldtype={fieldtype} value={this.state[fieldtype]} task_id={this.state.task_id} onChange={this.updateCode.bind(this)}/>)
+      : <ReactMarkdown source={this.state[fieldtype]}/>;
 
     return (
       <div>
         <hr/>
         <h4>{fieldtype}</h4>
-        <Grid>
-          <Row className="show-grid">
-            <Col sm={6} md={4}>
-              <ReactMarkdown source={this.props.task[fieldtype]}/>
-            </Col>
-            <Col sm={6} md={8}>
-              {editPanel}
-            </Col>
-          </Row>
-        </Grid>
+        {editPanel}
       </div>
     )
   }
@@ -83,13 +75,13 @@ class TaskPanel extends React.Component {
     const editOrSaveButton = this.state.rename
       ? null
       : this.state.toggle
-        ? <Button className="pull-right" name = "toggle" onClick={this.saveChange.bind(this)}>Save</Button>
+        ? <Button className="pull-right" name="toggle" onClick={this.saveChange.bind(this)}>Save</Button>
         : (
           <ButtonToolbar className="pull-right">
             <DropdownButton title="Modify" id="dropdown-size-medium">
-              <MenuItem eventKey="1" name = "toggle" onClick={this.toggleButton.bind(this)}>Edit</MenuItem>
+              <MenuItem eventKey="1" name="toggle" onClick={this.handleChange.bind(this)}>Edit</MenuItem>
               <MenuItem divider/>
-            <MenuItem eventKey="2" name = "rename" onClick={this.toggleButton.bind(this)}>Rename</MenuItem>
+              <MenuItem eventKey="2" name="rename" onClick={this.handleChange.bind(this)}>Rename</MenuItem>
               <MenuItem divider/>
               <MenuItem eventKey="3" bsStyle="success" onClick={this.deleteTask.bind(this)}>Delete</MenuItem>
             </DropdownButton>
@@ -99,9 +91,9 @@ class TaskPanel extends React.Component {
     const headerOrRenameForm = this.state.rename
       ? <FormGroup>
           <InputGroup>
-            <FormControl type="text" name="inputfield" onChange ={this.handleChange.bind(this)} placeholder="Projectname" value={this.state.inputfield}/>
+            <FormControl type="text" name="renametextfield" onChange ={this.handleChange.bind(this)} placeholder="Projectname" value={this.state.renametextfield}/>
             <InputGroup.Button>
-              <Button bsStyle="success" name = "rename" onClick={this.renameTask.bind(this)}>Rename</Button>
+              <Button bsStyle="success" name="rename" onClick={this.renameTask.bind(this)}>Rename</Button>
             </InputGroup.Button>
           </InputGroup>
         </FormGroup>
@@ -113,9 +105,9 @@ class TaskPanel extends React.Component {
       <div>
         {editOrSaveButton}
         {headerOrRenameForm}
-        {this.createPanel("input", this.props.task)}
-        {this.createPanel("output", this.props.task)}
-        {this.createPanel("description", this.props.task)}
+        {this.createPanel("input")}
+        {this.createPanel("output")}
+        {this.createPanel("description")}
       </div>
     );
   }

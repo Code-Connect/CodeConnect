@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Panel} from "react-bootstrap";
-import Sidecar from 'gitter-sidecar';
 
 class Feedback extends React.Component {
   constructor(props) {
