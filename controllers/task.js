@@ -2,6 +2,7 @@ var bookshelf = require('../config/bookshelf');
 var knex = bookshelf.knex;
 
 exports.updateTask = function(req, res) {
+  console.log(req.body.task);
   knex('tasks').where('task_id', '=', req.body.task.task_id).update(req.body.task).then(() => {
     res.json({success: true, message: 'ok'}); // respond back to request
   });

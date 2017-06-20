@@ -12,7 +12,9 @@ export function updateTask(task) {
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
       body: JSON.stringify({task: task})
     }).then((response) => {
-      dispatch({type: 'UPDATE_TASK_SUCCESSFUL'});
+      console.log("task");
+      console.log(task);
+      dispatch({type: 'UPDATE_TASK_SUCCESSFUL', task: task});
     });
   };
 }
@@ -35,10 +37,10 @@ export function addTask(name) {
   }
 }
 
-export function deleteTask(task){
+export function deleteTask(task) {
   return (dispatch) => {
-    fetch('/deleteTask',{
-      method:'delete',
+    fetch('/deleteTask', {
+      method: 'delete',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
