@@ -55,11 +55,12 @@ class TaskTable extends Component {
             <Table striped bordered condensed hover style={tableStyle}>
               <thead>
                 <tr>
-                  <th className="col-md-2">#</th>
-                  <th className="col-md-4">Title</th>
-                  <th className="col-md-2">Difficulty</th>
+                  <th className="col-md-1">#</th>
+                  <th className="col-md-4">Project</th>
+                  <th className="col-md-4">Task</th>
+                  <th className="col-md-1">Difficulty</th>
                   <th className="col-md-1">#Solutions</th>
-                  <th className="col-md-3">Status</th>
+                  <th className="col-md-1">Status</th>
                 </tr>
               </thead>
               <tbody>

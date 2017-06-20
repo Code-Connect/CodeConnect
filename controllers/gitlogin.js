@@ -1,12 +1,15 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github').Strategy;
+
 var Model = require('../models/User');
 var User = Model.User;
+var bookshelf = require('../config/bookshelf');
+var knex = bookshelf.knex;
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK,
+    callbackURL: process.env.GITHUB_CALLBACK,
     scope: ['user:email', 'repo']
 }, function(token, refreshToken, profile, done) {
     process.nextTick(function() {
@@ -32,10 +35,13 @@ passport.use(new GitHubStrategy({
 }));
 
 passport.serializeUser(function(user, done) {
+    console.log("user is");
+    console.log(user);
     done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
+  //TODO not working properly
     Model.grabUserCredentials(id, function(err, user) {
         done(err, user);
     });

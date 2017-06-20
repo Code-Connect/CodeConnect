@@ -22,13 +22,14 @@ class ListItem extends Component {
   render () {
     return (
       <tr style={{cursor:"pointer"}} onMouseEnter={this.activate.bind(this)} onClick={this.redirect.bind(this)}>
-        <td className="col-md-2">
+        <td className="col-md-1">
           {this.props.id}
         </td>
+        <td className="col-md-4">ProjectNameHere</td>
         <td className="col-md-4">{this.props.title}</td>
-        <td className="col-md-2">{this.props.difficulty}</td>
+        <td className="col-md-1">{this.props.difficulty}</td>
         <td className="col-md-1">{this.props.solutions}</td>
-        <td className="col-md-3">{this.props.status}</td>
+        <td className="col-md-1">{this.props.status}</td>
       </tr>
     )
 

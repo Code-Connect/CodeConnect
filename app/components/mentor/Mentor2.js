@@ -23,16 +23,11 @@ class Mentor2 extends React.Component {
     this.props.dispatch(deleteTask(task));
   }
 
-  updateText(task_id, fieldtype, newCode) {
-    this.props.dispatch({type: 'UPDATE_TEXT', task_id: task_id, fieldtype: fieldtype, newCode: newCode});
-  }
-
-  renameTask(task){
-    //TODO rename task
+  updateTaskAttribute(task_id, fieldtype, newCode) {
+    this.props.dispatch({type: 'UPDATE_ATTRIBUTE', task_id: task_id, fieldtype: fieldtype, newCode: newCode});
   }
 
   addTask(event) {
-    // TODO muss noch gemacht werden
     this.props.dispatch(addTask(this.state.inputfield));
   }
 
@@ -59,7 +54,7 @@ class Mentor2 extends React.Component {
           </InputGroup>
         </FormGroup>
         {this.props.tasks.map((task) => {
-          return (<TaskPanel updateText={this.updateText.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>)
+          return (<TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>)
         })}
       </div>
     );

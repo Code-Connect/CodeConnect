@@ -102,6 +102,14 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
   });
 });
 
+app.get('/auth/gitter', passportGithub.authenticate('gitter'));
+app.get('/auth/gitter/callback', passportGithub.authenticate('gitter', {failureRedirect: '/'}), function(req, res) {
+  // Successful authentication
+  req.session.save(function(err) {
+    res.redirect('/');
+  });
+});
+
 // React server rendering
 app.use(function(req, res) {
   taskController.getTasks().then(function(tasks) {

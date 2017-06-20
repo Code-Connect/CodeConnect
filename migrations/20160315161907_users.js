@@ -9,6 +9,12 @@ var githubTable = function(table) {
   table.timestamps();
 }
 
+var gitterTable = function(table) {
+  table.string('id').primary();
+  table.string('token');
+  table.timestamps();
+}
+
 var taskTable = function(table) {
   table.increments('task_id').primary();
   table.string('input').defaultTo('Add input');
@@ -34,9 +40,9 @@ var belongsTo = function(table) {
 }
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('github', githubTable).createTable('tasks', taskTable).createTable('participate', participate).createTable('belongsTo', belongsTo);
+  return knex.schema.createTable('github', githubTable).createTable('gitter', gitterTable).createTable('tasks', taskTable).createTable('participate', participate).createTable('belongsTo', belongsTo);
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('participate').dropTable('belongsTo').dropTable('github').dropTable('tasks');
+  return knex.schema.dropTable('participate').dropTable('belongsTo').dropTable('github').dropTable('tasks').dropTable('gitter');
 };
