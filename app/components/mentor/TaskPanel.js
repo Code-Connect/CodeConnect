@@ -23,7 +23,7 @@ class TaskPanel extends React.Component {
     this.state = {
       toggle: false,
       rename: false,
-      renametextfield: this.props.task.name,
+      projectname: this.props.task.name,
       task_id: this.props.task.task_id,
       input: this.props.task.input,
       output: this.props.task.output,
@@ -32,21 +32,25 @@ class TaskPanel extends React.Component {
     }
   }
 
-  handleChange(event) {
+  toggleButton(event) {
     this.setState({
       [event.target.name]: !this.state[event.target.name]
     });
   }
 
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   renameTask(event) {
-    this.handleChange(event);
-    this.props.saveChange(this.props.task);
+    this.toggleButton(event);
+    this.props.saveChange({name: this.state.projectname, task_id: this.state.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
   }
 
   saveChange(event) {
-    this.handleChange(event);
+    this.toggleButton(event);
     //TODO hier ist die aktuelle baustelle save muss einfach mit den neuen state attributen aufgerufen werden
-    this.props.saveChange({task_id: this.state.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
+    this.props.saveChange({name: this.state.projectname, task_id: this.state.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
   }
 
   deleteTask(event) {
@@ -79,9 +83,9 @@ class TaskPanel extends React.Component {
         : (
           <ButtonToolbar className="pull-right">
             <DropdownButton title="Modify" id="dropdown-size-medium">
-              <MenuItem eventKey="1" name="toggle" onClick={this.handleChange.bind(this)}>Edit</MenuItem>
+              <MenuItem eventKey="1" name="toggle" onClick={this.toggleButton.bind(this)}>Edit</MenuItem>
               <MenuItem divider/>
-              <MenuItem eventKey="2" name="rename" onClick={this.handleChange.bind(this)}>Rename</MenuItem>
+              <MenuItem eventKey="2" name="rename" onClick={this.toggleButton.bind(this)}>Rename</MenuItem>
               <MenuItem divider/>
               <MenuItem eventKey="3" bsStyle="success" onClick={this.deleteTask.bind(this)}>Delete</MenuItem>
             </DropdownButton>
@@ -91,14 +95,14 @@ class TaskPanel extends React.Component {
     const headerOrRenameForm = this.state.rename
       ? <FormGroup>
           <InputGroup>
-            <FormControl type="text" name="renametextfield" onChange ={this.handleChange.bind(this)} placeholder="Projectname" value={this.state.renametextfield}/>
+            <FormControl type="text" name="projectname" onChange ={this.handleChange.bind(this)} placeholder="Projectname" value={this.state.projectname}/>
             <InputGroup.Button>
               <Button bsStyle="success" name="rename" onClick={this.renameTask.bind(this)}>Rename</Button>
             </InputGroup.Button>
           </InputGroup>
         </FormGroup>
       : <h1>
-        {this.props.task.name}
+        {this.state.projectname}
       </h1>
 
     return (
