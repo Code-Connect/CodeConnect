@@ -16,6 +16,7 @@ import {
 import ReactMarkdown from 'react-markdown';
 import Editor from '../baukasten/Editor.js';
 import {updateTask} from '../../actions/taskActions';
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 class TaskPanel extends React.Component {
   constructor(props) {
@@ -107,6 +108,11 @@ class TaskPanel extends React.Component {
 
     return (
       <div>
+        <ScrollableAnchor id={this.state.task_id}>
+          <div>
+            Hello World
+          </div>
+        </ScrollableAnchor>
         {editOrSaveButton}
         {headerOrRenameForm}
         {this.createPanel("input")}
