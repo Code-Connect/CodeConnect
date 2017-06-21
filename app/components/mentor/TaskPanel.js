@@ -40,7 +40,9 @@ class TaskPanel extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   renameTask(event) {
@@ -110,14 +112,14 @@ class TaskPanel extends React.Component {
       <div>
         <ScrollableAnchor id={this.state.task_id}>
           <div>
-            Hello World
+            {editOrSaveButton}
+            {headerOrRenameForm}
+            {this.createPanel("input")}
+            {this.createPanel("output")}
+            {this.createPanel("description")}
           </div>
         </ScrollableAnchor>
-        {editOrSaveButton}
-        {headerOrRenameForm}
-        {this.createPanel("input")}
-        {this.createPanel("output")}
-        {this.createPanel("description")}
+
       </div>
     );
   }
