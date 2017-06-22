@@ -47,12 +47,13 @@ class TaskPanel extends React.Component {
 
   renameTask(event) {
     this.toggleButton(event);
+    //TODO YO hier muss mal eine richtige Task durchgegeben werden
     this.props.saveChange({name: this.state.projectname, task_id: this.state.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
   }
 
   saveChange(event) {
     this.toggleButton(event);
-    //TODO hier ist die aktuelle baustelle save muss einfach mit den neuen state attributen aufgerufen werden
+    //TODO YO hier muss mal eine richtige Task durchgegeben werden
     this.props.saveChange({name: this.state.projectname, task_id: this.state.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
   }
 

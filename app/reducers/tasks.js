@@ -29,11 +29,16 @@ export default function messages(tasks = {}, action) {
       });
 
     case 'UPDATE_TASK_SUCCESSFUL':
+      // gegeben sind attribute von task. action.task
+      // dann muss ich einfach nur in dem array suchen, was ich updaten muss und dann die ienzelnene attribute updaten
+      var newMockData = tasks.mockData.map((item) => {
+        if (item.task_id == action.task.task_id) {
+          return Object.assign({}, item, action.task)
+        } else
+          return item
+      })
       return Object.assign({}, tasks, {
-        mockData: [
-          ...tasks.mockData,
-          action.task
-        ]
+        newMockData
       })
 
     case 'DELETE_TASK_SUCCESSFUL':
