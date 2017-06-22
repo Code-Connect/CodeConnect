@@ -16,7 +16,6 @@ import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
 import TaskPanel from './TaskPanel';
 import MentorTable from './MentorTable';
 
-
 class Mentor2 extends React.Component {
   constructor(props) {
     super(props);
@@ -65,10 +64,14 @@ class Mentor2 extends React.Component {
                 </InputGroup.Button>
               </InputGroup>
             </FormGroup>
-            <MentorTable tasks = {this.props.tasks}/>
+            <MentorTable tasks={this.props.tasks}/>
           </Col>
           <Col xs={12} md={8}>{this.props.tasks.map((task) => {
-              return (<TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>)
+              return (
+                <div><TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
+                  <hr/>                
+                  </div>
+              )
             })}</Col>
         </Row>
       </div>
