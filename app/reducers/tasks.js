@@ -38,7 +38,7 @@ export default function messages(tasks = {}, action) {
           return item
       })
       return Object.assign({}, tasks, {
-        newMockData
+        mockData: newMockData
       })
 
     case 'DELETE_TASK_SUCCESSFUL':
