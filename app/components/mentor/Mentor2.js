@@ -55,7 +55,7 @@ class Mentor2 extends React.Component {
       }}>
 
         <Row className="show-grid">
-          <Col xs={6} md={4}>
+          <Col xs={12} md={4}>
             <FormGroup>
               <InputGroup>
                 <FormControl type="text" name="inputfield" placeholder="Projectname" value={this.state.inputfield} onChange={this.handleInputChange.bind(this)}/>
@@ -66,13 +66,16 @@ class Mentor2 extends React.Component {
             </FormGroup>
             <MentorTable tasks={this.props.tasks}/>
           </Col>
-          <Col xs={12} md={8}>{this.props.tasks.map((task) => {
+          <Col xs={12} md={8}>
+            {this.props.tasks.map((task) => {
               return (
-                <div><TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
-                  <hr/>                
-                  </div>
+                <div>
+                  <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
+                  <hr/>
+                </div>
               )
-            })}</Col>
+            })}
+          </Col>
         </Row>
       </div>
     );

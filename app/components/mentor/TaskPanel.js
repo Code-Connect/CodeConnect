@@ -108,6 +108,7 @@ class TaskPanel extends React.Component {
       : <h1>
         {this.state.projectname}
       </h1>
+      {console.log(this.state.task)}
 
     return (
       <div>
