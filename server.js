@@ -119,6 +119,7 @@ app.use(function(req, res) {
         mockData: tasks
       }
     };
+
     var store = configureStore(initialState);
 
     Router.match({
