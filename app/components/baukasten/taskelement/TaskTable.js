@@ -86,14 +86,7 @@ class TaskTable extends Component {
                   <div style={style}>
                     {isSticky
                       ? <div style={{
-                          height: '80px'
-                        }}></div>
-                      : null
-}
-                    <TaskPreview title={this.state.current_title} tags={this.state.current_tags} description={this.state.current_description} input={this.state.current_input} output={this.state.current_output}/></div>
-                )
-              }
-}
+                          height: '80px'}}></div>: null}<TaskPreview title={this.state.current_title} tags={this.state.current_tags} description={this.state.current_description} input={this.state.current_input} output={this.state.current_output}/></div>)}}
             </Sticky>
           </div>
         </StickyContainer>

@@ -1,11 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {Button, FormGroup, InputGroup, FormControl} from "react-bootstrap";
+import {
+  Button,
+  FormGroup,
+  InputGroup,
+  FormControl,
+  Grid,
+  Row,
+  Col
+} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
 import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
 import TaskPanel from './TaskPanel';
+import MentorTable from './MentorTable';
 
 class Mentor2 extends React.Component {
   constructor(props) {
@@ -39,23 +48,36 @@ class Mentor2 extends React.Component {
 
   render() {
     return (
-
       <div className="container" style={{
         borderRadius: '10px',
         background: 'white',
         padding: '50px'
       }}>
-        <FormGroup>
-          <InputGroup>
-            <FormControl type="text" name="inputfield" placeholder="Projectname" value={this.state.inputfield} onChange={this.handleInputChange.bind(this)}/>
-            <InputGroup.Button>
-              <Button bsStyle="success" onClick={this.addTask.bind(this)}>Add new Task</Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </FormGroup>
-        {this.props.tasks.map((task) => {
-          return (<TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>)
-        })}
+
+        <Row className="show-grid">
+          <Col xs={12} md={4}>
+            <FormGroup>
+              <InputGroup>
+                <FormControl type="text" name="inputfield" placeholder="Projectname" value={this.state.inputfield} onChange={this.handleInputChange.bind(this)}/>
+                <InputGroup.Button>
+                  <Button bsStyle="success" onClick={this.addTask.bind(this)}>Add new Task</Button>
+                </InputGroup.Button>
+              </InputGroup>
+            </FormGroup>
+            <MentorTable tasks={this.props.tasks}/>
+          </Col>
+          <Col xs={12} md={8}>
+            {console.log(this.props.tasks)}
+            {this.props.tasks.map((task) => {
+              return (
+                <div>
+                  <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
+                  <hr/>
+                </div>
+              )
+            })}
+          </Col>
+        </Row>
       </div>
     );
   }
