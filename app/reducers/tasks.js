@@ -40,7 +40,10 @@ export default function messages(tasks = {}, action) {
       });
 
     case 'DELETE_TASK_SUCCESSFUL':
-    var newMockData = tasks.mockData.filter((item) => item.task_id != action.task_id)
+
+    var newMockData = [...tasks.mockData];
+    newMockData = newMockData.filter((item) => item.task_id != action.task_id);
+
       return Object.assign({}, tasks, {
         mockData: newMockData
       })

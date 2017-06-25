@@ -67,6 +67,7 @@ class Mentor2 extends React.Component {
             <MentorTable tasks={this.props.tasks}/>
           </Col>
           <Col xs={12} md={8}>
+            {console.log(this.props.tasks)}
             {this.props.tasks.map((task) => {
               return (
                 <div>

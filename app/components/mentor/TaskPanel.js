@@ -22,14 +22,15 @@ class TaskPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggle: false,
-      rename: false,
-      projectname: this.props.task.name,
-      task_id: this.props.task.task_id,
-      input: this.props.task.input,
-      output: this.props.task.output,
-      description: this.props.task.description,
-      task: this.props.task
+      toggle : false,
+      rename : false
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("triggered");
+    if (this.props != nextProps) {
+      this.setState({input: nextProps.task.input, output: nextProps.task.output, description: nextProps.task.description});
     }
   }
 
@@ -47,18 +48,16 @@ class TaskPanel extends React.Component {
 
   renameTask(event) {
     this.toggleButton(event);
-    //TODO YO hier muss mal eine richtige Task durchgegeben werden
-    this.props.saveChange({name: this.state.projectname, task_id: this.state.task_id});
+    this.props.saveChange({name: this.props.task.projectname, task_id: this.props.task.task_id});
   }
 
   saveChange(event) {
     this.toggleButton(event);
-    //TODO YO hier muss mal eine richtige Task durchgegeben werden
-    this.props.saveChange({name: this.state.projectname, task_id: this.state.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
+    this.props.saveChange({task_id: this.props.task.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
   }
 
   deleteTask(event) {
-    this.props.deleteTask(this.props.task);
+    this.props.deleteTask({task_id: this.props.task.task_id});
   }
 
   updateCode(fieldtype, newCode) {
@@ -67,8 +66,8 @@ class TaskPanel extends React.Component {
 
   createPanel(fieldtype) {
     const editPanel = this.state.toggle
-      ? (<Editor fieldtype={fieldtype} value={this.state[fieldtype]} task_id={this.state.task_id} onChange={this.updateCode.bind(this)}/>)
-      : <ReactMarkdown source={this.state[fieldtype]}/>;
+      ? (<Editor fieldtype={fieldtype} value={this.props.task[fieldtype]} task_id={this.props.task.task_id} onChange={this.updateCode.bind(this)}/>)
+      : <ReactMarkdown source={this.props.task[fieldtype]}/>;
 
     return (
       <div>
@@ -106,13 +105,12 @@ class TaskPanel extends React.Component {
           </InputGroup>
         </FormGroup>
       : <h1>
-        {this.state.projectname}
+        {this.props.task.name}
       </h1>
-      {console.log(this.state.task)}
 
     return (
       <div>
-        <ScrollableAnchor id={this.state.task_id}>
+        <ScrollableAnchor id={this.props.task.task_id}>
           <div>
             {editOrSaveButton}
             {headerOrRenameForm}
@@ -121,7 +119,6 @@ class TaskPanel extends React.Component {
             {this.createPanel("description")}
           </div>
         </ScrollableAnchor>
-
       </div>
     );
   }
