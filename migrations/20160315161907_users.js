@@ -27,8 +27,20 @@ var taskTable = function(table) {
   table.timestamps()
 }
 
+var projectTable = function(table){
+  table.integer('project_id').primary();
+  table.string('name').defaultTo('NA');
+  table.string('chatroom');
+}
+
 var participate = function(table) {
   table.integer('user_id').references('github.id');
+  table.integer('task_id').references('tasks.task_id');
+  table.timestamps();
+}
+
+var hasTask = function(table){
+  table.integer('project_id').references('projects.project_id');
   table.integer('task_id').references('tasks.task_id');
   table.timestamps();
 }
@@ -40,9 +52,9 @@ var belongsTo = function(table) {
 }
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('github', githubTable).createTable('gitter', gitterTable).createTable('tasks', taskTable).createTable('participate', participate).createTable('belongsTo', belongsTo);
+  return knex.schema.createTable('github', githubTable).createTable('gitter', gitterTable).createTable('tasks', taskTable).createTable('participate', participate).createTable('belongsTo', belongsTo).createTable('projects', projectTable).createTable('hasTask', hasTask);
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('participate').dropTable('belongsTo').dropTable('github').dropTable('tasks').dropTable('gitter');
+  return knex.schema.dropTable('participate').dropTable('belongsTo').dropTable('hasTask').dropTable('github').dropTable('tasks').dropTable('gitter').dropTable('projects');
 };

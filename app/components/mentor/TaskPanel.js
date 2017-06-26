@@ -28,7 +28,6 @@ class TaskPanel extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("triggered");
     if (this.props != nextProps) {
       this.setState({input: nextProps.task.input, output: nextProps.task.output, description: nextProps.task.description});
     }
