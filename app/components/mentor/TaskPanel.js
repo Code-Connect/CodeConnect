@@ -22,15 +22,18 @@ class TaskPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggle : false,
-      rename : false
+      toggle: false,
+      rename: false,
+      name: this.props.task.name,
+      input: this.props.task.input,
+      output: this.props.task.output,
+      description: this.props.task.description
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("triggered");
     if (this.props != nextProps) {
-      this.setState({input: nextProps.task.input, output: nextProps.task.output, description: nextProps.task.description});
+      this.setState({name: nextProps.task.name, input: nextProps.task.input, output: nextProps.task.output, description: nextProps.task.description});
     }
   }
 
@@ -48,7 +51,7 @@ class TaskPanel extends React.Component {
 
   renameTask(event) {
     this.toggleButton(event);
-    this.props.saveChange({name: this.props.task.projectname, task_id: this.props.task.task_id});
+    this.props.saveChange({name: this.state.name, task_id: this.props.task.task_id});
   }
 
   saveChange(event) {
@@ -98,7 +101,7 @@ class TaskPanel extends React.Component {
     const headerOrRenameForm = this.state.rename
       ? <FormGroup>
           <InputGroup>
-            <FormControl type="text" name="projectname" onChange ={this.handleChange.bind(this)} placeholder="Projectname" value={this.state.projectname}/>
+            <FormControl type="text" name="name" onChange ={this.handleChange.bind(this)} placeholder="Projectname" value={this.state.name}/>
             <InputGroup.Button>
               <Button bsStyle="success" name="rename" onClick={this.renameTask.bind(this)}>Rename</Button>
             </InputGroup.Button>
