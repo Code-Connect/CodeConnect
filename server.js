@@ -117,6 +117,9 @@ app.use(function(req, res) {
       user: req.user,
       tasks: {
         mockData: tasks
+      },
+      projects: {
+        addAbleProject:[]
       }
     };
     var store = configureStore(initialState);
