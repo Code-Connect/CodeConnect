@@ -21,7 +21,7 @@ export function getOrgsProject(token) {
             var repoarray = repos.map((item) => {
               return {project_id: item.id, name: item.name, repourl: item.html_url, description: item.description, tasks: []}
             });
-            dispatch({type: 'GET_REPOS_FROM_GITHUB', projects: repoarray});
+            return dispatch({type: 'GET_REPOS_FROM_GITHUB', projects: repoarray});
           });
         }));
       });
@@ -36,7 +36,7 @@ export function getUserProject(token) {
         var repoarray = json.map((item) => {
           return {project_id: item.id, name: item.name, repourl: item.html_url, description: item.description, tasks: []}
         });
-        dispatch({type: 'GET_REPOS_FROM_GITHUB', projects: repoarray});
+        return dispatch({type: 'GET_REPOS_FROM_GITHUB', projects: repoarray});
       });
     });
   };

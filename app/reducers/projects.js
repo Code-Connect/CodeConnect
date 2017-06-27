@@ -20,6 +20,7 @@ export default function messages(state = {}, action) {
           return acc && (JSON.stringify(item.project_id) !== JSON.stringify(item2.project_id))
         }, true))
       });
+
     case 'ADD_PROJECT_TO_CC':
       //state is state.projects
       return Object.assign({}, state, {
@@ -41,6 +42,8 @@ export default function messages(state = {}, action) {
       });
       return Object.assign({}, state, {ccrepos: newCCrepos});
 
+    case 'GET_REPOS_FROM_GITHUB':
+    
     default:
       return state;
   }
