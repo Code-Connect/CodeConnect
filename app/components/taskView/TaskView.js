@@ -7,13 +7,16 @@ import {ControlLabel, Modal, Button, Form, Col, FormGroup, InputGroup, FormContr
 class TaskView extends React.Component {
   constructor(props) {
     super(props);
-    const taskid = parseInt(this.props.location.pathname.substring(5))
+		var taskid = 0
+		console.log("pathname")
+		console.log(this.props.location.pathname)
+    taskid = parseInt(this.props.location.pathname.substring(6))
     var task = this.props.tasks.find(
       (task)=> {
+				console.log(task)
         return task.task_id == taskid
       }
     )
-    console.log(task)
     this.state = {
       task: task,
       showContact: false

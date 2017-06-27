@@ -15,26 +15,20 @@ class ListItem extends Component {
 
 
   redirect(){
-    console.log("yeeea")
     browserHistory.push('/task'+this.props.id);
   }
 
   render () {
     return (
       <tr style={{cursor:"pointer"}} onMouseEnter={this.activate.bind(this)} onClick={this.redirect.bind(this)}>
-        <td className="col-md-1">
-          {this.props.id}
-        </td>
-        <td className="col-md-4">ProjectNameHere</td>
-        <td className="col-md-4">{this.props.title}</td>
-        <td className="col-md-1">{this.props.difficulty}</td>
-        <td className="col-md-1">{this.props.solutions}</td>
-        <td className="col-md-1">{this.props.status}</td>
+        <td>{this.props.projectName}</td>
+        <td>{this.props.title}</td>
+        <td>{this.props.difficulty}</td>
+        <td>{this.props.solutions}</td>
+        <td>{this.props.status}</td>
       </tr>
     )
-
   }
-
 }
 
 export default ListItem

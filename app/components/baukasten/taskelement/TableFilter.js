@@ -19,7 +19,7 @@ class TableFilter extends Component {
 
     filterByText(taskObj){
         if(this.state.value.length == 0) return true
-        return ((taskObj.name.toLowerCase().includes(this.state.value.toLowerCase()))&&this.state.searchTitle)||((taskObj.task_id.includes(this.state.value))&&this.state.searchID) //|| ((taskObj.tags.includes(this.state.value))&&this.state.searchTitle)
+        return ((taskObj.name.toLowerCase().includes(this.state.value.toLowerCase()))&&this.state.searchTitle)||(((taskObj.task_id).toString().includes(this.state.value))&&this.state.searchID) //|| ((taskObj.tags.includes(this.state.value))&&this.state.searchTitle)
     }
 
     filterByTags(task_tags){
@@ -54,6 +54,19 @@ class TableFilter extends Component {
         return (
             <div>
                 <form>
+									<FormGroup>
+									      <Checkbox inline>
+									        1
+									      </Checkbox>
+									      {' '}
+									      <Checkbox inline>
+									        2
+									      </Checkbox>
+									      {' '}
+									      <Checkbox inline>
+									        3
+									      </Checkbox>
+									    </FormGroup>
                     <FormGroup
                         controlId="formBasicText"
                     >
