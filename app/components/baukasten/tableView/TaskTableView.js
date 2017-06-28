@@ -4,6 +4,8 @@ import TaskPreview from "./TaskPreview.js"
 import TableFilter from "./TableFilter.js"
 import {Table, Panel} from "react-bootstrap"
 import TableComponent from "./TableComponent.js"
+import PreviewList from './PreviewList'
+import {goToAnchor} from 'react-scrollable-anchor'
 
 /*
  * This component is responsible for displaying:
@@ -33,24 +35,38 @@ class TaskTableView extends Component {
         labelSize: "1"
       }
     ]
-    this.data = this.props.tasks.map((item) => {
-      var temp = {
-        id: item.task_id,
-        data: ["ProjName", item.name, item.status]
-      }
-      return temp
-    })
 
     this.state = {
       activeElement: this.props.tasks != []
         ? this.props.tasks[0]
         : this.default,
-      showInnerProject: false
-    }
+      current_tasks: this.props.tasks,
+      data: this.props.tasks.map((item) => {
+        return {
+          id: item.task_id,
+          data: ["ProjName", item.name, item.status]
+        }
+      })}
+  }
+
+  getCurrentData() {
+    var curTasks = this.state.current_tasks == undefined
+      ? this.props.tasks
+      : this.state.current_tasks
+    return curTasks.map((item) => {
+      return {
+        id: item.task_id,
+        data: ["ProjName", item.name, item.status]
+      }
+    })
   }
 
   filterTasks(func) {
-    this.setState({current_tasks: this.props.tasks.filter(func)})
+    this.setState({
+      current_tasks: this.props.tasks.filter(func)
+    }, function() {
+      this.setState({data: this.getCurrentData()})
+    })
   }
 
   setActiveElement(taskid) {
@@ -62,57 +78,29 @@ class TaskTableView extends Component {
     })
   }
 
+  focusPreview(id) {
+    goToAnchor("t" + id)
+  }
+
   render() {
     const tableStyle = {
       borderRadius: "5px"
     }
-
-    this.preview = (this.props.tasks.length !== 0)
-      ? (
-        <div className="row" style={{
-          position: "absolute",
-          top: "0",
-        }}>
-          <div className="visible-md-12 hidden-sm hidden-xs" style={{
-            background: "rgb(255,255,255,0.9)",
-            paddingLeft: "20px",
-            paddingRight: "20px",
-            position: "fixed",
-            overflowY: "auto",
-            borderRadius: "10px"
-          }}>
-
-            <TaskPreview title={this.state.activeElement.name} output={this.state.activeElement.output} description={this.state.activeElement.description} tags={this.state.activeElement.tags} input={this.state.activeElement.input}/>
-          </div>
-        </div>
-      )
-      : null;
-
-    const outerView = <div className="row" style={{background: "white"}}>
-      <div style={{
+    return( <div className="row" style={{background:"white"}}>
+    <div style={{
         background: "rgb(255,255,255,1)",
         borderRadius: "10px"
       }} className="col-md-4">
-
         <TableFilter filterTasks={this.filterTasks.bind(this)}/>
 
-        <TableComponent setActiveElement={this.setActiveElement.bind(this)} route={""} labelList={this.labels} dataList={this.data}/>
+        <TableComponent onTableItemClicked={this.focusPreview.bind(this)} setActiveElement={this.setActiveElement.bind(this)} route={"contributor#"} labelList={this.labels} dataList={this.state.data}/>
       </div>
 
-      <div className="col-md-8" style={{
-      }}>
-        {this.preview}
+      <div className="col-md-8" style={{}}>
+        <PreviewList flag="task" dataList={this.state.current_tasks}/>
 
       </div>
     </div>
-
-    return (
-      <span>
-        {!this.state.showInnerProject
-          ? outerView
-          : null
-}
-      </span>
     )
   }
 }

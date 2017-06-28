@@ -25,7 +25,6 @@ class ProjectTableView extends Component {
       description: 'The preview for the task will appear here!',
       tasks: []
     }
-    console.log(this.props.tasks)
 
     this.state = {
       activeElement: this.props.projects.length != 0
@@ -52,7 +51,6 @@ class ProjectTableView extends Component {
       }
     ]
     this.data = this.props.projects.map((item) => {
-      console.log(item.contributors)
       var temp = {
         id: item.id,
         data: [item.name, item.tasks.length, item.difficulty, item.contributors.length, item.status]

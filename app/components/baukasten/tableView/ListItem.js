@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import {Popover, OverlayTrigger} from "react-bootstrap"
-import {Link, Router, browserHistory} from 'react-router'
+import {browserHistory} from 'react-router'
+import {goToAnchor} from 'react-scrollable-anchor'
 
 class ListItem extends Component {
 
@@ -10,12 +11,12 @@ class ListItem extends Component {
   }
 
   activate() {
-    console.log("id:" + this.props.id)
     this.props.activate(this.props.id)
   }
 
   redirect() {
-    browserHistory.push('/' + this.props.route + '/' + this.props.id);
+    browserHistory.push('/' + this.props.route + this.props.id);
+    this.props.onTableItemClicked(this.props.id)
   }
 
   render() {
