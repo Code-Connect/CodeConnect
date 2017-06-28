@@ -1,73 +1,81 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getReposGithub, addProjectsToCodeConnect, postProject, postTasksToProject} from './../../actions/mentor';
-import {Panel} from "react-bootstrap";
-import TaskPanel from "./TaskPanel2";
+import {
+  Button,
+  FormGroup,
+  InputGroup,
+  FormControl,
+  Grid,
+  Row,
+  Col
+} from "react-bootstrap";
+import {getOrgsProject, getUserProject} from './../../actions/projectActions';
+import MentorTable from './MentorTable';
+import {addProject} from '../../actions/projectActions';
 
 class Mentor extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+    this.state = {
+      wantToAddProjects: [],
+      addProjectToggle: false
     }
+  }
 
-    handleSubmit(event) {
-        this.props.dispatch(postProject(this.props.ccrepos, this.props.id));
-    }
+  //gets called, when the component gets loaded
+  componentDidMount() {
+    this.props.dispatch(getOrgsProject(this.props.user.token));
+    this.props.dispatch(getUserProject(this.props.user.token));
+  }
 
-    addProject(project) {
-        this.props.dispatch(addProjectsToCodeConnect(project));
-    }
+  addProject(project) {
+    console.log(project);
+    this.props.dispatch(addProject(project));
+  }
 
-    addTask(state, ccrepo_id) {
-        this.props.dispatch(postTasksToProject(ccrepo_id, state, this.props.id));
-    }
+  toggleButton() {
+    this.setState({
+      addProjectToggle: !this.state.addProjectToggle
+    });
+  }
 
-    //gets called, when the component gets loaded
-    componentDidMount() {
-        //gets the repos from github
-        this.props.dispatch(getReposGithub('https://api.github.com/users/' + this.props.github_name + '/repos'));
-    }
+  render() {
+    const addProjectMode = this.state.addProjectToggle
+      ? (
+        <div>
+          <MentorTable onClick={this.addProject.bind(this)} datatype="project" data={this.props.addAbleProjects}/>
+          <MentorTable onClick={() => {}} datatype="project" data={this.props.addedProjects}/>
+          <Button onClick={this.toggleButton.bind(this)}>Done</Button>
+        </div>
+      )
+      : (
+        <div>
+          <MentorTable onClick={() => {}} datatype="project" data={this.props.addedProjects}/>
+          <Button onClick={this.toggleButton.bind(this)}>
+            Add Projects from Github
+          </Button>
+        </div>
+      )
+    return (
+      <div className="container" style={{
+        borderRadius: '10px',
+        background: 'white',
+        padding: '50px'
+      }}>
 
-    render() {
-        return (
-            <div>
-                <div className="container">
-                    <div className="panel">
-                        <div className="panel-heading">
-                            <h3 className="panel-title">Not Added Projects</h3>
-                        </div>
-                        <div className="panel-body">
-                            <ul className="list-group">
-                                {this.props.repos.map((item) => {
-                                    return (
-                                        <div>
-                                            <button className="list-group-item" onClick={() => this.addProject(item)}>{item.name}</button>
-                                        </div>
-                                    );
-                                })}
-                            </ul>
-                            <button className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Update Project</button>
-                        </div>
-
-                        <div className="panel-heading">
-                            <h3 className="panel-title">Your Code Connect Projects</h3>
-                        </div>
-
-                        <div className="panel-body">
-                            <ul className="list-group">
-                                {this.props.ccrepos.map((item, index) => {
-                                    return (<TaskPanel projects={item} addTask={this.addTask.bind(this)}/>);
-                                })}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+        <Row className="show-grid">
+          <Col xs={12} md={4}>
+            {addProjectMode}
+          </Col>
+          <Col xs={12} md={8}></Col>
+        </Row>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {repos: state.projects.repos, ccrepos: state.projects.ccrepos, id: state.user.github.id, github_name: state.user.github.name};
+  return {user: state.user.github, addAbleProjects: state.projects.addAbleProjects, addedProjects: state.projects.addedProjects};
 };
 
 export default connect(mapStateToProps)(Mentor);

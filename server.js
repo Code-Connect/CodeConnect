@@ -89,10 +89,13 @@ var projectController = require('./controllers/project');
 var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
 
-app.post('/postccrepo', projectController.saveProject);
+// app.post('/postccrepo', projectController.saveProject);
+app.post('/addproject', projectController.addProject);
+
 app.post('/updatetask', taskController.updateTask);
 app.post('/addtask', taskController.addTask);
 app.delete('/deletetask', taskController.deleteTask);
+
 
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
@@ -112,14 +115,18 @@ app.get('/auth/gitter/callback', passportGithub.authenticate('gitter', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-  taskController.getTasks().then(function(tasks) {
+
+  projectController.getProjects().then(function(projects) {
     var initialState = {
       user: req.user,
       tasks: {
-        mockData: tasks
+        mockData: []
+      },
+      projects: {
+        addAbleProjects:[],
+        addedProjects: projects
       }
     };
-
     var store = configureStore(initialState);
 
     Router.match({

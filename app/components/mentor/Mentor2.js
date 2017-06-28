@@ -64,7 +64,7 @@ class Mentor2 extends React.Component {
                 </InputGroup.Button>
               </InputGroup>
             </FormGroup>
-            <MentorTable tasks={this.props.tasks}/>
+            <MentorTable onClick={() => {}} datatype = "task" data={this.props.tasks}/>
           </Col>
           <Col xs={12} md={8}>
             {this.props.tasks.map((task) => {
