@@ -27,5 +27,11 @@ You should create an .env file in the root directory with your arguments of
 ## Run Tests
     npm test
 
+## Init DB
+   knex migrate:latest
+
+## Delete DB
+   knex migrate:rollback
+
 ## Start Swagger Doc  
-swagger project edit
+   swagger project edit

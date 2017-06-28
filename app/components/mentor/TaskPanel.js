@@ -1,17 +1,39 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {Panel, Button} from "react-bootstrap";
+import {
+  Panel,
+  Button,
+  Grid,
+  Col,
+  Row,
+  ButtonToolbar,
+  MenuItem,
+  DropdownButton,
+  FormGroup,
+  InputGroup,
+  FormControl
+} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import Editor from '../baukasten/Editor.js';
 import {updateTask} from '../../actions/taskActions';
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 class TaskPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: false,
-      output: false,
-      description: false
+      toggle: false,
+      rename: false,
+      name: this.props.task.name,
+      input: this.props.task.input,
+      output: this.props.task.output,
+      description: this.props.task.description
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props != nextProps) {
+      this.setState({name: nextProps.task.name, input: nextProps.task.input, output: nextProps.task.output, description: nextProps.task.description});
     }
   }
 
@@ -21,54 +43,88 @@ class TaskPanel extends React.Component {
     });
   }
 
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  renameTask(event) {
+    this.toggleButton(event);
+    this.props.saveChange({name: this.state.name, task_id: this.props.task.task_id});
+  }
+
   saveChange(event) {
     this.toggleButton(event);
-    this.props.saveChange(event);
+    this.props.saveChange({task_id: this.props.task.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
+  }
+
+  deleteTask(event) {
+    this.props.deleteTask({task_id: this.props.task.task_id});
+  }
+
+  updateCode(fieldtype, newCode) {
+    this.setState({[fieldtype]: newCode});
   }
 
   createPanel(fieldtype) {
-    const editPanel = this.state[fieldtype]
-      ? // fieldtype: input or description or output
-      (<Editor onChange={this.props.updateText.bind(this)} task_id={this.props.task.task_id} fieldtype={fieldtype} code={this.props.task[fieldtype]}/>)
-      : null;
-
-    const editOrSaveButton = this.state[fieldtype]
-      ? <Button id={this.props.task.task_id} name={fieldtype} value={this.props.task[fieldtype]} className="pull-right" onClick={this.saveChange.bind(this)}>Save</Button>
-      : <Button name={fieldtype} className="pull-right" onClick={this.toggleButton.bind(this)}>Edit</Button>
+    const editPanel = this.state.toggle
+      ? (<Editor fieldtype={fieldtype} value={this.props.task[fieldtype]} task_id={this.props.task.task_id} onChange={this.updateCode.bind(this)}/>)
+      : <ReactMarkdown source={this.props.task[fieldtype]}/>;
 
     return (
       <div>
-        <Panel header={(
-          <div>
-            {editOrSaveButton}
-            <h4>{fieldtype}</h4>
-          </div>
-        )}>
-          <ReactMarkdown source={this.props.task[fieldtype]}/> {editPanel}
-        </Panel>
+        <hr/>
+        <h4>{fieldtype}</h4>
+        {editPanel}
       </div>
     )
   }
 
   render() {
+    const editOrSaveButton = this.state.rename
+      ? null
+      : this.state.toggle
+        ? <Button className="pull-right" name="toggle" onClick={this.saveChange.bind(this)}>Save</Button>
+        : (
+          <ButtonToolbar className="pull-right">
+            <DropdownButton title="Modify" id="dropdown-size-medium">
+              <MenuItem eventKey="1" name="toggle" onClick={this.toggleButton.bind(this)}>Edit</MenuItem>
+              <MenuItem divider/>
+              <MenuItem eventKey="2" name="rename" onClick={this.toggleButton.bind(this)}>Rename</MenuItem>
+              <MenuItem divider/>
+              <MenuItem eventKey="3" bsStyle="success" onClick={this.deleteTask.bind(this)}>Delete</MenuItem>
+            </DropdownButton>
+          </ButtonToolbar>
+        )
+
+    const headerOrRenameForm = this.state.rename
+      ? <FormGroup>
+          <InputGroup>
+            <FormControl type="text" name="name" onChange ={this.handleChange.bind(this)} placeholder="Projectname" value={this.state.name}/>
+            <InputGroup.Button>
+              <Button bsStyle="success" name="rename" onClick={this.renameTask.bind(this)}>Rename</Button>
+            </InputGroup.Button>
+          </InputGroup>
+        </FormGroup>
+      : <h1>
+        {this.props.task.name}
+      </h1>
+
     return (
       <div>
-        <Panel header={< h1 > {
-          this.props.task.name
-        } < /h1>} bsStyle="warning">
-          {this.createPanel("input", this.props.task)}
-          {this.createPanel("output", this.props.task)}
-          {this.createPanel("description", this.props.task)}
-        </Panel>
+        <ScrollableAnchor id={this.props.task.task_id}>
+          <div>
+            {editOrSaveButton}
+            {headerOrRenameForm}
+            {this.createPanel("input")}
+            {this.createPanel("output")}
+            {this.createPanel("description")}
+          </div>
+        </ScrollableAnchor>
       </div>
     );
   }
 }
-
-// tasks[0] = {input: string,
-//         output: string,
-//         description: string,
-//         task_id: integer,
-//         name: string}
 
 export default(TaskPanel);

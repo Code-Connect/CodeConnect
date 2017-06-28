@@ -6,9 +6,7 @@ import ReactMarkdown from 'react-markdown'
 class TaskPreview extends Component {
 
   constructor(props) {
-
     super(props)
-
   }
 
   render() {
