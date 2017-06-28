@@ -43,7 +43,7 @@ export default function messages(projects = {}, action) {
       return Object.assign({}, projects, {ccrepos: newCCrepos});
 
     case 'GET_REPOS_FROM_GITHUB':
-      var a = projects.addAbleProject.concat(action.projects);
+      var a = projects.addAbleProjects.concat(action.projects);
 
       for (var i = 0; i < a.length; ++i) {
         for (var j = i + 1; j < a.length; ++j) {
@@ -52,7 +52,7 @@ export default function messages(projects = {}, action) {
           }
         }
 
-      return Object.assign({}, projects, {addAbleProject: a});
+      return Object.assign({}, projects, {addAbleProjects: a});
     default:
       return projects;
   }

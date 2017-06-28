@@ -23,17 +23,17 @@ class MentorTable extends React.Component {
         <Table striped bordered condensed hover>
           <thead>
             <tr>
-              <th>Project</th>
+              <th>{this.props.datatype}</th>
               {/* <th>Contributor</th> */}
             </tr>
           </thead>
           <tbody>
-            {this.props.tasks.map((task) => {
+            {this.props.data.map((item) => {
               return (
                 <tr onClick={this.onClick.bind(this)}>
                   <td>
-                    <a href={'#' + task.task_id}>
-                      {task.name}
+                    <a href={'#' + item[this.props.datatype + '_id']}>
+                      {item.name}
                     </a>
                   </td>
                 </tr>

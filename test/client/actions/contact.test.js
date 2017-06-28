@@ -17,7 +17,7 @@ describe('tasks ', () => {
   it('Add addable projects from github to state', () => {
 
     expect(reducerProject({
-      addAbleProject: [
+      addAbleProjects: [
         {
           name: "name1",
           project_id: 1
@@ -38,7 +38,7 @@ describe('tasks ', () => {
         }
       ]
     })).to.deep.equal({
-      addAbleProject: [
+      addAbleProjects: [
         {
           name: "name1",
           project_id: 1

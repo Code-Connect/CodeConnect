@@ -119,7 +119,7 @@ app.use(function(req, res) {
         mockData: tasks
       },
       projects: {
-        addAbleProject:[]
+        addAbleProjects:[]
       }
     };
     var store = configureStore(initialState);
