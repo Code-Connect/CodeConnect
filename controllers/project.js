@@ -9,10 +9,8 @@ exports.addProject = function(req, res) {
   });
 }
 
-exports.addTask = function(req, res) {
-  knex('tasks').insert({name: req.body.name}).returning('task_id').then((task_id) => {
-    knex('belongsTo').insert({user_id: req.user.github.id, task_id: task_id[0]}).then(() => {
-      res.json({success: true, task_id: task_id[0]});
-    });
+exports.getProjects = function() {
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
+      return rows;
   });
 }

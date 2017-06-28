@@ -15,10 +15,6 @@ var gitterTable = function(table) {
   table.timestamps();
 }
 
-var ownes = function(table){
-  table.string()
-}
-
 var taskTable = function(table) {
   table.increments('task_id').primary();
   table.string('input').defaultTo('Add input');

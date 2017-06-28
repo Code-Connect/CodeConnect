@@ -43,7 +43,9 @@ export default function messages(projects = {}, action) {
       return Object.assign({}, projects, {ccrepos: newCCrepos});
 
     case 'GET_REPOS_FROM_GITHUB':
+      //TODO REFACTOR!!!!!! O(n⁴)
       var a = projects.addAbleProjects.concat(action.projects);
+      var b = projects.addedProjects;
 
       for (var i = 0; i < a.length; ++i) {
         for (var j = i + 1; j < a.length; ++j) {
@@ -52,7 +54,11 @@ export default function messages(projects = {}, action) {
           }
         }
 
-      return Object.assign({}, projects, {addAbleProjects: a});
+      return Object.assign({}, projects, {addAbleProjects: a.filter((item) => {
+        b.reduce((acc, val) => {
+          return val || item.project_id == val.project_id;
+        }, false)
+      })});
 
     case 'ADD_PROJECT_SUCCESSFUL':
       var a = projects.addAbleProjects.filter((item) => item.project_id != action.project.project_id);
