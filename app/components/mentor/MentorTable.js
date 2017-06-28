@@ -11,10 +11,11 @@ class MentorTable extends React.Component {
     super(props);
   }
 
-  onClick(element) {
+  onClick(item) {
     //TODO
     //man kommt zum aktuellem Projekt
-    console.log(element.target);
+    // console.log(element.target);
+    this.props.onClick(item);
   }
 
   render() {
@@ -30,7 +31,7 @@ class MentorTable extends React.Component {
           <tbody>
             {this.props.data.map((item) => {
               return (
-                <tr onClick={this.onClick.bind(this)}>
+                <tr onClick={() =>{this.onClick(item)}}>
                   <td>
                     <a href={'#' + item[this.props.datatype + '_id']}>
                       {item.name}

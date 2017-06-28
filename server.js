@@ -93,6 +93,12 @@ app.post('/postccrepo', projectController.saveProject);
 app.post('/updatetask', taskController.updateTask);
 app.post('/addtask', taskController.addTask);
 app.delete('/deletetask', taskController.deleteTask);
+app.post('/addproject', function(req, res) {
+  console.log("hello its me");
+  console.log(req.body);
+  res.json({success: true, message: 'ok'}); // respond back to request
+
+});
 
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
@@ -119,7 +125,8 @@ app.use(function(req, res) {
         mockData: tasks
       },
       projects: {
-        addAbleProjects:[]
+        addAbleProjects:[],
+        addedProjects:[]
       }
     };
     var store = configureStore(initialState);

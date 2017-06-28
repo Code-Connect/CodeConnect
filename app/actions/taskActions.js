@@ -3,7 +3,7 @@ import 'whatwg-fetch';
 export function updateTask(task) {
   //TODO hier muss noch die richtige action gedispatcht werden
   return (dispatch) => {
-    fetch('/updatetask', {
+    return fetch('/updatetask', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -21,7 +21,7 @@ export function updateTask(task) {
 
 export function addTask(name) {
   return (dispatch) => {
-    fetch('/addtask', {
+    return fetch('/addtask', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -39,7 +39,7 @@ export function addTask(name) {
 
 export function deleteTask(task) {
   return (dispatch) => {
-    fetch('/deleteTask', {
+    return fetch('/deleteTask', {
       method: 'delete',
       headers: {
         'Accept': 'application/json',
