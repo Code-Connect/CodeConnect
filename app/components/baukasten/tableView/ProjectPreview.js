@@ -15,23 +15,15 @@ class ProjectPreview extends Component {
     const divStyle = {
       margin: "0px 0px 30px 0px"
     }
-    const divStyl = {
-      margin: "0px 0px 10px 0px",
-      boxShadow: "0 0px 4px 0 rgba(0, 0, 1, 0.2)",
-      borderRadius: "5px",
-      padding: "5px 20px 5px 20px"
-    }
-
     const tagStyle = {
       color: "#2DC263",
       padding: "0"
     }
 
     return (
-      <div className="col-md-0 hidden-sm hidden-xs" style={{
-        width: '100%',
-        height: "calc(100vh - 200px)",
-        width: "33vw"
+      <div className="col-md-0 hidden-sm hidden-xs well" style={{
+        background: "white",
+        marginTop: "30px"
       }} ref="Parent">
         <h5>
           <small style={tagStyle}>
@@ -47,25 +39,22 @@ class ProjectPreview extends Component {
             <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="icon"/>
           </div>
           <div className="col-sm-10">
-            <h3 style={{
+            <h1 style={{
               marginTop: "0"
-            }}>{this.props.title}</h3>
-            <h5>
-              <small><ReactMarkdown source={this.props.description}/></small>
-            </h5>
+            }}>{this.props.title}</h1>
+            <h4><small><ReactMarkdown source={this.props.description}/></small></h4>
           </div>
         </div>
 
         <div style={divStyle}>
-          <h5>Contributors<hr/>
-            <small>{this.props.contributors.map((user) => {
+          <h4>Contributors</h4><hr/>
+            {this.props.contributors.map((user) => {
                 return <p>{user.name + ": " + user.email}</p>
-              })}</small>
-          </h5>
+              })}
         </div>
         <div style={divStyle}>
-          <h5>Tasks</h5><hr/>
-          <TableComponent setActiveElement={() => {
+          <h4>Tasks</h4><hr/>
+          <TableComponent goTo="p" setActiveElement={() => {
             console.log("potential")
           }} labelList={this.labelList} route="task" dataList={this.props.tasks.map((task) => {
             return {

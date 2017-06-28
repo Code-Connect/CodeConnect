@@ -83,9 +83,6 @@ class TaskTableView extends Component {
   }
 
   render() {
-    const tableStyle = {
-      borderRadius: "5px"
-    }
     return( <div className="row" style={{background:"white"}}>
     <div style={{
         background: "rgb(255,255,255,1)",
@@ -93,7 +90,7 @@ class TaskTableView extends Component {
       }} className="col-md-4">
         <TableFilter filterTasks={this.filterTasks.bind(this)}/>
 
-        <TableComponent onTableItemClicked={this.focusPreview.bind(this)} setActiveElement={this.setActiveElement.bind(this)} route={"contributor#"} labelList={this.labels} dataList={this.state.data}/>
+        <TableComponent goTo={"t"} onTableItemClicked={this.focusPreview.bind(this)} setActiveElement={this.setActiveElement.bind(this)} route={""} labelList={this.labels} dataList={this.state.data}/>
       </div>
 
       <div className="col-md-8" style={{}}>

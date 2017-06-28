@@ -5,7 +5,8 @@ import ProjectPreview from "./ProjectPreview.js"
 import TableFilter from "./TableFilter.js"
 import {Table, Panel} from "react-bootstrap"
 import TableComponent from "./TableComponent.js"
-
+import PreviewList from "./PreviewList"
+import {goToAnchor} from "react-scrollable-anchor"
 /*
  * This component is responsible for displaying:
  * 		TableComponent, Table Preview
@@ -39,10 +40,8 @@ class ProjectTableView extends Component {
       }, {
         labelName: "#Task",
         labelSize: "3"
-      }, {
-        labelName: "Difficulty",
-        labelSize: "1"
-      }, {
+      },
+      {
         labelName: "#Contributor",
         labelSize: "1"
       }, {
@@ -50,70 +49,66 @@ class ProjectTableView extends Component {
         labelSize: "1"
       }
     ]
-    this.data = this.props.projects.map((item) => {
-      var temp = {
-        id: item.id,
-        data: [item.name, item.tasks.length, item.difficulty, item.contributors.length, item.status]
+    var data = this.props.projects.map((item) => {
+        return {
+          id: item.id,
+          data: [item.name, item.tasks.length, item.contributors.length, item.status]
+        }
+      })
+    this.state = {
+      activeElement: this.props.projects != []
+        ? this.props.projects[0]
+        : this.default,
+      current_projects: this.props.projects,
+      data: data
+    }
+  }
+  getCurrentData() {
+    var curProjects = this.state.current_projects == undefined
+      ? this.props.projects
+      : this.state.current_projects
+    return curProjects.map((item) => {
+      return {
+        id: item.task_id,
+        data: [item.name, item.tasks.length, item.contributors.length, item.status]
       }
-      return temp
     })
   }
-
   filterTasks(func) {
-    this.setState({current_tasks: this.props.tasks.filter(func)})
-  }
+    this.setState({
+      current_projects: this.props.projects.filter(func)
+    }, function() {
+      this.setState({data: this.getCurrentData()})
+    })  }
+
   setActiveElement(projectid) {
     var element = this.props.projects.find(x => (x.id === projectid))
-    console.log(element)
     this.setState({
       activeElement: element == undefined
         ? this.default
         : element
     })
-    this.props.setActiveProject(element.name)
   }
 
+  focusPreview(id) {
+    this.props.goToScrollable("p" + id)
+  }
+
+
   render() {
-    const tableStyle = {
-      borderRadius: "5px"
-    }
-
-    this.preview = (this.props.tasks.length !== 0)
-      ? (
-        <div className="row" style={{
-          position: "absolute",
-          top: "0"
-        }}>
-          <div className="visible-md-12 hidden-sm hidden-xs" style={{
-            background: "rgb(255,255,255,0.9)",
-            paddingLeft: "20px",
-            paddingRight: "20px",
-            position: "fixed",
-            overflowY: "auto",
-            borderRadius: "10px"
-          }}>
-
-            <ProjectPreview title={this.state.activeElement.name} description={this.state.activeElement.description} tags={this.state.activeElement.tags} contributors={this.state.activeElement.contributors} tasks={this.state.activeElement.tasks}/>
-          </div>
-        </div>
-      )
-      : null;
-
     return (
-      <div className="row">
+      <div className="row" style={{background:"white"}}>
         <div style={{
-          background: "rgb(255,255,255,0.9)",
+          background: "rgb(255,255,255,1)",
           borderRadius: "10px"
-        }} className="col-md-6">
+        }} className="col-md-4">
 
-          <TableComponent setActiveElement={this.setActiveElement.bind(this)} route={""} labelList={this.labels} dataList={this.data}/>
+          <TableComponent goTo={"p"} onTableItemClicked={this.focusPreview.bind(this)} setActiveElement={this.setActiveElement.bind(this)} route={""} labelList={this.labels} dataList={this.state.data}/>
         </div>
 
-        <div className="col-md-6" style={{
-          paddingLeft: "40px"
+        <div className="col-md-8" style={{
         }}>
-          {this.preview}
-
+            <PreviewList flag="" dataList={this.state.current_projects}/>
         </div>
       </div>
     )

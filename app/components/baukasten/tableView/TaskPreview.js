@@ -14,13 +14,6 @@ class TaskPreview extends Component {
     const divStyle = {
       margin: "0px 0px 30px 0px"
     }
-    const divStyl = {
-      margin: "0px 0px 10px 0px",
-      boxShadow: "0 0px 4px 0 rgba(0, 0, 1, 0.2)",
-      borderRadius: "5px",
-      padding: "5px 20px 5px 20px"
-    }
-
     const tagStyle = {
       color: "#2DC263"
     }

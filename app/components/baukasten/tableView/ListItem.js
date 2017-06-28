@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import {Popover, OverlayTrigger} from "react-bootstrap"
-import {browserHistory} from 'react-router'
 import {goToAnchor} from 'react-scrollable-anchor'
 
 class ListItem extends Component {
@@ -15,8 +14,14 @@ class ListItem extends Component {
   }
 
   redirect() {
-    browserHistory.push('/' + this.props.route + this.props.id);
-    this.props.onTableItemClicked(this.props.id)
+    /*if(this.props.route != ""){
+      browserHistory.push('/' + this.props.route + this.props.id);
+
+    }*/
+
+    //this.props.onTableItemClicked(this.props.id)
+    console.log("g2"+this.props.goTo)
+    goToAnchor(this.props.goTo+""+this.props.id)
   }
 
   render() {

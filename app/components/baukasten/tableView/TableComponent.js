@@ -35,7 +35,7 @@ class TableComponent extends Component {
         </thead>
         <tbody>
           {this.props.dataList.map(object => {
-            return <ListItem onTableItemClicked={this.props.onTableItemClicked} activate={this.props.setActiveElement.bind(this)} id={object.id} route={this.props.route} key={object.id} info={object.data}/>
+            return <ListItem goTo={this.props.goTo} onTableItemClicked={this.props.onTableItemClicked} activate={this.props.setActiveElement.bind(this)} id={object.id} key={object.id} info={object.data}/>
           })
 }
         </tbody>
