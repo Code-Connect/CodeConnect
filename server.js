@@ -89,16 +89,13 @@ var projectController = require('./controllers/project');
 var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
 
-app.post('/postccrepo', projectController.saveProject);
+// app.post('/postccrepo', projectController.saveProject);
+app.post('/addproject', projectController.addProject);
+
 app.post('/updatetask', taskController.updateTask);
 app.post('/addtask', taskController.addTask);
 app.delete('/deletetask', taskController.deleteTask);
-app.post('/addproject', function(req, res) {
-  console.log("hello its me");
-  console.log(req.body);
-  res.json({success: true, message: 'ok'}); // respond back to request
 
-});
 
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {

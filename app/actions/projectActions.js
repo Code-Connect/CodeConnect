@@ -51,7 +51,7 @@ export function addProject(project) {
         'Content-Type': 'application/json'
       },
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
-      body: JSON.stringify({project: project})
+      body: JSON.stringify(project)
     }).then((response) => {
       return response.json().then(function(json) {
         console.log(json);
