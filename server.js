@@ -91,6 +91,7 @@ var passportGithub = require('./controllers/gitlogin');
 
 // app.post('/postccrepo', projectController.saveProject);
 app.post('/addproject', projectController.addProject);
+app.get('/project', projectController.getProjects);
 
 app.post('/updatetask', taskController.updateTask);
 app.post('/addtask', taskController.addTask);
@@ -122,7 +123,7 @@ app.use(function(req, res) {
         mockData: []
       },
       projects: {
-        addAbleProjects:[],
+        addableProjects:[],
         addedProjects: projects
       }
     };

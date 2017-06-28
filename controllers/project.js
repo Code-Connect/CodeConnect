@@ -11,6 +11,21 @@ exports.addProject = function(req, res) {
 
 exports.getProjects = function() {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
+    console.log(rows[0]);
+      //ich versuche alle sachen zu triggern und am ende dann tasks innerhalb von den projekten wiederfinden kann
       return rows;
+  });
+}
+
+exports.getProjectsAndTasks = function(){
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
+    return Promise.all(rows.map((item) => {
+      console.log(item);
+      return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
+          // console.log(rows[0]);
+          //ich versuche alle sachen zu triggern und am ende dann tasks innerhalb von den projekten wiederfinden kann
+          return rows;
+      });
+    }));
   });
 }

@@ -16,7 +16,7 @@ describe('projects', () => {
   it('added projects successful', () => {
 
     expect(reducerProject({
-      addAbleProjects: [
+      addableProjects: [
         {
           name: "name1",
           project_id: 1
@@ -33,7 +33,7 @@ describe('projects', () => {
         project_id: 2
       }
     })).to.deep.equal({
-      addAbleProjects: [
+      addableProjects: [
         {
           name: "name1",
           project_id: 1
@@ -51,7 +51,7 @@ describe('projects', () => {
   it('Add addable projects from github to state', () => {
 
     expect(reducerProject({
-      addAbleProjects: [
+      addableProjects: [
         {
           name: "name1",
           project_id: 1
@@ -72,7 +72,7 @@ describe('projects', () => {
         }
       ]
     })).to.deep.equal({
-      addAbleProjects: [
+      addableProjects: [
         {
           name: "name1",
           project_id: 1
