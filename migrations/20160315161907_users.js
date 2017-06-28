@@ -15,6 +15,10 @@ var gitterTable = function(table) {
   table.timestamps();
 }
 
+var ownes = function(table){
+  table.string()
+}
+
 var taskTable = function(table) {
   table.increments('task_id').primary();
   table.string('input').defaultTo('Add input');
@@ -45,6 +49,12 @@ var hasTask = function(table){
   table.timestamps();
 }
 
+var isMentor = function(table){
+  table.integer('user_id').references('github.id');
+  table.integer('project_id').references('projects.project_id');
+  table.timestamps();
+}
+
 var belongsTo = function(table) {
   table.integer('user_id').references('github.id');
   table.integer('task_id').references('tasks.task_id');
@@ -52,9 +62,9 @@ var belongsTo = function(table) {
 }
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('github', githubTable).createTable('gitter', gitterTable).createTable('tasks', taskTable).createTable('participate', participate).createTable('belongsTo', belongsTo).createTable('projects', projectTable).createTable('hasTask', hasTask);
+  return knex.schema.createTable('github', githubTable).createTable('gitter', gitterTable).createTable('tasks', taskTable).createTable('participate', participate).createTable('belongsTo', belongsTo).createTable('projects', projectTable).createTable('hasTask', hasTask).createTable('isMentor', isMentor);
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('participate').dropTable('belongsTo').dropTable('hasTask').dropTable('github').dropTable('tasks').dropTable('gitter').dropTable('projects');
+  return knex.schema.dropTable('participate').dropTable('isMentor').dropTable('belongsTo').dropTable('hasTask').dropTable('github').dropTable('tasks').dropTable('gitter').dropTable('projects');
 };

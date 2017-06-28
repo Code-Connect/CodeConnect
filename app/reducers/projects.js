@@ -53,6 +53,17 @@ export default function messages(projects = {}, action) {
         }
 
       return Object.assign({}, projects, {addAbleProjects: a});
+
+    case 'ADD_PROJECT_SUCCESSFUL':
+      var a = projects.addAbleProjects.filter((item) => item.project_id != action.project.project_id);
+      console.log(a);
+      return Object.assign({}, projects, {
+        addAbleProjects: a,
+        addedProjects: [
+          ...projects.addedProjects,
+          action.project
+        ]
+      })
     default:
       return projects;
   }

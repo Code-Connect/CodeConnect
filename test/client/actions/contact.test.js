@@ -8,12 +8,46 @@ import * as actions from '../../../app/actions/mentor';
 import reducer from '../../../app/reducers/tasks'
 import reducerProject from '../../../app/reducers/projects'
 
-
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-describe('tasks ', () => {
-  //TODO
+describe('projects', () => {
+
+  it('added projects successful', () => {
+
+    expect(reducerProject({
+      addAbleProjects: [
+        {
+          name: "name1",
+          project_id: 1
+        }, {
+          name: "name2",
+          project_id: 2
+        }
+      ],
+      addedProjects: []
+    }, {
+      type: 'ADD_PROJECT_SUCCESSFUL',
+      project: {
+        name: "name2",
+        project_id: 2
+      }
+    })).to.deep.equal({
+      addAbleProjects: [
+        {
+          name: "name1",
+          project_id: 1
+        }
+      ],
+      addedProjects: [
+        {
+          name: "name2",
+          project_id: 2
+        }
+      ]
+    });
+  });
+
   it('Add addable projects from github to state', () => {
 
     expect(reducerProject({
@@ -52,6 +86,10 @@ describe('tasks ', () => {
       ]
     });
   });
+});
+
+describe('tasks ', () => {
+  //TODO
 
   it('test action for adding task', () => {
 

@@ -54,8 +54,7 @@ export function addProject(project) {
       body: JSON.stringify(project)
     }).then((response) => {
       return response.json().then(function(json) {
-        console.log(json);
-        return dispatch({type: 'UPDATE_PROJECT_SUCCESSFUL', project: project});
+        return dispatch({type: 'ADD_PROJECT_SUCCESSFUL', project: project});
       });
     });
   }
