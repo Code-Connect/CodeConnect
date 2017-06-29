@@ -8,6 +8,7 @@ import {
     Button,
     Col
 } from "react-bootstrap";
+import ReactMarkdown from 'react-markdown';
 
 class ProjectPanel extends React.Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class ProjectPanel extends React.Component {
     render() {
         return (
             <div>
-              ProjectPanel
+              {this.props.project.name}
+              <ReactMarkdown>{this.props.project.description} </ReactMarkdown>
             </div>
         )
     }

@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import {getOrgsProject, getUserProject} from './../../actions/projectActions';
 import MentorTable from './MentorTable';
+import ProjectPanel from './ProjectPanel';
 import {addProject} from '../../actions/projectActions';
 
 class Mentor extends React.Component {
@@ -33,7 +34,7 @@ class Mentor extends React.Component {
     this.props.dispatch(addProject(project));
   }
 
-  onClick(project){
+  onClick(project) {
     console.log(project);
   }
 
@@ -75,7 +76,10 @@ class Mentor extends React.Component {
             {this.props.addedProjects.map((project) => {
               return (
                 <div>
-                  <Button onClick= {() => this.onClick(project)}> {project.name} </Button>
+                  {/* <Button onClick= {() => this.onClick(project)}>
+                    {project.name}
+                  </Button> */}
+                  <ProjectPanel project = {project}/>
                   <hr/>
                 </div>
               )
