@@ -24,6 +24,7 @@ export default function getRoutes(store) {
             <Route path="/home" component={HomePage} onLeave={clearMessages}/>
             <Route path="/contributor" component={Contributor} onLeave={clearMessages}/>
             <Route path="/contributor/tasks" component={Contributor} onLeave={clearMessages}/>
+            <Route path="/contributor/tasks/:p" component={Contributor} onLeave={clearMessages}/>
             <Route path="/contributor/projects" component={Contributor} onLeave={clearMessages}/>
             <Route path="/editor" component={Editor} onLeave={clearMessages}/>
             <Route path="/task/:task" component={TaskView} onLeave={clearMessages}/>

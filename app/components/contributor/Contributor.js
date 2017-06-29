@@ -23,16 +23,33 @@ class Contributor extends React.Component {
     super(props);
     this.query = require('json-query')
 
-    let showProjects = (this.props.location.pathname === "/contributor/projects")
+    var pathname = this.props.location.pathname
+    let showProjects = (pathname === "/contributor/projects")
     console.log(this.props.location.pathname+";"+showProjects)
 
-    this.state = {
-      showProjects: showProjects,
-      tasks: this.query('projects.tasks', {
+    var showSpecificProject = false
+    var projID
+    if(!showProjects){
+      // contributor/tasks/p1
+      showSpecificProject = pathname.substring(0,20) === "/contributor/tasks/p"
+      projID = pathname.substring(20,pathname.length)
+    }
+
+    var displayedTasks = !showSpecificProject ? this.query('projects.tasks', {
         data: {
           projects: this.props.projects
         }
-      }).value,
+      }).value
+      :
+      this.query('projects[id='+projID+'].tasks', {
+        data: {
+          projects: this.props.projects
+        }
+      }).value
+
+    this.state = {
+      showProjects: showProjects,
+      tasks: displayedTasks,
       directory: ["ALL TASKS"],
       justSet: false
     }
