@@ -75,7 +75,7 @@ class Mentor extends React.Component {
             {this.props.addedProjects.map((project) => {
               return (
                 <div>
-                  <Button onClick= {(project) => this.onClick(project)}> {project.name} </Button>
+                  <Button onClick= {() => this.onClick(project)}> {project.name} </Button>
                   <hr/>
                 </div>
               )

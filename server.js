@@ -92,11 +92,16 @@ var passportGithub = require('./controllers/gitlogin');
 // app.post('/postccrepo', projectController.saveProject);
 app.post('/addproject', projectController.addProject);
 app.get('/project', projectController.getProjects);
+app.get('/test', (req, res) => {
+  console.log("gwankster");
+  projectController.getProjectsAndTasks().then((project) => {
+    res.json(project);
+  })
+});
 
 app.post('/updatetask', taskController.updateTask);
 app.post('/addtask', taskController.addTask);
 app.delete('/deletetask', taskController.deleteTask);
-
 
 app.get('/auth/github', passportGithub.authenticate('github'));
 app.get('/auth/github/callback', passportGithub.authenticate('github', {failureRedirect: '/'}), function(req, res) {
@@ -116,14 +121,14 @@ app.get('/auth/gitter/callback', passportGithub.authenticate('gitter', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-  projectController.getProjects().then(function(projects) {
+  projectController.getProjectsAndTasks().then(function(projects) {
     var initialState = {
       user: req.user,
       tasks: {
         mockData: []
       },
       projects: {
-        addableProjects:[],
+        addableProjects: [],
         addedProjects: projects
       }
     };

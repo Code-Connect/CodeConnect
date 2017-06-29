@@ -20,7 +20,8 @@ class Mentor2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputfield: ''
+      inputfield: '',
+      project_id: 79136363
     };
   }
 
@@ -37,7 +38,7 @@ class Mentor2 extends React.Component {
   }
 
   addTask(event) {
-    this.props.dispatch(addTask(this.state.inputfield));
+    this.props.dispatch(addTask(this.state.inputfield, this.state.project_id));
   }
 
   handleInputChange(event) {
