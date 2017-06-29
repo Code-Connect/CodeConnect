@@ -33,6 +33,10 @@ class Mentor extends React.Component {
     this.props.dispatch(addProject(project));
   }
 
+  onClick(project){
+    console.log(project);
+  }
+
   toggleButton() {
     this.setState({
       addProjectToggle: !this.state.addProjectToggle
@@ -68,10 +72,10 @@ class Mentor extends React.Component {
             {addProjectMode}
           </Col>
           <Col xs={12} md={8}>
-            {this.props.addedProjects.map((task) => {
+            {this.props.addedProjects.map((project) => {
               return (
                 <div>
-                  {/* <TaskPanel task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/> */}
+                  <Button onClick= {(project) => this.onClick(project)}> {project.name} </Button>
                   <hr/>
                 </div>
               )

@@ -54,11 +54,9 @@ export default function messages(projects = {}, action) {
           }
         }
 
-      return Object.assign({}, projects, {addableProjects: a.filter((item) => {
-        b.reduce((acc, val) => {
-          return val || item.project_id == val.project_id;
-        }, false)
-      })});
+      return Object.assign({}, projects, {
+        addableProjects: a
+      });
 
     case 'ADD_PROJECT_SUCCESSFUL':
       var a = projects.addableProjects.filter((item) => item.project_id != action.project.project_id);

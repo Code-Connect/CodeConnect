@@ -21,10 +21,10 @@ class TaskView extends React.Component {
 
     this.query = require('json-query')
     var tasks = this.query('projects.tasks', {
-        data: {
-          projects: this.props.projects
-        }
-      }).value
+      data: {
+        projects: this.props.projects
+      }
+    }).value
 
     var task = tasks.find((task) => {
       console.log(task)
