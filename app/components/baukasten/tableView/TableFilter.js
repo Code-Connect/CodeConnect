@@ -9,7 +9,7 @@ class TableFilter extends Component {
             currentValue: 5,
             searchID: false,
             searchTitle: false,
-            searchTags: false
+            searchTags: false,
         }
     }
 
@@ -38,7 +38,6 @@ class TableFilter extends Component {
             )
         )
     }
-
     handleInputChange(e){
         this.setState( {value: e.target.value},
             ()=>(this.props.filterTasks((task)=>{return this.filterByText(task)||this.filterByTags(task.tags)})))
@@ -54,19 +53,6 @@ class TableFilter extends Component {
         return (
             <div>
                 <form>
-									<FormGroup>
-									      <Checkbox inline>
-									        1
-									      </Checkbox>
-									      {' '}
-									      <Checkbox inline>
-									        2
-									      </Checkbox>
-									      {' '}
-									      <Checkbox inline>
-									        3
-									      </Checkbox>
-									    </FormGroup>
                     <FormGroup
                         controlId="formBasicText"
                     >

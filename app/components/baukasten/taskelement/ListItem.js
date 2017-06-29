@@ -1,30 +1,34 @@
 import React, {Component} from "react"
 import {Popover, OverlayTrigger} from "react-bootstrap"
+import {Link, Router, browserHistory} from 'react-router'
 
 
 class ListItem extends Component {
 
-    constructor(props){
-        super(props)
-    }
+  constructor(props){
+    super(props)
+  }
 
-   activate(){
-        this.props.activate( this.props.id)
-    }
+  activate(){
+    this.props.activate( this.props.id)
+  }
 
-    render () {
-        return (
-        <tr onMouseEnter={this.activate.bind(this)}>
-            <td className="col-md-2">{this.props.id}</td>
-            <td className="col-md-4">{this.props.title}</td>
-            <td className="col-md-2">{this.props.difficulty}</td>
-            <td className="col-md-1">{this.props.solutions}</td>
-            <td className="col-md-3">{this.props.status}</td>
-        </tr>
-        )
 
-    }
+  redirect(){
+    browserHistory.push('/task'+this.props.id);
+  }
 
+  render () {
+    return (
+      <tr style={{cursor:"pointer"}} onMouseEnter={this.activate.bind(this)} onClick={this.redirect.bind(this)}>
+        <td>{this.props.projectName}</td>
+        <td>{this.props.title}</td>
+        <td>{this.props.difficulty}</td>
+        <td>{this.props.solutions}</td>
+        <td>{this.props.status}</td>
+      </tr>
+    )
+  }
 }
 
 export default ListItem

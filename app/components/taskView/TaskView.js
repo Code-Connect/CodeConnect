@@ -1,138 +1,115 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {getReposGithub, addProjectToCodeConnect} from '../../actions/mentor';
-import TaskBlock from '../baukasten/Taskblock.js'
-import EditPanel from '../baukasten/EditPanel.js';
-import {browserHistory} from 'react-router'
+import {Panel} from "react-bootstrap";
+import ReactMarkdown from 'react-markdown'
 import {
-  Panel,
-  NavItem,
-  Nav,
-  Row,
+  ControlLabel,
+  Modal,
+  Button,
+  Form,
   Col,
-  Glyphicon
+  FormGroup,
+  InputGroup,
+  FormControl
 } from "react-bootstrap";
-//import TaskTable from '../baukasten/tableView/TableComponent'
-import TableComponent from '../baukasten/tableView/TableComponent'
-import TaskTableView from '../baukasten/tableView/TaskTableView'
-import {Radio, FormControl, FormGroup, Breadcrumb} from 'react-bootstrap'
-import ProjectTableView from '../baukasten/tableView/ProjectTableView'
 
-class Contributor extends React.Component {
-    constructor(props) {
+class TaskView extends React.Component {
+  constructor(props) {
     super(props);
+    var taskid = 0
+    taskid = parseInt(this.props.location.pathname.substring(6))
+
     this.query = require('json-query')
-
-    let showProjects = (this.props.location.pathname === "/contributor/projects")
-    console.log(this.props.location.pathname+";"+showProjects)
-
-    this.state = {
-      showProjects: showProjects,
-      tasks: this.query('projects.tasks', {
+    var tasks = this.query('projects.tasks', {
         data: {
           projects: this.props.projects
         }
-      }).value,
-      directory: ["ALL TASKS"],
-      justSet: false
-    }
-  }
+      }).value
 
-
-  componentWillReceiveProps(){
-    var show = (this.props.location.pathname == "/contributor/projects")
-    console.log("show"+this.state.showProjects)
-    console.log("show"+this.props.location.pathname)
-    console.log("justset"+ this.state.justSet)
-
-    this.setState ( {
-      showProjects: this.state.justSet? this.state.showProjects : show
-    }, this.setState({justSet: false}))
-  }
-
-  toggleView(event) {
-    var route = !this.state.showProjects? "/contributor/projects": "/contributor/tasks"
-    console.log("pushing"+route)
-    var dir = !this.state.showProjects
-      ? ["PROJECTS"]
-      : ["TASKS", "ALL"]
-    this.setState({
-      directory: dir,
-      showProjects: !this.state.showProjects,
-      justSet: true
-    },
-    function(){browserHistory.push(route)})
-  }
-
-  //gets called, when the component gets loaded
-  componentDidMount() {
-    //gets the repos from github
-  }
-
-  setActiveProject(name) {
-    this.setState({
-      directory: ["PROJECTS", name]
+    var task = tasks.find((task) => {
+      console.log(task)
+      return task.task_id == taskid
     })
+    if (task == undefined) {
+      task = {
+        name: "No Task Found",
+        description: "No idea why"
+      }
+    }
+    this.state = {
+      task: task,
+      showContact: false
+    }
+
+  }
+
+  openContact() {
+    this.setState({showContact: true})
+  }
+
+  closeContact() {
+    this.setState({showContact: false})
   }
 
   render() {
-
-    const taskTableView = <TaskTableView tasks={this.state.tasks}/>
-
-    const projectTableView = <ProjectTableView setActiveProject={this.setActiveProject.bind(this)} projects={this.props.projects} tasks={this.props.tasks} flag="task" route="task" labelList={this.labels} dataList={this.data}/>
-
+    const formStyle = {
+      border: "0px",
+      boxShadow: "none"
+    }
     return (
-      <div style={{
-        borderRadius: '10px',
-        padding: '50px',
-        paddingTop: '0px'
-      }}>
-        <div>
-          <div className="row" style={{
-            marginBottom: "20px"
-          }}>
-            <div className="col-sm-2" style={{
-              background: "white",
-              width: "200px",
-              height: "30px",
-              borderRadius: "5px"
+      <div>
+        <div className="container" style={{
+          background: "white",
+          borderRadius: "10px"
+        }}>
+          <Modal show={this.state.showContact} onHide={this.closeContact.bind(this)}>
+            <Modal.Header closeButton style={{
+              background: "#2BC062"
             }}>
-              <form>
-                <FormGroup >
-                  <Radio onChange={this.toggleView.bind(this)} checked={!this.state.showProjects} name="radiogrp" inline>
-                    Tasks
-                  </Radio>
-                  {' '}
-                  <Radio onChange={this.toggleView.bind(this)} checked={this.state.showProjects} name="radiogrp" inline>
-                    Project
-                  </Radio>
-
+              <Modal.Title>Contact Mentor</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form horizontal>
+                <FormGroup controlId="formHorizontalSubject">
+                  <Col componentClass={ControlLabel} sm={2}>
+                    Subject
+                  </Col>
+                  <Col sm={10}>
+                    <FormControl style={formStyle} bsSize="small" value={"[" + this.state.task.task_id + ": " + this.state.task.name + "] Participation Request"}/>
+                  </Col>
                 </FormGroup>
-              </form>
-            </div>
-            <div className="col-sm-4 " style={{
-              marginLeft: "30px",
-              background: "white",
-              width: "300px",
-              height: "30px",
-              borderRadius: "5px"
-            }}>
-              <Breadcrumb style={{
-                padding: "0px",
-                background: "white"
-              }}>
-                {this.state.directory.map((item, index) => {
-                  return <Breadcrumb.Item key={index} href="#">
-                    {item}
-                  </Breadcrumb.Item>
-                })}
-              </Breadcrumb>
-            </div>
+                <hr/>
+                <FormGroup controlId="formHorizontalEmail">
+                  <Col componentClass={ControlLabel} sm={2}>
+                    Message
+                  </Col>
+                  <Col sm={10}>
+                    <FormControl style={formStyle} placeholder="Write a message!"/>
+                  </Col>
+                </FormGroup>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.closeContact.bind(this)}>Send</Button>
+            </Modal.Footer>
+          </Modal>
+          <div style={{
+            margin: "20px"
+          }}>
+            <h3>{this.state.task.name}
+              <Button onClick={this.openContact.bind(this)} bsStyle="success" style={{
+                float: "right"
+              }}>Contact</Button>
+            </h3>
+            <hr/>
+            <ReactMarkdown source={this.state.task.description}/>
+            <hr/>
+            <h4>Input</h4><br/>
+            <ReactMarkdown source={this.state.task.input}/>
+            <hr/>
+            <h4>Output</h4><br/>
+            <ReactMarkdown source={this.state.task.output}/>
           </div>
-
-          {this.state.showProjects
-            ? projectTableView
-            : taskTableView}
         </div>
       </div>
     );
@@ -388,8 +365,7 @@ const mapStateToProps = (state) => {
       }
 
     ]
-
   };
 };
 
-export default connect(mapStateToProps)(Contributor);
+export default connect(mapStateToProps)(TaskView);

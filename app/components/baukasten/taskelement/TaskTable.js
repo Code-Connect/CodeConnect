@@ -9,6 +9,7 @@ class TaskTable extends Component {
   constructor(props) {
     super(props)
     this.state = {
+
       current_title: "Task Preview",
       current_description: "You can see the task preview once you hover over the table rows",
       current_output: "",
@@ -16,6 +17,7 @@ class TaskTable extends Component {
       current_tasks: this.props.tasks,
       current_tags: ["tags here"]
     }
+		console.log(this.props.test)
 
   }
 
@@ -46,6 +48,7 @@ class TaskTable extends Component {
       <div className="row" style={{
         background: 'white'
       }}>
+			{this.props.test}
 
         <StickyContainer style={{
           height: '600'
@@ -55,23 +58,24 @@ class TaskTable extends Component {
             <Table striped bordered condensed hover style={tableStyle}>
               <thead>
                 <tr>
-                  <th className="col-md-2">#</th>
-                  <th className="col-md-4">Title</th>
-                  <th className="col-md-2">Difficulty</th>
+                  <th className="col-md-4">Project</th>
+                  <th className="col-md-5">Task</th>
+                  <th className="col-md-1">Difficulty</th>
                   <th className="col-md-1">#Solutions</th>
-                  <th className="col-md-3">Status</th>
+                  <th className="col-md-1">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {this.state.current_tasks.map((task) => {
-                  return <ListItem activate={this.setActiveElement.bind(this)} id={task.task_id} key={task.task_id} description={task.description} title={task.name} difficulty={task.difficulty} solutions={task.solutions} status={task.status}/>
+                  return <ListItem activate={this.setActiveElement.bind(this)} 
+							 projectName="In depth ML for ct"	id={task.task_id} key={task.task_id} description={task.description} title={task.name} difficulty={task.difficulty} solutions={task.solutions} status={task.status}/>
                 })
 }
               </tbody>
             </Table>
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md-6 ">
             <Sticky topOffset={-80}>
               {({
                 isSticky,

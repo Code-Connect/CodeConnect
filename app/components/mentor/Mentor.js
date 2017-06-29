@@ -71,7 +71,7 @@ class Mentor extends React.Component {
             {this.props.addedProjects.map((task) => {
               return (
                 <div>
-                  <TaskPanel task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
+                  {/* <TaskPanel task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/> */}
                   <hr/>
                 </div>
               )
