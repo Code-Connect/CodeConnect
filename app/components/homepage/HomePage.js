@@ -31,6 +31,7 @@ class HomePage extends Component {
                           <Col xs={ 1 }/>
                       </Row>
                   </Grid>
+                <iframe className="try-git" scrolling="no" src="https://try.github.io/"/>
             </div>
         );
     }
