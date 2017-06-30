@@ -19,7 +19,7 @@ export function updateTask(task) {
   };
 }
 
-export function addTask(name) {
+export function addTask(name, project_id) {
   return (dispatch) => {
     return fetch('/addtask', {
       method: 'post',
@@ -28,10 +28,10 @@ export function addTask(name) {
         'Content-Type': 'application/json'
       },
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
-      body: JSON.stringify({name: name})
+      body: JSON.stringify({name: name, project_id: project_id})
     }).then((response) => {
       return response.json().then(function(json) {
-        return dispatch({type: 'ADD_TASK_SUCCESSFUL', name: name, task_id: json.task_id});
+        return dispatch({type: 'ADD_TASK_SUCCESSFUL', name: name, task_id: json.task_id, project_id: project_id});
       });
     });
   }

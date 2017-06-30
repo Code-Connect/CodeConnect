@@ -9,10 +9,7 @@ describe('GET /', function() {
   });
 });
 
-describe('POST /updatetask', function() {
+describe('GET /test', function() {
   it('should render ok', function(done) {
-    request(server)
-      .post('/updatetask')
-      .expect(200, {test:true}, done);
   });
 });

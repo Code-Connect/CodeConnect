@@ -43,20 +43,20 @@ export default function messages(projects = {}, action) {
       return Object.assign({}, projects, {ccrepos: newCCrepos});
 
     case 'GET_REPOS_FROM_GITHUB':
-      //TODO REFACTOR!!!!!! O(n⁴)
       var a = projects.addableProjects.concat(action.projects);
       var b = projects.addedProjects;
 
-      for (var i = 0; i < a.length; ++i) {
-        for (var j = i + 1; j < a.length; ++j) {
-          if (a[i].project_id == a[j].project_id)
-            a.splice(j--, 1);
-          }
-        }
-
-      return Object.assign({}, projects, {
-        addableProjects: a
+      a = a.filter(function(item, pos) {
+        return a.indexOf(item) == pos;
       });
+
+      a = a.filter(function(item) {
+        return !(b.reduce(function(acc, val) {
+          return (acc || (item.project_id == val.project_id))
+        }, false))
+      });
+
+      return Object.assign({}, projects, {addableProjects: a});
 
     case 'ADD_PROJECT_SUCCESSFUL':
       var a = projects.addableProjects.filter((item) => item.project_id != action.project.project_id);

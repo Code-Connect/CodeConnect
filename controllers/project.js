@@ -12,19 +12,18 @@ exports.addProject = function(req, res) {
 exports.getProjects = function() {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
     console.log(rows[0]);
-      //ich versuche alle sachen zu triggern und am ende dann tasks innerhalb von den projekten wiederfinden kann
-      return rows;
+    //ich versuche alle sachen zu triggern und am ende dann tasks innerhalb von den projekten wiederfinden kann
+    return rows;
   });
 }
 
-exports.getProjectsAndTasks = function(){
+exports.getProjectsAndTasks = function() {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
     return Promise.all(rows.map((item) => {
-      console.log(item);
-      return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
-          // console.log(rows[0]);
-          //ich versuche alle sachen zu triggern und am ende dann tasks innerhalb von den projekten wiederfinden kann
-          return rows;
+      return knex.select('tasks.task_id', 'input', 'output', 'description', 'name', 'difficulty', 'tags', 'attempts').from('tasks').join('hasTask', function() {
+          this.on('tasks.task_id', '=', 'hasTask.task_id')
+      }).where('hasTask.project_id', '=', item.project_id).then(function(task) {
+        return Object.assign({}, item, {tasks: task});
       });
     }));
   });

@@ -15,12 +15,20 @@ import Editor from '../baukasten/Editor.js';
 import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
 import TaskPanel from './TaskPanel';
 import MentorTable from './MentorTable';
+import jsonQuery from 'json-query';
 
 class Mentor2 extends React.Component {
   constructor(props) {
     super(props);
+    var a = jsonQuery('projects[project_id=79136363]', {
+      data: {
+        projects: this.props.projects
+      }
+    }).value;
     this.state = {
-      inputfield: ''
+      inputfield: '',
+      project_id: this.props.params.project,
+      projects: a.tasks
     };
   }
 
@@ -37,7 +45,7 @@ class Mentor2 extends React.Component {
   }
 
   addTask(event) {
-    this.props.dispatch(addTask(this.state.inputfield));
+    this.props.dispatch(addTask(this.state.inputfield, this.state.project_id));
   }
 
   handleInputChange(event) {
@@ -64,10 +72,10 @@ class Mentor2 extends React.Component {
                 </InputGroup.Button>
               </InputGroup>
             </FormGroup>
-            <MentorTable onClick={() => {}} datatype = "task" data={this.props.tasks}/>
+            <MentorTable onClick={() => {}} datatype = "task" data={this.state.projects}/>
           </Col>
           <Col xs={12} md={8}>
-            {this.props.tasks.map((task) => {
+            {this.state.projects.map((task) => {
               return (
                 <div>
                   <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
@@ -83,7 +91,7 @@ class Mentor2 extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {tasks: state.tasks.mockData};
+  return {projects: state.projects.addedProjects};
 };
 
 export default connect(mapStateToProps)(Mentor2);

@@ -24,7 +24,7 @@ class TaskPreview extends Component {
 				marginTop: "30px"
       }} ref="Parent">
 
-        <h5 style={tagStyle}>
+        {/* <h5 style={tagStyle}>
           <small style={{
             padding: "0px"
           }}>
@@ -33,7 +33,7 @@ class TaskPreview extends Component {
               })}</b>
           </small>
         </h5>
-        <hr/>
+        <hr/> */}
         <div style={divStyle}>
           <h1>{this.props.title}</h1>
           <hr/><ReactMarkdown source={this.props.description}/>
