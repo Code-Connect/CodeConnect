@@ -8,14 +8,14 @@ class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tutorial: <p>Choose to be a Contributor or Mentor. Then see How it is done...</p>
+            tutorial: <p className="text-center">Choose to be a Contributor or Mentor. Then see How it is done...</p>
         }
     }
     render() {
         return (
             <div className="HomePage">
                 <Logo/>
-                <h3>Ready to get started?</h3>
+                <h3 className="text-center">Ready to get started?</h3>
                 <Grid fluid={true}>
                     <Row>
                         <Col xs={6} md={6} sm={6} lg={6} style={{
@@ -24,8 +24,7 @@ class HomePage extends Component {
                             <OverlayTrigger placement="left" overlay={this.buildTooltipContributor()}>
                                 <Button onClick={this.contributor.bind(this)}
                                         bsStyle="success" style={{
-                                    paddingLeft: '6%',
-                                    paddingRight: '6%'
+                                    minWidth: '30%',
                                 }} bsSize="large">
                                     Contributor
                                 </Button>
@@ -36,8 +35,7 @@ class HomePage extends Component {
                             <OverlayTrigger placement="right" overlay={this.buildTooltipMentor()}>
                                 <Button onClick={this.mentor.bind(this)}
                                         bsStyle="warning" style={{
-                                    paddingRight: '10%',
-                                    paddingLeft: '10%'
+                                    minWidth: '30%',
                                 }} bsSize="large">
                                     Mentor
                                 </Button>
