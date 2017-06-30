@@ -4,7 +4,7 @@ import App from "./components/App";
 import MentorTask from "./components/mentor/Mentor2";
 import Mentor from "./components/mentor/Mentor";
 import NotFound from "./components/NotFound";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/homepage/HomePage";
 import Contributor from "./components/contributor/Contributor";
 import Editor from "./components/baukasten/Editor";
 import TaskView from "./components/taskView/TaskView";

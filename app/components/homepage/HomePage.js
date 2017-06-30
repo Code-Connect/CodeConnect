@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from "react";
-import {Grid, Row, Col, Image, PageHeader} from "react-bootstrap";
+import React, {Component} from "react";
+import {Col, Grid, Image, PageHeader, Row} from "react-bootstrap";
 
 class HomePage extends Component {
 
