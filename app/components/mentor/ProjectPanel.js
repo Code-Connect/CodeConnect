@@ -9,6 +9,7 @@ import {
   Col
 } from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
+import ProjectPreview from '../baukasten/tableView/ProjectPreview'
 
 class ProjectPanel extends React.Component {
   constructor(props) {
@@ -25,16 +26,7 @@ class ProjectPanel extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.props.project.name}
-        <ReactMarkdown>{this.props.project.description}
-        </ReactMarkdown>
-        <a style={{
-          padding: "10px",
-          float: "right",
-          borderRadius: "5px"
-        }} className="btn-success" href={"/mentor/" + this.props.project.project_id}>Details</a>
-      </div>
+      <ProjectPreview short={true} tags={[]} id={this.props.project.id} title={this.props.project.name} description={this.props.project.description}/>
     )
   }
 }

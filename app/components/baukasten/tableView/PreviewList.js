@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import TaskPreview from './TaskPreview'
 import ProjectPreview from './ProjectPreview'
 import ScrollableAnchor, {goToAnchor} from 'react-scrollable-anchor'
+import IntroPreview from './IntroPreview'
 
 /*
 ** This component is responsible for displaying all the Tasks/Projects Previews in one div
@@ -26,7 +27,9 @@ class PreviewList extends Component {
   render() {
 
     return (
-      < div > {
+      < div >
+      <IntroPreview/>
+       {
       this.props.flag == "task"
         ? this.props.dataList.map((item) => {
           return <ScrollableAnchor key={item.task_id} id={"t" + item.task_id}><TaskPreview key={item.task_id} description={item.description} input={item.input} output={item.output} tags={item.tags} title={item.name}/></ScrollableAnchor>
