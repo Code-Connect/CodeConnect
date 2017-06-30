@@ -25,7 +25,7 @@ class TryGitModal extends Component {
                         <Modal.Title id="contained-modal-title-lg">How to use GitHub</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <iframe className="try-git" name="try-git" scrolling="no" src="https://try.github.io/"/>
+                        <iframe className="try-git" name="try-git" src="https://try.github.io/"/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.hideModal.bind(this)}>Close</Button>

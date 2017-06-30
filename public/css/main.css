@@ -5844,19 +5844,11 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
-
 .modal-body .try-git {
     width: 100%;
     min-height: 100%;
-    height: 1000px;
+    height: 75vh;
     border: none;
-    overflow: hidden;
-}
-
-@media (max-width: 970px) {
-    .modal-body .try-git {
-        height: 1260px;
-    }
 }
 
 .custom-modal {
