@@ -1,11 +1,13 @@
-.try-git {
-  width: 100%;
-  min-height: 100%;
-  height: 1000px;
-  border: none;
-  overflow: hidden;
+.HomePage {
+  .try-git {
+    width: 100%;
+    min-height: 100%;
+    height: 1000px;
+    border: none;
+    overflow: hidden;
 
-  @media (max-width: 970px) {
-    height: 1260px;
+    @media (max-width: 970px) {
+      height: 1260px;
+    }
   }
 }

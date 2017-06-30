@@ -13,7 +13,7 @@ class HomePage extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="HomePage">
                 <Logo/>
                 <h3>Ready to get started?</h3>
                 <Grid fluid={true}>

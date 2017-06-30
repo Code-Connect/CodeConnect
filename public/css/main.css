@@ -3758,7 +3758,6 @@ tbody.collapse.in {
         overflow: visible !important; }
       .navbar-collapse.in {
         overflow-y: visible; }
-
       .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
         padding-left: 0;
         padding-right: 0; } }
@@ -4354,7 +4353,6 @@ a.badge:hover, a.badge:focus {
     .jumbotron {
       padding-top: 48px;
       padding-bottom: 48px; }
-
       .container .jumbotron, .container-fluid .jumbotron {
         padding-left: 60px;
         padding-right: 60px; }
@@ -5847,7 +5845,7 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-.try-git {
+.HomePage .try-git {
     width: 100%;
     min-height: 100%;
     height: 1000px;
@@ -5856,7 +5854,7 @@ button.close {
 }
 
 @media (max-width: 970px) {
-    .try-git {
+    .HomePage .try-git {
         height: 1260px;
     }
 }
