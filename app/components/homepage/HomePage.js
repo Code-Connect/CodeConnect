@@ -21,7 +21,7 @@ class HomePage extends Component {
                         <Col xs={6} md={6} sm={6} lg={6} style={{
                             textAlign: 'right'
                         }}>
-                            <OverlayTrigger placement="left" overlay={this.buildBrowseProjectsTooltip()}>
+                            <OverlayTrigger placement="left" overlay={this.buildTooltipContributor()}>
                                 <Button onClick={this.contributor.bind(this)}
                                         bsStyle="success" style={{
                                     paddingLeft: '6%',
@@ -33,7 +33,7 @@ class HomePage extends Component {
                         </Col>
                         <Col xs={6} md={6} sm={6} lg={6}>
 
-                            <OverlayTrigger placement="right" overlay={this.buildAddProjectTooltip()}>
+                            <OverlayTrigger placement="right" overlay={this.buildTooltipMentor()}>
                                 <Button onClick={this.mentor.bind(this)}
                                         bsStyle="warning" style={{
                                     paddingRight: '10%',
@@ -62,25 +62,23 @@ class HomePage extends Component {
         });
     }
 
-    buildBrowseProjectsTooltip() {
-        let message = (this.props.user) ?
+    buildTooltipContributor() {
+        let message =
             (
                 <div>
                     <strong>Looking for real-world Projects to work on? </strong>
-                    These mentored Projects a what you seek
                 </div>
-            ) : (<strong>Please login to view all Projects</strong>);
+            );
         return (<Tooltip id="tooltip">{message}</Tooltip>);
     }
 
-    buildAddProjectTooltip() {
-        let message = (this.props.user) ?
+    buildTooltipMentor() {
+        let message =
             (
                 <div>
-                    <strong>Want your project to get worked on? </strong>
-                    Add it to this AWESOME platform
+                    <strong>Want to mentor your own Project? </strong>
                 </div>
-            ) : (<strong>Please login add your Projects</strong>);
+            );
         return (<Tooltip id="tooltip">{message}</Tooltip>);
     }
 }
