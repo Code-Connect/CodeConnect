@@ -20,6 +20,7 @@ export default function getRoutes(store) {
         <Route path="/" component={App}>
             <IndexRoute component={HomePage} onLeave={clearMessages}/>
             <Route path="/mentor" component={Mentor} onLeave={clearMessages}/>
+            <Route path="/mentor/:project" component={MentorTask} onLeave={clearMessages}/>
             <Route path="/mentor2" component={MentorTask} onLeave={clearMessages}/>
             <Route path="/home" component={HomePage} onLeave={clearMessages}/>
             <Route path="/contributor" component={Contributor} onLeave={clearMessages}/>
