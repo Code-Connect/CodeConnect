@@ -5845,7 +5845,7 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-.HomePage .try-git {
+.modal-body .try-git {
     width: 100%;
     min-height: 100%;
     height: 1000px;
@@ -5854,9 +5854,13 @@ button.close {
 }
 
 @media (max-width: 970px) {
-    .HomePage .try-git {
+    .modal-body .try-git {
         height: 1260px;
     }
+}
+
+.custom-modal {
+    width: 90%;
 }
 
 html {

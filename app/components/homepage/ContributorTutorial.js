@@ -1,10 +1,11 @@
 import React, {Component} from "react";
+import TryGitModal from "./TryGitModal";
 
 class ContributorTutorial extends Component {
     render() {
         return (
             <div>
-                <iframe className="try-git" name="try-git" scrolling="no" src="https://try.github.io/"/>
+                <TryGitModal/>
             </div>
         );
     }
