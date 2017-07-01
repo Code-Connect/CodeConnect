@@ -11,7 +11,36 @@ class InstallGit extends Component {
                     <Row>
                         <Col md={4}>
                             <TutorialModal title={"How to install Git on Windows"} button={"Windows"}>
-                                Coming soon ;)
+                                <div>
+                                    <h3>Installing on Windows</h3>
+                                    <div>
+                                        <p>There are also a few ways to install Git on Windows.
+                                            The most official build is available for download on the Git website.
+                                            Just go to <a href="http://git-scm.com/download/win">http://git-scm.com/download/win</a>
+                                            and the download will start automatically.
+                                            Note that this is a project called Git for Windows, which is separate from
+                                            Git itself; for more information on it, go to <a
+                                                href="https://git-for-windows.github.io/">https://git-for-windows.github.io/</a>.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p>To get an automated installation you can use the <a
+                                            href="https://chocolatey.org/packages/git">Git Chocolatey package</a>.
+                                            Note that the Chocolatey package is community maintained.</p>
+                                    </div>
+                                    <div>
+                                        <p>Another easy way to get Git installed is by installing GitHub for Windows.
+                                            The installer includes a command line version of Git as well as the GUI.
+                                            It also works well with Powershell, and sets up solid credential caching and
+                                            sane CRLF settings.
+                                            We’ll learn more about those things a little later, but suffice it to say
+                                            they’re things you want.
+                                            You can download this from the GitHub for Windows website, at <a
+                                                href="http://windows.github.com">http://windows.github.com</a>.</p>
+                                    </div>
+                                </div>
+                                <a target="_blank"
+                                   href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/#_installing_on_windows">Source</a>
                             </TutorialModal>
                         </Col>
                         <Col md={4}>
