@@ -23,6 +23,7 @@ class HomePage extends Component {
                         }}>
                             <OverlayTrigger placement="left" overlay={this.buildTooltipContributor()}>
                                 <Button onClick={this.contributor.bind(this)}
+                                        href={"#tutorial"}
                                         bsStyle="success" style={{
                                     minWidth: '30%',
                                 }} bsSize="large">
@@ -34,6 +35,7 @@ class HomePage extends Component {
 
                             <OverlayTrigger placement="right" overlay={this.buildTooltipMentor()}>
                                 <Button onClick={this.mentor.bind(this)}
+                                        href={"#tutorial"}
                                         bsStyle="warning" style={{
                                     minWidth: '30%',
                                 }} bsSize="large">
