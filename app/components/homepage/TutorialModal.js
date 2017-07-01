@@ -13,7 +13,7 @@ class TutorialModal extends Component {
         return (
             <ButtonToolbar>
                 <Button bsStyle="primary" onClick={this.showModal.bind(this)}>
-                    How to use GitHub
+                    {this.props.button}
                 </Button>
 
                 <Modal
