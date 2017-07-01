@@ -45,7 +45,9 @@ class HomePage extends Component {
                         </Col>
                     </Row>
                 </Grid>
-                {this.state.tutorial}
+                <div className="tutorial center-block" id="tutorial">
+                    {this.state.tutorial}
+                </div>
             </div>
         );
     }
