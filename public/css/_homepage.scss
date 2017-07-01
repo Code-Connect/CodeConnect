@@ -2,11 +2,19 @@
   .try-git {
     width: 100%;
     min-height: 100%;
-    height: 75vh;
+    height: 90vh;
     border: none;
   }
 }
 
 .custom-modal {
   width: 90%;
+}
+
+.tutorial {
+  width: 50%;
+
+  @media (max-width: $screen-md) {
+    width: 90%;
+  }
 }
