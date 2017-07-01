@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import TutorialModal from "./TutorialModal";
 import InstallGit from "./InstallGit";
+import {Button} from "react-bootstrap";
 
 class ContributorTutorial extends Component {
     render() {
@@ -22,10 +23,11 @@ class ContributorTutorial extends Component {
                         <InstallGit/>
                     </li>
                     <li>
-                        <p>Sign in/up to GitHub</p>
-                        <TutorialModal title={"GitHub"} button={"Sign in/up to GitHub"}>
-                            <iframe name="github" src="https://github.com/"/>
-                        </TutorialModal>
+                        <p>Login to GitHub</p>
+                        <Button target={"_blank"} href={"https://github.com/login"}
+                                bsStyle="primary">
+                            GitHub
+                        </Button>
                     </li>
                 </ol>
                 <h2>2. CodeConnect</h2>
