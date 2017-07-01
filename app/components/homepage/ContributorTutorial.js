@@ -33,6 +33,7 @@ class ContributorTutorial extends Component {
                 <h2>2. CodeConnect</h2>
                 <p>Now that you got Git and know about GitHub. Let's work together to make OpenSource great again.</p>
                 <ol>
+                    <li><a href="/auth/github">Login</a> to CodeConnect via your GitHub Account</li>
                     <li>Navigate to the <a href="/contributor">Contributor</a> Section</li>
                     <li>Choose a Project/Task to work on</li>
                     <li>Clone it to your Machine</li>
