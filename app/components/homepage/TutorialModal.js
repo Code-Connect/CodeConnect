@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import {Button, ButtonToolbar, Modal} from "react-bootstrap";
 
-class TryGitModal extends Component {
+class TutorialModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false
+            show: false,
         }
     }
 
@@ -22,10 +22,10 @@ class TryGitModal extends Component {
                     onHide={this.hideModal.bind(this)}
                     dialogClassName="custom-modal">
                     <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-lg">How to use GitHub</Modal.Title>
+                        <Modal.Title id="contained-modal-title-lg">{this.props.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <iframe className="try-git" name="try-git" src="https://try.github.io/"/>
+                        {this.props.children}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.hideModal.bind(this)}>Close</Button>
@@ -44,4 +44,4 @@ class TryGitModal extends Component {
     }
 }
 
-export default TryGitModal;
+export default TutorialModal;

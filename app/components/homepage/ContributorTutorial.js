@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import TryGitModal from "./TryGitModal";
+import TutorialModal from "./TutorialModal";
 import InstallGit from "./InstallGit";
 
 class ContributorTutorial extends Component {
@@ -11,7 +11,9 @@ class ContributorTutorial extends Component {
                     platform to put SourceCode in the open. Hence the term OpenSource. Now it is your turn to share Code
                     and contribute on Projects. The following steps will show you how.</p>
                 <InstallGit/>
-                <TryGitModal/>
+                <TutorialModal title={"How to use GitHub"}>
+                    <iframe className="try-git" name="try-git" src="https://try.github.io/"/>
+                </TutorialModal>
             </div>
         );
     }
