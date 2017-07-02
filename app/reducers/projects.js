@@ -68,6 +68,7 @@ export default function messages(projects = {}, action) {
           action.project
         ]
       })
+
     default:
       return projects;
   }

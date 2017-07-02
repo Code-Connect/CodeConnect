@@ -121,15 +121,19 @@ app.get('/auth/gitter/callback', passportGithub.authenticate('gitter', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-  projectController.getProjectsAndTasks().then(function(projects) {
+  projectController.getProjectsAndTasks().then((projects) => {
+    return taskController.getTasks().then((tasks) => {
+      return {tasks: tasks, projects: projects};
+    });
+  }).then(function(item) {
     var initialState = {
       user: req.user,
       tasks: {
-        mockData: []
+        mockData: item.tasks
       },
       projects: {
         addableProjects: [],
-        addedProjects: projects
+        addedProjects: item.projects
       }
     };
     var store = configureStore(initialState);
