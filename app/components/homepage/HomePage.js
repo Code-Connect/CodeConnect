@@ -15,9 +15,6 @@ class HomePage extends Component {
         return (
             <div className="HomePage">
                 <Logo/>
-                <h3 className="text-center">What is Code Connect?</h3>
-                <iframe className="center-block" src={"https://www.youtube.com/embed/qqVcPtWqagY?showinfo=0"}
-                        height="480" width="480"/>
                 <h3 className="text-center">Ready to get started?</h3>
                 <Grid fluid={true}>
                     <Row>

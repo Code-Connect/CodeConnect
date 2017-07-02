@@ -5844,7 +5844,6 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
-
 .tutorial-modal {
     width: 90%;
     margin-top: 5vh;
@@ -5875,6 +5874,46 @@ button.close {
 @media (max-width: 992px) {
     .tutorial {
         width: 90%;
+    }
+}
+
+.logo {
+    width: 480px;
+    height: 480px;
+}
+
+.logo iframe {
+    width: 480px;
+    height: 480px;
+    position: absolute;
+    border: none;
+}
+
+@media (max-width: 992px) {
+    .logo {
+        width: 360px;
+        height: 360px;
+    }
+
+    .logo iframe {
+        width: 360px;
+        height: 360px;
+        position: absolute;
+        border: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .logo iframe {
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        border: none;
     }
 }
 

@@ -30,3 +30,25 @@
     width: 90%;
   }
 }
+
+@mixin logoSize($logo-size) {
+  width: $logo-size;
+  height: $logo-size;
+
+  iframe {
+    width: $logo-size;
+    height: $logo-size;
+    position: absolute;
+    border: none;
+  }
+}
+
+.logo {
+  @include logoSize(480px);
+  @media (max-width: $screen-md) {
+    @include logoSize(360px);
+  }
+  @media (max-width: $screen-sm) {
+    @include logoSize(120px);
+  }
+}
