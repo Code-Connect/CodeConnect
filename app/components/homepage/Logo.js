@@ -11,7 +11,7 @@ class Logo extends Component {
                          sm={ 4 } smOffset={4}
                          lg={ 2 } lgOffset={5}>
                         <Image
-                            src="https://raw.githubusercontent.com/Gott50/Code-Connect/master/uibuilder/src/client/assets/CClogo.png"
+                            src="/img/Logo.png"
                             responsive={true}
                         />
                     </Col>
