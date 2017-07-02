@@ -1,14 +1,26 @@
-.modal-body {
-  iframe {
-    width: 100%;
-    min-height: 100%;
-    height: 90vh;
-    border: none;
-  }
-}
-
-.custom-modal {
+.tutorial-modal {
   width: 90%;
+  margin-top: 5vh;
+  margin-bottom: 0vh;
+
+  .modal-header {
+    height: 13vh;
+    padding: 2vh;
+  }
+
+  .modal-footer {
+    height: 12vh;
+    padding: 3vh;
+  }
+
+  .modal-body {
+    iframe {
+      width: 100%;
+      min-height: 100%;
+      height: 60vh;
+      border: none;
+    }
+  }
 }
 
 .tutorial {

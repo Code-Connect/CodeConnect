@@ -20,7 +20,7 @@ class TutorialModal extends Component {
                     {...this.props}
                     show={this.state.show}
                     onHide={this.hideModal.bind(this)}
-                    dialogClassName="custom-modal">
+                    dialogClassName="tutorial-modal">
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-lg">{this.props.title}</Modal.Title>
                     </Modal.Header>

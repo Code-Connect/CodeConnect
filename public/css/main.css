@@ -3758,7 +3758,6 @@ tbody.collapse.in {
         overflow: visible !important; }
       .navbar-collapse.in {
         overflow-y: visible; }
-
       .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
         padding-left: 0;
         padding-right: 0; } }
@@ -4354,7 +4353,6 @@ a.badge:hover, a.badge:focus {
     .jumbotron {
       padding-top: 48px;
       padding-bottom: 48px; }
-
       .container .jumbotron, .container-fluid .jumbotron {
         padding-left: 60px;
         padding-right: 60px; }
@@ -5847,15 +5845,27 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-.modal-body iframe {
-    width: 100%;
-    min-height: 100%;
-    height: 90vh;
-    border: none;
+.tutorial-modal {
+    width: 90%;
+    margin-top: 5vh;
+    margin-bottom: 0vh;
 }
 
-.custom-modal {
-    width: 90%;
+.tutorial-modal .modal-header {
+    height: 13vh;
+    padding: 2vh;
+}
+
+.tutorial-modal .modal-footer {
+    height: 12vh;
+    padding: 3vh;
+}
+
+.tutorial-modal .modal-body iframe {
+    width: 100%;
+    min-height: 100%;
+    height: 60vh;
+    border: none;
 }
 
 .tutorial {
