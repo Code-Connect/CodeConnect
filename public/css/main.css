@@ -5820,19 +5820,22 @@ button.close {
 
 .tutorial-modal {
   width: 90%;
-  margin-top: 5vh;
-  margin-bottom: 0vh; }
+  margin-top: 3vh;
+  margin-bottom: 0; }
   .tutorial-modal .modal-header {
-    height: 13vh;
+    height: 10vh;
     padding: 2vh; }
   .tutorial-modal .modal-footer {
-    height: 12vh;
-    padding: 3vh; }
-  .tutorial-modal .modal-body iframe {
-    width: 100%;
-    min-height: 100%;
-    height: 60vh;
-    border: none; }
+    height: auto;
+    padding: 0 2vh 2vh; }
+  .tutorial-modal .modal-body {
+    padding-bottom: 0;
+    padding-top: 0; }
+    .tutorial-modal .modal-body iframe {
+      width: 100%;
+      min-height: 100%;
+      height: 72vh;
+      border: none; }
 
 .tutorial {
   width: 50%; }
