@@ -35,3 +35,30 @@ You should create an .env file in the root directory with your arguments of
 
 ## Start Swagger Doc  
    swagger project edit
+
+
+
+# SmokeTests
+
+## Requirements
+- PHP
+- codeception
+- selenium-server-standalone
+- chromedriver
+- phantomjs
+
+## Install
+    composer install
+
+## Run commands
+  
+### Run selenium
+    selenium-server -p 4444
+  
+### Add test
+    php ./vendor/bin/codecept generate:cest acceptance Startpage/Slider
+  
+### All tests acceptance
+    php ./vendor/bin/codecept run acceptance
+### Single test
+    php ./vendor/bin/codecept run acceptance Startpage/SliderCest 
