@@ -93,9 +93,10 @@ var passportGithub = require('./controllers/gitlogin');
 app.post('/addproject', projectController.addProject);
 app.get('/project', projectController.getProjects);
 app.get('/test', (req, res) => {
-  console.log("gwankster");
-  projectController.getProjectsAndTasks().then((project) => {
-    res.json(project);
+  projectController.getProjectsAndTasks().then((projects) => {
+    return taskController.getTasks().then((tasks) => {
+      return res.json({tasks: Object.assign({}, tasks), projects: projects});
+    });
   })
 });
 
@@ -128,14 +129,13 @@ app.use(function(req, res) {
   }).then(function(item) {
     var initialState = {
       user: req.user,
-      tasks: {
-        mockData: item.tasks
-      },
       projects: {
         addableProjects: [],
-        addedProjects: item.projects
+        addedProjects: item.projects,
+        tasks: item.tasks
       }
     };
+    console.log(initialState);
     var store = configureStore(initialState);
 
     Router.match({

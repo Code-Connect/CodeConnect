@@ -67,7 +67,40 @@ export default function messages(projects = {}, action) {
           ...projects.addedProjects,
           action.project
         ]
-      })
+      });
+
+    case 'ADD_TASK_SUCCESSFUL':
+      // TODO task post successful feedback like a toast message
+      var temp = projects.addedProjects.slice();
+      temp = temp.map((item) => {
+        if (item.project_id == action.project_id){
+            return Object.assign({}, item, {
+              tasks: [
+                ...item.tasks,
+                action.task_id
+              ]
+            })
+        }
+        else
+          return item;
+        }
+      );
+      console.log("temp");
+      console.log(temp);
+      return Object.assign({}, projects, {addedProjects: temp, tasks:
+         [
+          ...projects.tasks, {
+            name: action.name,
+            task_id: action.task_id,
+            input: "Add input",
+            output: "Add output",
+            description: "Add description",
+            attempts: 0,
+            difficulty: "NA",
+            tags: []
+          }
+        ]
+      });
 
     default:
       return projects;

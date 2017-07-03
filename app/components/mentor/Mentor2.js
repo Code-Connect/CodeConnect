@@ -20,10 +20,23 @@ import jsonQuery from 'json-query';
 class Mentor2 extends React.Component {
   constructor(props) {
     super(props);
+    var getIndex = this.props.projects.findIndex((item) => {return item.project_id == this.props.params.project});
     this.state = {
       inputfield: '',
-      project_id: this.props.params.project
+      project_id: this.props.params.project,
+      tasks: this.props.projects[getIndex].tasks.map((item)=>{
+        return this.props.tasks[item - 1]})
     };
+  }
+
+  componentWillReceiveProps(){
+    var getIndex = this.props.projects.findIndex((item) => {return item.project_id == this.props.params.project});
+    this.setState({
+      inputfield: '',
+      project_id: this.props.params.project,
+      tasks: this.props.projects[getIndex].tasks.map((item)=>{
+        return this.props.tasks[item - 1]})
+    });
   }
 
   saveChange(task) {
@@ -66,10 +79,10 @@ class Mentor2 extends React.Component {
                 </InputGroup.Button>
               </InputGroup>
             </FormGroup>
-            <MentorTable onClick={() => {}} datatype="task" data={this.props.tasks}/>
+            <MentorTable onClick={() => {}} datatype="task" data={this.state.tasks}/>
           </Col>
           <Col xs={12} md={8}>
-            {this.props.tasks.map((task) => {
+            {this.state.tasks.map((task) => {
               return (
                 <div>
                   <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
@@ -85,7 +98,7 @@ class Mentor2 extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {tasks: state.tasks.mockData};
+  return {tasks: state.projects.tasks, projects: state.projects.addedProjects};
 };
 
 export default connect(mapStateToProps)(Mentor2);
