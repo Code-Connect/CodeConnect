@@ -51,14 +51,14 @@ You should create an .env file in the root directory with your arguments of
     composer install
 
 ## Run commands
-  
 ### Run selenium
     selenium-server -p 4444
-  
 ### Add test
     php ./vendor/bin/codecept generate:cest acceptance Startpage/Slider
-  
 ### All tests acceptance
     php ./vendor/bin/codecept run acceptance
 ### Single test
     php ./vendor/bin/codecept run acceptance Startpage/SliderCest 
+###Params
+    --env firefox --env chrome | --env mobile,firefox | --env mobilechrome
+    --steps --xml --html -vvv 
