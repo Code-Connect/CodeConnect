@@ -29,13 +29,13 @@ class Mentor2 extends React.Component {
     };
   }
 
-  componentWillReceiveProps(){
-    var getIndex = this.props.projects.findIndex((item) => {return item.project_id == this.props.params.project});
+  componentWillReceiveProps(nextProps){
+    var getIndex = nextProps.projects.findIndex((item) => {return item.project_id == this.props.params.project});
     this.setState({
       inputfield: '',
-      project_id: this.props.params.project,
-      tasks: this.props.projects[getIndex].tasks.map((item)=>{
-        return this.props.tasks[item - 1]})
+      project_id: nextProps.params.project,
+      tasks: nextProps.projects[getIndex].tasks.map((item)=>{
+        return nextProps.tasks[item - 1]})
     });
   }
 
@@ -43,8 +43,8 @@ class Mentor2 extends React.Component {
     this.props.dispatch(updateTask(task));
   }
 
-  deleteTask(task) {
-    this.props.dispatch(deleteTask(task));
+  deleteTask(task, project_id) {
+    this.props.dispatch(deleteTask(task, this.state.project_id));
   }
 
   updateTaskAttribute(task_id, fieldtype, newCode) {

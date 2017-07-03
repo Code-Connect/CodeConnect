@@ -73,22 +73,23 @@ export default function messages(projects = {}, action) {
       // TODO task post successful feedback like a toast message
       var temp = projects.addedProjects.slice();
       temp = temp.map((item) => {
-        if (item.project_id == action.project_id){
-            return Object.assign({}, item, {
-              tasks: [
-                ...item.tasks,
-                action.task_id
-              ]
-            })
-        }
-        else
+        if (item.project_id == action.project_id) {
+          return Object.assign({}, item, {
+            tasks: [
+              ...item.tasks,
+              action.task_id
+            ]
+          })
+        } else
           return item;
         }
       );
       console.log("temp");
       console.log(temp);
-      return Object.assign({}, projects, {addedProjects: temp, tasks:
-         [
+
+      return Object.assign({}, projects, {
+        addedProjects: temp,
+        tasks: [
           ...projects.tasks, {
             name: action.name,
             task_id: action.task_id,
@@ -101,6 +102,38 @@ export default function messages(projects = {}, action) {
           }
         ]
       });
+
+    case 'UPDATE_TASK_SUCCESSFUL':
+      var temp = projects.tasks.slice();
+      console.log(temp);
+      temp = temp.map((item) => {
+        if (item.task_id == action.task.task_id) {
+          return Object.assign({}, item, action.task);
+        } else
+          return item;
+        }
+      );
+      return Object.assign({}, projects, {tasks: temp});
+
+    case 'DELETE_TASK_SUCCESSFUL':
+      var temp = [...projects.tasks];
+      temp = temp.filter((item) => {return (item.task_id != action.task_id)});
+      var temp2 = projects.addedProjects.slice();
+      temp2 = temp2.map((item) => {
+        if (item.project_id == action.project_id) {
+          return Object.assign({}, item, {
+            tasks: item.tasks.filter((item2) => {
+              return (item2 == action.tasks.task_id)
+            })
+          })
+        } else
+          return item;
+        }
+      );
+      return Object.assign({}, projects, {
+        tasks: temp,
+        addedProjects: temp2
+      })
 
     default:
       return projects;

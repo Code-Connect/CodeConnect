@@ -28,25 +28,25 @@ export default function messages(tasks = {}, action) {
     //     ]
     //   });
 
-    case 'UPDATE_TASK_SUCCESSFUL':
-      var newMockData = tasks.mockData.map((item) => {
-        if (item.task_id == action.task.task_id) {
-          return Object.assign({}, item, action.task)
-        } else
-          return item
-      });
-      return Object.assign({}, tasks, {
-        mockData: newMockData
-      });
+    // case 'UPDATE_TASK_SUCCESSFUL':
+    //   var newMockData = tasks.mockData.map((item) => {
+    //     if (item.task_id == action.task.task_id) {
+    //       return Object.assign({}, item, action.task)
+    //     } else
+    //       return item
+    //   });
+    //   return Object.assign({}, tasks, {
+    //     mockData: newMockData
+    //   });
 
-    case 'DELETE_TASK_SUCCESSFUL':
-
-    var newMockData = [...tasks.mockData];
-    newMockData = newMockData.filter((item) => item.task_id != action.task_id);
-
-      return Object.assign({}, tasks, {
-        mockData: newMockData
-      })
+    // case 'DELETE_TASK_SUCCESSFUL':
+    //
+    // var newMockData = [...tasks.mockData];
+    // newMockData = newMockData.filter((item) => item.task_id != action.task_id);
+    //
+    //   return Object.assign({}, tasks, {
+    //     mockData: newMockData
+    //   })
 
     default:
       return tasks;
