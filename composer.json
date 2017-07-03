@@ -1,0 +1,7 @@
+{
+    "name": "code-connect/codeception",
+    "description": "SmokeTests",
+    "require": {
+        "codeception/codeception": "^2.3"
+    }
+}

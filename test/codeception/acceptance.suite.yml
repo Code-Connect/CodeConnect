@@ -1,0 +1,38 @@
+# Codeception Test Suite Configuration
+#
+# Suite for acceptance tests.
+# Perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+
+class_name: AcceptanceTester
+modules:
+  enabled:
+    - WebDriver
+    - \Helper\Acceptance
+  config:
+    WebDriver:
+      window_size: 1024x768
+      url: 'http://typo3.org'
+      browser: 'chrome'
+extensions:
+  enabled:
+    - Codeception\Extension\Recorder
+  config:
+    Codeception\Extension\Recorder:
+      delete_successful: false
+env:
+  phantom:
+    modules:
+      config:
+        WebDriver:
+          browser: 'phantomjs'
+  chrome:
+    modules:
+      config:
+        WebDriver:
+          browser: 'chrome'
+  firefox:
+    modules:
+          config:
+            WebDriver:
+              browser: 'firefox'

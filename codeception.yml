@@ -1,0 +1,23 @@
+actor_suffix: Tester
+paths:
+    tests: test/codeception
+    output: test/codeception/_output
+    data: test/codeception/_data
+    support: test/codeception/_support
+    envs: test/codeception/_envs
+settings:
+  bootstrap: _bootstrap.php
+  colors: true
+  memory_limit: 1024M
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+modules:
+  config:
+    Db:
+      dsn: 'mysql:host=127.0.0.1;dbname=hilfe_live'
+      user: 'root'
+      password: '1234'
+      dump: tests/_data/dump.sql
+      populate: true
+      cleanup: true
