@@ -88,6 +88,7 @@ app.get('/logout', function(req, res) {
 var projectController = require('./controllers/project');
 var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
+var helper = require('./controllers/help');
 
 // app.post('/postccrepo', projectController.saveProject);
 app.post('/addproject', projectController.addProject);
@@ -95,7 +96,8 @@ app.get('/project', projectController.getProjects);
 app.get('/test', (req, res) => {
   projectController.getProjectsAndTasks().then((projects) => {
     return taskController.getTasks().then((tasks) => {
-      return res.json({tasks: tasks, projects: projects});
+      var temp = helper.normalizeTask(tasks);
+      return res.json({tasks: temp, projects: projects});
     });
   })
 });
@@ -120,11 +122,13 @@ app.get('/auth/gitter/callback', passportGithub.authenticate('gitter', {failureR
   });
 });
 
+
 // React server rendering
 app.use(function(req, res) {
   projectController.getProjectsAndTasks().then((projects) => {
     return taskController.getTasks().then((tasks) => {
-      return {tasks: tasks, projects: projects};
+      var temp = helper.normalizeTask(tasks);
+      return {tasks: temp, projects: projects};
     });
   }).then(function(item) {
     var initialState = {

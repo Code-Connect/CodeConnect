@@ -25,7 +25,7 @@ class Mentor2 extends React.Component {
       inputfield: '',
       project_id: this.props.params.project,
       tasks: this.props.projects[getIndex].tasks.map((item)=>{
-        return this.props.tasks[item - 1]})
+        return this.props.tasks[item]})
     };
   }
 
@@ -35,7 +35,7 @@ class Mentor2 extends React.Component {
       inputfield: '',
       project_id: nextProps.params.project,
       tasks: nextProps.projects[getIndex].tasks.map((item)=>{
-        return nextProps.tasks[item - 1]})
+        return nextProps.tasks[item]})
     });
   }
 

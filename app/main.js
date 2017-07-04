@@ -10,6 +10,8 @@ const store = configureStore(window.INITIAL_STATE);
 
 // var myChat = new Sidecar({room: 'CodeConnect-Project1/Project12'});
 
+console.log("store");
+console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
