@@ -95,7 +95,7 @@ app.get('/project', projectController.getProjects);
 app.get('/test', (req, res) => {
   projectController.getProjectsAndTasks().then((projects) => {
     return taskController.getTasks().then((tasks) => {
-      return res.json({tasks: Object.assign({}, tasks), projects: projects});
+      return res.json({tasks: tasks, projects: projects});
     });
   })
 });
