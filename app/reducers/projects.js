@@ -84,13 +84,11 @@ export default function messages(projects = {}, action) {
           return item;
         }
       );
-      console.log("temp");
-      console.log(temp);
 
       return Object.assign({}, projects, {
         addedProjects: temp,
-        tasks: [
-          ...projects.tasks, {
+        tasks: Object.assign({}, projects.tasks, {
+          [action.task_id]: {
             name: action.name,
             task_id: action.task_id,
             input: "Add input",
@@ -100,7 +98,7 @@ export default function messages(projects = {}, action) {
             difficulty: "NA",
             tags: []
           }
-        ]
+        })
       });
 
     case 'UPDATE_TASK_SUCCESSFUL':
@@ -116,20 +114,22 @@ export default function messages(projects = {}, action) {
       return Object.assign({}, projects, {tasks: temp});
 
     case 'DELETE_TASK_SUCCESSFUL':
-      var temp = [...projects.tasks];
-      temp = temp.filter((item) => {return (item.task_id != action.task_id)});
       var temp2 = projects.addedProjects.slice();
       temp2 = temp2.map((item) => {
         if (item.project_id == action.project_id) {
           return Object.assign({}, item, {
             tasks: item.tasks.filter((item2) => {
-              return (item2 == action.tasks.task_id)
+              return (item2 != action.task_id)
             })
           })
         } else
           return item;
         }
       );
+      console.log("temp2");
+      console.log(temp2);
+      var temp = Object.assign({}, projects.tasks);
+      delete temp[action.task_id];
       return Object.assign({}, projects, {
         tasks: temp,
         addedProjects: temp2

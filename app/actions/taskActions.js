@@ -47,7 +47,7 @@ export function deleteTask(task, project_id) {
       body: JSON.stringify({task_id: task.task_id})
     }).then((response) => {
       return response.json().then(function(json) {
-        return dispatch({type: 'DELETE_TASK_SUCCESSFUL', task_id: task.task_id, project_id});
+        return dispatch({type: 'DELETE_TASK_SUCCESSFUL', task_id: task.task_id, project_id: project_id});
       });
     })
   }
