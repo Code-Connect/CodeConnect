@@ -29,7 +29,7 @@ export function getOrgsProject(token) {
   };
 }
 
-export function getUserProject(token) {
+export function getUserProject(token, username) {
   return (dispatch) => {
     return fetch('https://api.github.com/users/gapsong/repos').then((response) => {
       return response.json().then(function(json) {
