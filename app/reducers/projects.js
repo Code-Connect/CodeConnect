@@ -102,15 +102,7 @@ export default function messages(projects = {}, action) {
       });
 
     case 'UPDATE_TASK_SUCCESSFUL':
-      var temp = projects.tasks.slice();
-      console.log(temp);
-      temp = temp.map((item) => {
-        if (item.task_id == action.task.task_id) {
-          return Object.assign({}, item, action.task);
-        } else
-          return item;
-        }
-      );
+      var temp = Object.assign({}, projects.tasks, {[action.task.task_id]: action.task});
       return Object.assign({}, projects, {tasks: temp});
 
     case 'DELETE_TASK_SUCCESSFUL':
@@ -126,8 +118,6 @@ export default function messages(projects = {}, action) {
           return item;
         }
       );
-      console.log("temp2");
-      console.log(temp2);
       var temp = Object.assign({}, projects.tasks);
       delete temp[action.task_id];
       return Object.assign({}, projects, {
