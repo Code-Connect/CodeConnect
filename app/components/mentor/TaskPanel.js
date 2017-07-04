@@ -114,7 +114,7 @@ class TaskPanel extends React.Component {
     return (
       <div>
         <ScrollableAnchor id={this.props.task.task_id}>
-          <div>
+          <div className="well" style={{background:"white"}}>
             {editOrSaveButton}
             {headerOrRenameForm}
             {this.createPanel("input")}
