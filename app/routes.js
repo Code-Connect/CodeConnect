@@ -4,7 +4,7 @@ import App from "./components/App";
 import MentorTask from "./components/mentor/Mentor2";
 import Mentor from "./components/mentor/Mentor";
 import NotFound from "./components/NotFound";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/homepage/HomePage";
 import Contributor from "./components/contributor/Contributor";
 import Editor from "./components/baukasten/Editor";
 import TaskView from "./components/taskView/TaskView";
@@ -25,6 +25,7 @@ export default function getRoutes(store) {
             <Route path="/home" component={HomePage} onLeave={clearMessages}/>
             <Route path="/contributor" component={Contributor} onLeave={clearMessages}/>
             <Route path="/contributor/tasks" component={Contributor} onLeave={clearMessages}/>
+            <Route path="/contributor/tasks/:p" component={Contributor} onLeave={clearMessages}/>
             <Route path="/contributor/projects" component={Contributor} onLeave={clearMessages}/>
             <Route path="/editor" component={Editor} onLeave={clearMessages}/>
             <Route path="/task/:task" component={TaskView} onLeave={clearMessages}/>

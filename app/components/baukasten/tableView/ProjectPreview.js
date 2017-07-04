@@ -1,14 +1,20 @@
 import React, {Component} from "react"
 import ReactDOM from 'react-dom'
-import {Panel} from "react-bootstrap"
+import {Panel, Button} from "react-bootstrap"
 import ReactMarkdown from 'react-markdown'
 import TableComponent from './TableComponent.js'
+import {browserHistory} from 'react-router'
 
 class ProjectPreview extends Component {
 
   constructor(props) {
     super(props)
     this.labelList = ["Task", "Status"]
+  }
+
+  redirectDetails(){
+      //browserHistory.push('/contributor/tasks/p'+this.props.id);
+      console.log("redi")
   }
 
   render() {
@@ -25,13 +31,19 @@ class ProjectPreview extends Component {
         background: "white",
         marginTop: "30px"
       }} ref="Parent">
-        <h5>
+      <div className="row">
+        <div className="col-md-8"><h5>
           <small style={tagStyle}>
             <b>{this.props.tags.map((tag) => {
                 return tag + " "
               })}</b>
           </small>
         </h5>
+        </div>
+        <div className="col-md-4">
+        <a style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success" href={"/contributor/tasks/p"+this.props.id}>Details</a>
+        </div>
+        </div>
         <hr/>
 
         <div style={divStyle} className="row">
