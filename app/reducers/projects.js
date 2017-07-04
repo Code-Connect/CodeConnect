@@ -102,8 +102,10 @@ export default function messages(projects = {}, action) {
       });
 
     case 'UPDATE_TASK_SUCCESSFUL':
-      var temp = Object.assign({}, projects.tasks, {[action.task.task_id]: action.task});
-      return Object.assign({}, projects, {tasks: temp});
+      var index = action.task.task_id;
+      var newAttribute = Object.assign({}, projects.tasks, {[index]: Object.assign(projects.tasks[index], action.task)});
+      console.log(newAttribute);
+      return Object.assign({}, projects, {tasks:newAttribute});
 
     case 'DELETE_TASK_SUCCESSFUL':
       var temp2 = projects.addedProjects.slice();
