@@ -13,7 +13,7 @@ class HomePageCest
 
     public function load(AcceptanceTester $I)
     {
-        $I->wantTo('Test HomePage');
+        $I->wantTo('Load HomePage');
         $I->amOnPage('/');
         $I->see('Code Connect');
     }
