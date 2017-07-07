@@ -17,4 +17,14 @@ class HomePageCest
         $I->amOnPage('/');
         $I->see('Code Connect');
     }
+
+    public function login(AcceptanceTester $I)
+    {
+        $I->wantTo('Login with GitHub');
+        $I->amOnPage('/');
+        $I->click('Log in');
+        $I->fillField('#login_field','username');
+        $I->fillField('#password','password');
+        $I->click('Sign in');
+    }
 }
