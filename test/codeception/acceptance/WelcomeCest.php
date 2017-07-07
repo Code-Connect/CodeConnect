@@ -15,9 +15,9 @@ class WelcomeCest
     // tests
     public function test(AcceptanceTester $I)
     {
-        $I->wantTo('Test welcome page');
+        $I->wantTo('Test HomePage');
         $I->amOnPage('/');
-        $I->see('What is TYPO3 CMS?');
+        $I->see('Code Connect');
 
     }
 }
