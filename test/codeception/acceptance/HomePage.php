@@ -1,7 +1,7 @@
 <?php
 
 
-class WelcomeCest
+class HomePage
 {
     public function _before(AcceptanceTester $I)
     {
@@ -12,12 +12,10 @@ class WelcomeCest
     {
     }
 
-    // tests
-    public function test(AcceptanceTester $I)
+    public function load(AcceptanceTester $I)
     {
         $I->wantTo('Test HomePage');
         $I->amOnPage('/');
         $I->see('Code Connect');
-
     }
 }
