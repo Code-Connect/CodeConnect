@@ -11,11 +11,11 @@ class HomePageCest
     {
     }
 
-    public function load(AcceptanceTester $I)
+    public function loadNavBar(AcceptanceTester $I)
     {
         $I->wantTo('Load HomePage');
         $I->amOnPage('/');
-        $I->see('Code Connect');
+        $I->canSeeElement('.navbar');
     }
 
     public function login(AcceptanceTester $I)
