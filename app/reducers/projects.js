@@ -67,7 +67,66 @@ export default function messages(projects = {}, action) {
           ...projects.addedProjects,
           action.project
         ]
+      });
+
+    case 'ADD_TASK_SUCCESSFUL':
+      // TODO task post successful feedback like a toast message
+      var temp = projects.addedProjects.slice();
+      temp = temp.map((item) => {
+        if (item.project_id == action.project_id) {
+          return Object.assign({}, item, {
+            tasks: [
+              ...item.tasks,
+              action.task_id
+            ]
+          })
+        } else
+          return item;
+        }
+      );
+
+      return Object.assign({}, projects, {
+        addedProjects: temp,
+        tasks: Object.assign({}, projects.tasks, {
+          [action.task_id]: {
+            name: action.name,
+            task_id: action.task_id,
+            input: "Add input",
+            output: "Add output",
+            description: "Add description",
+            attempts: 0,
+            difficulty: "NA",
+            tags: []
+          }
+        })
+      });
+
+    case 'UPDATE_TASK_SUCCESSFUL':
+      var index = action.task.task_id;
+      var newAttribute = Object.assign({}, projects.tasks, {[index]: Object.assign(projects.tasks[index], action.task)});
+      console.log(newAttribute);
+      return Object.assign({}, projects, {tasks:newAttribute});
+
+    case 'DELETE_TASK_SUCCESSFUL':
+      var temp2 = projects.addedProjects.slice();
+      temp2 = temp2.map((item) => {
+        if (item.project_id == action.project_id) {
+          return Object.assign({}, item, {
+            tasks: item.tasks.filter((item2) => {
+              return (item2 != action.task_id)
+            })
+          })
+        } else
+          return item;
+        }
+      );
+      var temp = Object.assign({}, projects.tasks);
+      delete temp[action.task_id];
+      return Object.assign({}, projects, {
+        tasks: temp,
+        addedProjects: temp2
       })
+
     default:
       return projects;
   }

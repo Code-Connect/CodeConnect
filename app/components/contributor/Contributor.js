@@ -4,6 +4,7 @@ import {getReposGithub, addProjectToCodeConnect} from '../../actions/mentor';
 import TaskBlock from '../baukasten/Taskblock.js'
 import EditPanel from '../baukasten/EditPanel.js';
 import {browserHistory} from 'react-router'
+import json2array from './Json2Array.js'
 import {
   Panel,
   NavItem,
@@ -19,33 +20,34 @@ import {Radio, FormControl, FormGroup, Breadcrumb} from 'react-bootstrap'
 import ProjectTableView from '../baukasten/tableView/ProjectTableView'
 
 class Contributor extends React.Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
     this.query = require('json-query')
 
     var pathname = this.props.location.pathname
     let showProjects = (pathname === "/contributor/projects")
-    console.log(this.props.location.pathname+";"+showProjects)
+    console.log(this.props.location.pathname + ";" + showProjects)
 
     var showSpecificProject = false
     var projID
-    if(!showProjects){
+    if (!showProjects) {
       // contributor/tasks/p1
-      showSpecificProject = pathname.substring(0,20) === "/contributor/tasks/p"
-      projID = pathname.substring(20,pathname.length)
+      showSpecificProject = pathname.substring(0, 20) === "/contributor/tasks/p"
+      projID = pathname.substring(20, pathname.length)
     }
 
-    var displayedTasks = !showSpecificProject ? this.query('projects.tasks', {
+    var displayedTasks = !showSpecificProject
+      ? json2array(this.props.tasks)
+      : this.query('projects[id=' + projID + '].tasks', {
         data: {
           projects: this.props.projects
         }
       }).value
-      :
-      this.query('projects[id='+projID+'].tasks', {
-        data: {
-          projects: this.props.projects
-        }
-      }).value
+    if (showSpecificProject) {
+      displayedTasks = displayedTasks.map((item) => {
+        return this.props.tasks[item]
+      })
+    }
 
     this.state = {
       showProjects: showProjects,
@@ -55,21 +57,24 @@ class Contributor extends React.Component {
     }
   }
 
-
-  componentWillReceiveProps(){
+  componentWillReceiveProps() {
     var show = (this.props.location.pathname == "/contributor/projects")
-    console.log("show"+this.state.showProjects)
-    console.log("show"+this.props.location.pathname)
-    console.log("justset"+ this.state.justSet)
+    console.log("show" + this.state.showProjects)
+    console.log("show" + this.props.location.pathname)
+    console.log("justset" + this.state.justSet)
 
-    this.setState ( {
-      showProjects: this.state.justSet? this.state.showProjects : show
+    this.setState({
+      showProjects: this.state.justSet
+        ? this.state.showProjects
+        : show
     }, this.setState({justSet: false}))
   }
 
   toggleView(event) {
-    var route = !this.state.showProjects? "/contributor/projects": "/contributor/tasks"
-    console.log("pushing"+route)
+    var route = !this.state.showProjects
+      ? "/contributor/projects"
+      : "/contributor/tasks"
+    console.log("pushing" + route)
     var dir = !this.state.showProjects
       ? ["PROJECTS"]
       : ["TASKS", "ALL"]
@@ -77,8 +82,9 @@ class Contributor extends React.Component {
       directory: dir,
       showProjects: !this.state.showProjects,
       justSet: true
-    },
-    function(){browserHistory.push(route)})
+    }, function() {
+      browserHistory.push(route)
+    })
   }
 
   //gets called, when the component gets loaded
@@ -91,12 +97,10 @@ class Contributor extends React.Component {
       directory: ["PROJECTS", name]
     })
   }
-
   render() {
-
     const taskTableView = <TaskTableView tasks={this.state.tasks}/>
 
-    const projectTableView = <ProjectTableView setActiveProject={this.setActiveProject.bind(this)} projects={this.props.projects} tasks={this.props.tasks} flag="task" route="task" labelList={this.labels} dataList={this.data}/>
+    const projectTableView = <ProjectTableView setActiveProject={this.setActiveProject.bind(this)} projects={this.props.projects} flag="task" route="task"/>
 
     return (
       <div style={{
@@ -123,7 +127,6 @@ class Contributor extends React.Component {
                   <Radio onChange={this.toggleView.bind(this)} checked={this.state.showProjects} name="radiogrp" inline>
                     Project
                   </Radio>
-
                 </FormGroup>
               </form>
             </div>
@@ -146,10 +149,10 @@ class Contributor extends React.Component {
               </Breadcrumb>
             </div>
           </div>
-
           {this.state.showProjects
             ? projectTableView
             : taskTableView}
+
         </div>
       </div>
     );
@@ -157,9 +160,7 @@ class Contributor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    projects: state.projects.addedProjects
-  };
+  return {projects: state.projects.addedProjects, tasks: state.projects.tasks};
 };
 
 export default connect(mapStateToProps)(Contributor);

@@ -88,14 +88,17 @@ app.get('/logout', function(req, res) {
 var projectController = require('./controllers/project');
 var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
+var helper = require('./controllers/help');
 
 // app.post('/postccrepo', projectController.saveProject);
 app.post('/addproject', projectController.addProject);
 app.get('/project', projectController.getProjects);
 app.get('/test', (req, res) => {
-  console.log("gwankster");
-  projectController.getProjectsAndTasks().then((project) => {
-    res.json(project);
+  projectController.getProjectsAndTasks().then((projects) => {
+    return taskController.getTasks().then((tasks) => {
+      var temp = helper.normalizeTask(tasks);
+      return res.json({tasks: temp, projects: projects});
+    });
   })
 });
 
@@ -119,19 +122,24 @@ app.get('/auth/gitter/callback', passportGithub.authenticate('gitter', {failureR
   });
 });
 
+
 // React server rendering
 app.use(function(req, res) {
-  projectController.getProjectsAndTasks().then(function(projects) {
+  projectController.getProjectsAndTasks().then((projects) => {
+    return taskController.getTasks().then((tasks) => {
+      var temp = helper.normalizeTask(tasks);
+      return {tasks: temp, projects: projects};
+    });
+  }).then(function(item) {
     var initialState = {
       user: req.user,
-      tasks: {
-        mockData: []
-      },
       projects: {
         addableProjects: [],
-        addedProjects: projects
+        addedProjects: item.projects,
+        tasks: item.tasks
       }
     };
+    console.log(initialState);
     var store = configureStore(initialState);
 
     Router.match({

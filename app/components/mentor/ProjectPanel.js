@@ -44,7 +44,7 @@ class ProjectPanel extends React.Component {
         </h5>
         </div>
         <div className="col-sm-3">
-        <a style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success" href={this.props.short != undefined? ("/mentor/"+this.props.id):("/contributor/tasks/p"+this.props.id)}>Details</a>
+        <a style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success" href={"/mentor/"+this.props.project.project_id}>Details</a>
         </div>
         </div>
         <hr style={{marginTop:"5px"}}/>

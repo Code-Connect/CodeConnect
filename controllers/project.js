@@ -16,14 +16,28 @@ exports.getProjects = function() {
     return rows;
   });
 }
+//
+// exports.getProjectsAndTasks = function() {
+//   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
+//     return Promise.all(rows.map((item) => {
+//       return knex.select('tasks.task_id', 'input', 'output', 'description', 'name', 'difficulty', 'tags', 'attempts').from('tasks').join('hasTask', function() {
+//           this.on('tasks.task_id', '=', 'hasTask.task_id')
+//       }).where('hasTask.project_id', '=', item.project_id).then(function(task) {
+//         return Object.assign({}, item, {tasks: task});
+//       });
+//     }));
+//   });
+// }
 
 exports.getProjectsAndTasks = function() {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
     return Promise.all(rows.map((item) => {
-      return knex.select('tasks.task_id', 'input', 'output', 'description', 'name', 'difficulty', 'tags', 'attempts').from('tasks').join('hasTask', function() {
-          this.on('tasks.task_id', '=', 'hasTask.task_id')
-      }).where('hasTask.project_id', '=', item.project_id).then(function(task) {
-        return Object.assign({}, item, {tasks: task});
+      return knex.select('hasTask.task_id').from('hasTask').where('hasTask.project_id', '=', item.project_id).then(function(task) {
+        return Promise.all(task.map((task_item) => {
+          return task_item.task_id
+        })).then((ids) => {
+          return Object.assign({}, item, {tasks: ids});
+        });
       });
     }));
   });

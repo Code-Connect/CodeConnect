@@ -21,24 +21,34 @@ import ProjectPanel from './ProjectPanel'
 class Mentor2 extends React.Component {
   constructor(props) {
     super(props);
-    var a = jsonQuery('projects[project_id=1]', {
-      data: {
-        projects: this.props.projects
-      }
-    }).value;
+    var getIndex = this.props.projects.findIndex((item) => {return item.project_id == this.props.params.project});
     this.state = {
       inputfield: '',
       project_id: this.props.params.project,
-      projects: a.tasks
+      tasks: this.props.projects[getIndex].tasks.map((item)=>{
+        return this.props.tasks[item]})
     };
+  }
+
+  componentWillReceiveProps(nextProps){
+    var getIndex = nextProps.projects.findIndex((item) => {return item.project_id == this.props.params.project});
+    this.setState({
+      inputfield: '',
+      project_id: nextProps.params.project,
+      tasks: nextProps.projects[getIndex].tasks.map((item)=>{
+        return nextProps.tasks[item]})
+    },function(){
+      console.log("hi");
+      console.log(this.state.tasks);
+    });
   }
 
   saveChange(task) {
     this.props.dispatch(updateTask(task));
   }
 
-  deleteTask(task) {
-    this.props.dispatch(deleteTask(task));
+  deleteTask(task, project_id) {
+    this.props.dispatch(deleteTask(task, this.state.project_id));
   }
 
   updateTaskAttribute(task_id, fieldtype, newCode) {
@@ -73,11 +83,11 @@ class Mentor2 extends React.Component {
                 </InputGroup.Button>
               </InputGroup>
             </FormGroup>
-            <MentorTable onClick={() => {}} datatype = "task" data={this.state.projects}/>
+            <MentorTable onClick={() => {}} datatype="task" data={this.state.tasks}/>
           </Col>
           <Col xs={12} md={8}>
-          <ProjectPanel project={this.props.projects[0]}/>
-            {this.state.projects.map((task) => {
+          <ProjectPanel project={this.props.projects.find((item)=>{return this.state.project_id == item.project_id})}/>
+            {this.state.tasks.map((task) => {
               return (
                   <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
               )
@@ -89,255 +99,7 @@ class Mentor2 extends React.Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {
-    //projects: state.projects.addedProjects
-    projects: [
-      {
-        name: "Hello SECOND for Everyone!",
-        project_id: 2,
-        contributors: [
-          {
-            name: "Frank Lu",
-            email: "frankz.lu@gmail.com"
-          }, {
-            name: "Schwaanz",
-            email: "schwanz@gmail.com"
-          }
-        ],
-        description: "This is a list of aaallll the SECOND Hello World Tasks. It is just a description, but hey, it is something",
-        tags: [
-          "#haGay", "#yeeah", "#getschwifty"
-        ],
-        data: "2017",
-        tasks: [
-
-          {
-            name: "Task10",
-            task_id: 10,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1223",
-            task_id: 12,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1223",
-            task_id: 13,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1223",
-            task_id: 14,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1223",
-            task_id: 15,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1223",
-            task_id: 16,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1223",
-            task_id: 17,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1223",
-            task_id: 18,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1223",
-            task_id: 19,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }
-
-        ]
-      }, {
-        name: "Hello World for Everyone!",
-        project_id: 1,
-        data: "2017",
-        tags: [
-          "#haGay", "#yeeah", "#getschwifty"
-        ],
-        contributors: [
-          {
-            name: "Khiem Ton",
-            email: "derTon@gmail.com"
-          }, {
-            name: "Schwaanz 456",
-            email: "schwanzPower456@gmail.com"
-          }
-        ],
-        description: "this is made by Mr ton and mr schwanzpower456. Have fun writing Hello World Programs! Yeeeaaah! ~",
-        tasks: [
-
-          {
-            name: "Task1",
-            task_id: 1,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1",
-            task_id: 2,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1",
-            task_id: 3,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1",
-            task_id: 4,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1",
-            task_id: 5,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1",
-            task_id: 6,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1",
-            task_id: 7,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1",
-            task_id: 8,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }, {
-            name: "Task1",
-            task_id: 9,
-            input: "No input required here!",
-            output: "Hello World",
-            description: "Write a Hello World Program!",
-            difficulty: "HARD",
-            tags: [
-              "#hard", "#missionImpossible"
-            ],
-            attempts: 0
-          }
-
-        ]
-      }
-
-    ]
-  };
+  return {tasks: state.projects.tasks, projects: state.projects.addedProjects};
 };
 
 

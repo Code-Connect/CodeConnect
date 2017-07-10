@@ -27,7 +27,7 @@ class Mentor extends React.Component {
   //gets called, when the component gets loaded
   componentDidMount() {
     this.props.dispatch(getOrgsProject(this.props.user.token));
-    this.props.dispatch(getUserProject(this.props.user.token));
+    this.props.dispatch(getUserProject(this.props.user.token, this.props.user.name));
   }
 
   addProject(project) {
@@ -79,7 +79,7 @@ class Mentor extends React.Component {
                   {/* <Button onClick= {() => this.onClick(project)}>
                     {project.name}
                   </Button> */}
-                  <ProjectPanel project = {project}/>
+                  <ProjectPanel short={true} project = {project}/>
                 </div>
               )
             })}
