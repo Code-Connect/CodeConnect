@@ -5,8 +5,9 @@ function loadEnvironmentVariables() {
     let dotenv = require('dotenv');
     dotenv.load();
 }
+let env = process.env.NODE_ENV ? process.env.NODE_ENV : "development";
 
-module.exports = {
+let knexfile = {
     development: {
         client: 'pg',
         connection: {
@@ -21,3 +22,4 @@ module.exports = {
         connection: process.env.DATABASE_URL
     }
 };
+module.exports = knexfile[env];
