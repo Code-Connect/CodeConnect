@@ -40,7 +40,7 @@ class ProjectPreview extends Component {
         </h5>
         </div>
         <div className="col-sm-3">
-        <a style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success" href={this.props.short != undefined? ("/mentor/"+this.props.id):("/contributor/tasks/p"+this.props.id)}>Modify</a>
+        <a style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success">View</a>
         </div>
         </div>
         <hr/>

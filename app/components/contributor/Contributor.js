@@ -1,23 +1,11 @@
-import React from 'react';
-import {connect} from 'react-redux'
-import {getReposGithub, addProjectToCodeConnect} from '../../actions/mentor';
-import TaskBlock from '../baukasten/Taskblock.js'
-import EditPanel from '../baukasten/EditPanel.js';
-import {browserHistory} from 'react-router'
-import json2array from './Json2Array.js'
-import {
-  Panel,
-  NavItem,
-  Nav,
-  Row,
-  Col,
-  Glyphicon
-} from "react-bootstrap";
-//import TaskTable from '../baukasten/tableView/TableComponent'
-import TableComponent from '../baukasten/tableView/TableComponent'
-import TaskTableView from '../baukasten/tableView/TaskTableView'
-import {Radio, FormControl, FormGroup, Breadcrumb} from 'react-bootstrap'
-import ProjectTableView from '../baukasten/tableView/ProjectTableView'
+import React from "react";
+import {connect} from "react-redux";
+import {addProjectToCodeConnect} from "../../actions/mentor";
+import {browserHistory} from "react-router";
+import json2array from "./Json2Array.js";
+import {Breadcrumb, FormGroup, Radio} from "react-bootstrap";
+import TaskTableView from "../baukasten/tableView/TaskTableView";
+import ProjectTableView from "../baukasten/tableView/ProjectTableView";
 
 class Contributor extends React.Component {
   constructor(props) {
