@@ -19,7 +19,7 @@ class TaskPreview extends Component {
     }
 
     return (
-      <div className="col-md-0 hidden-sm hidden-xs well" style={{
+      <div className="well" style={{
 				background: "white",
 				marginTop: "30px"
       }} ref="Parent">

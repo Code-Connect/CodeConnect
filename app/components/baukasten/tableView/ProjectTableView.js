@@ -52,7 +52,7 @@ class ProjectTableView extends Component {
     var data = this.props.projects.map((item) => {
         return {
           id: item.id,
-          data: [item.name, item.tasks.length, item.contributors.length, item.status]
+          data: [item.name, item.tasks.length, "Test2", "not implemented"]
         }
       })
     this.state = {

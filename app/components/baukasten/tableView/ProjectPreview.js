@@ -27,12 +27,11 @@ class ProjectPreview extends Component {
     }
 
     return (
-      <div className="col-md-0 hidden-sm hidden-xs well" style={{
+      <div className="well" style={{
         background: "white",
-        marginTop: "30px"
       }} ref="Parent">
       <div className="row">
-        <div className="col-md-8"><h5>
+        <div className="col-sm-9"><h5>
           <small style={tagStyle}>
             <b>{this.props.tags.map((tag) => {
                 return tag + " "
@@ -40,8 +39,8 @@ class ProjectPreview extends Component {
           </small>
         </h5>
         </div>
-        <div className="col-md-4">
-        <a style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success" href={"/contributor/tasks/p"+this.props.id}>Details</a>
+        <div className="col-sm-3">
+        <a style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success">View</a>
         </div>
         </div>
         <hr/>
@@ -58,13 +57,14 @@ class ProjectPreview extends Component {
           </div>
         </div>
 
-        <div style={divStyle}>
+        {this.props.short != undefined ? null :<div style={divStyle}>
           <h4>Contributors</h4><hr/>
             {this.props.contributors.map((user) => {
                 return <p>{user.name + ": " + user.email}</p>
               })}
         </div>
-        <div style={divStyle}>
+      }
+        {this.props.short != undefined ? null: <div style={divStyle}>
           <h4>Tasks</h4><hr/>
           <TableComponent goTo="p" setActiveElement={() => {
             console.log("potential")
@@ -74,7 +74,7 @@ class ProjectPreview extends Component {
               data: [task.name, task.status]
             }
           })}/>
-        </div>
+        </div>}
       </div>
     )
 

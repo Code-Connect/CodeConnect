@@ -32,4 +32,9 @@ Thumbs.db
 # webpacker build files
 /public/js/bundle.js
 
+# SmokeTest generated Files
 /vendor/
+test/codeception/_output/*
+test/codeception/_support/_generated/
+package-lock.json
+composer.lock

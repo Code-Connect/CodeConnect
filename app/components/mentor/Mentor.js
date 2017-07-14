@@ -13,6 +13,7 @@ import {getOrgsProject, getUserProject} from './../../actions/projectActions';
 import MentorTable from './MentorTable';
 import ProjectPanel from './ProjectPanel';
 import {addProject} from '../../actions/projectActions';
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 class Mentor extends React.Component {
   constructor(props) {
@@ -67,7 +68,6 @@ class Mentor extends React.Component {
         background: 'white',
         padding: '50px'
       }}>
-
         <Row className="show-grid">
           <Col xs={12} md={4}>
             {addProjectMode}
@@ -79,8 +79,7 @@ class Mentor extends React.Component {
                   {/* <Button onClick= {() => this.onClick(project)}>
                     {project.name}
                   </Button> */}
-                  <ProjectPanel project = {project}/>
-                  <hr/>
+                  <ProjectPanel short={true} project = {project}/>
                 </div>
               )
             })}
