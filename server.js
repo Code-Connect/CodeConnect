@@ -17,7 +17,12 @@ var webpack = require('webpack');
 var config = require('./webpack.config');
 
 // Load environment variables from .env file
-dotenv.load();
+if (process.env.NODE_ENV !== "production")
+    loadEnvironmentVariables();
+function loadEnvironmentVariables() {
+    let dotenv = require('dotenv');
+    dotenv.load();
+}
 
 // ES6 Transpiler
 require('babel-core/register');
@@ -62,7 +67,7 @@ const knex = Knex(require('./knexfile'));
 
 const store2 = new KnexSessionStore({
   knex: knex, tablename: 'sessions' // optional. Defaults to 'sessions'
-})
+});
 // git login with session
 app.use(session({
   secret: process.env.SECRET,

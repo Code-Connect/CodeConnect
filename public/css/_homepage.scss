@@ -1,0 +1,58 @@
+.tutorial-modal {
+  width: 90%;
+  margin-top: 3vh;
+  margin-bottom: 0;
+
+  .modal-header {
+    height: 10vh;
+    padding: 2vh;
+  }
+
+  .modal-footer {
+    height: auto;
+    padding: 0 2vh 2vh;
+
+  }
+
+  .modal-body {
+    padding-bottom: 0;
+    padding-top: 0;
+
+    iframe {
+      width: 100%;
+      min-height: 100%;
+      height: 72vh;
+      border: none;
+    }
+  }
+}
+
+.tutorial {
+  width: 50%;
+
+  @media (max-width: $screen-md) {
+    width: 90%;
+  }
+}
+
+@mixin logoSize($logo-size) {
+  width: $logo-size;
+  height: $logo-size;
+
+  iframe {
+    width: $logo-size;
+    height: $logo-size;
+    position: absolute;
+    border: none;
+  }
+}
+
+.logo {
+  @include logoSize(480px);
+  @media (max-width: $screen-md) {
+    @include logoSize(360px);
+  }
+  @media (max-width: $screen-sm) {
+    @include logoSize(120px);
+  }
+}
