@@ -31,6 +31,7 @@ class Contributor extends React.Component {
           projects: this.props.projects
         }
       }).value
+
     if (showSpecificProject) {
       displayedTasks = displayedTasks.map((item) => {
         return this.props.tasks[item]
