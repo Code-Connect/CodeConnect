@@ -31,7 +31,7 @@ export function getOrgsProject(token) {
 
 export function getUserProject(token, username) {
   return (dispatch) => {
-    return fetch('https://api.github.com/users/gapsong/repos').then((response) => {
+    return fetch('https://api.github.com/users/'+ username +'/repos').then((response) => {
       return response.json().then(function(json) {
         var repoarray = json.map((item) => {
           return {project_id: item.id, name: item.name, repourl: item.html_url, description: item.description, tasks: []}

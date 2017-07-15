@@ -46,10 +46,10 @@ export default function messages(projects = {}, action) {
       var a = projects.addableProjects.concat(action.projects);
       var b = projects.addedProjects;
 
-      a = a.filter(function(item, pos) {
-        return a.indexOf(item) == pos;
-      });
+      //filter duplicates
+      a = a.filter((item, index, self) => self.findIndex((t) => {return t.project_id === item.project_id}) === index)
 
+      //filter already added projects from the list
       a = a.filter(function(item) {
         return !(b.reduce(function(acc, val) {
           return (acc || (item.project_id == val.project_id))
