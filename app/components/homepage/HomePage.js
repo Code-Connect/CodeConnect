@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import About from "../about/About";
+import NewsPage from "./NewsPage";
 
 class HomePage extends Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class HomePage extends Component {
     }
 
     render() {
-        const page = this.props.user ? <p>Logged in</p> : <About/>;
+        const page = this.props.user ? <NewsPage/> : <About/>;
         return (
             <div className="HomePage">
                 {page}
