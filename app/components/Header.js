@@ -1,6 +1,6 @@
-import React from 'react';
-import {connect} from 'react-redux'
-import {IndexLink, Link} from 'react-router';
+import React from "react";
+import {connect} from "react-redux";
+import {IndexLink, Link} from "react-router";
 
 class Header extends React.Component {
     constructor(props) {
@@ -50,13 +50,16 @@ class Header extends React.Component {
                     <li>
                         <Link to="/feedback" activeStyle={active}>Feedback</Link>
                     </li>
+                    <li>
+                        <Link to="/about" activeStyle={active}>About</Link>
+                    </li>
                 </ul>
 
             )
             : (
                 <div></div>
             );
-        const navbarStyle = {backgroundColor: "#FFD480"}
+        const navbarStyle = {backgroundColor: "#FFD480"};
 
         return (
             <nav className="navbar navbar-default navbar-static-top" style={navbarStyle}>
