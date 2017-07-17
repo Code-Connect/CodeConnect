@@ -1,10 +1,10 @@
 import React, {Component} from "react"
-import ListItem from "./ListItem.js"
-import TaskPreview from "./TaskPreview.js"
-import TableFilter from "./TableFilter.js"
+import ListItem from "./tableView/ListItem.js"
+import TaskPreview from "./previewComponents/TaskPreview.js"
+import TableFilter from "./filterComponents/TableFilter.js"
 import {Table, Panel} from "react-bootstrap"
-import TableComponent from "./TableComponent.js"
-import PreviewList from './PreviewList'
+import TableComponent from "./tableView/TableComponent.js"
+import PreviewList from './previewComponents/PreviewList'
 import {goToAnchor} from 'react-scrollable-anchor'
 
 /*

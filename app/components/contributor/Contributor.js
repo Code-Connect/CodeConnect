@@ -4,8 +4,8 @@ import {addProjectToCodeConnect} from "../../actions/mentor";
 import {browserHistory} from "react-router";
 import json2array from "./Json2Array.js";
 import {Breadcrumb, FormGroup, Radio} from "react-bootstrap";
-import TaskTableView from "../baukasten/tableView/TaskTableView";
-import ProjectTableView from "../baukasten/tableView/ProjectTableView";
+import TaskTableView from "../baukasten/TaskTableView";
+import ProjectTableView from "../baukasten/ProjectTableView";
 
 class Contributor extends React.Component {
   constructor(props) {

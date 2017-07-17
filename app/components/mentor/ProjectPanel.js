@@ -9,7 +9,7 @@ import {
   Col
 } from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
-import ProjectPreview from '../baukasten/tableView/ProjectPreview'
+import ProjectPreview from '../baukasten/previewComponents/ProjectPreview'
 import ScrollableAnchor from 'react-scrollable-anchor'
 
 
