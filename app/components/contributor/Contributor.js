@@ -138,9 +138,8 @@ class Contributor extends React.Component {
               </Breadcrumb>
             </div>
           </div>
-          {this.state.showProjects
-            ? projectTableView
-            : taskTableView}
+
+            {this.props.children}
 
         </div>
       </div>
@@ -148,8 +147,11 @@ class Contributor extends React.Component {
   }
 }
 
+
+
 const mapStateToProps = (state) => {
-  return {projects: state.projects.addedProjects, tasks: state.projects.tasks};
+    return {projects: state.projects.addedProjects, tasks: state.projects.tasks};
 };
 
 export default connect(mapStateToProps)(Contributor);
+

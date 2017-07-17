@@ -7,6 +7,7 @@ import {Table, Panel} from "react-bootstrap"
 import TableComponent from "./tableView/TableComponent.js"
 import PreviewList from "./previewComponents/PreviewList"
 import {goToAnchor} from "react-scrollable-anchor"
+import {connect} from "react-redux";
 /*
  * This component is responsible for displaying:
  * 		TableComponent, Table Preview
@@ -115,4 +116,9 @@ class ProjectTableView extends Component {
   }
 }
 
-export default ProjectTableView
+const mapStateToProps = (state) => {
+    return {projects: state.projects.addedProjects, tasks: state.projects.tasks};
+};
+
+export default connect(mapStateToProps)(ProjectTableView);
+

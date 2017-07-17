@@ -17,6 +17,7 @@ class TaskTableView extends Component {
 
   constructor(props) {
     super(props)
+      /*
     this.default = {
       name: 'No Tasks available at the moment',
       description: 'The preview for the task will appear here!'
@@ -47,8 +48,9 @@ class TaskTableView extends Component {
           data: ["ProjName", item.name, item.status]
         }
       })}
+      */
   }
-
+/*
   getCurrentData() {
     var curTasks = this.state.current_tasks == undefined
       ? this.props.tasks
@@ -77,6 +79,7 @@ class TaskTableView extends Component {
         : element
     })
   }
+  */
 
   focusPreview(id) {
     goToAnchor("t" + id)
@@ -88,14 +91,15 @@ class TaskTableView extends Component {
         background: "rgb(255,255,255,1)",
         borderRadius: "10px"
       }} className="col-md-4">
-        <TableFilter filterTasks={this.filterTasks.bind(this)}/>
+        { /*<TableFilter filterTasks={this.filterTasks.bind(this)}/>
 
         <TableComponent goTo={"t"} onTableItemClicked={this.focusPreview.bind(this)} setActiveElement={this.setActiveElement.bind(this)} route={""} labelList={this.labels} dataList={this.state.data}/>
       </div>
 
       <div className="col-md-8" style={{}}>
         <PreviewList flag="task" dataList={this.state.current_tasks}/>
-
+      */}
+        Coming soon!
       </div>
     </div>
     )
