@@ -4,7 +4,7 @@ import TaskPreview from "./previewComponents/TaskPreview.js"
 import TableFilter from "./filterComponents/TableFilter.js"
 import {Table, Panel} from "react-bootstrap"
 import TableComponent from "./tableView/TableComponent.js"
-import PreviewList from './previewComponents/PreviewList'
+import PreviewList from './previewComponents/TaskPreviewList'
 import {goToAnchor} from 'react-scrollable-anchor'
 
 /*

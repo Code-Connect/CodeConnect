@@ -5,7 +5,7 @@ import ProjectPreview from "./previewComponents/ProjectPreview.js"
 import TableFilter from "./filterComponents/TableFilter.js"
 import {Table, Panel} from "react-bootstrap"
 import TableComponent from "./tableView/TableComponent.js"
-import PreviewList from "./previewComponents/PreviewList"
+import PreviewList from "./previewComponents/ProjectPreviewList"
 import {goToAnchor} from "react-scrollable-anchor"
 import {connect} from "react-redux";
 /*
@@ -109,7 +109,7 @@ class ProjectTableView extends Component {
 
         <div className="col-md-8" style={{
         }}>
-            <PreviewList flag="" dataList={this.state.current_projects}/>
+            <PreviewList dataList={this.state.current_projects}/>
         </div>
       </div>
     )
