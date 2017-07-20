@@ -32,8 +32,8 @@ class ProjectPreviewList extends Component {
             < div >
                 {
                     this.props.dataList.map((item) => {
-                        return <ScrollableAnchor key={item.id} id={"p" + item.id}><ProjectPreview id={item.id}
-                                                                                                  key={item.id}
+                        return <ScrollableAnchor key={item.project_id} id={"p" + item.project_id}><ProjectPreview id={item.project_id}
+                                                                                                  key={item.project_id}
                                                                                                   description={item.description}
                                                                                                   title={item.name}
                                                                                                   tags={this.tags}

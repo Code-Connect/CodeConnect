@@ -29,10 +29,13 @@ export default function getRoutes(store) {
 
             <Route path="/contributor" component={Contributor} onLeave={clearMessages}>
                 <IndexRoute component={ProjectTableView} onLeave={clearMessages}/>
+
+                <Route path="projects/:id" component={TaskTableView} onLeave={clearMessages}/>
+
                 <Route path="projects" component={ProjectTableView}/>
+
                 <Route path="tasks" component={TaskTableView}/>
             </Route>
-            <Route path="/contributor/tasks/:p" component={Contributor} onLeave={clearMessages}/>
             <Route path="/contributor/projects" component={Contributor} onLeave={clearMessages}/>
             <Route path="/editor" component={Editor} onLeave={clearMessages}/>
             <Route path="/task/:task" component={TaskView} onLeave={clearMessages}/>
