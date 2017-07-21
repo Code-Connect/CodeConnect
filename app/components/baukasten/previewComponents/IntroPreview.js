@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import ReactDOM from 'react-dom'
 import {Panel, Button} from "react-bootstrap"
 import ReactMarkdown from 'react-markdown'
-import TableComponent from './TableComponent.js'
+import TableComponent from '../tableView/TableComponent.js'
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 

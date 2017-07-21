@@ -99,9 +99,9 @@ class ProjectPanel extends React.Component {
           <h1>
             {this.props.project.name}
           </h1>
-          {this.createPanel("chatroom")}
+          {/* {this.createPanel("chatroom")}
           {this.createPanel("mentor")}
-          {this.createPanel("description")}
+          {this.createPanel("description")} */}
         </div>
       </div>
     );

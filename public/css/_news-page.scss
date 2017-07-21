@@ -1,0 +1,11 @@
+.news-page {
+  #TableComponent{
+    display: none;
+  }
+  #ProjectPreview{
+    width: 100%;
+  }
+  .well {
+    @include gallery(3 of 12);
+  }
+}
