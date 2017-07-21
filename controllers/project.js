@@ -29,6 +29,7 @@ exports.getProjects = function() {
 //   });
 // }
 
+//returns all projects and for each project a task
 exports.getProjectsAndTasks = function() {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description').from('projects').then(function(rows) {
     return Promise.all(rows.map((item) => {
@@ -36,7 +37,14 @@ exports.getProjectsAndTasks = function() {
         return Promise.all(task.map((task_item) => {
           return task_item.task_id
         })).then((ids) => {
-          return Object.assign({}, item, {tasks: ids});
+          return knex.select('isMentor.user_id').from('isMentor').where('isMentor.project_id', '=', item.project_id).then(function(mentor_id) {
+            return knex.select('github.email','github.name').from('github').where('github.id', '=', mentor_id[0].user_id).then(function(mentor){
+              return Object.assign({}, item, {
+                tasks: ids,
+                mentor: mentor[0]
+              });
+            });
+          });
         });
       });
     }));
