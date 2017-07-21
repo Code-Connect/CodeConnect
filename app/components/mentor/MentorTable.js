@@ -12,9 +12,6 @@ class MentorTable extends React.Component {
   }
 
   onClick(item) {
-    //TODO
-    //man kommt zum aktuellem Projekt
-    // console.log(element.target);
     this.props.onClick(item);
   }
 

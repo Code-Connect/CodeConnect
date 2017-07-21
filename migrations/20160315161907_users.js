@@ -31,6 +31,9 @@ var projectTable = function(table){
   table.integer('project_id').primary();
   table.string('name').defaultTo('NA');
   table.string('chatroom');
+  table.string('description');
+  table.string('repourl');
+  table.timestamps();
 }
 
 var participate = function(table) {
