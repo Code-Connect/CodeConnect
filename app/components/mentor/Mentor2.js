@@ -16,7 +16,7 @@ import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
 import TaskPanel from './TaskPanel';
 import MentorTable from './MentorTable';
 import jsonQuery from 'json-query';
-import ProjectPanel from './ProjectPanel'
+import ProjectEditPanel from './ProjectEditPanel'
 
 class Mentor2 extends React.Component {
   constructor(props) {
@@ -86,7 +86,7 @@ class Mentor2 extends React.Component {
             <MentorTable onClick={() => {}} datatype="task" data={this.state.tasks}/>
           </Col>
           <Col xs={12} md={8}>
-          <ProjectPanel project={this.props.projects.find((item)=>{return this.state.project_id == item.project_id})}/>
+          <ProjectEditPanel project={this.props.projects.find((item)=>{return this.state.project_id == item.project_id})}/>
             {this.state.tasks.map((task) => {
               return (
                   <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
