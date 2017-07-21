@@ -34,7 +34,6 @@ class ProjectPanel extends React.Component {
         </h5>
         </div>
         <div className="col-sm-3">
-          <Link to={"/mentor/"+this.props.project.project_id} style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success">Details</Link>
         </div>
         </div>
 
@@ -43,9 +42,9 @@ class ProjectPanel extends React.Component {
             <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="icon"/>
           </div>
           <div className="col-sm-10">
-            <h4 style={{
+            <Link to={"/mentor/"+this.props.project.project_id}><h4 style={{
               marginTop: "0",
-            }}>{this.props.project.name}</h4>
+            }}>{this.props.project.name}</h4></Link>
             <h4><small><ReactMarkdown source={this.props.project.description}/></small></h4>
           </div>
         </div>
