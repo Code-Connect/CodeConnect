@@ -13,6 +13,7 @@ import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
 import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
+import {updateProject} from '../../actions/projectActions';
 import TaskPanel from './TaskPanel';
 import MentorTable from './MentorTable';
 import jsonQuery from 'json-query';
@@ -43,8 +44,12 @@ class Mentor2 extends React.Component {
     });
   }
 
-  saveChange(task) {
+  saveTask(task) {
     this.props.dispatch(updateTask(task));
+  }
+
+  saveProject(project){
+    this.props.dispatch(updateProject(project));
   }
 
   deleteTask(task, project_id) {
@@ -86,10 +91,12 @@ class Mentor2 extends React.Component {
             <MentorTable onClick={() => {}} datatype="task" data={this.state.tasks}/>
           </Col>
           <Col xs={12} md={8}>
-          <ProjectEditPanel project={this.props.projects.find((item)=>{return this.state.project_id == item.project_id})}/>
+          <ProjectEditPanel
+            saveProject = {this.saveProject.bind(this)}
+            project={this.props.projects.find((item)=>{return this.state.project_id == item.project_id})}/>
             {this.state.tasks.map((task) => {
               return (
-                  <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveChange.bind(this)}/>
+                  <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveTask.bind(this)}/>
               )
             })}
           </Col>

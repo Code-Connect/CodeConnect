@@ -9,6 +9,13 @@ exports.addProject = function(req, res) {
   });
 }
 
+exports.updateProject= function(req, res) {
+  console.log(req.body.project);
+  knex('projects').where('project_id', '=', req.body.project.project_id).update(req.body.project).then(() => {
+    res.json({success: true, message: 'ok'}); // respond back to request
+  });
+}
+
 exports.getProjects = function() {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
     console.log(rows[0]);

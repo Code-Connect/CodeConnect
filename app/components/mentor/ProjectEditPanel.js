@@ -23,59 +23,49 @@ class ProjectEditPanel extends React.Component {
     super(props);
     this.state = {
       toggle: false,
-      name: this.props.project.name
+      chatroom: this.props.project.chatroom,
+      description: this.props.project.description
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props != nextProps) {
-      // this.setState({name: nextProps.task.name, input: nextProps.task.input, output: nextProps.task.output, description: nextProps.task.description});
+      this.setState({project_id: nextProps.project.project_id, chatroom: nextProps.project.chatroom, description: nextProps.project.description});
     }
   }
 
-    toggleButton(event) {
-      this.setState({
-        [event.target.name]: !this.state[event.target.name]
-      });
-    }
+  toggleButton(event) {
+    this.setState({
+      [event.target.name]: !this.state[event.target.name]
+    });
+  }
 
-    handleChange(event) {
-      this.setState({
-        [event.target.name]: event.target.value
-      });
-    }
+  saveChange(event) {
+    this.toggleButton(event);
+    this.props.saveProject({project_id: this.props.project.project_id, chatroom: this.state.chatroom, description: this.state.description});
+  }
 
-    renameTask(event) {
-      this.toggleButton(event);
-      this.props.saveChange({name: this.state.name, task_id: this.props.task.task_id});
-    }
+  deleteProject(event) {
+    this.props.deleteProject({project_id: this.props.project.project_id});
+  }
 
-    saveChange(event) {
-      this.toggleButton(event);
-      this.props.saveChange({project_id: this.props.project.project_id, input: this.state.input, output: this.state.output, description: this.state.description});
-    }
+  updateCode(fieldtype, newCode) {
+    this.setState({[fieldtype]: newCode});
+  }
 
-    deleteProject(event) {
-      this.props.deleteProject({project_id: this.props.project.project_id});
-    }
+  createPanel(fieldtype) {
+    const editPanel = this.state.toggle
+      ? (<Editor fieldtype={fieldtype} value={this.props.project[fieldtype]} onChange={this.updateCode.bind(this)}/>)
+      : <ReactMarkdown source={this.props.project[fieldtype]}/>;
 
-    updateCode(fieldtype, newCode) {
-      this.setState({[fieldtype]: newCode});
-    }
-
-    createPanel(fieldtype) {
-      const editPanel = this.state.toggle
-        ? (<Editor fieldtype={fieldtype} value={this.props.project[fieldtype]} onChange={this.updateCode.bind(this)}/>)
-        : <ReactMarkdown source={this.props.project[fieldtype]}/>;
-
-      return (
-        <div>
-          <hr/>
-          <h4>{fieldtype}</h4>
-          {editPanel}
-        </div>
-      )
-    }
+    return (
+      <div>
+        <hr/>
+        <h4>{fieldtype}</h4>
+        {editPanel}
+      </div>
+    )
+  }
 
   render() {
     const editOrSaveButton = this.state.toggle
@@ -99,9 +89,9 @@ class ProjectEditPanel extends React.Component {
           <h1>
             {this.props.project.name}
           </h1>
-          {/* {this.createPanel("chatroom")}
-          {this.createPanel("mentor")}
-          {this.createPanel("description")} */}
+          {this.createPanel("chatroom")}
+          {/* {this.createPanel("mentor")} */}
+          {this.createPanel("description")}
         </div>
       </div>
     );

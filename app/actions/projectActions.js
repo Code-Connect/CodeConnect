@@ -42,6 +42,22 @@ export function getUserProject(token, username) {
   };
 }
 
+export function updateProject(project) {
+  return (dispatch) => {
+    return fetch('/updateproject', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin', // By default, fetch won't send any cookies to the server
+      body: JSON.stringify({project: project})
+    }).then((response) => {
+      return dispatch({type: 'UPDATE_PROJECT_SUCCESSFUL', project: project});
+    });
+  };
+}
+
 export function addProject(project) {
   return (dispatch) => {
     return fetch('/addproject', {
