@@ -56,14 +56,13 @@ class Mentor extends React.Component {
       )
       : (
         <div>
-          <MentorTable onClick={() => {}} datatype="project" data={this.props.addedProjects}/>
           <Button onClick={this.toggleButton.bind(this)}>
             Add Projects from Github
           </Button>
         </div>
       )
     return (
-      <div className="container" style={{
+      <div style={{
         borderRadius: '10px',
         background: 'white',
         padding: '50px'

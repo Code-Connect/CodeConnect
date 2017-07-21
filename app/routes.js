@@ -12,6 +12,7 @@ import Feedback from "./components/feedback/Feedback";
 import About from "./components/about/About";
 import ProjectTableView from './components/baukasten/ProjectTableView';
 import TaskTableView from './components/baukasten/TaskTableView';
+import Profile from "./components/profile/Profile";
 
 export default function getRoutes(store) {
 
@@ -22,6 +23,7 @@ export default function getRoutes(store) {
     return (
         <Route path="/" component={App}>
             <IndexRoute component={HomePage} onLeave={clearMessages}/>
+            <Route path="/profile" component={Profile} onLeave={clearMessages}/>
             <Route path="/mentor" component={Mentor} onLeave={clearMessages}/>
             <Route path="/mentor/:project" component={MentorTask} onLeave={clearMessages}/>
             <Route path="/mentor2" component={MentorTask} onLeave={clearMessages}/>
