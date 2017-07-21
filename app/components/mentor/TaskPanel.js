@@ -69,7 +69,7 @@ class TaskPanel extends React.Component {
 
   createPanel(fieldtype) {
     const editPanel = this.state.toggle
-      ? (<Editor fieldtype={fieldtype} value={this.props.task[fieldtype]} task_id={this.props.task.task_id} onChange={this.updateCode.bind(this)}/>)
+      ? (<Editor fieldtype={fieldtype} value={this.props.task[fieldtype]} onChange={this.updateCode.bind(this)}/>)
       : <ReactMarkdown source={this.props.task[fieldtype]}/>;
 
     return (

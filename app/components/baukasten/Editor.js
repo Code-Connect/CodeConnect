@@ -6,7 +6,6 @@ class Editor extends React.Component {
     super(props);
     this.state = {
       value: props.value,
-      task_id: props.task_id,
       fieldtype: props.fieldtype
     }
   }
