@@ -1,10 +1,11 @@
 import React, {Component} from "react";
+import ProjectTableView from "../baukasten/ProjectTableView";
 
 class NewsPage extends Component {
     render() {
         return (
-            <div>
-                News
+            <div className="news-page">
+                <ProjectTableView/>
             </div>
         );
     }
