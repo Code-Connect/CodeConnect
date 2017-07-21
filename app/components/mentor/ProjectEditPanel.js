@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import {Link} from "react-router";
 
 
-class ProjectPanel extends React.Component {
+class ProjectEditPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,7 +23,7 @@ class ProjectPanel extends React.Component {
         return (
             <div style={{
                 background: "white",
-            }} ref="Parent">
+            }} className="well" ref="Parent">
                 <div className="row">
                     <div className="col-sm-9"><h5>
                         <small style={tagStyle}>
@@ -34,7 +34,7 @@ class ProjectPanel extends React.Component {
                     </h5>
                     </div>
                     <div className="col-sm-3">
-                        <Link to={"/mentor/"+this.props.project.project_id} style={{padding: "10px", float: "right", borderRadius: "5px"}} className="btn-success">Details</Link>
+                        <button className="btn btn-success pull-right">Modify</button>
                     </div>
                 </div>
 
@@ -43,9 +43,9 @@ class ProjectPanel extends React.Component {
                         <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="icon"/>
                     </div>
                     <div className="col-sm-10">
-                        <h4 style={{
+                        <h1 style={{
                             marginTop: "0",
-                        }}>{this.props.project.name}</h4>
+                        }}>{this.props.project.name}</h1>
                         <h4><small><ReactMarkdown source={this.props.project.description}/></small></h4>
                     </div>
                 </div>
@@ -55,4 +55,4 @@ class ProjectPanel extends React.Component {
     }
 }
 
-export default ProjectPanel;
+export default ProjectEditPanel;
