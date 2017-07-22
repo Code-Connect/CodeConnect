@@ -47,7 +47,9 @@ export default function messages(projects = {}, action) {
       var b = projects.addedProjects;
 
       //filter duplicates
-      a = a.filter((item, index, self) => self.findIndex((t) => {return t.project_id === item.project_id}) === index)
+      a = a.filter((item, index, self) => self.findIndex((t) => {
+        return t.project_id === item.project_id
+      }) === index)
 
       //filter already added projects from the list
       a = a.filter(function(item) {
@@ -68,6 +70,24 @@ export default function messages(projects = {}, action) {
           action.project
         ]
       });
+
+    case 'UPDATE_PROJECT_SUCCESSFUL':
+      //TODO hier muss diese methode fertig gemacht werden
+      var a = projects.addedProjects.slice();
+      a = a.map((project) => {
+        console.log("project");
+        if (project.project_id == action.project.project_id) {
+          var temp = Object.assign({}, project, action.project)
+          console.log(temp);
+          return temp;
+        } else {
+          return project;
+        }
+      });
+
+      console.log(a);
+
+      return Object.assign({}, {addedProjects: a});
 
     case 'ADD_TASK_SUCCESSFUL':
       // TODO task post successful feedback like a toast message
@@ -103,9 +123,11 @@ export default function messages(projects = {}, action) {
 
     case 'UPDATE_TASK_SUCCESSFUL':
       var index = action.task.task_id;
-      var newAttribute = Object.assign({}, projects.tasks, {[index]: Object.assign(projects.tasks[index], action.task)});
+      var newAttribute = Object.assign({}, projects.tasks, {
+        [index]: Object.assign(projects.tasks[index], action.task)
+      });
       console.log(newAttribute);
-      return Object.assign({}, projects, {tasks:newAttribute});
+      return Object.assign({}, projects, {tasks: newAttribute});
 
     case 'DELETE_TASK_SUCCESSFUL':
       var temp2 = projects.addedProjects.slice();
