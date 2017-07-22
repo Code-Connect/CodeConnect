@@ -10,10 +10,8 @@ exports.updateTask = function(req, res) {
 
 exports.addTask = function(req, res) {
   knex('tasks').insert({name: req.body.name}).returning('task_id').then((task_id) => {
-    knex('belongsTo').insert({user_id: req.user.github.id, task_id: task_id[0]}).then(() => {
-      knex('hasTask').insert({task_id: task_id[0], project_id: req.body.project_id}).then(() => {
-        res.json({success: true, task_id: task_id[0]});
-      });
+    knex('hasTask').insert({task_id: task_id[0], project_id: req.body.project_id}).then(() => {
+      res.json({success: true, task_id: task_id[0]});
     });
   });
 }
@@ -23,11 +21,9 @@ exports.getTasks = function() {
 }
 
 exports.deleteTask = function(req, res) {
-  knex('belongsTo').where('task_id', req.body.task_id).del().then(() => {
-    knex('hasTask').where('task_id', req.body.task_id).del().then(() => {
-      knex('tasks').where('task_id', req.body.task_id).del().then(() => {
-        res.json({success: true});
-      });
+  knex('hasTask').where('task_id', req.body.task_id).del().then(() => {
+    knex('tasks').where('task_id', req.body.task_id).del().then(() => {
+      res.json({success: true});
     });
   });
 }

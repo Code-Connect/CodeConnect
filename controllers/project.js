@@ -9,10 +9,27 @@ exports.addProject = function(req, res) {
   });
 }
 
-exports.updateProject= function(req, res) {
+exports.updateProject = function(req, res) {
   console.log(req.body.project);
   knex('projects').where('project_id', '=', req.body.project.project_id).update(req.body.project).then(() => {
     res.json({success: true, message: 'ok'}); // respond back to request
+  });
+}
+
+exports.deleteProject = function(req, res) {
+  var project_id = req.body.project_id;
+  return knex('isMentor').where('project_id', project_id).del().then((id) => {
+    return knex('hasTask').where('project_id', project_id).del().returning('task_id').then((tasks) => {
+      return Promise.all(tasks.map((task_id) => {
+        console.log("task_id");
+        console.log(task_id);
+        return knex('tasks').where('task_id', task_id).del();
+      })).then(() => {
+        return knex('projects').where('project_id', project_id).del().then(()=>{
+          return res.json({success: true});
+        });
+      });
+    });
   });
 }
 
@@ -45,7 +62,7 @@ exports.getProjectsAndTasks = function() {
           return task_item.task_id
         })).then((ids) => {
           return knex.select('isMentor.user_id').from('isMentor').where('isMentor.project_id', '=', item.project_id).then(function(mentor_id) {
-            return knex.select('github.email','github.name').from('github').where('github.id', '=', mentor_id[0].user_id).then(function(mentor){
+            return knex.select('github.email', 'github.name').from('github').where('github.id', '=', mentor_id[0].user_id).then(function(mentor) {
               return Object.assign({}, item, {
                 tasks: ids,
                 mentor: mentor[0]

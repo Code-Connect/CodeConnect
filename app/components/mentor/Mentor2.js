@@ -13,7 +13,7 @@ import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
 import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
-import {updateProject} from '../../actions/projectActions';
+import {updateProject, deleteProject} from '../../actions/projectActions';
 import TaskPanel from './TaskPanel';
 import MentorTable from './MentorTable';
 import jsonQuery from 'json-query';
@@ -56,6 +56,10 @@ class Mentor2 extends React.Component {
     this.props.dispatch(deleteTask(task, this.state.project_id));
   }
 
+  deleteProject(event) {
+    this.props.dispatch(deleteProject(this.state.project_id));
+  }
+
   updateTaskAttribute(task_id, fieldtype, newCode) {
     this.props.dispatch({type: 'UPDATE_ATTRIBUTE', task_id: task_id, fieldtype: fieldtype, newCode: newCode});
   }
@@ -93,6 +97,7 @@ class Mentor2 extends React.Component {
           <Col xs={12} md={8}>
           <ProjectEditPanel
             saveProject = {this.saveProject.bind(this)}
+            deleteProject = {this.deleteProject.bind(this)}
             project={this.props.projects.find((item)=>{return this.state.project_id == item.project_id})}/>
             {this.state.tasks.map((task) => {
               return (

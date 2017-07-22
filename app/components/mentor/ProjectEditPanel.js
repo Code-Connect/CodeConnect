@@ -46,7 +46,7 @@ class ProjectEditPanel extends React.Component {
   }
 
   deleteProject(event) {
-    this.props.deleteProject({project_id: this.props.project.project_id});
+    this.props.deleteProject();
   }
 
   updateCode(fieldtype, newCode) {

@@ -58,6 +58,24 @@ export function updateProject(project) {
   };
 }
 
+export function deleteProject(project_id) {
+  return (dispatch) => {
+    return fetch('/deleteProject', {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin', // By default, fetch won't send any cookies to the server
+      body: JSON.stringify({project_id: project_id})
+    }).then((response) => {
+      return response.json().then(function(json) {
+        return dispatch({type: 'DELETE_PROJECT_SUCCESSFUL', project_id: project_id});
+      });
+    })
+  }
+}
+
 export function addProject(project) {
   return (dispatch) => {
     return fetch('/addproject', {

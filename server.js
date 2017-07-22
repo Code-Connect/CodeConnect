@@ -98,6 +98,7 @@ var helper = require('./controllers/help');
 // app.post('/postccrepo', projectController.saveProject);
 app.post('/addproject', projectController.addProject);
 app.post('/updateproject', projectController.updateProject);
+app.delete('/deleteproject', projectController.deleteProject);
 
 
 app.get('/project', projectController.getProjects);
