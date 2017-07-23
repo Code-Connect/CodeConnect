@@ -7756,16 +7756,20 @@ span.CodeMirror-selectedtext {
         clear: both;
         margin-left: 0; } }
 .news-page .logo {
+  display: block;
   width: 100%;
   height: auto; }
-.news-page .logo img {
-  width: 100%; }
+  .news-page .logo img {
+    width: 100%; }
 .news-page .title {
+  display: block;
   width: 100%;
   padding: 0;
   overflow: hidden; }
   .news-page .title h1 {
     font-size: 30px; }
+.news-page .well div {
+  display: none; }
 
 /*# sourceMappingURL=main.css.map */
 >>>>>>> ea344fd37fc2ed56afec92ad269e437c34454fe0

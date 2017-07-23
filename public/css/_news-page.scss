@@ -19,20 +19,25 @@
   }
 
   .logo {
+    display: block;
     width: 100%;
     height: auto;
-  }
-
-  .logo img {
+    img {
     width: 100%;
+    }
   }
 
   .title {
+    display: block;
     width: 100%;
     padding: 0;
     overflow: hidden;
     h1 {
       font-size: 30px;
     }
+  }
+
+  .well div {
+    display: none;
   }
 }
