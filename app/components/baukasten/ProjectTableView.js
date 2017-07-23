@@ -96,7 +96,7 @@ class ProjectTableView extends Component {
       <div className="container" style={{background:"white", borderRadius: '10px'}}>
         <div style={{
           background: "rgb(255,255,255,1)"
-        }} className="col-md-4">
+        }} className="col-md-4" id="TableComponent">
 
           <TableComponent goTo={"p"} onTableItemClicked={this.focusPreview.bind(this)} setActiveElement={this.setActiveElement.bind(this)} route={""} labelList={this.labels} dataList={this.state.data}/>
         </div>
