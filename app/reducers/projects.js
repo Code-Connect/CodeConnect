@@ -87,7 +87,7 @@ export default function messages(projects = {}, action) {
 
       console.log(a);
 
-      return Object.assign({}, {addedProjects: a});
+      return Object.assign({}, projects, {addedProjects: a});
 
     case 'DELETE_PROJECT_SUCCESSFUL':
       var temp = projects.addedProjects.slice();
