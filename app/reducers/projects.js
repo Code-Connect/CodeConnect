@@ -89,6 +89,15 @@ export default function messages(projects = {}, action) {
 
       return Object.assign({}, {addedProjects: a});
 
+    case 'DELETE_PROJECT_SUCCESSFUL':
+      var temp = projects.addedProjects.slice();
+      //hier werden die scheiße gefiltert
+      temp = temp.filter((project) => {
+        return action.project_id != project.project_id
+      });
+
+      return Object.assign({}, projects, {addedProjects: temp});
+
     case 'ADD_TASK_SUCCESSFUL':
       // TODO task post successful feedback like a toast message
       var temp = projects.addedProjects.slice();

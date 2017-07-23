@@ -58,6 +58,7 @@ class Mentor2 extends React.Component {
 
   deleteProject(event) {
     this.props.dispatch(deleteProject(this.state.project_id));
+    this.props.history.push('/mentor');
   }
 
   updateTaskAttribute(task_id, fieldtype, newCode) {
