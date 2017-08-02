@@ -6618,6 +6618,7 @@ span.CodeMirror-selectedtext {
   overflow: hidden; }
   .news-page .title h1 {
     font-size: 30px; }
+.news-page .well hr,
 .news-page .well div {
   display: none; }
 .news-page .well .short-preview {
