@@ -43,7 +43,8 @@
     }
     .short-preview {
       display: block;
-      div {
+      .logo,
+      .title {
         display: block;
       }
       img {

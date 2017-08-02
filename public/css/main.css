@@ -6622,7 +6622,8 @@ span.CodeMirror-selectedtext {
   display: none; }
 .news-page .well .short-preview {
   display: block; }
-  .news-page .well .short-preview div {
+  .news-page .well .short-preview .logo,
+  .news-page .well .short-preview .title {
     display: block; }
   .news-page .well .short-preview img {
     position: absolute; }
