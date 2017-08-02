@@ -6547,44 +6547,34 @@ span.CodeMirror-selectedtext {
 .news-page #TableComponent {
   display: none; }
 .news-page #ProjectPreview {
-  width: 100%;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap; }
-.news-page .logo {
-  display: block;
-  width: 100%;
-  height: auto; }
-  .news-page .logo img {
-    width: 100%; }
-.news-page .title {
-  display: block;
-  width: 100%;
-  padding: 0;
-  overflow: hidden; }
-  .news-page .title h1 {
-    font-size: 30px;
-    width: 100%;
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; }
 .news-page .well {
   width: 300px;
   height: 300px;
-  display: flex;
-  align-content: center; }
+  display: flex; }
   .news-page .well hr,
   .news-page .well div {
     display: none; }
   .news-page .well .short-preview {
     display: block; }
-    .news-page .well .short-preview .logo,
+    .news-page .well .short-preview .logo {
+      display: block;
+      height: auto;
+      max-height: 100%; }
+      .news-page .well .short-preview .logo img {
+        width: 100%;
+        position: absolute; }
     .news-page .well .short-preview .title {
-      display: block; }
-    .news-page .well .short-preview .title {
-      text-align: center;
-      height: 100%;
       display: flex;
-      align-items: center; }
-    .news-page .well .short-preview img {
-      position: absolute; }
+      height: 100%;
+      overflow: hidden;
+      text-align: center;
+      align-items: center;
+      padding: 0; }
+      .news-page .well .short-preview .title h1 {
+        font-size: 30px;
+        width: 100%;
+        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; }
 
 /*# sourceMappingURL=main.css.map */
