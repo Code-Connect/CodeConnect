@@ -11,7 +11,6 @@
       flex-wrap: wrap;
   }
 
-
   .well {
     width: 300px;
     height: 300px;
@@ -21,14 +20,16 @@
     div {
     display: none;
     }
+
     .short-preview {
       display: block;
+
       .logo {
         display: block;
         height: auto;
-        max-height: 100%;
         img {
           width: 100%;
+          max-height: 300px;
           position: absolute;
         }
       }

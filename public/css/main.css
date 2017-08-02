@@ -6560,10 +6560,10 @@ span.CodeMirror-selectedtext {
     display: block; }
     .news-page .well .short-preview .logo {
       display: block;
-      height: auto;
-      max-height: 100%; }
+      height: auto; }
       .news-page .well .short-preview .logo img {
         width: 100%;
+        max-height: 300px;
         position: absolute; }
     .news-page .well .short-preview .title {
       display: flex;
