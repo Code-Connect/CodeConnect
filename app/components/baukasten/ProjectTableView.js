@@ -102,7 +102,7 @@ class ProjectTableView extends Component {
         </div>
 
         <div className="col-md-8" style={{
-        }} id="ProjectPreview">
+        }}>
             <ProjectPreviewList dataList={this.state.current_projects}/>
         </div>
       </div>

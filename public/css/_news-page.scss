@@ -1,21 +1,16 @@
 .news-page {
+  div{
+    width: 100%;
+  }
+
   #TableComponent{
     display: none;
   }
   #ProjectPreview{
-    width: 100%;
-  }
-  .well {
-    @include gallery(3 of 12);
-    @media (max-width: $screen-md) {
-      @include gallery(4 of 12);
-    }
-    @media (max-width: $screen-sm) {
-      @include gallery(6 of 12);
-    }
-    @media (max-width: $screen-xs) {
-      @include gallery(11 of 12);
-    }
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
   }
 
   .logo {
@@ -34,10 +29,16 @@
     overflow: hidden;
     h1 {
       font-size: 30px;
+      width: 100%;
     }
   }
 
   .well {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-content: center;
+
     hr,
     div {
     display: none;
@@ -51,7 +52,7 @@
 
       .title {
         text-align: center;
-        height: 150px;
+        height: 100%;
         display: flex;
         align-items: center;
       }
