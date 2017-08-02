@@ -37,7 +37,15 @@
     }
   }
 
-  .well div {
+  .well {
+    div {
     display: none;
+    }
+    .short-preview {
+      display: block;
+      div {
+        display: block;
+      }
+    }
   }
 }
