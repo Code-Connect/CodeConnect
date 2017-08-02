@@ -6624,5 +6624,7 @@ span.CodeMirror-selectedtext {
   display: block; }
   .news-page .well .short-preview div {
     display: block; }
+  .news-page .well .short-preview img {
+    position: absolute; }
 
 /*# sourceMappingURL=main.css.map */
