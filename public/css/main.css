@@ -6580,5 +6580,8 @@ span.CodeMirror-selectedtext {
     display: block; }
     .news-page .well .row p, .news-page .well .col-sm-3 p {
       float: left !important; }
+  .news-page .well .row:first-of-type {
+    width: 0;
+    z-index: 1; }
 
 /*# sourceMappingURL=main.css.map */
