@@ -48,5 +48,12 @@
         }
       }
     }
+
+    .row, .col-sm-3 {
+      display: block;
+      p {
+        float: left !important;
+      }
+    }
   }
 }

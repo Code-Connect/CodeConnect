@@ -6576,5 +6576,9 @@ span.CodeMirror-selectedtext {
         font-size: 30px;
         width: 100%;
         text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white; }
+  .news-page .well .row, .news-page .well .col-sm-3 {
+    display: block; }
+    .news-page .well .row p, .news-page .well .col-sm-3 p {
+      float: left !important; }
 
 /*# sourceMappingURL=main.css.map */
