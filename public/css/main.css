@@ -6548,7 +6548,8 @@ span.CodeMirror-selectedtext {
   display: none; }
 .news-page #ProjectPreview {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  justify-content: center; }
 .news-page .well {
   width: 300px;
   height: 300px;
