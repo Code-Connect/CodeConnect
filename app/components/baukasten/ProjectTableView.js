@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import TableComponent from "./tableView/TableComponent.js"
 import ProjectPreviewList from "./previewComponents/ProjectPreviewList"
 import {connect} from "react-redux";
-
+import {getAddedProjects} from "./../stateConverter.js"
 /*
  * This component is responsible for displaying:
  * 		TableComponent, Table Preview
@@ -36,8 +36,7 @@ class ProjectTableView extends Component {
       }, {
         labelName: "#Task",
         labelSize: "3"
-      },
-      {
+      }, {
         labelName: "#Contributor",
         labelSize: "1"
       }, {
@@ -45,12 +44,13 @@ class ProjectTableView extends Component {
         labelSize: "1"
       }
     ];
+    console.log(this.props.projects);
     var data = this.props.projects.map((item) => {
-        return {
-          id: item.id,
-          data: [item.name, item.tasks.length, "Test2", "not implemented"]
-        }
-      });
+      return {
+        id: item.id,
+        data: [item.name, item.tasks.length, "Test2", "not implemented"]
+      }
+    });
     this.state = {
       activeElement: this.props.projects != []
         ? this.props.projects[0]
@@ -75,7 +75,8 @@ class ProjectTableView extends Component {
       current_projects: this.props.projects.filter(func)
     }, function() {
       this.setState({data: this.getCurrentData()})
-    })  }
+    })
+  }
 
   setActiveElement(projectid) {
     var element = this.props.projects.find(x => (x.id === projectid));
@@ -90,10 +91,12 @@ class ProjectTableView extends Component {
     this.props.goToScrollable("p" + id)
   }
 
-
   render() {
     return (
-      <div className="container" style={{background:"white", borderRadius: '10px'}}>
+      <div className="container" style={{
+        background: "white",
+        borderRadius: '10px'
+      }}>
         <div style={{
           background: "rgb(255,255,255,1)"
         }} className="col-md-4" id="TableComponent">
@@ -101,9 +104,8 @@ class ProjectTableView extends Component {
           <TableComponent goTo={"p"} onTableItemClicked={this.focusPreview.bind(this)} setActiveElement={this.setActiveElement.bind(this)} route={""} labelList={this.labels} dataList={this.state.data}/>
         </div>
 
-        <div className="col-md-8" style={{
-        }} id="ProjectPreview">
-            <ProjectPreviewList dataList={this.state.current_projects}/>
+        <div className="col-md-8" style={{}} id="ProjectPreview">
+          <ProjectPreviewList dataList={this.state.current_projects}/>
         </div>
       </div>
     )
@@ -111,8 +113,8 @@ class ProjectTableView extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {projects: state.projects.addedProjects, tasks: state.projects.tasks};
+console.log( getAddedProjects(state));
+  return {projects: getAddedProjects(state), tasks: state.projects.tasks};
 };
 
 export default connect(mapStateToProps)(ProjectTableView);
-

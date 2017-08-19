@@ -14,6 +14,7 @@ import MentorTable from './MentorTable';
 import ProjectPanel from './ProjectPanel';
 import {addProject} from '../../actions/projectActions';
 import ScrollableAnchor from 'react-scrollable-anchor'
+import {getAddedProjects} from "./../stateConverter.js"
 
 class Mentor extends React.Component {
   constructor(props) {
@@ -90,7 +91,8 @@ class Mentor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {user: state.user.github, addableProjects: state.projects.addableProjects, addedProjects: state.projects.addedProjects};
+
+  return {user: state.user.github, addableProjects: state.projects.addableProjects, addedProjects: getAddedProjects(state)};
 };
 
 export default connect(mapStateToProps)(Mentor);

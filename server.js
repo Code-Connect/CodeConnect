@@ -137,14 +137,18 @@ app.use(function(req, res) {
   projectController.getProjectsAndTasks().then((projects) => {
     return taskController.getTasks().then((tasks) => {
       var temp = helper.normalizeTask(tasks);
-      return {tasks: temp, projects: projects};
+      var temp2 = helper.normalizeProject(projects);
+      var temp3 = helper.getAddedProjects(projects);
+
+      return {tasks: temp, projects: temp2, addedProjects: temp3};
     });
   }).then(function(item) {
     var initialState = {
       user: req.user,
       projects: {
         addableProjects: [],
-        addedProjects: item.projects,
+        addedProjects: item.addedProjects,
+        projects: item.projects,
         tasks: item.tasks
       }
     };

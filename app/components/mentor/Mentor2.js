@@ -18,6 +18,7 @@ import TaskPanel from './TaskPanel';
 import MentorTable from './MentorTable';
 import jsonQuery from 'json-query';
 import ProjectEditPanel from './ProjectEditPanel'
+import {getAddedProjects} from "./../stateConverter.js"
 
 class Mentor2 extends React.Component {
   constructor(props) {
@@ -112,7 +113,8 @@ class Mentor2 extends React.Component {
   }
 }
 const mapStateToProps = (state) => {
-  return {tasks: state.projects.tasks, projects: state.projects.addedProjects};
+  console.log(getAddedProjects(state));
+  return {tasks: state.projects.tasks, projects: getAddedProjects(state)};
 };
 
 
