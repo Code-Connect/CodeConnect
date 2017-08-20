@@ -92,22 +92,15 @@ export default function messages(projects = {}, action) {
 
     case 'ADD_TASK_SUCCESSFUL':
       // TODO task post successful feedback like a toast message
-      var temp = projects.addedProjects.slice();
-      temp = temp.map((item) => {
-        if (item.project_id == action.project_id) {
-          return Object.assign({}, item, {
+      return Object.assign({}, projects, {
+        projectDict: Object.assign({}, projects.projectDict, {
+          [action.project_id]: Object.assign({}, projects.projectDict[action.project_id], {
             tasks: [
-              ...item.tasks,
+              ...projects.projectDict[action.project_id].tasks,
               action.task_id
             ]
           })
-        } else
-          return item;
-        }
-      );
-
-      return Object.assign({}, projects, {
-        addedProjects: temp,
+        }),
         tasks: Object.assign({}, projects.tasks, {
           [action.task_id]: {
             name: action.name,
