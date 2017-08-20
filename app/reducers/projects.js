@@ -73,21 +73,11 @@ export default function messages(projects = {}, action) {
 
     case 'UPDATE_PROJECT_SUCCESSFUL':
       //TODO hier muss diese methode fertig gemacht werden
-      var a = projects.addedProjects.slice();
-      a = a.map((project) => {
-        console.log("project");
-        if (project.project_id == action.project.project_id) {
-          var temp = Object.assign({}, project, action.project)
-          console.log(temp);
-          return temp;
-        } else {
-          return project;
-        }
+      var index = action.project.project_id;
+      var newAttribute = Object.assign({}, projects.projectsDict, {
+        [index]: Object.assign(projects.projectsDict[index], action.project)
       });
-
-      console.log(a);
-
-      return Object.assign({}, projects, {addedProjects: a});
+      return Object.assign({}, projects, {projectsDict: newAttribute});
 
     case 'DELETE_PROJECT_SUCCESSFUL':
       var temp = projects.addedProjects.slice();
