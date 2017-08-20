@@ -2,6 +2,6 @@
 
 exports.getAddedProjects = function(state){
   return state.projects.addedProjects.map((id) => {
-    return state.projects.projectsDict[id];
+    return state.projects.projectDict[id];
   });
 }

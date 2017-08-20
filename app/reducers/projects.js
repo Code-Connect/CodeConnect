@@ -61,23 +61,25 @@ export default function messages(projects = {}, action) {
       return Object.assign({}, projects, {addableProjects: a});
 
     case 'ADD_PROJECT_SUCCESSFUL':
-      var a = projects.addableProjects.filter((item) => item.project_id != action.project.project_id);
-      console.log(a);
+      var a = projects.addableProjects.filter((item) => item != action.project.project_id);
       return Object.assign({}, projects, {
         addableProjects: a,
         addedProjects: [
           ...projects.addedProjects,
-          action.project
-        ]
+          action.project.project_id
+        ],
+        projectDict: Object.assign({}, projects.projectDict, {
+          [action.project.project_id]: action.project
+        })
       });
 
     case 'UPDATE_PROJECT_SUCCESSFUL':
       //TODO hier muss diese methode fertig gemacht werden
       var index = action.project.project_id;
-      var newAttribute = Object.assign({}, projects.projectsDict, {
-        [index]: Object.assign(projects.projectsDict[index], action.project)
+      var newAttribute = Object.assign({}, projects.projectDict, {
+        [index]: Object.assign(projects.projectDict[index], action.project)
       });
-      return Object.assign({}, projects, {projectsDict: newAttribute});
+      return Object.assign({}, projects, {projectDict: newAttribute});
 
     case 'DELETE_PROJECT_SUCCESSFUL':
       var temp = projects.addedProjects.slice();

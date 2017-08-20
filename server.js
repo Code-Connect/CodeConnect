@@ -140,7 +140,7 @@ app.use(function(req, res) {
       var temp2 = helper.normalizeProject(projects);
       var temp3 = helper.getAddedProjects(projects);
 
-      return {tasks: temp, projectsDict: temp2, addedProjects: temp3};
+      return {tasks: temp, projectDict: temp2, addedProjects: temp3};
     });
   }).then(function(item) {
     var initialState = {
@@ -148,7 +148,7 @@ app.use(function(req, res) {
       projects: {
         addableProjects: [],
         addedProjects: item.addedProjects,
-        projectsDict: item.projectsDict,
+        projectDict: item.projectDict,
         tasks: item.tasks
       }
     };
