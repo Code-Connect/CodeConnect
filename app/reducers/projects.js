@@ -130,7 +130,6 @@ export default function messages(projects = {}, action) {
       return Object.assign({}, projects, {tasks: newAttribute});
 
     case 'DELETE_TASK_SUCCESSFUL':
-    //TODO hier muss noch was gemakt werde
       var temp = Object.assign({}, projects.tasks);
       delete temp[action.task_id];
 
