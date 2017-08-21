@@ -40,8 +40,8 @@ class Mentor2 extends React.Component {
       tasks: nextProps.projects[getIndex].tasks.map((item)=>{
         return nextProps.tasks[item]})
     },function(){
-      console.log("hi");
-      console.log(this.state.tasks);
+      // console.log("hi");
+      // console.log(this.state.tasks);
     });
   }
 

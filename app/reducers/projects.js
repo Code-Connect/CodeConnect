@@ -82,13 +82,19 @@ export default function messages(projects = {}, action) {
       return Object.assign({}, projects, {projectDict: newAttribute});
 
     case 'DELETE_PROJECT_SUCCESSFUL':
+      //TODO task werden noch nicht gelöscht nur die Projects
       var temp = projects.addedProjects.slice();
-      //hier werden die scheiße gefiltert
       temp = temp.filter((project) => {
-        return action.project_id != project.project_id
+        return action.project_id != project
       });
 
-      return Object.assign({}, projects, {addedProjects: temp});
+      var temp2 = Object.assign({}, projects.projectDict);
+      delete temp2[action.project_id];
+
+      return Object.assign({}, projects, {
+        addedProjects: temp,
+        projectDict: temp2
+      });
 
     case 'ADD_TASK_SUCCESSFUL':
       // TODO task post successful feedback like a toast message
@@ -124,23 +130,18 @@ export default function messages(projects = {}, action) {
       return Object.assign({}, projects, {tasks: newAttribute});
 
     case 'DELETE_TASK_SUCCESSFUL':
-      var temp2 = projects.addedProjects.slice();
-      temp2 = temp2.map((item) => {
-        if (item.project_id == action.project_id) {
-          return Object.assign({}, item, {
-            tasks: item.tasks.filter((item2) => {
-              return (item2 != action.task_id)
-            })
-          })
-        } else
-          return item;
-        }
-      );
+    //TODO hier muss noch was gemakt werde
       var temp = Object.assign({}, projects.tasks);
       delete temp[action.task_id];
+
+      var temp2 = projects.projectDict;
+      temp2[action.project_id].tasks = temp2[action.project_id].tasks.filter((task) => {
+        return task != action.task_id;
+      });
+
       return Object.assign({}, projects, {
         tasks: temp,
-        addedProjects: temp2
+        projectDict: temp2
       })
 
     default:
