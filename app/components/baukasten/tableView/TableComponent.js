@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import ListItem from "./ListItem.js"
-import {Table, Panel} from "react-bootstrap"
-import {StickyContainer, Sticky} from 'react-sticky'
+import {Table} from "react-bootstrap"
 
 /*
  *
@@ -16,7 +15,7 @@ class TableComponent extends Component {
     constructor(props) {
 
         //props: labelList = [{labelName: "XX", labelSize: 2},..] , dataObjList (Obj must have id), routeList
-        super(props)
+        super(props);
         this.state = {}
     }
 
@@ -29,15 +28,15 @@ class TableComponent extends Component {
                 <thead>
                 <tr>
                     {this.props.labelList.map((label, index) => {
-                        let cName = "col-md-" + label.labelSize
+                        let cName = "col-md-" + label.labelSize;
                         return <th key={index} className={cName}>{label.labelName}</th>
                     })}
                 </tr>
                 </thead>
                 <tbody>
-                {this.props.dataList.map(object => {
+                {this.props.dataList.map((object, index) => {
                     return <ListItem goTo={this.props.goTo} onTableItemClicked={this.props.onTableItemClicked}
-                                     activate={this.props.setActiveElement.bind(this)} id={object.id} key={object.id}
+                                     activate={this.props.setActiveElement.bind(this)} id={object.id} key={index}
                                      info={object.data}/>
                 })
                 }

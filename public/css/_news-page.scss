@@ -1,38 +1,67 @@
 .news-page {
+  div{
+    width: 100%;
+  }
+
   #TableComponent{
     display: none;
   }
   #ProjectPreview{
-    width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
   }
+
   .well {
-    @include gallery(3 of 12);
-    @media (max-width: $screen-md) {
-      @include gallery(4 of 12);
-    }
-    @media (max-width: $screen-sm) {
-      @include gallery(6 of 12);
-    }
-    @media (max-width: $screen-xs) {
-      @include gallery(11 of 12);
-    }
-  }
+    width: 300px;
+    height: 300px;
+    display: flex;
 
-  .logo {
-    width: 100%;
-    height: auto;
-  }
+    hr,
+    div {
+    display: none;
+    }
 
-  .logo img {
-    width: 100%;
-  }
+    .short-preview {
+      display: block;
 
-  .title {
-    width: 100%;
-    padding: 0;
-    overflow: hidden;
-    h1 {
-      font-size: 30px;
+      .logo {
+        display: block;
+        height: auto;
+        padding: 0;
+        img {
+          width: 100%;
+          max-height: 300px;
+          position: absolute;
+        }
+      }
+
+      .title {
+        display: flex;
+        height: 100%;
+        overflow: hidden;
+        text-align: center;
+        align-items: center;
+        padding: 0;
+        h1 {
+          font-size: 30px;
+          width: 100%;
+          text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        }
+      }
+    }
+
+    .row, .col-sm-3 {
+      display: block;
+      p {
+        float: left !important;
+      }
+    }
+
+    .row:first-of-type{
+      width: 0;
+      z-index: 1;
+      margin: 0;
     }
   }
 }
