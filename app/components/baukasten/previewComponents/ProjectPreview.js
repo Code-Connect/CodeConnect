@@ -1,7 +1,4 @@
 import React, {Component} from "react"
-import ReactDOM from 'react-dom'
-import {Panel, Button} from "react-bootstrap"
-import ReactMarkdown from 'react-markdown'
 import TableComponent from '../tableView/TableComponent.js'
 import {browserHistory} from 'react-router'
 
@@ -14,8 +11,8 @@ import {browserHistory} from 'react-router'
 class ProjectPreview extends Component {
 
     constructor(props) {
-        super(props)
-        this.labelList = ["Task", "Status"]
+        super(props);
+        this.labelList = ["Task", "Status"];
         this.omit = this.props.omit ? true : false;
     }
 
@@ -27,11 +24,11 @@ class ProjectPreview extends Component {
     render() {
         const divStyle = {
             margin: "0px 0px 30px 0px"
-        }
+        };
         const tagStyle = {
             color: "#2DC263",
             padding: "0"
-        }
+        };
 
         return (
             <div className="well" style={{
@@ -56,11 +53,11 @@ class ProjectPreview extends Component {
                 <hr/>
 
                 <div style={divStyle} className="row">
-                    <div className="col-sm-2">
+                    <div className="col-sm-2 logo">
                         <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png"
                              alt="icon"/>
                     </div>
-                    <div className="col-sm-10">
+                    <div className="col-sm-10 title">
                         <h1 style={{
                             marginTop: "0"
                         }}>{this.props.title}</h1>

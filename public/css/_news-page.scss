@@ -7,5 +7,32 @@
   }
   .well {
     @include gallery(3 of 12);
+    @media (max-width: $screen-md) {
+      @include gallery(4 of 12);
+    }
+    @media (max-width: $screen-sm) {
+      @include gallery(6 of 12);
+    }
+    @media (max-width: $screen-xs) {
+      @include gallery(11 of 12);
+    }
+  }
+
+  .logo {
+    width: 100%;
+    height: auto;
+  }
+
+  .logo img {
+    width: 100%;
+  }
+
+  .title {
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    h1 {
+      font-size: 30px;
+    }
   }
 }
