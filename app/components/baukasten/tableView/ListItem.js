@@ -23,9 +23,12 @@ class ListItem extends Component {
             <tr style={{
                 cursor: "pointer"
             }} onMouseEnter={this.activate.bind(this)} onClick={this.redirect.bind(this)}>
-                {this.props.info.map((attr, index) => {
-                    return <td key={index}>{attr}</td>
-                })
+                {
+                    this.props.info.map(
+                        (attr, index) => {
+                            return <td key={index}>{attr}</td>
+                        }
+                    )
                 }
             </tr>
         )

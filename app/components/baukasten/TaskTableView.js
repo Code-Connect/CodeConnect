@@ -1,14 +1,11 @@
 import React, {Component} from "react"
-import ListItem from "./tableView/ListItem.js"
-import TaskPreview from "./previewComponents/TaskPreview.js"
-import TableFilter from "./filterComponents/TableFilter.js"
-import {Table, Panel} from "react-bootstrap"
 import TableComponent from "./tableView/TableComponent.js"
 import TaskPreviewList from './previewComponents/TaskPreviewList'
 import {goToAnchor} from 'react-scrollable-anchor'
 import {connect} from "react-redux";
 import {getProjectByID, getTaskIDs, getTasksFromIDs, getTasksFromProjectID} from "../contributor/Json2Array";
 import ProjectPreview from "./previewComponents/ProjectPreview";
+import {getAddedProjects} from "./../stateConverter.js"
 
 /*
  * This component is responsible for displaying:
@@ -21,8 +18,15 @@ class TaskTableView extends Component {
     constructor(props) {
         super(props)
 
-        this.projID = this.props.params.id;
-        this.project = getProjectByID(this.projID, this.props.projects);
+        console.log("id" + this.props.params.id);
+        console.log(this.props.projectDict[this.props.params.id]);
+
+        this.state = {
+            projID: this.props.params.id,
+            project: this.props.projectDict[this.props.params.id],
+            taskList: this.getTasksByProjectID(this.props.projectDict[this.props.params.id].tasks, this.props.tasks)
+        };
+        /*this.project = getProjectByID(this.projID, this.props.projects);
 
         if (!this.project) {
             this.project = {}
@@ -54,7 +58,7 @@ class TaskTableView extends Component {
             }, {
                 labelName: "Status",
                 labelSize: "1"
-            }];
+            }];*/
 
 //getTasksFromIDs(this.props.projects)
 
@@ -123,13 +127,37 @@ class TaskTableView extends Component {
          })*/
     }
 
+    getTasksByProjectID(taskIDArray, tasksJSON) {
+        return taskIDArray.map(
+            (taskID) => {
+                return tasksJSON[taskID];
+            }
+        )
+    }
+
+    getTaskNamesFromTasks(taskArray) {
+        return taskArray.map(
+            (task) => {
+                return task.name;
+            }
+        )
+    }
+
+    getTaskIDsFromTasks(taskArray){
+        return taskArray.map(
+            (task) => {
+                return task.task_id;
+            }
+        )
+    }
 
     focusPreview(id) {
         goToAnchor("t" + id)
     }
 
     render() {
-        return ( <div className="row" style={{background: "white"}}>
+        return (
+            <div className="row" style={{background: "white"}}>
                 <div style={{
                     background: "rgb(255,255,255,1)",
                     borderRadius: "10px"
@@ -137,19 +165,24 @@ class TaskTableView extends Component {
 
                     <TableComponent goTo={"t"} onTableItemClicked={this.focusPreview.bind(this)}
                                     setActiveElement={this.setActiveElement.bind(this)} route={""}
-                                    labelList={this.labels}
-                                    dataList={this.state.data}>
+                                    labelList={[{labelName: "Tasks", labelSize: '1'}]}
+                                    dataList={
+                                        [{
+                                            id: this.getTaskIDsFromTasks(this.state.taskList),
+                                            data: this.getTaskNamesFromTasks(this.state.taskList)
+                                        }]
+                                    }>
                     </TableComponent>
                 </div>
                 <div className="col-md-8" style={{}}>
-                    <ProjectPreview id={this.projID}
-                                    omit={true}
-                                    key={this.projID}
-                                    description={this.project.description}
-                                    title={this.project.name}
+                    <ProjectPreview id={this.state.projID}
+                                    key={this.state.projID}
+                                    description={this.state.project.description}
+                                    title={this.state.project.name}
                                     tags={['#coming', '#soon']}
                                     contributors={[]}/>
-                    <TaskPreviewList dataList={this.state.tasks}></TaskPreviewList>
+
+                    <TaskPreviewList dataList={this.state.taskList}></TaskPreviewList>
                 </div>
             </div>
         )
@@ -167,8 +200,11 @@ class TaskTableView extends Component {
  */
 }
 
+
 const mapStateToProps = (state) => {
-    return {projects: state.projects.addedProjects, tasks: state.projects.tasks};
+    console.log(getAddedProjects(state));
+    return {projectDict: state.projects.projectDict, tasks: state.projects.tasks};
 };
 
 export default connect(mapStateToProps)(TaskTableView);
+

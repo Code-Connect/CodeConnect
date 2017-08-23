@@ -15,7 +15,7 @@ class Profile extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-4">
-                        <ProfileView/>
+                        <ProfileView name={this.props.user.name} email={this.props.user.email}/>
                     </div>
                     <div className="col-sm-8" style={{paddingTop:'20px', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px', background: "white", borderRadius: '10px'}}>
                         <Tabs defaultActiveKey={2}>
@@ -32,7 +32,7 @@ class Profile extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    return {projects: state.projects.addedProjects, tasks: state.projects.tasks};
+    return {projects: state.projects.addedProjects, user: state.user.github};
 };
 
 export default connect(mapStateToProps)(Profile);

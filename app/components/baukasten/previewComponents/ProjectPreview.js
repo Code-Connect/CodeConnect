@@ -1,6 +1,8 @@
 import React, {Component} from "react"
 import TableComponent from '../tableView/TableComponent.js'
 import {browserHistory} from 'react-router'
+import {ListGroup, ListGroupItem} from 'react-bootstrap'
+import {connect} from "react-redux";
 
 
 /*
@@ -17,7 +19,7 @@ class ProjectPreview extends Component {
     }
 
     redirectDetails() {
-        browserHistory.push('/contributor/projects/'+this.props.id);
+        browserHistory.push('/contributor/projects/' + this.props.id);
         console.log("redi")
     }
 
@@ -35,6 +37,7 @@ class ProjectPreview extends Component {
                 background: "white",
                 marginTop: "20px"
             }} ref="Parent">
+                {/*
                 <div className="row">
                     <div className="col-sm-9">
                         <h5>
@@ -51,38 +54,52 @@ class ProjectPreview extends Component {
                     </div>}
                 </div>
                 <hr/>
+                */
+                }
 
-                <div style={divStyle} className="short-preview row">
-                    <div className="col-sm-2 logo">
+                <div className="short-preview row">
+                    <div className="col-sm-2">
                         <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png"
                              alt="icon"/>
                     </div>
-                    <div className="col-sm-10 title">
+                    <div className="col-sm-10 title" style={{display: "flex"}}>
                         <h1 style={{
-                            marginTop: "0"
+                            marginTop: "0",
+                            flex: "auto"
                         }}>{this.props.title}</h1>
+                        <p style={{padding: "10px", float: "right", borderRadius: "5px", cursor: "pointer"}}
+                           className="btn-success btn" onClick={this.redirectDetails.bind(this)}>View</p>
                     </div>
                 </div>
+                <hr/>
 
                 <div style={divStyle}>
-                    <h4>Contributors</h4>
-                    <hr/>
-                    {this.props.contributors.map((user,index) => {
-                        return <p key={index}>{user.name + ": " + user.email}</p>
-                    })}
+                    <h4>Description</h4>
+                    {this.props.description}
                 </div>
-                {this.omit ? null :
+                <hr/>
+                <div style={divStyle}>
+                    <h4>Mentor</h4>
+                    {/*<p>{this.props.mentor.name + ": " + this.props.mentor.email}</p>*/}
+                </div>
+                <hr/>
+                {this.omit || this.props.tasks == null ? null :
                     <div style={divStyle}>
                         <h4>Tasks</h4>
-                        <hr/>
-                        <TableComponent goTo="p" setActiveElement={() => {
-                            console.log("potential")
-                        }} labelList={this.labelList} route="task" dataList={this.props.tasks.map((task) => {
-                            return {
-                                id: task.task_id,
-                                data: [task.name, task.status]
+                        <ListGroup fill>
+                            {
+                                this.props.tasks.map((task, index) => {
+                                    console.log("t" + task)
+                                    console.log("s" + this.props.taskDict["1"])
+                                    return (
+                                        <ListGroupItem key={index}><span style={{
+                                            fontWeight: 'bold',
+                                            color: "#999"
+                                        }}>{this.props.taskDict[task].name}</span></ListGroupItem>
+                                    )
+                                })
                             }
-                        })}/>
+                        </ListGroup>
                     </div>
                 }
             </div>
@@ -90,4 +107,9 @@ class ProjectPreview extends Component {
 
     }
 }
-export default ProjectPreview
+
+const mapStateToProps = (state) => {
+    return {taskDict: state.projects.tasks};
+};
+
+export default connect(mapStateToProps)(ProjectPreview)

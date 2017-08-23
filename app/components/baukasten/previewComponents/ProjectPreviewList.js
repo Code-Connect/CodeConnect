@@ -35,8 +35,8 @@ class ProjectPreviewList extends Component {
                                                                                                   description={item.description}
                                                                                                   title={item.name}
                                                                                                   tags={this.tags}
-                                                                                                  contributors={this.contributors}
-                                                                                                  tasks={this.tasks}/></ScrollableAnchor>
+                                                                                                  mentor={item.mentor}
+                                                                                                  tasks={item.tasks}/></ScrollableAnchor>
                     })
                 }
             </div>
@@ -44,5 +44,6 @@ class ProjectPreviewList extends Component {
 
     }
 }
+
 
 export default ProjectPreviewList
