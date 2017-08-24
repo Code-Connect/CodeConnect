@@ -19,7 +19,7 @@ import ScrollableAnchor from "react-scrollable-anchor";
  ]}]
  */
 
-class ProjectPreviewList extends Component {
+class TaskPreviewList extends Component {
 
     constructor(props) {
         super(props)
@@ -29,7 +29,6 @@ class ProjectPreviewList extends Component {
     }
 
     render() {
-
         return (
             < div >
                 {
@@ -41,8 +40,7 @@ class ProjectPreviewList extends Component {
                 }
             </div>
         )
-
     }
 }
 
-export default ProjectPreviewList
+export default TaskPreviewList

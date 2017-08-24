@@ -38,8 +38,7 @@ class TableComponent extends Component {
                     return <ListItem goTo={this.props.goTo} onTableItemClicked={this.props.onTableItemClicked}
                                      activate={this.props.setActiveElement.bind(this)} id={object.id} key={index}
                                      info={object.data}/>
-                })
-                }
+                })}
                 </tbody>
             </Table>
         )

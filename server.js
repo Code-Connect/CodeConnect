@@ -101,14 +101,6 @@ app.post('/updateproject', projectController.updateProject);
 app.delete('/deleteproject', projectController.deleteProject);
 
 app.get('/project', projectController.getProjects);
-app.get('/test', (req, res) => {
-  projectController.getProjectsAndTasks().then((projects) => {
-    return taskController.getTasks().then((tasks) => {
-      var temp = helper.normalizeTask(tasks);
-      return res.json({tasks: temp, projects: projects});
-    });
-  })
-});
 
 app.post('/updatetask', taskController.updateTask);
 app.post('/addtask', taskController.addTask);
@@ -122,23 +114,15 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
   });
 });
 
-app.get('/auth/gitter', passportGithub.authenticate('gitter'));
-app.get('/auth/gitter/callback', passportGithub.authenticate('gitter', {failureRedirect: '/'}), function(req, res) {
-  // Successful authentication
-  req.session.save(function(err) {
-    res.redirect('/');
-  });
-});
-
 // React server rendering
 app.use(function(req, res) {
-  projectController.getYourProjects(req.user).then((yourProjects) => {
+  projectController.getYourProjects(req.user).then((addedProjects) => {
     projectController.getProjectsAndTasks().then((projects) => {
       return taskController.getTasks().then((tasks) => {
         var taskDict = helper.createTaskDict(tasks);
         var projectDict = helper.createProjectDict(projects);
-        var addedProjects = helper.getAddedProjects(projects);
-        return {taskDict: taskDict, projectDict: projectDict, addedProjects: addedProjects, yourProjects: yourProjects};
+        var publicProjects = helper.getAddedProjects(projects);
+        return {taskDict: taskDict, projectDict: projectDict, publicProjects: publicProjects, addedProjects: addedProjects};
       });
     }).then(function(item) {
       var initialState = {
@@ -147,7 +131,7 @@ app.use(function(req, res) {
           addableProjects: [],
           addedProjects: item.addedProjects,
           projectDict: item.projectDict,
-          yourProjects: item.yourProjects,
+          publicProjects: item.publicProjects,
           tasks: item.taskDict
         }
       };

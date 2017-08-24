@@ -5,25 +5,6 @@ import {Breadcrumb, FormGroup, Radio} from "react-bootstrap";
 class Contributor extends React.Component {
   constructor(props) {
     super(props);
-    this.query = require('json-query')
-
-    var pathname = this.props.location.pathname
-
-    this.projID = this.props.params.id;
-
-
-    this.state = {
-      directory: ["ALL TASKS"],
-      justSet: false
-    }
-  }
-
-  componentWillReceiveProps() {
-    var show = (this.props.location.pathname == "/contributor/projects")
-    console.log("show" + this.state.showProjects)
-    console.log("show" + this.props.location.pathname)
-    console.log("justset" + this.state.justSet)
-
   }
 
   toggleView(event) {
@@ -66,7 +47,7 @@ class Contributor extends React.Component {
         padding: '50px',
         paddingTop: '0px'
       }}>
-        <div>
+            {/*
           <div className="row" style={{
             marginBottom: "20px"
           }}>
@@ -107,19 +88,14 @@ class Contributor extends React.Component {
               </Breadcrumb>
             </div>
           </div>
+          */}
 
             {this.props.children}
 
-        </div>
+
       </div>
     );
   }
 }
 
-
-
-const mapStateToProps = (state) => {
-    return {projects: state.projects.addedProjects, tasks: state.projects.tasks};
-};
-
-export default connect(mapStateToProps)(Contributor);
+export default Contributor;
