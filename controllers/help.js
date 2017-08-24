@@ -1,5 +1,5 @@
 //converts projects into taskdict
-exports.normalizeTask = function(tasks) {
+exports.createTaskDict = function(tasks) {
   console.log("normalize");
   return tasks.reduce((acc, item) => {
     return Object.assign(acc, {
@@ -9,7 +9,7 @@ exports.normalizeTask = function(tasks) {
 }
 
 //converts projects into projectdict
-exports.normalizeProject = function(projects) {
+exports.createProjectDict = function(projects) {
   console.log("normalize project");
   return projects.reduce((acc, item) => {
     return Object.assign(acc, {

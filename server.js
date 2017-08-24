@@ -18,10 +18,10 @@ var config = require('./webpack.config');
 
 // Load environment variables from .env file
 if (process.env.NODE_ENV !== "production")
-    loadEnvironmentVariables();
+  loadEnvironmentVariables();
 function loadEnvironmentVariables() {
-    let dotenv = require('dotenv');
-    dotenv.load();
+  let dotenv = require('dotenv');
+  dotenv.load();
 }
 
 // ES6 Transpiler
@@ -100,7 +100,6 @@ app.post('/addproject', projectController.addProject);
 app.post('/updateproject', projectController.updateProject);
 app.delete('/deleteproject', projectController.deleteProject);
 
-
 app.get('/project', projectController.getProjects);
 app.get('/test', (req, res) => {
   projectController.getProjectsAndTasks().then((projects) => {
@@ -131,52 +130,53 @@ app.get('/auth/gitter/callback', passportGithub.authenticate('gitter', {failureR
   });
 });
 
-
 // React server rendering
 app.use(function(req, res) {
-  projectController.getProjectsAndTasks().then((projects) => {
-    return taskController.getTasks().then((tasks) => {
-      var temp = helper.normalizeTask(tasks);
-      var temp2 = helper.normalizeProject(projects);
-      var temp3 = helper.getAddedProjects(projects);
+  projectController.getYourProjects(req.user).then((yourProjects) => {
+    projectController.getProjectsAndTasks().then((projects) => {
+      return taskController.getTasks().then((tasks) => {
+        var taskDict = helper.createTaskDict(tasks);
+        var projectDict = helper.createProjectDict(projects);
+        var addedProjects = helper.getAddedProjects(projects);
+        return {taskDict: taskDict, projectDict: projectDict, addedProjects: addedProjects, yourProjects: yourProjects};
+      });
+    }).then(function(item) {
+      var initialState = {
+        user: req.user,
+        projects: {
+          addableProjects: [],
+          addedProjects: item.addedProjects,
+          projectDict: item.projectDict,
+          yourProjects: item.yourProjects,
+          tasks: item.taskDict
+        }
+      };
+      var store = configureStore(initialState);
 
-      return {tasks: temp, projectDict: temp2, addedProjects: temp3};
+      Router.match({
+        routes: routes.default(store),
+        location: req.url
+      }, function(err, redirectLocation, renderProps) {
+        if (err) {
+          res.status(500).send(err.message);
+        } else if (redirectLocation) {
+          res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
+        } else if (renderProps) {
+          var html = ReactDOM.renderToString(React.createElement(Provider, {
+            store: store,
+            exists: false
+          }, React.createElement(Router.RouterContext, renderProps)));
+          res.render('layout', {
+            html: html,
+            initialState: store.getState()
+          });
+        } else {
+          res.sendStatus(404);
+        }
+      });
     });
-  }).then(function(item) {
-    var initialState = {
-      user: req.user,
-      projects: {
-        addableProjects: [],
-        addedProjects: item.addedProjects,
-        projectDict: item.projectDict,
-        tasks: item.tasks
-      }
-    };
-    console.log(initialState);
-    var store = configureStore(initialState);
 
-    Router.match({
-      routes: routes.default(store),
-      location: req.url
-    }, function(err, redirectLocation, renderProps) {
-      if (err) {
-        res.status(500).send(err.message);
-      } else if (redirectLocation) {
-        res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
-      } else if (renderProps) {
-        var html = ReactDOM.renderToString(React.createElement(Provider, {
-          store: store,
-          exists: false
-        }, React.createElement(Router.RouterContext, renderProps)));
-        res.render('layout', {
-          html: html,
-          initialState: store.getState()
-        });
-      } else {
-        res.sendStatus(404);
-      }
-    });
-  });
+  })
 
 });
 

@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import {addProjectToCodeConnect} from "../../actions/mentor";
 import {Breadcrumb, FormGroup, Radio} from "react-bootstrap";
 
 class Contributor extends React.Component {
@@ -124,4 +123,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Contributor);
-

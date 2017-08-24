@@ -25,7 +25,7 @@ exports.deleteProject = function(req, res) {
         console.log(task_id);
         return knex('tasks').where('task_id', task_id).del();
       })).then(() => {
-        return knex('projects').where('project_id', project_id).del().then(()=>{
+        return knex('projects').where('project_id', project_id).del().then(() => {
           return res.json({success: true});
         });
       });
@@ -72,5 +72,19 @@ exports.getProjectsAndTasks = function() {
         });
       });
     }));
+  });
+}
+
+exports.getYourProjects = function(user) {
+  var temp;
+  if (typeof user != 'undefined')
+    temp = user.github.id;
+  else
+    temp = 0
+  return knex.select('isMentor.project_id').from('isMentor').where('isMentor.user_id', '=', temp).then(function(yourProjects) {
+    yourProjects = yourProjects.map((item) => {
+      return item.project_id;
+    });
+    return yourProjects
   });
 }
