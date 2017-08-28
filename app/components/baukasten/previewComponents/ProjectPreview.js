@@ -1,5 +1,4 @@
 import React, {Component} from "react"
-import TableComponent from '../tableView/TableComponent.js'
 import {browserHistory} from 'react-router'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
 import {connect} from "react-redux";
@@ -58,7 +57,7 @@ class ProjectPreview extends Component {
                 }
 
                 <div className="short-preview row">
-                    <div className="col-sm-2">
+                    <div className="col-sm-2 logo">
                         <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png"
                              alt="icon"/>
                     </div>
@@ -89,8 +88,8 @@ class ProjectPreview extends Component {
                         <ListGroup fill>
                             {
                                 this.props.tasks.map((task, index) => {
-                                    console.log("t" + task)
-                                    console.log("s" + this.props.taskDict["1"])
+                                    console.log("t" + task);
+                                    console.log("s" + this.props.taskDict["1"]);
                                     return (
                                         <ListGroupItem key={index}><span style={{
                                             fontWeight: 'bold',
