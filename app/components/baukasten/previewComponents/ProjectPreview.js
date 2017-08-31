@@ -36,25 +36,6 @@ class ProjectPreview extends Component {
                 background: "white",
                 marginTop: "20px"
             }} ref="Parent">
-                {/*
-                <div className="row">
-                    <div className="col-sm-9">
-                        <h5>
-                            <small style={tagStyle}>
-                                <b>{this.props.tags.map((tag) => {
-                                    return tag + " "
-                                })}</b>
-                            </small>
-                        </h5>
-                    </div>
-                    {this.omit ? null: <div className="col-sm-3">
-                        <p style={{padding: "10px", float: "right", borderRadius: "5px", cursor: "pointer"}}
-                           className="btn-success btn" onClick={this.redirectDetails.bind(this)}>View</p>
-                    </div>}
-                </div>
-                <hr/>
-                */
-                }
 
                 <div className="short-preview row">
                     <div className="col-sm-2 logo">
@@ -66,8 +47,10 @@ class ProjectPreview extends Component {
                             marginTop: "0",
                             flex: "auto"
                         }}>{this.props.title}</h1>
+
                         <p style={{padding: "10px", float: "right", borderRadius: "5px", cursor: "pointer"}}
                            className="btn-success btn" onClick={this.redirectDetails.bind(this)}>View</p>
+
                     </div>
                 </div>
                 <hr/>

@@ -7,7 +7,7 @@ import {
   FormControl,
   Grid,
   Row,
-  Col,Panel
+  Col
 } from "react-bootstrap";
 import {getOrgsProject, getUserProject} from './../../actions/projectActions';
 import MentorTable from './MentorTable';
@@ -77,7 +77,6 @@ class Mentor extends React.Component {
             {this.props.addedProjects.map((project) => {
               return (
                 <div>
-                  <Panel>Your added Projects</Panel>
                   <ProjectPanel short={true} project = {project}/>
                 </div>
               )
@@ -90,7 +89,6 @@ class Mentor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-
   return {user: state.user.github, addableProjects: state.projects.addableProjects, addedProjects: getAddedProjects(state)};
 };
 

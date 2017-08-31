@@ -28,14 +28,25 @@ class TaskPreviewList extends Component {
         this.tasks = [{title: "cmoing soon", task_id: "1"}]
     }
 
+    onClick(){
+      console.log("TaskPreviewList onClick");
+      this.props.onClick();
+    }
+
     render() {
         return (
-            < div >
+            <div>
                 {
                     this.props.dataList.map((item) => {
-                        return <ScrollableAnchor key={item.task_id} id={"t" + item.task_id}><TaskPreview
-                            key={item.task_id} description={item.description} input={item.input} output={item.output}
-                            tags={this.tags} title={item.name}/></ScrollableAnchor>
+                        return <ScrollableAnchor key={item.task_id} id={"t" + item.task_id}>
+                           <TaskPreview
+                            onClick={this.onClick.bind(this)}
+                            key={item.task_id}
+                            description={item.description}
+                            input={item.input}
+                            output={item.output}
+                            tags={this.tags}
+                            title={item.name}/></ScrollableAnchor>
                     })
                 }
             </div>
