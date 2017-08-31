@@ -13,7 +13,7 @@ class About extends Component {
     }
     render() {
         return (
-            <div className="About">
+            <div className="about">
                 <Logo/>
                 <h3 className="text-center">Ready to get started?</h3>
                 <Grid fluid={true}>

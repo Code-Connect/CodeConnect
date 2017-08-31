@@ -48,20 +48,11 @@
           width: 100%;
           text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
         }
+        p {
+          position: absolute;
+          align-self: start;
+        }
       }
-    }
-
-    .row, .col-sm-3 {
-      display: block;
-      p {
-        float: left !important;
-      }
-    }
-
-    .row:first-of-type{
-      width: 0;
-      z-index: 1;
-      margin: 0;
     }
   }
 }
