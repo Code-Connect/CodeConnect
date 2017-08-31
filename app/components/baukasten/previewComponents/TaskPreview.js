@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import ReactDOM from 'react-dom'
-import {Panel} from "react-bootstrap"
+import {Panel, Button} from "react-bootstrap"
 import ReactMarkdown from 'react-markdown'
 
 class TaskPreview extends Component {
@@ -8,6 +8,11 @@ class TaskPreview extends Component {
   constructor(props) {
     super(props)
 
+  }
+
+  onClick(event){
+    console.log("clicked");
+    this.props.onClick();
   }
 
   render() {
@@ -20,32 +25,24 @@ class TaskPreview extends Component {
 
     return (
       <div className="well" style={{
-				background: "white",
-				marginTop: "30px"
+        background: "white",
+        marginTop: "30px"
       }} ref="Parent">
 
-        {/* <h5 style={tagStyle}>
-          <small style={{
-            padding: "0px"
-          }}>
-            <b>{this.props.tags.map((tag) => {
-                return tag + " "
-              })}</b>
-          </small>
-        </h5>
-        <hr/> */}
         <div style={divStyle}>
           <h1>{this.props.title}</h1>
           <hr/><ReactMarkdown source={this.props.description}/>
         </div>
         <div style={divStyle}>
           <h4>Input</h4><hr/>
-            <ReactMarkdown source={this.props.input}/>
+          <ReactMarkdown source={this.props.input}/>
         </div>
         <div style={divStyle}>
           <h4>Output</h4><hr/>
-            <ReactMarkdown source={this.props.output}/>
+          <ReactMarkdown source={this.props.output}/>
         </div>
+        <hr/>
+        <Button bsStyle="success" onClick= {this.onClick.bind(this)}>Participate</Button>
       </div>
     )
 

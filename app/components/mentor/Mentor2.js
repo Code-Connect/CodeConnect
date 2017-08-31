@@ -20,6 +20,8 @@ import jsonQuery from 'json-query';
 import ProjectEditPanel from './ProjectEditPanel'
 import {getAddedProjects} from "./../stateConverter.js"
 
+
+//Mentor Edit Page for single Project(Important)
 class Mentor2 extends React.Component {
   constructor(props) {
     super(props);

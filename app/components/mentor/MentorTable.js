@@ -22,7 +22,6 @@ class MentorTable extends React.Component {
           <thead>
             <tr>
               <th>{this.props.datatype}</th>
-              {/* <th>Contributor</th> */}
             </tr>
           </thead>
           <tbody>

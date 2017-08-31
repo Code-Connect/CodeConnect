@@ -7,7 +7,7 @@ import {
   FormControl,
   Grid,
   Row,
-  Col
+  Col,Panel
 } from "react-bootstrap";
 import {getOrgsProject, getUserProject} from './../../actions/projectActions';
 import MentorTable from './MentorTable';
@@ -16,6 +16,7 @@ import {addProject} from '../../actions/projectActions';
 import ScrollableAnchor from 'react-scrollable-anchor'
 import {getAddedProjects} from "./../stateConverter.js"
 
+//Mentor OverView List
 class Mentor extends React.Component {
   constructor(props) {
     super(props);
@@ -76,9 +77,7 @@ class Mentor extends React.Component {
             {this.props.addedProjects.map((project) => {
               return (
                 <div>
-                  {/* <Button onClick= {() => this.onClick(project)}>
-                    {project.name}
-                  </Button> */}
+                  <Panel>Your added Projects</Panel>
                   <ProjectPanel short={true} project = {project}/>
                 </div>
               )

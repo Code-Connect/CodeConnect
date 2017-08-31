@@ -60,5 +60,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('participate').dropTable('isMentor').dropTable('hasTask').dropTable('github').dropTable('tasks').dropTable('gitter').dropTable('projects');
+  return knex.schema.dropTable('participate').dropTable('isMentor').dropTable('hasTask').dropTable('github').dropTable('tasks').dropTable('gitter').dropTable('projects').dropTable('sessions');
 };
