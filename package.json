@@ -1,7 +1,7 @@
 {
   "name": "Code Connect",
   "version": "1.0.0",
-  "description": "My app description",
+  "description": "Learn Programming by Working on Mentored Real World Projects",
   "scripts": {
     "build": "webpack --display-error-details",
     "postinstall": "npm run build",
