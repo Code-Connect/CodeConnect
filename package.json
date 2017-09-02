@@ -10,7 +10,8 @@
     "offline": "node offlineserver.js",
     "test": "npm run test:client && npm run test:server",
     "test:client": "mocha test/client --recursive --compilers js:babel-register",
-    "test:server": "mocha test/server --recursive --compilers js:babel-register"
+    "test:server": "mocha test/server --recursive --compilers js:babel-register",
+    "updateDB": "knex migrate:rollback --env production && knex migrate:latest --env production"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
