@@ -4,7 +4,7 @@ var knex = bookshelf.knex;
 exports.updateTask = function(req, res) {
   console.log(req.body.task);
   knex('tasks').where('task_id', '=', req.body.task.task_id).update(req.body.task).then(() => {
-    res.json({success: true, message: 'ok'}); // respond back to request
+    res.json({success: true}); // respond back to request
   });
 }
 
@@ -26,4 +26,18 @@ exports.deleteTask = function(req, res) {
       res.json({success: true});
     });
   });
+}
+
+exports.participateTask = function(req, res) {
+  console.log("anfrage ging rein")
+  knex('participate').insert({task_id: req.body.task_id, user_id: req.user.github.id}).then((task_id) => {
+    res.json({success: true});
+  });
+
+  // var tempTask_id = req.body.task_id;
+  // var tempUser_id = req.body.user.github.id;
+  //
+  // knex('participate').insert(knex.select(tempTask_id, tempUser_id).whereNotExists(knex('participate').where(tempTask_id, tempUser_id))).then((task_id) => {
+  //   res.json({success: true});
+  // })
 }

@@ -10,8 +10,7 @@ class TaskPreview extends Component {
 
   }
 
-  onClick(event){
-    console.log("clicked");
+  onClick(){
     this.props.onClick();
   }
 
@@ -42,7 +41,7 @@ class TaskPreview extends Component {
           <ReactMarkdown source={this.props.output}/>
         </div>
         <hr/>
-        <Button bsStyle="success" onClick= {this.onClick.bind(this)}>Participate</Button>
+        <Button bsStyle="success" onClick={this.onClick.bind(this)}>Participate</Button>
       </div>
     )
 

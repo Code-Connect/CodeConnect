@@ -52,18 +52,19 @@ export function deleteTask(task, project_id) {
   }
 }
 
-export function participateTask(task, user_id){
-  return (dispatch) =>{
+export function participateTask(task){
+  return (dispatch) => {
     return fetch('/participate', {
+      method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
-      body: JSON.stringify({task_id: task.task_id, user_id: user_id})
+      body: JSON.stringify({task_id: task.task_id})
     }).then((response) => {
       return response.json().then(function(json){
-        return dispatch({type: 'PARTICIPATE_TO_TASK', task_id: task.task_id, user_id: user_id})
+        return dispatch({type: 'PARTICIPATE_TO_TASK', task_id: task.task_id})
       })
     })
   }

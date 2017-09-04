@@ -31,10 +31,10 @@ class TaskTableView extends Component {
 
   setActiveElement(taskid) {}
 
-  participate(){
+  participate(task){
     console.log("dispatch action");
     //TODO hier muss task und user_id durchgegeben werden
-    // this.props.dispatch(participateTask(task,user_id));
+    this.props.dispatch(participateTask(task));
   }
 
   getTasksByProjectID(taskIDArray, tasksJSON) {
@@ -89,7 +89,7 @@ class TaskTableView extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {projectDict: state.projects.projectDict, tasks: state.projects.tasks};
+  return {projectDict: state.projects.projectDict, tasks: state.projects.tasks, user: state.user.github};
 };
 
 export default connect(mapStateToProps)(TaskTableView);
