@@ -63,8 +63,8 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('participate').dropTable('isMentor')
-      .dropTable('hasTask').dropTable('github')
-      .dropTable('tasks').dropTable('gitter')
-      .dropTable('projects');
+  return knex.schema.dropTableIfExists('participate').dropTableIfExists('isMentor')
+      .dropTableIfExists('hasTask').dropTableIfExists('github')
+      .dropTableIfExists('tasks').dropTableIfExists('gitter')
+      .dropTableIfExists('projects').dropTableIfExists('sessions');
 };
