@@ -126,6 +126,8 @@ app.use(function(req, res) {
         return {taskDict: taskDict, projectDict: projectDict, publicProjects: publicProjects, addedProjects: addedProjects};
       });
     }).then(function(item) {
+      console.log("req.user");
+      console.log(req.user);
       var initialState = {
         user: req.user,
         projects: {

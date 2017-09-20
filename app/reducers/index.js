@@ -5,6 +5,5 @@ import tasks from './tasks';
 
 export default combineReducers({
   user,
-  projects,
-  tasks
+  projects
 });

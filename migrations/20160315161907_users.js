@@ -17,11 +17,11 @@ var gitterTable = function(table) {
 
 var taskTable = function(table) {
   table.increments('task_id').primary();
-  table.string('input').defaultTo('Add input');
-  table.string('output').defaultTo('Add output');
-  table.string('description').defaultTo('Add description');
-  table.string('name').defaultTo('Add projectname');
-  table.string('difficulty').defaultTo('NA');
+  table.string('input',2000).defaultTo('Add input');
+  table.string('output',2000).defaultTo('Add output');
+  table.string('description',2000).defaultTo('Add description');
+  table.string('name',2000).defaultTo('Add projectname');
+  table.string('difficulty',2000).defaultTo('NA');
   table.integer('attempts').defaultTo(0);
   table.specificType('tags', 'jsonb[]').defaultTo('{}');
   table.timestamps()
@@ -30,8 +30,8 @@ var taskTable = function(table) {
 var projectTable = function(table){
   table.integer('project_id').primary();
   table.string('name').defaultTo('NA');
-  table.string('chatroom').defaultTo('Add chatroom');
-  table.string('description').defaultTo('Add description');
+  table.string('chatroom',500).defaultTo('Add chatroom');
+  table.string('description',2000).defaultTo('Add description');
   table.string('repourl');
   table.timestamps();
 }
@@ -60,5 +60,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('participate').dropTable('isMentor').dropTable('hasTask').dropTable('github').dropTable('tasks').dropTable('gitter').dropTable('projects').dropTable('sessions');
+  return knex.schema.dropTable('participate').dropTable('isMentor').dropTable('hasTask').dropTable('github').dropTable('tasks').dropTable('gitter').dropTable('projects');
 };

@@ -29,15 +29,12 @@ exports.deleteTask = function(req, res) {
 }
 
 exports.participateTask = function(req, res) {
-  console.log("anfrage ging rein")
   knex('participate').insert({task_id: req.body.task_id, user_id: req.user.github.id}).then((task_id) => {
     res.json({success: true});
   });
+}
 
-  // var tempTask_id = req.body.task_id;
-  // var tempUser_id = req.body.user.github.id;
-  //
-  // knex('participate').insert(knex.select(tempTask_id, tempUser_id).whereNotExists(knex('participate').where(tempTask_id, tempUser_id))).then((task_id) => {
-  //   res.json({success: true});
-  // })
+exports.getParticipants = function(req, res){
+  //TODO Participate return all the participants as user
+  return knex.select('sdd').from('participants');
 }
