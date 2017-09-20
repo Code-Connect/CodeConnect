@@ -143,7 +143,7 @@ class TaskTableView extends Component {
         )
     }
 
-    getTaskIDsFromTasks(taskArray){
+    getTaskIDsFromTasks(taskArray) {
         return taskArray.map(
             (task) => {
                 return task.task_id;
@@ -167,10 +167,14 @@ class TaskTableView extends Component {
                                     setActiveElement={this.setActiveElement.bind(this)} route={""}
                                     labelList={[{labelName: "Tasks", labelSize: '1'}]}
                                     dataList={
-                                        [{
-                                            id: this.getTaskIDsFromTasks(this.state.taskList),
-                                            data: this.getTaskNamesFromTasks(this.state.taskList)
-                                        }]
+                                        this.state.taskList.map(
+                                            (task) => {
+                                                return {
+                                                    id: task.task_id,
+                                                    data: [task.name]
+                                                }
+                                            }
+                                        )
                                     }>
                     </TableComponent>
                 </div>

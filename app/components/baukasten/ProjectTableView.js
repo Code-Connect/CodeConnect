@@ -37,19 +37,20 @@ class ProjectTableView extends Component {
             }, {
                 labelName: "#Task",
                 labelSize: "3"
-            }, {
+            }
+            /*, {
                 labelName: "#Contributor",
                 labelSize: "1"
             }, {
                 labelName: "Status",
                 labelSize: "1"
-            }
+            }*/
         ];
         console.log(this.props.projects);
         var data = this.props.projects.map((item) => {
             return {
                 id: item.project_id,
-                data: [item.name, item.tasks.length, "Test2", "not implemented"]
+                data: [item.name, item.tasks.length ] //, "Test2", "not implemented"]
             }
         });
         this.state = {
