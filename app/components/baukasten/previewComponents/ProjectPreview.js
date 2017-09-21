@@ -2,6 +2,8 @@ import React, {Component} from "react"
 import {browserHistory} from 'react-router'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
 import {connect} from "react-redux";
+import ReactMarkdown from 'react-markdown';
+
 
 
 /*
@@ -77,7 +79,7 @@ class ProjectPreview extends Component {
 
                 <div style={divStyle}>
                     <h4>Description</h4>
-                    {this.props.description}
+                    <ReactMarkdown source={this.props.description}/>
                 </div>
                 <hr style={hrStyle}/>
                 <div style={divStyle}>
