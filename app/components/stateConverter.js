@@ -5,3 +5,9 @@ exports.getAddedProjects = function(state){
     return state.projects.projectDict[id];
   });
 }
+
+exports.getAllProjects = function(state){
+    return state.projects.publicProjects.map((id) => {
+        return state.projects.projectDict[id];
+    });
+}
