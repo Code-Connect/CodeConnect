@@ -2,6 +2,8 @@ import React, {Component} from "react"
 import {browserHistory} from 'react-router'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
 import {connect} from "react-redux";
+import ReactMarkdown from 'react-markdown';
+
 
 
 /*
@@ -30,10 +32,13 @@ class ProjectPreview extends Component {
             color: "#2DC263",
             padding: "0"
         };
+        const hrStyle={
+            borderTop: "1px solid #c8c8c8"
+        }
 
         return (
             <div className="well" style={{
-                background: "white",
+                background: "#f1f1f1",
                 marginTop: "20px"
             }} ref="Parent">
 
@@ -53,18 +58,18 @@ class ProjectPreview extends Component {
 
                     </div>
                 </div>
-                <hr/>
+                <hr style={hrStyle}/>
 
                 <div style={divStyle}>
                     <h4>Description</h4>
-                    {this.props.description}
+                    <ReactMarkdown source={this.props.description}/>
                 </div>
-                <hr/>
+                <hr style={hrStyle}/>
                 <div style={divStyle}>
                     <h4>Mentor</h4>
                     {/*<p>{this.props.mentor.name + ": " + this.props.mentor.email}</p>*/}
                 </div>
-                <hr/>
+                <hr style={hrStyle}/>
                 {this.omit || this.props.tasks == null ? null :
                     <div style={divStyle}>
                         <h4>Tasks</h4>

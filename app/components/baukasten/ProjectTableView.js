@@ -2,7 +2,7 @@ import React, {Component} from "react"
 import TableComponent from "./tableView/TableComponent.js"
 import ProjectPreviewList from "./previewComponents/ProjectPreviewList"
 import {connect} from "react-redux";
-import {getAddedProjects} from "./../stateConverter.js"
+import {getAllProjects} from "./../stateConverter.js"
 
 /*
  * This component is responsible for displaying:
@@ -37,19 +37,20 @@ class ProjectTableView extends Component {
             }, {
                 labelName: "#Task",
                 labelSize: "3"
-            }, {
+            }
+            /*, {
                 labelName: "#Contributor",
                 labelSize: "1"
             }, {
                 labelName: "Status",
                 labelSize: "1"
-            }
+            }*/
         ];
         console.log(this.props.projects);
         var data = this.props.projects.map((item) => {
             return {
                 id: item.project_id,
-                data: [item.name, item.tasks.length, "Test2", "not implemented"]
+                data: [item.name, item.tasks.length ] //, "Test2", "not implemented"]
             }
         });
         this.state = {
@@ -121,8 +122,8 @@ class ProjectTableView extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(getAddedProjects(state));
-    return {projects: getAddedProjects(state), tasks: state.projects.tasks};
+    console.log(getAllProjects(state));
+    return {projects: getAllProjects(state), tasks: state.projects.tasks};
 };
 
 export default connect(mapStateToProps)(ProjectTableView);

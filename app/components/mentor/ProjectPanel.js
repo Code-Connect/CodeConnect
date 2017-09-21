@@ -16,10 +16,10 @@ class ProjectPanel extends React.Component {
     const tagStyle = {
       color: "#2DC263",
       padding: "0"
-    }
+    };
     const divStyle = {
       margin: "0px 0px 30px 0px"
-    }
+    };
     return (
       <div style={{
         background: "white",
@@ -45,7 +45,7 @@ class ProjectPanel extends React.Component {
             <Link to={"/mentor/"+this.props.project.project_id}><h4 style={{
               marginTop: "0",
             }}>{this.props.project.name}</h4></Link>
-            <h4><small><ReactMarkdown source={this.props.project.description}/></small></h4>
+            <h4><small><ReactMarkdown source={this.props.project.description || ""}/></small></h4>
           </div>
         </div>
         <hr style={{marginTop:"5px", marginBottom:"10px"}}/>
