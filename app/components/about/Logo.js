@@ -6,7 +6,7 @@ class Logo extends Component {
         return (
             <div className="center-block">
                 <div className="center-block logo">
-                    <iframe className="img-responsive" src={"https://www.youtube.com/embed/qqVcPtWqagY?showinfo=0"}/>
+                    {/* <iframe className="img-responsive" src={"https://www.youtube.com/embed/qqVcPtWqagY?showinfo=0"}/> */}
                     <Image src="/img/Logo.png" responsive={true}/>
                 </div>
                 <PageHeader style={ {textAlign: 'center'} }>
