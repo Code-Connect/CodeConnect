@@ -11,7 +11,7 @@ class ProfileView extends React.Component {
         return (
             <div style={{paddingTop:'20px', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px', background: "white", borderRadius: '10px'}}>
                 <div className="col">
-                    <img src="https://avatars0.githubusercontent.com/u/16148925?v=4&s=460" style={{maxWidth: '100%'}} alt=""/>
+                    <img src={"https://avatars.githubusercontent.com/"+this.props.name} style={{maxWidth: '100%'}} alt=""/>
                     <h3>{this.props.name}</h3>
                     <h4><small>{this.props.email}</small></h4>
                 </div>
