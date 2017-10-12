@@ -18,7 +18,7 @@ class NewsPage extends Component {
                                     project.description: "";
                                 return (
                                     <Col md={4}>
-                                        <Panel header={project.name}>
+                                        <Panel header={<h1>{project.name}</h1>}>
                                             <ReactMarkdown source={description.substring(0,200)+'...'}/>
                                         </Panel>
                                     </Col>
