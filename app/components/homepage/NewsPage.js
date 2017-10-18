@@ -4,8 +4,14 @@ import {getAllProjects} from '../stateConverter';
 import {connect} from 'react-redux';
 import {Panel, Col, Row, Grid} from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
+import {browserHistory} from 'react-router'
 
 class NewsPage extends Component {
+
+  onClick(project_id){
+    browserHistory.push('/contributor/projects/' + project_id);
+  }
+
     render() {
         return (
             <Grid style={{'background': 'white'}}>
@@ -18,7 +24,7 @@ class NewsPage extends Component {
                                     project.description: "";
                                 return (
                                     <Col md={4}>
-                                        <Panel header={<h1>{project.name}</h1>}>
+                                        <Panel header={<h1>{project.name}</h1>} onClick={() => this.onClick(project.project_id)}>
                                             <ReactMarkdown source={description.substring(0,200)+'...'}/>
                                         </Panel>
                                     </Col>
