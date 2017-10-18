@@ -16,9 +16,10 @@ exports.addProject = function(req, res) {
   });
 }
 
-exports.updateProject = function(req, res) {
-  console.log(req.body.project);
-  knex('projects').where('project_id', '=', req.body.project.project_id).update(req.body.project).then(() => {
+exports.updateProject = function(req, res, next) {
+  console.log("project_id: ", req.params.id);
+  console.log("project: ", req.body.project);
+  knex('projects').where('project_id', '=', req.params.id).update(req.body.project).then(() => {
     res.json({success: true, message: 'ok'}); // respond back to request
   });
 }

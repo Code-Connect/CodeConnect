@@ -44,8 +44,8 @@ export function getUserProject(token, username) {
 
 export function updateProject(project) {
   return (dispatch) => {
-    return fetch('/updateproject', {
-      method: 'post',
+    return fetch('/projects/' + project.project_id, {
+      method: 'put',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
