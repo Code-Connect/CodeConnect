@@ -78,7 +78,7 @@ export function deleteProject(project_id) {
 
 export function addProject(project) {
   return (dispatch) => {
-    return fetch('/addproject', {
+    return fetch('/projects', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
