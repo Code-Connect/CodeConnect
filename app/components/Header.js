@@ -1,6 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 import {IndexLink, Link} from "react-router";
+import {Navbar, LinkContainer} from "react-bootstrap";
+
+
 
 class Header extends React.Component {
     constructor(props) {

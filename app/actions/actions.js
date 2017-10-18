@@ -3,7 +3,7 @@ import cookie from 'react-cookie';
 
 export function submitContactForm(name, email, message) { 
     return (dispatch) => {
-        dispatch({type: 'CLEAR_MESSAGES'});
+        dispatch({type: 'CLEAR_HEADER'});
         return fetch('/contact', {
             method: 'post',
             headers: {

@@ -15,7 +15,7 @@ import Profile from "./components/profile/Profile";
 export default function getRoutes(store) {
 
     const clearMessages = () => {
-        store.dispatch({type: 'CLEAR_MESSAGES'});
+        store.dispatch({type: 'CLEAR_HEADER'});
     };
 
     return (
@@ -35,7 +35,6 @@ export default function getRoutes(store) {
 
                 <Route path="tasks" component={TaskTableView}/>
             </Route>
-            <Route path="/contributor/projects" component={Contributor} onLeave={clearMessages}/>
             <Route path="/editor" component={Editor} onLeave={clearMessages}/>
             <Route path="/task/:task" component={TaskView} onLeave={clearMessages}/>
             <Route path="/about" component={About} onLeave={clearMessages}/>
