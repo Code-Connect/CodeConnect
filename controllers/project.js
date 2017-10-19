@@ -25,7 +25,7 @@ exports.updateProject = function(req, res, next) {
 }
 
 exports.deleteProject = function(req, res) {
-  var project_id = req.body.project_id;
+  var project_id = req.params.id;
   return knex('isMentor').where('project_id', project_id).del().then((id) => {
     return knex('hasTask').where('project_id', project_id).del().returning('task_id').then((tasks) => {
       return Promise.all(tasks.map((task_id) => {

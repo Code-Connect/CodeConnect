@@ -4,7 +4,7 @@ import {getAllProjects} from '../stateConverter';
 import {connect} from 'react-redux';
 import {Panel, Col, Row, Grid} from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-import {browserHistory} from 'react-router'
+import {browserHistory} from 'react-router';
 
 class NewsPage extends Component {
 
