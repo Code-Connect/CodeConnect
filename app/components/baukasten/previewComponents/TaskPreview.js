@@ -18,9 +18,6 @@ class TaskPreview extends Component {
     const divStyle = {
       margin: "0px 0px 30px 0px"
     }
-    const tagStyle = {
-      color: "#2DC263"
-    }
 
     return (
       <div className="well" style={{

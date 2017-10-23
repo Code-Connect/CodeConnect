@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {Button, Panel, Table} from "react-bootstrap";
+import {Button, Panel, Table, Image} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 
 
@@ -21,6 +21,8 @@ class ProjectCards extends React.Component {
         <br/>
         <br/>
         <ReactMarkdown source={this.props.project.description}/>
+        <img className="avatar rounded-2" height="50" src={"/img/Logo.png"} width="50"/>
+
         <div className="btn-wrapper">
           <span className="btn btn-default newsPageProjektButton">To Project</span>
         </div>

@@ -44,8 +44,7 @@ class ProjectPreview extends Component {
 
                 <div className="short-preview row">
                     <div className="col-sm-2 logo">
-                        <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png"
-                             alt="icon"/>
+                        <img src="/img/Logo.png" height="48px" alt="icon"/>
                     </div>
                     <div className="col-sm-10 title" style={{display: "flex"}}>
                         <h1 style={{

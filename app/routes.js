@@ -23,8 +23,8 @@ export default function getRoutes(store) {
             <IndexRoute component={HomePage} onLeave={clearMessages}/>
             <Route path="/profile" component={Profile} onLeave={clearMessages}/>
             <Route path="/mentor/:project" component={MentorTask} onLeave={clearMessages}/>
-            <Route path="/mentor2" component={MentorTask} onLeave={clearMessages}/>
-            <Route path="/home" component={HomePage} onLeave={clearMessages}/>
+            {/* <Route path="/mentor2" component={MentorTask} onLeave={clearMessages}/> */}
+            {/* <Route path="/home" component={HomePage} onLeave={clearMessages}/> */}
 
             <Route path="/contributor" component={Contributor} onLeave={clearMessages}>
                 <IndexRoute component={ProjectTableView} onLeave={clearMessages}/>
@@ -33,10 +33,10 @@ export default function getRoutes(store) {
 
                 <Route path="projects" component={ProjectTableView}/>
 
-                <Route path="tasks" component={TaskTableView}/>
+                {/* <Route path="tasks" component={TaskTableView}/> */}
             </Route>
-            <Route path="/editor" component={Editor} onLeave={clearMessages}/>
-            <Route path="/task/:task" component={TaskView} onLeave={clearMessages}/>
+            {/* <Route path="/editor" component={Editor} onLeave={clearMessages}/> */}
+            {/* <Route path="/task/:task" component={TaskView} onLeave={clearMessages}/> */}
             <Route path="/about" component={About} onLeave={clearMessages}/>
             <Route path="*" component={NotFound} onLeave={clearMessages}/>
         </Route>
