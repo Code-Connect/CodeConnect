@@ -3,8 +3,8 @@ import ProjectTableView from "../baukasten/ProjectTableView";
 import {getAllProjects} from '../stateConverter';
 import {connect} from 'react-redux';
 import {Panel, Col, Row, Grid} from 'react-bootstrap';
-import ReactMarkdown from 'react-markdown';
 import {browserHistory} from 'react-router';
+import ProjectCards from "./ProjectCards";
 
 class NewsPage extends Component {
 
@@ -23,24 +23,14 @@ class NewsPage extends Component {
         'background': 'white'
       }} fluid>
         <Row className="show-grid pageHeader">
-          <h1>Recent Projects</h1>
+          <h1>Discover Projects</h1>
         </Row>
         <Row className="show-grid ">
           {this.props.projects.map((project) => {
-            const description = project.description
-              ? project.description
-              : "";
             return (
               <Col md={4} className="newsPageSingleCol">
                 <Panel className="newsPageSinglePanel" onClick={() => this.onClick(project.project_id)}>
-                  <div className="headerWrapper">
-                    <h2>{project.name}</h2>
-                  </div>
-                  <br/>
-                  <ReactMarkdown source={description.substring(0, 200) + '...'}/>
-                  <div className="btn-wrapper">
-                    <span className="btn btn-default newsPageProjektButton">To Projekt</span>
-                  </div>
+                  <ProjectCards project={project}/>
                 </Panel>
               </Col>
             )
