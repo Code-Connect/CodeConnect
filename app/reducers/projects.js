@@ -27,6 +27,10 @@ export default function messages(projects = {}, action) {
           ...projects.addedProjects,
           action.project.project_id
         ],
+        publicProjects: [
+          ...projects.publicProjects,
+          action.project.project_id
+        ],
         projectDict: Object.assign({}, projects.projectDict, {
           [action.project.project_id]: action.project
         })

@@ -18,10 +18,8 @@ class Profile extends React.Component {
                         <ProfileView name={this.props.user.name} email={this.props.user.email}/>
                     </div>
                     <div className="col-sm-8" style={{paddingTop:'20px', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px', background: "white", borderRadius: '10px'}}>
-                        <Tabs id="tabs" defaultActiveKey={2}>
-                            <Tab eventKey={1} title="Overview">Overview</Tab>
-                            <Tab eventKey={2} title="Mentor Projects"><Mentor/></Tab>
-                            <Tab eventKey={3} title="Contributor Projects">Contributor Projects</Tab>
+                        <Tabs id="tabs" defaultActiveKey={1}>
+                            <Tab eventKey={1} title="Mentor Projects"><Mentor/></Tab>
                         </Tabs>
                     </div>
                 </div>
@@ -36,4 +34,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Profile);
-
