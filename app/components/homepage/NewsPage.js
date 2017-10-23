@@ -25,7 +25,7 @@ class NewsPage extends Component {
         <Row className="show-grid pageHeader">
           <h1>Recent Projects</h1>
         </Row>
-        <Row className="show-grid">
+        <Row className="show-grid ">
           {this.props.projects.map((project) => {
             const description = project.description
               ? project.description

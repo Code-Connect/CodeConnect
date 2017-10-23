@@ -5978,15 +5978,10 @@ textarea {
   margin-right: auto;
   margin-left: auto; }
 
-.project-item-title {
-  padding: 23px 20px;
-  height: 195px;
-  display: block; }
-  .project-item-title h3 {
-    line-height: 1; }
-  .project-item-title p {
-    margin-top: 4px;
-    line-height: 1.4; }
+.roundpanel {
+  border-radius: 10px;
+  padding: 50px;
+  padding-top: 0px; }
 
 .pageHeader {
   margin-left: 0; }

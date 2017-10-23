@@ -1,22 +1,14 @@
 .container{
-  width:980px;
+  width: 980px;
   margin-right: auto;
   margin-left: auto;
 }
 
-.project-item-title {
-            padding: 23px 20px;
-            height: 195px;
-            display: block;
-
-            h3 {
-                line-height: 1;
-            }
-            p {
-                margin-top: 4px;
-                line-height: 1.4;
-            }
-        }
+.roundpanel{
+  border-radius: 10px;
+  padding: 50px;
+  padding-top: 0px;
+}
 
 .pageHeader {
   margin-left: 0;

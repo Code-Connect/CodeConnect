@@ -14,11 +14,7 @@ class Contributor extends React.Component {
   }
   render() {
     return (
-      <div style={{
-        borderRadius: '10px',
-        padding: '50px',
-        paddingTop: '0px'
-      }}>
+      <div className = "roundpanel">
         {this.props.children}
       </div>
     );
