@@ -19,7 +19,15 @@ export function getOrgsProject(token) {
             })
           }).then((repos) => {
             var repoarray = repos.map((item) => {
-              return {project_id: item.id, name: item.name, repourl: item.html_url, description: item.description, tasks: []}
+              return {
+                project_id: item.id,
+                name: item.name,
+                repourl: item.html_url,
+                description: item.description,
+                tasks: [],
+                follower: 0,
+                image: 'https://avatars1.githubusercontent.com/u/23557789?s=200&v=4'
+              }
             });
             return dispatch({type: 'GET_REPOS_FROM_GITHUB', projects: repoarray});
           });
@@ -31,10 +39,18 @@ export function getOrgsProject(token) {
 
 export function getUserProject(token, username) {
   return (dispatch) => {
-    return fetch('https://api.github.com/users/'+ username +'/repos').then((response) => {
+    return fetch('https://api.github.com/users/' + username + '/repos').then((response) => {
       return response.json().then(function(json) {
         var repoarray = json.map((item) => {
-          return {project_id: item.id, name: item.name, repourl: item.html_url, description: item.description, tasks: []}
+          return {
+            project_id: item.id,
+            name: item.name,
+            repourl: item.html_url,
+            description: item.description,
+            tasks: [],
+            follower: 0,
+            image: 'https://avatars1.githubusercontent.com/u/23557789?s=200&v=4'
+          }
         });
         return dispatch({type: 'GET_REPOS_FROM_GITHUB', projects: repoarray});
       });

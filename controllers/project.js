@@ -63,7 +63,7 @@ exports.getProjects = function() {
 
 //returns all projects and for each project a task
 exports.getProjectsAndTasks = function() {
-  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description').from('projects').then(function(rows) {
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').then(function(rows) {
     return Promise.all(rows.map((item) => {
       return knex.select('hasTask.task_id').from('hasTask').where('hasTask.project_id', '=', item.project_id).then(function(task) {
         return Promise.all(task.map((task_item) => {
