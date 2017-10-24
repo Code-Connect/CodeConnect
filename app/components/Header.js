@@ -39,9 +39,6 @@ class Header extends React.Component {
                     <li>
                         <Link href="/auth/github" activeStyle={active}>Log in</Link>
                     </li>
-                    <li>
-                        <Link to="/signup" activeStyle={active}>Sign up</Link>
-                    </li>
                 </ul>
             );
         const mentorNav = this.props.user
