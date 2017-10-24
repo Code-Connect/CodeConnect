@@ -28,7 +28,7 @@ class Header extends React.Component {
                             </li>
                             <li className="divider"></li>
                             <li>
-                                <Link to="/">Log out</Link>
+                                <a href="/logout">Log out</a>
                             </li>
                         </ul>
                     </li>
