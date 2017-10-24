@@ -23,15 +23,16 @@ export default function getRoutes(store) {
             <IndexRoute component={HomePage} onLeave={clearMessages}/>
             <Route path="/profile" component={Profile} onLeave={clearMessages}/>
             <Route path="/mentor/:project" component={MentorTask} onLeave={clearMessages}/>
+            <Route path="/project/:project_id" component={ProjectTableView} onLeave={clearMessages}/>
+
             {/* <Route path="/mentor2" component={MentorTask} onLeave={clearMessages}/> */}
             {/* <Route path="/home" component={HomePage} onLeave={clearMessages}/> */}
-
             <Route path="/contributor" component={Contributor} onLeave={clearMessages}>
                 <IndexRoute component={ProjectTableView} onLeave={clearMessages}/>
 
-                <Route path="projects/:id" component={TaskTableView} onLeave={clearMessages}/>
+                <Route path="project/:id" component={TaskTableView} onLeave={clearMessages}/>
 
-                <Route path="projects" component={ProjectTableView}/>
+                <Route path="project" component={ProjectTableView}/>
 
                 {/* <Route path="tasks" component={TaskTableView}/> */}
             </Route>

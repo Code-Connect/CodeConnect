@@ -3,6 +3,7 @@ import {browserHistory} from 'react-router'
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
 import {connect} from "react-redux";
 import ReactMarkdown from 'react-markdown';
+import {getProject} from '../../../actions/projectActions';
 
 
 
@@ -20,8 +21,8 @@ class ProjectPreview extends Component {
     }
 
     redirectDetails() {
-        browserHistory.push('/contributor/projects/' + this.props.id);
-        console.log("redi")
+        // browserHistory.push('/contributor/projects/' + this.props.id);
+        this.props.dispatch(getProject(this.props.id));
     }
 
     render() {

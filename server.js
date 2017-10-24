@@ -101,7 +101,8 @@ var helper = require('./controllers/help');
 // app.delete('/deleteproject', projectController.deleteProject);
 
 //The new REST API
-app.get('/project', projectController.getProjects);
+app.get('/projects', projectController.getProjects);
+app.get('/projects/:id', projectController.getProject)
 app.post('/projects', projectController.addProject);
 app.put('/projects/:id', projectController.updateProject);
 app.delete('/projects/:id', projectController.deleteProject);

@@ -109,3 +109,31 @@ export function addProject(project) {
     });
   }
 }
+
+export function getProject(project_id) {
+  return (dispatch) => {
+    dispatch({
+      type: 'CLEAR_PROJECT'
+    });
+    return fetch('/projects/' + project_id, {
+      credentials: 'same-origin' // By default, fetch won't send any cookies to the server
+    }).then((response) => {
+      // is response.ok was vorgefertigtes?
+      if (response.ok) {
+        return response.json().then((json) => {
+          dispatch({
+            type: 'GET_PROJECT_SUCCESSFUL',
+            project: [json]
+          });
+        });
+      } else {
+        return response.json().then((json) => {
+          dispatch({
+            type: 'GET_PROJECT_FAILURE',
+            project: Array.isArray(json) ? json : [json]
+          });
+        });
+      }
+    });
+  };
+}

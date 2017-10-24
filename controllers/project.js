@@ -2,15 +2,8 @@ var bookshelf = require('../config/bookshelf');
 var knex = bookshelf.knex;
 
 exports.addProject = function(req, res) {
-  knex('projects').insert({
-                          project_id: req.body.project_id,
-                          name: req.body.name,
-                          description: req.body.description,
-                          repourl: req.body.repourl
-                        }).then(() => {
-    knex('isMentor').insert({
-                            user_id: req.user.github.id,
-                            project_id: req.body.project_id}).then(() => {
+  knex('projects').insert({project_id: req.body.project_id, name: req.body.name, description: req.body.description, repourl: req.body.repourl}).then(() => {
+    knex('isMentor').insert({user_id: req.user.github.id, project_id: req.body.project_id}).then(() => {
       res.json({success: true});
     });
   });
@@ -41,6 +34,15 @@ exports.deleteProject = function(req, res) {
   });
 }
 
+//returns single Project with id
+exports.getProject = function(req, res) {
+  var project_id = req.params.id;
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').where('projects.project_id', '=', project_id).then(function(rows) {
+    return res.send(rows[0]);
+  });
+}
+
+//returns all projects
 exports.getProjects = function() {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
     console.log(rows[0]);
