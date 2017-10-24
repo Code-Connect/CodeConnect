@@ -1,6 +1,6 @@
-import React, {Component} from "react"
-import {browserHistory} from 'react-router'
-import {ListGroup, ListGroupItem} from 'react-bootstrap'
+import React, {Component} from "react";
+import {browserHistory} from 'react-router';
+import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import {connect} from "react-redux";
 import ReactMarkdown from 'react-markdown';
 import {getProject} from '../../../actions/projectActions';
