@@ -24,7 +24,7 @@ class Header extends React.Component {
                         </a>
                         <ul className="dropdown-menu">
                             <li>
-                                <Link to="/account">My Account</Link>
+                                <Link to="/profile">Profile</Link>
                             </li>
                             <li className="divider"></li>
                         </ul>
@@ -44,9 +44,6 @@ class Header extends React.Component {
         const mentorNav = this.props.user
             ? (
                 <ul className="nav navbar-nav navbar-right">
-                    <li>
-                        <Link to="/profile" activeStyle={active}>Profile</Link>
-                    </li>
                     <li>
                         <Link to="/contributor" activeStyle={active}>Contributor</Link>
                     </li>
