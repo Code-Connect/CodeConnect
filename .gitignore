@@ -36,7 +36,6 @@ Thumbs.db
 /vendor/
 test/codeception/_output/*
 test/codeception/_support/_generated/
-package-lock.json
 composer.lock
 
 # SCSS compilation files
