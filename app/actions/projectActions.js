@@ -123,7 +123,7 @@ export function getProject(project_id) {
         return response.json().then((json) => {
           dispatch({
             type: 'GET_PROJECT_SUCCESSFUL',
-            project: [json]
+            project: json
           });
         });
       } else {

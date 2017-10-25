@@ -37,7 +37,7 @@ exports.deleteProject = function(req, res) {
 //returns single Project with id
 exports.getProject = function(req, res) {
   var project_id = req.params.id;
-  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').where('projects.project_id', '=', project_id).then(function(rows) {
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').where('projects.project_id', '=', project_id).then(function(rows) {
     return res.send(rows[0]);
   });
 }
