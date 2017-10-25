@@ -14,7 +14,7 @@ class NewsPage extends Component {
   }
 
   onClick(project_id) {
-    browserHistory.push('/contributor/project/' + project_id);
+    browserHistory.push('/project/' + project_id);
   }
 
   render() {
