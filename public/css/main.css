@@ -5994,6 +5994,9 @@ textarea {
   background: white;
   padding: 2px;
   cursor: pointer; }
+  .newsPageSinglePanel:hover {
+    border-color: #2ec866;
+    color: #2ec866; }
 
 .newsPageSinglePanel .panel-heading, .newsPageSinglePanel .panel-body {
   padding: 20px 15px; }

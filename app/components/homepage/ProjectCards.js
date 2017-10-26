@@ -23,9 +23,9 @@ class ProjectCards extends React.Component {
         <ReactMarkdown source={this.props.project.description}/>
         <img className="avatar rounded-2" height="50" src={"/img/Logo.png"} width="50"/>
 
-        <div className="btn-wrapper">
+        {/* <div className="btn-wrapper">
           <span className="btn btn-default newsPageProjektButton">To Project</span>
-        </div>
+        </div> */}
       </div>
     );
   }

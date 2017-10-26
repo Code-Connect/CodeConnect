@@ -72,7 +72,7 @@ const store2 = new KnexSessionStore({
 app.use(session({
   secret: process.env.SECRET,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 8 // 8 hours
+    maxAge: 1000 * 60 * 60 * 30 // 30 hours
   },
   store: store2,
   resave: false,

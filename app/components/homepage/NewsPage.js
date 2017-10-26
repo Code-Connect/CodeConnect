@@ -21,8 +21,9 @@ class NewsPage extends Component {
     return (
       <Grid className="container whiteContainer">
         <Row className="show-grid pageHeader">
-          <h1>Discover Projects</h1>
+          <h1>Dashboard</h1>
         </Row>
+        <br/>
         <Row className="show-grid ">
           {this.props.projects.map((project) => {
             return (

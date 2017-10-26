@@ -24,6 +24,10 @@
   background: white;
   padding: 2px;
   cursor: pointer;
+  &:hover {
+        border-color: #2ec866;
+        color:#2ec866;
+    }
 }
 
 .newsPageSinglePanel .panel-heading, .newsPageSinglePanel .panel-body {
