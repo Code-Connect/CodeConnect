@@ -19,9 +19,7 @@ class NewsPage extends Component {
 
   render() {
     return (
-      <Grid className="container" style={{
-        'background': 'white'
-      }} fluid>
+      <Grid className="container whiteContainer">
         <Row className="show-grid pageHeader">
           <h1>Discover Projects</h1>
         </Row>

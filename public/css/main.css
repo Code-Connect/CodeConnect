@@ -5974,9 +5974,12 @@ textarea {
   text-transform: uppercase; }
 
 .container {
-  width: 980px;
   margin-right: auto;
   margin-left: auto; }
+
+.whiteContainer {
+  background: white;
+  border-radius: 10px; }
 
 .roundpanel {
   border-radius: 10px;
