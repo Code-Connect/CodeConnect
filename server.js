@@ -143,6 +143,16 @@ app.use(function(req, res) {
           projectDict: item.projectDict,
           publicProjects: item.publicProjects,
           tasks: item.taskDict
+        },
+        currentProject: {
+          project: {},
+          error: null,
+          loading: true
+        },
+        currentTasks: {
+          tasks: [],
+          error: null,
+          loading: true
         }
       };
       var store = configureStore(initialState);

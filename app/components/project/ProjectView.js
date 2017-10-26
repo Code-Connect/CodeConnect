@@ -16,25 +16,86 @@ class ProjectView extends Component {
     super(props);
   }
 
-  redirectDetails() {
+  componentDidMount() {
     var project_id = this.props.params.project_id;
     this.props.dispatch(getProject(project_id));
     this.props.dispatch(getTasks(project_id));
   }
 
   render() {
+    const projectPanel = this.props.currentProject.loading
+      ? (
+        <div>loading</div>
+      )
+      : (
+        <ProjectPanel project = {this.props.currentProject.project}></ProjectPanel>
+      );
 
+    const taskPanel = this.props.currentTasks.loading
+      ? (
+        <div>loading</div>
+      )
+      : (
+        <div>{this.props.currentTasks.tasks.map((item) => {
+            return (
+              <div>
+                <TaskPanel task={item}/>
+              </div>
+            )
+          })}</div>
+      );
     return (
-      <div>
-        <Button onClick={this.redirectDetails.bind(this)}>Content</Button>
-        <Panel>Yo</Panel>
+      <div >
+        <h1>Project:
+        </h1>
+        {projectPanel}
+        <hr/>
+        <h1>Task:
+        </h1>
+        {taskPanel}
       </div>
     )
   }
 }
 
+class ProjectPanel extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <Panel>
+        {this.props.project.name}
+      </Panel>
+    )
+  }
+}
+
+class TaskPanel extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <Panel>
+        <h3>{this.props.task.name}</h3>
+        <br/>
+        {this.props.task.input}
+        <br/>
+        {this.props.task.output}
+        <br/>
+        {this.props.task.description}
+      </Panel>
+    )
+  }
+}
+
 const mapStateToProps = (state) => {
-  return {project: state.currentProject.tasks};
+  return {currentProject: state.currentProject, currentTasks: state.currentTasks};
 };
 
 export default connect(mapStateToProps)(ProjectView)

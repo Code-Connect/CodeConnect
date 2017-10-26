@@ -16,7 +16,7 @@ import Profile from "./components/profile/Profile";
 export default function getRoutes(store) {
 
     const clearMessages = () => {
-        store.dispatch({type: 'CLEAR_HEADER'});
+        store.dispatch({type: 'CLEAR_CURRENT_PROJECT'});
     };
 
     return (

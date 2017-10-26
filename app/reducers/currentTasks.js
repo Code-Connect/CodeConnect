@@ -6,9 +6,10 @@ export default function messages(state = {}, action) {
         error: null,
         loading: false
       });
-    case "GET_TASKS_FAILURE":
-      console.log("action", action);
-      return {};
+    case 'GET_TASKS_FAILURE':
+      return {tasks: [], error: null, loading: true};
+    case 'CLEAR_CURRENT_TASKS':
+      return {tasks: [], error: null, loading: true};
     default:
       return state;
   }

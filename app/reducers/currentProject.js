@@ -7,9 +7,9 @@ export default function messages(state = {}, action) {
         loading: false
       });
     case 'GET_PROJECT_FAILURE':
-      return {};
+      return {project: {}, error: null, loading: true};
     case 'CLEAR_CURRENT_PROJECT':
-      return {};
+      return {project: {}, error: null, loading: true};
     default:
       return state;
   }
