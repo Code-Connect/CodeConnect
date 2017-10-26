@@ -110,8 +110,8 @@ app.delete('/projects/:id', projectController.deleteProject);
 app.get('/projects/:id/tasks', taskController.getTask);
 app.post('/projects/:id/tasks', taskController.addTask);
 app.put('/projects/:id/tasks/:task_id', taskController.updateTask);
+app.delete('/projects/:id/tasks/:task_id', taskController.deleteTask);
 
-app.delete('/deletetask', taskController.deleteTask);
 app.post('/participate', taskController.participateTask);
 
 app.get('/auth/github', passportGithub.authenticate('github'));

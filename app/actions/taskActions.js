@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 
 export function updateTask(task, project_id) {
   return (dispatch) => {
-    return fetch('/projects/'+ project_id + '/tasks/' + task.task_id, {
+    return fetch('/projects/' + project_id + '/tasks/' + task.task_id, {
       method: 'put',
       headers: {
         'Accept': 'application/json',
@@ -36,14 +36,13 @@ export function addTask(name, project_id) {
 
 export function deleteTask(task, project_id) {
   return (dispatch) => {
-    return fetch('/deleteTask', {
+    return fetch('/projects/' + project_id + '/tasks/' + task.task_id, {
       method: 'delete',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      credentials: 'same-origin', // By default, fetch won't send any cookies to the server
-      body: JSON.stringify({task_id: task.task_id})
+      credentials: 'same-origin' // By default, fetch won't send any cookies to the server
     }).then((response) => {
       return response.json().then(function(json) {
         return dispatch({type: 'DELETE_TASK_SUCCESSFUL', task_id: task.task_id, project_id: project_id});
