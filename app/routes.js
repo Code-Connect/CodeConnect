@@ -33,7 +33,7 @@ export default function getRoutes(store) {
 
                 <Route path="project/:id" component={TaskTableView} onLeave={clearMessages}/>
 
-                <Route path="project" component={ProjectTableView}/>
+                <Route path="project" component={ProjectTableView}  onLeave={clearMessages}/>
 
                 {/* <Route path="tasks" component={TaskTableView}/> */}
             </Route>

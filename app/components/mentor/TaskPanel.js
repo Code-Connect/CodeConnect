@@ -15,7 +15,6 @@ import {
 } from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import Editor from '../baukasten/Editor.js';
-import {updateTask} from '../../actions/taskActions';
 import ScrollableAnchor from 'react-scrollable-anchor'
 
 class TaskPanel extends React.Component {
@@ -56,7 +55,10 @@ class TaskPanel extends React.Component {
 
   saveChange(event) {
     this.toggleButton(event);
-    this.props.saveChange({task_id: this.props.task.task_id, input: this.state.input, output: this.state.output, description: this.state.description});
+    this.props.saveChange({ task_id: this.props.task.task_id,
+                            input: this.state.input,
+                            output: this.state.output,
+                            description: this.state.description});
   }
 
   deleteTask(event) {

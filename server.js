@@ -108,10 +108,9 @@ app.put('/projects/:id', projectController.updateProject);
 app.delete('/projects/:id', projectController.deleteProject);
 
 app.get('/projects/:id/tasks', taskController.getTask);
-// app.post('/projects/:id/tasks', taskController.addTask);
+app.post('/projects/:id/tasks', taskController.addTask);
+app.put('/projects/:id/tasks/:task_id', taskController.updateTask);
 
-app.post('/updatetask', taskController.updateTask);
-app.post('/addtask', taskController.addTask);
 app.delete('/deletetask', taskController.deleteTask);
 app.post('/participate', taskController.participateTask);
 

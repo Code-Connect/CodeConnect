@@ -49,7 +49,7 @@ class Mentor2 extends React.Component {
   }
 
   saveTask(task) {
-    this.props.dispatch(updateTask(task));
+    this.props.dispatch(updateTask(task, this.props.params.project));
   }
 
   saveProject(project){
