@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import user from './user';
 import projects from './projects';
 import currentProject from './currentProject';
+import currentTasks from './currentTasks';
 import publicProjects from './publicProjects';
 import messages from './messages';
 
@@ -11,5 +12,6 @@ export default combineReducers({
   projects,
   messages,
   publicProjects,
+  currentTasks,
   currentProject
 });

@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap';
 import {connect} from "react-redux";
 import ReactMarkdown from 'react-markdown';
 import {getProject} from '../../actions/projectActions';
+import {getTasks} from '../../actions/taskActions';
 
 /*
 ** Required Parameters: tags: [string], contributors: [{name: string, email: string}], tasks: [Tasks], title: string
@@ -16,8 +17,9 @@ class ProjectView extends Component {
   }
 
   redirectDetails() {
-    // browserHistory.push('/contributor/projects/' + this.props.id);
-    this.props.dispatch(getProject(this.props.params.project_id));
+    var project_id = this.props.params.project_id;
+    this.props.dispatch(getProject(project_id));
+    this.props.dispatch(getTasks(project_id));
   }
 
   render() {

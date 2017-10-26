@@ -20,11 +20,12 @@ exports.getTasks = function() {
   return knex.select('task_id', 'input', 'output', 'description', 'name', 'difficulty', 'tags', 'attempts').from('tasks');
 }
 
+//TODO rename getTask into getTasks
 exports.getTask = function(req, res) {
   return knex.select('tasks.task_id', 'input', 'output', 'description', 'name', 'difficulty', 'tags', 'attempts').from('tasks').join('hasTask', function() {
     this.on('tasks.task_id', '=', 'hasTask.task_id')
   }).where('hasTask.project_id', '=', req.params.id).then((item) => {
-    res.json({success: true, task: item});
+    res.json({success: true, tasks: item});
   });
 }
 

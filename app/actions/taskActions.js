@@ -68,3 +68,27 @@ export function participateTask(task) {
     })
   }
 }
+
+export function getTasks(project_id) {
+  return (dispatch) => {
+    dispatch({type: 'CLEAR_TASKS'});
+    return fetch('/projects/' + project_id + '/tasks', {
+      credentials: 'same-origin' // By default, fetch won't send any cookies to the server
+    }).then((response) => {
+      if (response.ok) {
+        return response.json().then((tasks) => { //tasks is a array of tasks
+          dispatch({type: 'GET_TASKS_SUCCESSFUL', tasks: tasks});
+        });
+      } else {
+        return response.json().then((tasks) => {
+          dispatch({
+            type: 'GET_TASKS_FAILURE',
+            tasks: Array.isArray(tasks)
+              ? tasks
+              : [tasks]
+          });
+        });
+      }
+    });
+  };
+}
