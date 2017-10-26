@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {browserHistory} from 'react-router';
-import {Button} from 'react-bootstrap';
+import {Button, Panel} from 'react-bootstrap';
 import {connect} from "react-redux";
 import ReactMarkdown from 'react-markdown';
 import {getProject} from '../../actions/projectActions';
@@ -27,6 +27,7 @@ class ProjectView extends Component {
     return (
       <div>
         <Button onClick={this.redirectDetails.bind(this)}>Content</Button>
+        <Panel>Yo</Panel>
       </div>
     )
   }
