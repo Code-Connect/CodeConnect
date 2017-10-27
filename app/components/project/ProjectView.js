@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import ReactMarkdown from 'react-markdown';
 import {getProject} from '../../actions/projectActions';
 import {getTasks} from '../../actions/taskActions';
+import ProjectTableView from '../baukasten/ProjectTableView'
 
 /*
 ** Required Parameters: tags: [string], contributors: [{name: string, email: string}], tasks: [Tasks], title: string
@@ -32,17 +33,9 @@ class ProjectView extends Component {
       : <div>{this.props.currentTasks.tasks.map((item) => {
           return (<TaskPanel task={item}/>)
         })}</div>;
-        
+
     return (
-      <div >
-        <h1>Project:
-        </h1>
-        {projectPanel}
-        <hr/>
-        <h1>Task:
-        </h1>
-        {taskPanel}
-      </div>
+        <ProjectTableView/>
     )
   }
 }

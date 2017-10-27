@@ -90,6 +90,7 @@ class ProjectTableView extends Component {
 
                     <TableComponent goTo={"p"} onTableItemClicked={this.focusPreview.bind(this)}
                                     setActiveElement={this.setActiveElement.bind(this)}
+                                    labelList={[{labelName: 'Project', labelSize: 3},{labelName: 'Tasks', labelSize: 1}]}
                                     omit={true}
                                     route={""}
                                     dataList={this.state.data}/>
