@@ -2,22 +2,23 @@ var bookshelf = require('../config/bookshelf');
 var knex = bookshelf.knex;
 
 exports.addProject = function(req, res) {
-  knex('projects').insert({project_id: req.body.project_id, name: req.body.name, chatroom: req.body.chatroom, description: req.body.description, repourl: req.body.repourl}).then(() => {
+  knex('projects').insert({project_id: req.body.project_id, name: req.body.name, description: req.body.description, repourl: req.body.repourl}).then(() => {
     knex('isMentor').insert({user_id: req.user.github.id, project_id: req.body.project_id}).then(() => {
       res.json({success: true});
     });
   });
 }
 
-exports.updateProject = function(req, res) {
-  console.log(req.body.project);
-  knex('projects').where('project_id', '=', req.body.project.project_id).update(req.body.project).then(() => {
+exports.updateProject = function(req, res, next) {
+  console.log("project_id: ", req.params.id);
+  console.log("project: ", req.body.project);
+  knex('projects').where('project_id', '=', req.params.id).update(req.body.project).then(() => {
     res.json({success: true, message: 'ok'}); // respond back to request
   });
 }
 
 exports.deleteProject = function(req, res) {
-  var project_id = req.body.project_id;
+  var project_id = req.params.id;
   return knex('isMentor').where('project_id', project_id).del().then((id) => {
     return knex('hasTask').where('project_id', project_id).del().returning('task_id').then((tasks) => {
       return Promise.all(tasks.map((task_id) => {
@@ -33,6 +34,15 @@ exports.deleteProject = function(req, res) {
   });
 }
 
+//returns single Project with id
+exports.getProject = function(req, res) {
+  var project_id = req.params.id;
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').where('projects.project_id', '=', project_id).then(function(rows) {
+    return res.send(rows[0]);
+  });
+}
+
+//returns all projects
 exports.getProjects = function() {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
     console.log(rows[0]);
@@ -55,7 +65,7 @@ exports.getProjects = function() {
 
 //returns all projects and for each project a task
 exports.getProjectsAndTasks = function() {
-  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description').from('projects').then(function(rows) {
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').then(function(rows) {
     return Promise.all(rows.map((item) => {
       return knex.select('hasTask.task_id').from('hasTask').where('hasTask.project_id', '=', item.project_id).then(function(task) {
         return Promise.all(task.map((task_item) => {

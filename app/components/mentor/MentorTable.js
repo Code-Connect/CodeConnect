@@ -4,7 +4,6 @@ import {Button, Panel, Table} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import EditPanel from '../baukasten/EditPanel.js';
 import Editor from '../baukasten/Editor.js';
-import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
 
 class MentorTable extends React.Component {
   constructor(props) {

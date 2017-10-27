@@ -5973,6 +5973,66 @@ textarea {
   letter-spacing: 0.2em;
   text-transform: uppercase; }
 
+.container {
+  margin-right: auto;
+  margin-left: auto; }
+
+.whiteContainer {
+  background: white;
+  border-radius: 10px; }
+
+.roundpanel {
+  border-radius: 10px;
+  padding: 50px;
+  padding-top: 0px; }
+
+.pageHeader {
+  margin-left: 0; }
+
+.newsPageSinglePanel {
+  border-radius: 3px;
+  background: white;
+  padding: 2px;
+  cursor: pointer; }
+  .newsPageSinglePanel:hover {
+    border-color: #2ec866;
+    color: #2ec866; }
+
+.newsPageSinglePanel .panel-heading, .newsPageSinglePanel .panel-body {
+  padding: 20px 15px; }
+
+.newsPageSinglePanel .panel-body {
+  min-height: 200px; }
+
+.imageWrapper {
+  display: inline;
+  width: 60px;
+  float: left; }
+
+.headerWrapper {
+  display: inline;
+  float: left; }
+
+.clear {
+  clear: both; }
+
+.imageWrapper img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px; }
+
+.btn-wrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 35px;
+  left: -30px; }
+
+.newsPageProjektButton {
+  width: 120px;
+  margin: 0 auto;
+  display: block;
+  float: right; }
+
 .ReactCodeMirror {
   border: 1px solid #ccc;
   width: 85%;

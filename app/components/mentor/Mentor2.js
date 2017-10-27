@@ -19,6 +19,7 @@ import MentorTable from './MentorTable';
 import jsonQuery from 'json-query';
 import ProjectEditPanel from './ProjectEditPanel'
 import {getAddedProjects} from "./../stateConverter.js"
+import {browserHistory} from 'react-router';
 
 
 //Mentor Edit Page for single Project(Important)
@@ -48,7 +49,7 @@ class Mentor2 extends React.Component {
   }
 
   saveTask(task) {
-    this.props.dispatch(updateTask(task));
+    this.props.dispatch(updateTask(task, this.props.params.project));
   }
 
   saveProject(project){
@@ -61,7 +62,7 @@ class Mentor2 extends React.Component {
 
   deleteProject(event) {
     this.props.dispatch(deleteProject(this.state.project_id));
-    this.props.history.push('/mentor');
+    browserHistory.push('/');
   }
 
   updateTaskAttribute(task_id, fieldtype, newCode) {

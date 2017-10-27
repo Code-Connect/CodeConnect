@@ -29,6 +29,8 @@ var taskTable = function(table) {
 
 var projectTable = function(table){
   table.integer('project_id').primary();
+  table.integer('follower').defaultTo(0);
+  table.string('image').defaultTo('https://avatars1.githubusercontent.com/u/23557789?s=200&v=4');
   table.string('name').defaultTo('NA');
   table.string('chatroom',500).defaultTo('Add chatroom');
   table.string('description',2000).defaultTo('Add description');

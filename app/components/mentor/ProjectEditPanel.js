@@ -15,7 +15,6 @@ import {
 } from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
 import Editor from '../baukasten/Editor.js';
-import {updateTask} from '../../actions/taskActions';
 import ScrollableAnchor from 'react-scrollable-anchor'
 
 class ProjectEditPanel extends React.Component {

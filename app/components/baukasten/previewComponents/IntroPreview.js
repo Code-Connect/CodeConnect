@@ -43,7 +43,7 @@ class ProjectPreview extends Component {
 
         <div style={divStyle} className="row">
           <div className="col-sm-2">
-            <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="icon"/>
+            <img src="/img/Logo.png" height="48px" alt="icon"/>
           </div>
           <div className="col-sm-10">
             <h1 style={{

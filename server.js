@@ -72,7 +72,7 @@ const store2 = new KnexSessionStore({
 app.use(session({
   secret: process.env.SECRET,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 8 // 8 hours
+    maxAge: 1000 * 60 * 60 * 30 // 30 hours
   },
   store: store2,
   resave: false,
@@ -96,15 +96,22 @@ var passportGithub = require('./controllers/gitlogin');
 var helper = require('./controllers/help');
 
 // app.post('/postccrepo', projectController.saveProject);
-app.post('/addproject', projectController.addProject);
-app.post('/updateproject', projectController.updateProject);
-app.delete('/deleteproject', projectController.deleteProject);
+// app.post('/addproject', projectController.addProject);
+// app.post('/updateproject', projectController.updateProject);
+// app.delete('/deleteproject', projectController.deleteProject);
 
-app.get('/project', projectController.getProjects);
+//The new REST API
+app.get('/projects', projectController.getProjects);
+app.get('/projects/:id', projectController.getProject)
+app.post('/projects', projectController.addProject);
+app.put('/projects/:id', projectController.updateProject);
+app.delete('/projects/:id', projectController.deleteProject);
 
-app.post('/updatetask', taskController.updateTask);
-app.post('/addtask', taskController.addTask);
-app.delete('/deletetask', taskController.deleteTask);
+app.get('/projects/:id/tasks', taskController.getTask);
+app.post('/projects/:id/tasks', taskController.addTask);
+app.put('/projects/:id/tasks/:task_id', taskController.updateTask);
+app.delete('/projects/:id/tasks/:task_id', taskController.deleteTask);
+
 app.post('/participate', taskController.participateTask);
 
 app.get('/auth/github', passportGithub.authenticate('github'));
@@ -136,6 +143,16 @@ app.use(function(req, res) {
           projectDict: item.projectDict,
           publicProjects: item.publicProjects,
           tasks: item.taskDict
+        },
+        currentProject: {
+          project: {},
+          error: null,
+          loading: true
+        },
+        currentTasks: {
+          tasks: [],
+          error: null,
+          loading: true
         }
       };
       var store = configureStore(initialState);
