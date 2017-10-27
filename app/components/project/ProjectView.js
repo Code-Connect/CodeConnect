@@ -24,26 +24,15 @@ class ProjectView extends Component {
 
   render() {
     const projectPanel = this.props.currentProject.loading
-      ? (
-        <div>loading</div>
-      )
-      : (
-        <ProjectPanel project = {this.props.currentProject.project}></ProjectPanel>
-      );
+      ? <div>loading</div>
+      : <ProjectPanel project={this.props.currentProject.project}></ProjectPanel>;
 
     const taskPanel = this.props.currentTasks.loading
-      ? (
-        <div>loading</div>
-      )
-      : (
-        <div>{this.props.currentTasks.tasks.map((item) => {
-            return (
-              <div>
-                <TaskPanel task={item}/>
-              </div>
-            )
-          })}</div>
-      );
+      ? <div>loading</div>
+      : <div>{this.props.currentTasks.tasks.map((item) => {
+          return (<TaskPanel task={item}/>)
+        })}</div>;
+        
     return (
       <div >
         <h1>Project:
@@ -83,12 +72,9 @@ class TaskPanel extends Component {
     return (
       <Panel>
         <h3>{this.props.task.name}</h3>
-        <br/>
-        {this.props.task.input}
-        <br/>
-        {this.props.task.output}
-        <br/>
-        {this.props.task.description}
+        <br/> {this.props.task.input}
+        <br/> {this.props.task.output}
+        <br/> {this.props.task.description}
       </Panel>
     )
   }
