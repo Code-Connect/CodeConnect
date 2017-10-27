@@ -6,7 +6,7 @@ export default function messages(state = {}, action) {
         error: null,
         loading: false
       });
-    case 'GET_PUBLIC_PROJECT_FAILURE':
+    case 'CLEAR_PUBLIC_PROJECT':
       return {projectList: [], error: null, loading: true};
     case 'GET_PUBLIC_PROJECT_ERROR':
       return {projectList: [], error: null, loading: true};

@@ -29,7 +29,7 @@ class NewsPage extends Component {
         </Row>
         <br/>
         <Row className="show-grid ">
-          {this.props.projects.map((project) => {
+          {this.props.projects.projectList.map((project) => {
             return (
               <Col md={4} className="newsPageSingleCol">
                 <Panel className="newsPageSinglePanel" onClick={() => this.onClick(project.project_id)}>
