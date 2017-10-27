@@ -43,11 +43,10 @@ exports.getProject = function(req, res) {
 }
 
 //returns all projects
-exports.getProjects = function() {
-  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {
-    console.log(rows[0]);
+exports.getProjects = function(req, res) {
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').then(function(rows) {
     //ich versuche alle sachen zu triggern und am ende dann tasks innerhalb von den projekten wiederfinden kann
-    return rows;
+    return res.send(rows);
   });
 }
 //

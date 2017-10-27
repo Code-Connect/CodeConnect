@@ -5,12 +5,16 @@ import {connect} from 'react-redux';
 import {Panel, Col, Row, Grid} from 'react-bootstrap';
 import {browserHistory} from 'react-router';
 import ProjectCards from "./ProjectCards";
+import {getPublicProjects} from '../../actions/projectActions';
 
 class NewsPage extends Component {
 
   constructor(props) {
     super(props);
-    console.log("gets called");
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getPublicProjects());
   }
 
   onClick(project_id) {
@@ -42,8 +46,7 @@ class NewsPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("change detected")
-  return {projects: getAllProjects(state)};
+  return {projects: state.publicProjects};
 };
 
 export default connect(mapStateToProps)(NewsPage);
