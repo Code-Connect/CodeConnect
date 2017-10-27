@@ -137,3 +137,31 @@ export function getProject(project_id) {
     });
   };
 }
+
+export function getPublicProjects(project_id) {
+  return (dispatch) => {
+    dispatch({
+      type: 'GET_PUBLIC_PROJECT_FAILURE'
+    });
+    return fetch('/projects', {
+      credentials: 'same-origin' // By default, fetch won't send any cookies to the server
+    }).then((response) => {
+      // is response.ok was vorgefertigtes?
+      if (response.ok) {
+        return response.json().then((json) => {
+          dispatch({
+            type: 'GET_PUBLIC_PROJECT_SUCCESSFUL',
+            projectList: json
+          });
+        });
+      } else {
+        return response.json().then((json) => {
+          dispatch({
+            type: 'GET_PUBLIC_PROJECT_ERROR',
+            projectList: Array.isArray(json) ? json : [json]
+          });
+        });
+      }
+    });
+  };
+}
