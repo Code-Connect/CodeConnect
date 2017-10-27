@@ -42,8 +42,16 @@ exports.getProject = function(req, res) {
   });
 }
 
+exports.getOwnProjects = function(req, res) {
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').join('isMentor', function() {
+    this.on('projects.project_id', '=', 'isMentor.project_id')
+  }).where('isMentor.user_id', '=', req.user.github.id).then(function(rows) {
+    return res.send(rows);
+  });
+}
+
 //returns all projects
-exports.getProjects = function(req, res) {
+exports.getAllProjects = function(req, res) {
   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').then(function(rows) {
     //ich versuche alle sachen zu triggern und am ende dann tasks innerhalb von den projekten wiederfinden kann
     return res.send(rows);
