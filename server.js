@@ -145,7 +145,7 @@ app.use(function(req, res) {
           publicProjects: item.publicProjects,
           tasks: item.taskDict
         },
-        publicProjects: {
+        currentProjectList: {
           projectList: [],
           error: null,
           loading: true

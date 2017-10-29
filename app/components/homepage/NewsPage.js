@@ -46,7 +46,7 @@ class NewsPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {projects: state.publicProjects};
+  return {projects: state.currentProjectList};
 };
 
 export default connect(mapStateToProps)(NewsPage);

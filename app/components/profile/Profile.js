@@ -19,7 +19,9 @@ class Profile extends React.Component {
                     </div>
                     <div className="col-sm-8" style={{paddingTop:'20px', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px', background: "white", borderRadius: '10px'}}>
                         <Tabs id="tabs" defaultActiveKey={1}>
-                            <Tab eventKey={1} title="Mentor Projects"><Mentor/></Tab>
+                            <Tab eventKey={1} title="Your Projects">
+                              <Mentor/>
+                            </Tab>
                         </Tabs>
                     </div>
                 </div>
