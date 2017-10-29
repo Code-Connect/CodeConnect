@@ -141,7 +141,7 @@ export function getProject(project_id) {
 export function getPublicProjects(project_id) {
   return (dispatch) => {
     dispatch({
-      type: 'CLEAR_PUBLIC_PROJECT'
+      type: 'CLEAR_PROJECT_LIST'
     });
     return fetch('/projects/all', {
       credentials: 'same-origin' // By default, fetch won't send any cookies to the server
@@ -150,14 +150,14 @@ export function getPublicProjects(project_id) {
       if (response.ok) {
         return response.json().then((json) => {
           dispatch({
-            type: 'GET_PUBLIC_PROJECT_SUCCESSFUL',
+            type: 'GET_PROJECT_LIST_SUCCESSFUL',
             projectList: json
           });
         });
       } else {
         return response.json().then((json) => {
           dispatch({
-            type: 'GET_PUBLIC_PROJECT_ERROR',
+            type: 'GET_PROJECT_LIST_ERROR',
             projectList: Array.isArray(json) ? json : [json]
           });
         });
@@ -169,7 +169,7 @@ export function getPublicProjects(project_id) {
 export function getOwnProjects(project_id) {
   return (dispatch) => {
     dispatch({
-      type: 'GET_PUBLIC_PROJECT_FAILURE'
+      type: 'CLEAR_PROJECT_LIST'
     });
     return fetch('/projects/all', {
       credentials: 'same-origin' // By default, fetch won't send any cookies to the server
@@ -178,14 +178,14 @@ export function getOwnProjects(project_id) {
       if (response.ok) {
         return response.json().then((json) => {
           dispatch({
-            type: 'GET_PUBLIC_PROJECT_SUCCESSFUL',
+            type: 'GET_PROJECT_LIST_SUCCESSFUL',
             projectList: json
           });
         });
       } else {
         return response.json().then((json) => {
           dispatch({
-            type: 'GET_PUBLIC_PROJECT_ERROR',
+            type: 'GET_PROJECT_LIST_ERROR',
             projectList: Array.isArray(json) ? json : [json]
           });
         });
