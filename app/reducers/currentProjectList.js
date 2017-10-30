@@ -11,10 +11,9 @@ export default function messages(state = {}, action) {
     case 'GET_PROJECT_LIST_ERROR':
       return {projectList: [], error: null, loading: true};
     case 'GET_GITREPOS_SUCCESSFUL':
-      var temp = action.publicRepos.concat(action.orgRepos);
       return Object.assign({}, {
-        projectList: [],
-        addableProjects: temp,
+        projectList: action.projectList,
+        addableProjects: action.githubRepos,
         error: null,
         loading: false
       });

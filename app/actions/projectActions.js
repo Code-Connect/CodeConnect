@@ -224,20 +224,27 @@ export function getGithubProjects(user) {
         });
       }));
     }).then((repos) => {
-      console.log("repos", repos)
-      return dispatch({
-        type: 'GET_GITREPOS_SUCCESSFUL',
-        orgRepos: normaliseProjectArray(repos[0]),
-        publicRepos: normaliseProjectArray(repos[1])
-      });
-    }).then(() => {
+      //return all the modified project arrays
+      var temp = normaliseProjectArray(repos[0]).concat(normaliseProjectArray(repos[1]));
+      return temp;
+    }).then((gitRepos) => {
+      //get all the added projects
       return fetch('/projects/user/' + user.id, {
         credentials: 'same-origin' // By default, fetch won't send any cookies to the server
+      }).then((response) => {
+        return response.json();
+      }).then(function(repos) {
+        //filter github Repos with the already added projects
+        var a = gitRepos;
+        var b = repos;
+        a = a.filter(function(item) {
+          return !(b.reduce(function(acc, val) {
+            return (acc || (item.project_id == val.project_id))
+          }, false))
+        });
+        console.log("new a" , a)
+        return dispatch({type: 'GET_GITREPOS_SUCCESSFUL', projectList: repos, githubRepos: a});
       })
-    }).then((response) => {
-      return response.json();
-    }).then(function(repos) {
-      return dispatch({type: 'GET_PROJECT_LIST_SUCCESSFUL', projectList: repos});
     });
   };
 }
