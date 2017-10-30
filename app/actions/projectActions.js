@@ -112,25 +112,22 @@ export function addProject(project) {
 
 export function getProject(project_id) {
   return (dispatch) => {
-    dispatch({
-      type: 'CLEAR_PROJECT'
-    });
+    dispatch({type: 'CLEAR_PROJECT'});
     return fetch('/projects/' + project_id, {
       credentials: 'same-origin' // By default, fetch won't send any cookies to the server
     }).then((response) => {
       // is response.ok was vorgefertigtes?
       if (response.ok) {
         return response.json().then((json) => {
-          dispatch({
-            type: 'GET_PROJECT_SUCCESSFUL',
-            project: json
-          });
+          dispatch({type: 'GET_PROJECT_SUCCESSFUL', project: json});
         });
       } else {
         return response.json().then((json) => {
           dispatch({
             type: 'GET_PROJECT_FAILURE',
-            project: Array.isArray(json) ? json : [json]
+            project: Array.isArray(json)
+              ? json
+              : [json]
           });
         });
       }
@@ -140,25 +137,22 @@ export function getProject(project_id) {
 
 export function getPublicProjects(project_id) {
   return (dispatch) => {
-    dispatch({
-      type: 'CLEAR_PROJECT_LIST'
-    });
+    dispatch({type: 'CLEAR_PROJECT_LIST'});
     return fetch('/projects/all', {
       credentials: 'same-origin' // By default, fetch won't send any cookies to the server
     }).then((response) => {
       // is response.ok was vorgefertigtes?
       if (response.ok) {
         return response.json().then((json) => {
-          dispatch({
-            type: 'GET_PROJECT_LIST_SUCCESSFUL',
-            projectList: json
-          });
+          dispatch({type: 'GET_PROJECT_LIST_SUCCESSFUL', projectList: json});
         });
       } else {
         return response.json().then((json) => {
           dispatch({
             type: 'GET_PROJECT_LIST_ERROR',
-            projectList: Array.isArray(json) ? json : [json]
+            projectList: Array.isArray(json)
+              ? json
+              : [json]
           });
         });
       }
@@ -168,28 +162,65 @@ export function getPublicProjects(project_id) {
 
 export function getOwnProjects(project_id) {
   return (dispatch) => {
-    dispatch({
-      type: 'CLEAR_PROJECT_LIST'
-    });
+    dispatch({type: 'CLEAR_PROJECT_LIST'});
     return fetch('/projects/all', {
       credentials: 'same-origin' // By default, fetch won't send any cookies to the server
     }).then((response) => {
       // is response.ok was vorgefertigtes?
       if (response.ok) {
         return response.json().then((json) => {
-          dispatch({
-            type: 'GET_PROJECT_LIST_SUCCESSFUL',
-            projectList: json
-          });
+          dispatch({type: 'GET_PROJECT_LIST_SUCCESSFUL', projectList: json});
         });
       } else {
         return response.json().then((json) => {
           dispatch({
             type: 'GET_PROJECT_LIST_ERROR',
-            projectList: Array.isArray(json) ? json : [json]
+            projectList: Array.isArray(json)
+              ? json
+              : [json]
           });
         });
       }
+    });
+  };
+}
+
+function normaliseProjectArray(repoarray) {
+  return repoarray.map((item) => {
+    return {
+      project_id: item.id,
+      name: item.name,
+      repourl: item.html_url,
+      description: item.description,
+      tasks: [],
+      follower: 0,
+      image: 'https://avatars1.githubusercontent.com/u/23557789?s=200&v=4'
+    };
+  });
+}
+
+export function getGithubProjects(token) {
+  return (dispatch) => {
+    return fetch('https://api.github.com/user/orgs', {
+      method: 'get',
+      headers: {
+        'Authorization': 'token ' + token
+      }
+    }).then((response) => {
+      return response.json();
+    }).then(function(orgs) {
+      return Promise.all(orgs.map((item) => {
+        return fetch(item.repos_url).then((response2) => {
+          return response2.json().then((repo) => {
+            return repo;
+          })
+        });
+      }));
+    }).then((repos) => {
+      return dispatch({type: 'TESTACTION', projects: normaliseProjectArray(repos)});
+    }).then((item) => {
+      console.log("item", item)
+      return;
     });
   };
 }

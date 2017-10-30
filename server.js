@@ -95,11 +95,6 @@ var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
 var helper = require('./controllers/help');
 
-// app.post('/postccrepo', projectController.saveProject);
-// app.post('/addproject', projectController.addProject);
-// app.post('/updateproject', projectController.updateProject);
-// app.delete('/deleteproject', projectController.deleteProject);
-
 //The new REST API
 app.get('/projects/all', projectController.getAllProjects);
 app.get('/projects', projectController.getOwnProjects);

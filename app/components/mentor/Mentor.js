@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Button, Col, Panel, Row} from "react-bootstrap";
-import {getOrgsProject, getUserProject} from './../../actions/projectActions';
+import {getOrgsProject, getUserProject,getGithubProjects} from './../../actions/projectActions';
 import MentorTable from './MentorTable';
 import ProjectPanel from './ProjectPanel';
 import {addProject} from '../../actions/projectActions';
@@ -19,6 +19,7 @@ class Mentor extends React.Component {
   //gets called, when the component gets loaded
   componentDidMount() {
     this.props.dispatch(getOrgsProject(this.props.user.token));
+    this.props.dispatch(getGithubProjects(this.props.user.token));
     this.props.dispatch(getUserProject(this.props.user.token, this.props.user.name));
   }
 
