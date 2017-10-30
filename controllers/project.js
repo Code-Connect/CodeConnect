@@ -57,6 +57,15 @@ exports.getAllProjects = function(req, res) {
     return res.send(rows);
   });
 }
+
+exports.getUserProject = function(req, res){
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').join('isMentor', function() {
+    this.on('projects.project_id', '=', 'isMentor.project_id')
+  }).where('isMentor.user_id', '=', req.params.user_id).then(function(rows) {
+    return res.send(rows);
+  });
+}
+
 //
 // exports.getProjectsAndTasks = function() {
 //   return knex.select('projects.project_id', 'projects.name', 'projects.chatroom').from('projects').then(function(rows) {

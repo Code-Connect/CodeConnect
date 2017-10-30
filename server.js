@@ -97,6 +97,8 @@ var helper = require('./controllers/help');
 
 //The new REST API
 app.get('/projects/all', projectController.getAllProjects);
+//TODO get user projects not own
+app.get('/projects/user/:user_id', projectController.getUserProject);
 app.get('/projects', projectController.getOwnProjects);
 app.get('/projects/:id', projectController.getProject)
 app.post('/projects', projectController.addProject);

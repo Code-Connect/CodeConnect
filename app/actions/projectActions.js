@@ -199,12 +199,13 @@ function normaliseProjectArray(repoarray) {
   });
 }
 
-export function getGithubProjects(token) {
+export function getGithubProjects(user) {
   return (dispatch) => {
+    //get the repos from github to import
     return fetch('https://api.github.com/user/orgs', {
       method: 'get',
       headers: {
-        'Authorization': 'token ' + token
+        'Authorization': 'token ' + user.token
       }
     }).then((response) => {
       return response.json();
@@ -217,10 +218,26 @@ export function getGithubProjects(token) {
         });
       }));
     }).then((repos) => {
+      //TODO diese beiden repos sind anders
+      console.log("repos", repos);
       return dispatch({type: 'TESTACTION', projects: normaliseProjectArray(repos)});
-    }).then((item) => {
-      console.log("item", item)
-      return;
+    }).then(() => {
+      return fetch('https://api.github.com/users/' + user.name + '/repos');
+    }).then((response) => {
+      return response.json();
+    }).then(function(repos) {
+      //TODO diese beiden repos sind anders
+      console.log("repos2", repos);
+      return dispatch({type: 'TESTACTION2', projects: normaliseProjectArray(repos)});
+    }).then(() => {
+      return fetch('/projects/user/' + user.id, {
+        credentials: 'same-origin' // By default, fetch won't send any cookies to the server
+      })
+    }).then((response) => {
+      return response.json();
+    }).then(function(repos) {
+      console.log("repos", repos);
+      return dispatch({type: 'GET_PROJECT_SUCCESSFUL', projects: repos});
     });
   };
 }
