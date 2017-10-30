@@ -186,18 +186,21 @@ export function getOwnProjects(project_id) {
 }
 
 function normaliseProjectArray(repoarray) {
-  return repoarray.map((item) => {
-    return {
-      project_id: item.id,
-      name: item.name,
-      repourl: item.html_url,
-      description: item.description,
-      tasks: [],
-      follower: 0,
-      image: 'https://avatars1.githubusercontent.com/u/23557789?s=200&v=4'
-    };
-  });
-}
+  if (repoarray instanceof Array)
+    return repoarray.map((item) => {
+      return {
+        project_id: item.id,
+        name: item.name,
+        repourl: item.html_url,
+        description: item.description,
+        tasks: [],
+        follower: 0,
+        image: 'https://avatars1.githubusercontent.com/u/23557789?s=200&v=4'
+      };
+    });
+  else
+    return [];
+  }
 
 export function getGithubProjects(user) {
   return (dispatch) => {
@@ -210,6 +213,9 @@ export function getGithubProjects(user) {
     }).then((response) => {
       return response.json();
     }).then(function(orgs) {
+      orgs.push({
+        repos_url: 'https://api.github.com/users/' + user.name + '/repos'
+      })
       return Promise.all(orgs.map((item) => {
         return fetch(item.repos_url).then((response2) => {
           return response2.json().then((repo) => {
@@ -219,16 +225,12 @@ export function getGithubProjects(user) {
       }));
     }).then((repos) => {
       //TODO diese beiden repos sind anders
-      console.log("repos", repos);
-      return dispatch({type: 'TESTACTION', projects: normaliseProjectArray(repos)});
-    }).then(() => {
-      return fetch('https://api.github.com/users/' + user.name + '/repos');
-    }).then((response) => {
-      return response.json();
-    }).then(function(repos) {
-      //TODO diese beiden repos sind anders
-      console.log("repos2", repos);
-      return dispatch({type: 'TESTACTION2', projects: normaliseProjectArray(repos)});
+      console.log("repos", repos)
+      return dispatch({
+        type: 'GET_GITREPOS_SUCCESSFUL',
+        orgRepos: normaliseProjectArray(repos[0]),
+        publicRepos: normaliseProjectArray(repos[1])
+      });
     }).then(() => {
       return fetch('/projects/user/' + user.id, {
         credentials: 'same-origin' // By default, fetch won't send any cookies to the server
@@ -236,8 +238,8 @@ export function getGithubProjects(user) {
     }).then((response) => {
       return response.json();
     }).then(function(repos) {
-      console.log("repos", repos);
-      return dispatch({type: 'GET_PROJECT_SUCCESSFUL', projects: repos});
+      //hier kann dann alles gefiltert werden
+      return dispatch({type: 'GET_PROJECT_LIST_SUCCESSFUL', projectList: repos});
     });
   };
 }
