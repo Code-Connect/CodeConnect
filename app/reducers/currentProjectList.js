@@ -17,6 +17,17 @@ export default function messages(state = {}, action) {
         error: null,
         loading: false
       });
+    case 'ADD_PROJECT_SUCCESSFUL':
+      var a = state.addableProjects.filter((item) => item.project_id != action.project.project_id);
+      return Object.assign({}, {
+        projectList: [
+          ...state.projectList,
+          action.project
+        ],
+        addableProjects: a,
+        error: null,
+        loading: false
+      });
     default:
       return state;
   }

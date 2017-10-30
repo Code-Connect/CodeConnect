@@ -39,11 +39,11 @@ class Mentor extends React.Component {
   }
 
   render() {
-    const addProjectMode = this.state.addProjectToggle
+    const addProjectMode = (this.state.addProjectToggle && !this.props.currentProjectList.loading)
       ? (
         <div>
-          <MentorTable onClick={this.addProject.bind(this)} datatype="project" data={this.props.addableProjects}/>
-          <MentorTable onClick={() => {}} datatype="project" data={this.props.addedProjects}/>
+          <MentorTable onClick={this.addProject.bind(this)} datatype="project" data={this.props.currentProjectList.addableProjects}/>
+          <MentorTable onClick={() => {}} datatype="project" data={this.props.currentProjectList.projectList}/>
           <Button onClick={this.toggleButton.bind(this)}>Done</Button>
         </div>
       )
@@ -65,7 +65,7 @@ class Mentor extends React.Component {
             {addProjectMode}
           </Col>
           <Col xs={12} md={8}>
-              {this.props.addedProjects.map((project, index) => {
+              {this.props.currentProjectList.projectList.map((project, index) => {
               return (
                 <div>
                   <ProjectPanel short={true} project = {project}/>
@@ -80,7 +80,7 @@ class Mentor extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {user: state.user.github, addableProjects: state.projects.addableProjects, addedProjects: getAddedProjects(state)};
+  return {user: state.user.github, currentProjectList: state.currentProjectList};
 };
 
 export default connect(mapStateToProps)(Mentor);

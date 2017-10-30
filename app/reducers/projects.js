@@ -19,22 +19,22 @@ export default function messages(projects = {}, action) {
 
       return Object.assign({}, projects, {addableProjects: a});
 
-    case 'ADD_PROJECT_SUCCESSFUL':
-      var a = projects.addableProjects.filter((item) => item.project_id != action.project.project_id);
-      return Object.assign({}, projects, {
-        addableProjects: a,
-        addedProjects: [
-          ...projects.addedProjects,
-          action.project.project_id
-        ],
-        publicProjects: [
-          ...projects.publicProjects,
-          action.project.project_id
-        ],
-        projectDict: Object.assign({}, projects.projectDict, {
-          [action.project.project_id]: action.project
-        })
-      });
+    // case 'ADD_PROJECT_SUCCESSFUL':
+    //   var a = projects.addableProjects.filter((item) => item.project_id != action.project.project_id);
+    //   return Object.assign({}, projects, {
+    //     addableProjects: a,
+    //     addedProjects: [
+    //       ...projects.addedProjects,
+    //       action.project.project_id
+    //     ],
+    //     publicProjects: [
+    //       ...projects.publicProjects,
+    //       action.project.project_id
+    //     ],
+    //     projectDict: Object.assign({}, projects.projectDict, {
+    //       [action.project.project_id]: action.project
+    //     })
+    //   });
 
     case 'UPDATE_PROJECT_SUCCESSFUL':
       //TODO hier muss diese methode fertig gemacht werden
