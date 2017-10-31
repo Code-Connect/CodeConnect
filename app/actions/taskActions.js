@@ -28,7 +28,17 @@ export function addTask(name, project_id) {
       body: JSON.stringify({name: name})
     }).then((response) => {
       return response.json().then(function(json) {
-        return dispatch({type: 'ADD_TASK_SUCCESSFUL', name: name, task_id: json.task_id, project_id: project_id});
+        return dispatch({
+          type: 'ADD_TASK_SUCCESSFUL',
+          task: {
+            name: name,
+            task_id: json.task_id,
+            project_id: project_id,
+            input: "Add input",
+            output: "Add output",
+            description: "Add description"
+          }
+        });
       });
     });
   }

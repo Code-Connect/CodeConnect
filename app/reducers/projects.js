@@ -59,7 +59,7 @@ export default function messages(projects = {}, action) {
         projectDict: temp2
       });
 
-    case 'ADD_TASK_SUCCESSFUL':
+    // case 'ADD_TASK_SUCCESSFUL':
       // TODO task post successful feedback like a toast message
       // return Object.assign({}, projects, {
       //   projectDict: Object.assign({}, projects.projectDict, {
@@ -84,27 +84,27 @@ export default function messages(projects = {}, action) {
       //   })
       // });
 
-    case 'UPDATE_TASK_SUCCESSFUL':
-      var index = action.task.task_id;
-      var newAttribute = Object.assign({}, projects.tasks, {
-        [index]: Object.assign(projects.tasks[index], action.task)
-      });
-      console.log(newAttribute);
-      return Object.assign({}, projects, {tasks: newAttribute});
+    // case 'UPDATE_TASK_SUCCESSFUL':
+    //   var index = action.task.task_id;
+    //   var newAttribute = Object.assign({}, projects.tasks, {
+    //     [index]: Object.assign(projects.tasks[index], action.task)
+    //   });
+    //   console.log(newAttribute);
+    //   return Object.assign({}, projects, {tasks: newAttribute});
 
-    case 'DELETE_TASK_SUCCESSFUL':
-      var temp = Object.assign({}, projects.tasks);
-      delete temp[action.task_id];
-
-      var temp2 = projects.projectDict;
-      temp2[action.project_id].tasks = temp2[action.project_id].tasks.filter((task) => {
-        return task != action.task_id;
-      });
-
-      return Object.assign({}, projects, {
-        tasks: temp,
-        projectDict: temp2
-      })
+    // case 'DELETE_TASK_SUCCESSFUL':
+    //   var temp = Object.assign({}, projects.tasks);
+    //   delete temp[action.task_id];
+    //
+    //   var temp2 = projects.projectDict;
+    //   temp2[action.project_id].tasks = temp2[action.project_id].tasks.filter((task) => {
+    //     return task != action.task_id;
+    //   });
+    //
+    //   return Object.assign({}, projects, {
+    //     tasks: temp,
+    //     projectDict: temp2
+    //   })
 
     default:
       return projects;
