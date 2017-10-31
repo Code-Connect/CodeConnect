@@ -22,12 +22,7 @@ class Mentor extends React.Component {
   }
 
   addProject(project) {
-    console.log(project);
     this.props.dispatch(addProject(project));
-  }
-
-  onClick(project) {
-    console.log(project);
   }
 
   toggleButton() {

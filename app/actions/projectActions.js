@@ -242,7 +242,6 @@ export function getGithubProjects(user) {
             return (acc || (item.project_id == val.project_id))
           }, false))
         });
-        console.log("new a" , a)
         return dispatch({type: 'GET_GITREPOS_SUCCESSFUL', projectList: repos, githubRepos: a});
       })
     });

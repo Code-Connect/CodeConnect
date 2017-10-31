@@ -10,8 +10,6 @@ exports.addProject = function(req, res) {
 }
 
 exports.updateProject = function(req, res, next) {
-  console.log("project_id: ", req.params.id);
-  console.log("project: ", req.body.project);
   knex('projects').where('project_id', '=', req.params.id).update(req.body.project).then(() => {
     res.json({success: true, message: 'ok'}); // respond back to request
   });
@@ -22,8 +20,6 @@ exports.deleteProject = function(req, res) {
   return knex('isMentor').where('project_id', project_id).del().then((id) => {
     return knex('hasTask').where('project_id', project_id).del().returning('task_id').then((tasks) => {
       return Promise.all(tasks.map((task_id) => {
-        console.log("task_id");
-        console.log(task_id);
         return knex('tasks').where('task_id', task_id).del();
       })).then(() => {
         return knex('projects').where('project_id', project_id).del().then(() => {

@@ -76,8 +76,6 @@ class ProjectPreview extends Component {
                         <ListGroup fill>
                             {
                                 this.props.tasks.map((task, index) => {
-                                    console.log("t" + task);
-                                    console.log("s" + this.props.taskDict["1"]);
                                     return (
                                         <ListGroupItem key={index}><span style={{
                                             fontWeight: 'bold',

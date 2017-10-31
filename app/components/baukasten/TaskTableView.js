@@ -19,9 +19,6 @@ class TaskTableView extends Component {
   constructor(props) {
     super(props)
 
-    console.log("id" + this.props.params.id);
-    console.log(this.props.projectDict[this.props.params.id]);
-
     this.state = {
       projID: this.props.params.id,
       project: this.props.projectDict[this.props.params.id],
@@ -32,7 +29,6 @@ class TaskTableView extends Component {
   setActiveElement(taskid) {}
 
   participate(task){
-    console.log("dispatch action");
     //TODO hier muss task und user_id durchgegeben werden
     this.props.dispatch(participateTask(task));
   }

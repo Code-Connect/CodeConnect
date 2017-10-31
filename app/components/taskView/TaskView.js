@@ -27,7 +27,6 @@ class TaskView extends React.Component {
     }).value
 
     var task = tasks.find((task) => {
-      console.log(task)
       return task.task_id == taskid
     })
     if (task == undefined) {

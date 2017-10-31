@@ -13,11 +13,6 @@ class ProjectPreview extends Component {
     this.labelList = ["Task", "Status"]
   }
 
-  redirectDetails() {
-    //browserHistory.push('/contributor/tasks/p'+this.props.id);
-    console.log("redi")
-  }
-
   render() {
     const divStyle = {
       margin: "0px 0px 30px 0px"

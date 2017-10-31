@@ -13,7 +13,7 @@ passport.use(new GitHubStrategy({
     scope: ['user:email', 'repo', 'read:org']
 }, function(token, refreshToken, profile, done) {
     process.nextTick(function() {
-      console.log(profile);
+      //TODO refactor Models
         new Model.Github({id: profile.id}).fetch().then(function(ghUser) {
             // If there is no user found, then create one
             if (!ghUser) {
