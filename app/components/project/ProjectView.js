@@ -23,12 +23,12 @@ class ProjectView extends Component {
   }
 
   render() {
-    const projectPanel = this.props.currentProject.loading
-      ? <div>loading</div>
+    const projectPanel = this.props.currentProject.isloading
+      ? <div>isloading</div>
       : <ProjectPanel project={this.props.currentProject.project}></ProjectPanel>;
 
-    const taskPanel = this.props.currentTasks.loading
-      ? <div>loading</div>
+    const taskPanel = this.props.currentTasks.isloading
+      ? <div>isloading</div>
       : <div>{this.props.currentTasks.tasks.map((item) => {
           return (<TaskPanel task={item}/>)
         })}</div>;

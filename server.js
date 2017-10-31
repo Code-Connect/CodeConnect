@@ -93,7 +93,6 @@ app.get('/logout', function(req, res) {
 var projectController = require('./controllers/project');
 var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
-var helper = require('./controllers/help');
 
 //The new REST API
 app.get('/projects/all', projectController.getAllProjects);
@@ -122,69 +121,47 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-  projectController.getYourProjects(req.user).then((addedProjects) => {
-    projectController.getProjectsAndTasks().then((projects) => {
-      return taskController.getTasks().then((tasks) => {
-        var taskDict = helper.createTaskDict(tasks);
-        var projectDict = helper.createProjectDict(projects);
-        var publicProjects = helper.getAddedProjects(projects);
-        return {taskDict: taskDict, projectDict: projectDict, publicProjects: publicProjects, addedProjects: addedProjects};
+  var initialState = {
+    user: req.user,
+    currentProjectList: {
+      projectList: [],
+      error: null,
+      loading: true
+    },
+    currentProject: {
+      project: {},
+      error: null,
+      loading: true
+    },
+    currentTasks: {
+      tasks: [],
+      error: null,
+      loading: true
+    }
+  };
+  var store = configureStore(initialState);
+
+  Router.match({
+    routes: routes.default(store),
+    location: req.url
+  }, function(err, redirectLocation, renderProps) {
+    if (err) {
+      res.status(500).send(err.message);
+    } else if (redirectLocation) {
+      res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      var html = ReactDOM.renderToString(React.createElement(Provider, {
+        store: store,
+        exists: false
+      }, React.createElement(Router.RouterContext, renderProps)));
+      res.render('layout', {
+        html: html,
+        initialState: store.getState()
       });
-    }).then(function(item) {
-      console.log("req.user");
-      console.log(req.user);
-      var initialState = {
-        user: req.user,
-        projects: {
-          addableProjects: [],
-          addedProjects: item.addedProjects,
-          projectDict: item.projectDict,
-          publicProjects: item.publicProjects,
-          tasks: item.taskDict
-        },
-        currentProjectList: {
-          projectList: [],
-          error: null,
-          loading: true
-        },
-        currentProject: {
-          project: {},
-          error: null,
-          loading: true
-        },
-        currentTasks: {
-          tasks: [],
-          error: null,
-          loading: true
-        }
-      };
-      var store = configureStore(initialState);
-
-      Router.match({
-        routes: routes.default(store),
-        location: req.url
-      }, function(err, redirectLocation, renderProps) {
-        if (err) {
-          res.status(500).send(err.message);
-        } else if (redirectLocation) {
-          res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
-        } else if (renderProps) {
-          var html = ReactDOM.renderToString(React.createElement(Provider, {
-            store: store,
-            exists: false
-          }, React.createElement(Router.RouterContext, renderProps)));
-          res.render('layout', {
-            html: html,
-            initialState: store.getState()
-          });
-        } else {
-          res.sendStatus(404);
-        }
-      });
-    });
-
-  })
-
+    } else {
+      res.sendStatus(404);
+    }
+  });
 });
 
 // Production error handler

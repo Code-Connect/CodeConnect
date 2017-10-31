@@ -32,7 +32,7 @@ class Profile extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    return {projects: state.projects.addedProjects, user: state.user.github};
+    return {user: state.user.github};
 };
 
 export default connect(mapStateToProps)(Profile);

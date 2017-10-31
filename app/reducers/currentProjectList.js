@@ -4,18 +4,18 @@ export default function messages(state = {}, action) {
       return Object.assign({}, state, {
         projectList: action.projectList,
         error: null,
-        loading: false
+        isloading: false
       });
     case 'CLEAR_PROJECT_LIST':
-      return {projectList: [], error: null, loading: true};
+      return {projectList: [], error: null, isloading: true};
     case 'GET_PROJECT_LIST_ERROR':
-      return {projectList: [], error: null, loading: true};
+      return {projectList: [], error: null, isloading: true};
     case 'GET_GITREPOS_SUCCESSFUL':
       return Object.assign({}, {
         projectList: action.projectList,
         addableProjects: action.githubRepos,
         error: null,
-        loading: false
+        isloading: false
       });
     case 'ADD_PROJECT_SUCCESSFUL':
       var a = state.addableProjects.filter((item) => item.project_id != action.project.project_id);
@@ -26,7 +26,7 @@ export default function messages(state = {}, action) {
         ],
         addableProjects: a,
         error: null,
-        loading: false
+        isloading: false
       });
     default:
       return state;

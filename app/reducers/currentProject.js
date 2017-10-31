@@ -4,19 +4,19 @@ export default function messages(state = {}, action) {
       return Object.assign({}, {
         project: action.project,
         error: null,
-        loading: false
+        isloading: false
       });
     case 'UPDATE_PROJECT_SUCCESSFUL':
       //TODO project soll nicht komplett ersetzt werden alle attribute sollen bleiben
       return Object.assign({}, {
         project: Object.assign(state.project, action.project),
         error: null,
-        loading: false
+        isloading: false
       });
     case 'GET_PROJECT_FAILURE':
-      return {project: {}, error: null, loading: true};
+      return {project: {}, error: null, isloading: true};
     case 'CLEAR_CURRENT_PROJECT':
-      return {project: {}, error: null, loading: true};
+      return {project: {}, error: null, isloading: true};
     default:
       return state;
   }

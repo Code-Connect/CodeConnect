@@ -37,7 +37,7 @@ class Mentor extends React.Component {
   }
 
   render() {
-    const addProjectMode = (this.state.addProjectToggle && !this.props.currentProjectList.loading)
+    const addProjectMode = (this.state.addProjectToggle && !this.props.currentProjectList.isloading)
       ? (
         <div>
           <MentorTable onClick={this.addProject.bind(this)} datatype="project" data={this.props.currentProjectList.addableProjects}/>
