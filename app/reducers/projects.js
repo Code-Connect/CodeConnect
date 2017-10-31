@@ -61,28 +61,28 @@ export default function messages(projects = {}, action) {
 
     case 'ADD_TASK_SUCCESSFUL':
       // TODO task post successful feedback like a toast message
-      return Object.assign({}, projects, {
-        projectDict: Object.assign({}, projects.projectDict, {
-          [action.project_id]: Object.assign({}, projects.projectDict[action.project_id], {
-            tasks: [
-              ...projects.projectDict[action.project_id].tasks,
-              action.task_id
-            ]
-          })
-        }),
-        tasks: Object.assign({}, projects.tasks, {
-          [action.task_id]: {
-            name: action.name,
-            task_id: action.task_id,
-            input: "Add input",
-            output: "Add output",
-            description: "Add description",
-            attempts: 0,
-            difficulty: "NA",
-            tags: []
-          }
-        })
-      });
+      // return Object.assign({}, projects, {
+      //   projectDict: Object.assign({}, projects.projectDict, {
+      //     [action.project_id]: Object.assign({}, projects.projectDict[action.project_id], {
+      //       tasks: [
+      //         ...projects.projectDict[action.project_id].tasks,
+      //         action.task_id
+      //       ]
+      //     })
+      //   }),
+      //   tasks: Object.assign({}, projects.tasks, {
+      //     [action.task_id]: {
+      //       name: action.name,
+      //       task_id: action.task_id,
+      //       input: "Add input",
+      //       output: "Add output",
+      //       description: "Add description",
+      //       attempts: 0,
+      //       difficulty: "NA",
+      //       tags: []
+      //     }
+      //   })
+      // });
 
     case 'UPDATE_TASK_SUCCESSFUL':
       var index = action.task.task_id;

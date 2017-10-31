@@ -18,9 +18,7 @@ class Mentor extends React.Component {
 
   //gets called, when the component gets loaded
   componentDidMount() {
-    // this.props.dispatch(getOrgsProject(this.props.user.token));
     this.props.dispatch(getGithubProjects(this.props.user));
-    // this.props.dispatch(getUserProject(this.props.user.token, this.props.user.name));
   }
 
   addProject(project) {
