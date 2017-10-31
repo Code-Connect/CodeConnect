@@ -11,6 +11,7 @@ export function updateTask(task, project_id) {
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
       body: JSON.stringify({task: task})
     }).then((response) => {
+      console.log("task", task);
       return dispatch({type: 'UPDATE_TASK_SUCCESSFUL', task: task});
     });
   };
