@@ -20,7 +20,6 @@ export default function messages(state = {}, action) {
         loading: false
       };
     case 'UPDATE_TASK_SUCCESSFUL':
-      //TODO hier
       var a = state.tasks.map((task) => {
         if (task.task_id == action.task.task_id)
           return Object.assign(task, action.task);
@@ -28,6 +27,16 @@ export default function messages(state = {}, action) {
           return task;
         }
       );
+      return Object.assign({}, {
+        tasks: a,
+        error: null,
+        loading: false
+      });
+    case 'DELETE_TASK_SUCCESSFUL':
+      //TODO hier einfach nochmal das aus dem state löschen
+      var a = state.tasks.filter((task) => {
+        return (task.task_id != action.task_id);
+      });
       return Object.assign({}, {
         tasks: a,
         error: null,
