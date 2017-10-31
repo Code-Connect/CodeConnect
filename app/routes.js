@@ -23,7 +23,7 @@ export default function getRoutes(store) {
         <Route path="/" component={App}>
             <IndexRoute component={HomePage} onLeave={clearMessages}/>
             <Route path="/profile" component={Profile} onLeave={clearMessages}/>
-            <Route path="/mentor/:project" component={MentorTask} onLeave={clearMessages}/>
+            <Route path="/mentor/:project_id" component={MentorTask} onLeave={clearMessages}/>
             <Route path="/project/:project_id" component={ProjectView} onLeave={clearMessages}/>
 
             {/* <Route path="/mentor2" component={MentorTask} onLeave={clearMessages}/> */}

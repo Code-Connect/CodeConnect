@@ -36,13 +36,13 @@ export default function messages(projects = {}, action) {
     //     })
     //   });
 
-    case 'UPDATE_PROJECT_SUCCESSFUL':
-      //TODO hier muss diese methode fertig gemacht werden
-      var index = action.project.project_id;
-      var newAttribute = Object.assign({}, projects.projectDict, {
-        [index]: Object.assign(projects.projectDict[index], action.project)
-      });
-      return Object.assign({}, projects, {projectDict: newAttribute});
+    // case 'UPDATE_PROJECT_SUCCESSFUL':
+    //   //TODO hier muss diese methode fertig gemacht werden
+    //   var index = action.project.project_id;
+    //   var newAttribute = Object.assign({}, projects.projectDict, {
+    //     [index]: Object.assign(projects.projectDict[index], action.project)
+    //   });
+    //   return Object.assign({}, projects, {projectDict: newAttribute});
 
     case 'DELETE_PROJECT_SUCCESSFUL':
       //TODO task werden noch nicht gelöscht nur die Projects

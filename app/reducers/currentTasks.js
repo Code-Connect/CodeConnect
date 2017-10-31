@@ -2,6 +2,7 @@ export default function messages(state = {}, action) {
   switch (action.type) {
     case "GET_TASKS_SUCCESSFUL":
       console.log("action", action);
+      //TODO das object action.tasks ist noch nicht ganz korrekt, aber es funst alles (halbwichtiger fehler)
       return Object.assign({}, action.tasks, {
         error: null,
         loading: false
