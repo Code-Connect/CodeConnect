@@ -5982,8 +5982,9 @@ textarea {
   border-radius: 10px; }
 
 .newsPageSinglePanel {
-  padding: 20px;
-  height: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 210px;
   background: white;
   max-width: 400px;
   margin: 10px auto;
