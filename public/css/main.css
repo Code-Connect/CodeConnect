@@ -5981,37 +5981,52 @@ textarea {
   background: white;
   border-radius: 10px; }
 
-.roundpanel {
-  border-radius: 10px;
-  padding: 50px;
-  padding-top: 0px; }
-
-.pageHeader {
-  margin-left: 0; }
-
 .newsPageSinglePanel {
-  border-radius: 3px;
+  padding: 20px;
+  height: 200px;
   background: white;
-  padding: 2px;
+  max-width: 400px;
+  margin: 10px auto;
   cursor: pointer; }
   .newsPageSinglePanel:hover {
     border-color: #2ec866;
     color: #2ec866; }
 
-.newsPageSinglePanel .panel-heading, .newsPageSinglePanel .panel-body {
+.textBox {
+  line-height: 2.5ex;
+  height: 15ex;
+  /* 2.5ex for each visible line */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical; }
+
+.roundpanel {
+  border-radius: 10px;
+  padding: 0 50px 50px; }
+
+.pageHeader {
+  margin-left: 0; }
+
+.newsPageSinglePanel .panel-body,
+.newsPageSinglePanel .panel-heading {
   padding: 20px 15px; }
 
 .newsPageSinglePanel .panel-body {
-  min-height: 200px; }
+  height: 200px; }
 
 .imageWrapper {
   display: inline;
-  width: 60px;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
   float: left; }
 
 .headerWrapper {
-  display: inline;
-  float: left; }
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 300px; }
 
 .clear {
   clear: both; }
