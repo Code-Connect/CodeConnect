@@ -9,10 +9,12 @@
   border-radius: 10px;
 }
 
+.myWrapper  {
+  padding-left:10px;
+  padding-right:10px;
+}
+
 .newsPageSinglePanel {
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 210px;
   background: white;
   max-width: 400px;
   margin: 10px auto;
@@ -25,6 +27,7 @@
 }
 
 .textBox {
+  padding-bottom: 10px;
   line-height: 2.5ex;
   height: 15ex;
   /* 2.5ex for each visible line */
@@ -64,7 +67,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: 300px;
+  max-width: auto;
 }
 
 .clear {

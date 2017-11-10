@@ -13,17 +13,14 @@ class ProjectCards extends React.Component {
       ? this.props.project.description
       : "";
     return (
-      <div>
+      <div className = "myWrapper">
         <div className="headerWrapper">
           <h3>{this.props.project.name}</h3>
         </div>
         <img className="avatar rounded-2 imageWrapper" height="50" src={"/img/Logo.png"} width="50"/>
-        <div className="myWrapper">
+        <div>
           <ReactMarkdown className="textBox" source={this.props.project.description}/>
         </div>
-        {/* <div className="btn-wrapper">
-          <span className="btn btn-default newsPageProjektButton">To Project</span>
-        </div> */}
       </div>
     );
   }
