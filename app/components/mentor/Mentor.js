@@ -42,37 +42,33 @@ class Mentor extends React.Component {
       ? (
         <div>
           <MentorTable onClick={this.addProject.bind(this)} datatype="project" data={this.props.currentProjectList.addableProjects}/>
-          <MentorTable onClick={() => {}} datatype="project" data={this.props.currentProjectList.projectList}/>
+          {/* <MentorTable onClick={() => {}} datatype="project" data={this.props.currentProjectList.projectList}/> */}
           <Button onClick={this.toggleButton.bind(this)}>Done</Button>
         </div>
       )
       : (
         <div>
           <Button onClick={this.toggleButton.bind(this)}>
-            Import Project
+            <div className ="btn">Import Github Project</div>
+            <img className ="imageWrapper" src={"https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png"}/>
           </Button>
         </div>
       );
     return (
-      <div style={{
-        borderRadius: '10px',
-        background: 'white',
-        padding: '50px'
-      }}>
+      <div className="myWrapper pageHeader">
         <Row className="show-grid">
-          <Col xs={12} md={4}>
+          <div className="myWrapper">
+            <h1>Your Projects</h1>
             {addProjectMode}
-          </Col>
-          <Col xs={12} md={8}>
-            {this.props.currentProjectList.projectList.map((project, index) => {
-              return (
-                <div>
-                  <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}></ProjectCards>
-                  {/* <ProjectPanel short={true} project = {project}/> */}
-                </div>
-              )
-            })}
-          </Col>
+          </div>
+          {this.props.currentProjectList.projectList.map((project, index) => {
+            return (
+              <Col md={4}>
+                <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}></ProjectCards>
+                {/* <ProjectPanel short={true} project = {project}/> */}
+              </Col>
+            )
+          })}
         </Row>
       </div>
     );

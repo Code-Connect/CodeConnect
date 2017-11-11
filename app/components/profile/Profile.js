@@ -14,6 +14,7 @@ class Profile extends React.Component {
     return (
       <div className="container whiteContainer">
         <ProfileView name={this.props.user.name}/>
+        <hr/>
         <Mentor/>
       </div>
     );
