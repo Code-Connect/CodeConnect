@@ -9,7 +9,7 @@
   border-radius: 10px;
 }
 
-.myWrapper  {
+.myWrapper {
   padding: 10px;
 }
 
@@ -25,6 +25,13 @@
   }
 }
 
+.newsPageSinglePanel:hover .textBox,
+.newsPageSinglePanel:hover .headerWrapper
+ {
+  border-color: #2ec866;
+  color: #2ec866;
+}
+
 .textBox {
   padding-bottom: 10px;
   line-height: 2.5ex;
@@ -34,6 +41,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+  color: grey;
 }
 
 .roundpanel {
@@ -68,7 +76,6 @@
   text-overflow: ellipsis;
   max-width: auto;
   color: #1d7cf4;
-
 }
 
 .clear {

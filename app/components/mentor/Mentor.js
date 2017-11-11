@@ -1,11 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Button, Col, Panel, Row} from "react-bootstrap";
-import {getOrgsProject, getUserProject,getGithubProjects} from './../../actions/projectActions';
+import {getOrgsProject, getUserProject, getGithubProjects} from './../../actions/projectActions';
 import MentorTable from './MentorTable';
 import ProjectPanel from './ProjectPanel';
 import {addProject} from '../../actions/projectActions';
 import {getAddedProjects} from "./../stateConverter.js"
+import ProjectCards from "./../homepage/ProjectCards";
+import {browserHistory} from 'react-router';
 
 //Mentor OverView List
 class Mentor extends React.Component {
@@ -23,6 +25,10 @@ class Mentor extends React.Component {
 
   addProject(project) {
     this.props.dispatch(addProject(project));
+  }
+
+  onClick(project_id) {
+    browserHistory.push("/mentor/" + project_id);
   }
 
   toggleButton() {
@@ -58,10 +64,11 @@ class Mentor extends React.Component {
             {addProjectMode}
           </Col>
           <Col xs={12} md={8}>
-              {this.props.currentProjectList.projectList.map((project, index) => {
+            {this.props.currentProjectList.projectList.map((project, index) => {
               return (
                 <div>
-                  <ProjectPanel short={true} project = {project}/>
+                  <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}></ProjectCards>
+                  {/* <ProjectPanel short={true} project = {project}/> */}
                 </div>
               )
             })}

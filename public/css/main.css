@@ -5993,6 +5993,11 @@ textarea {
     border-color: #2ec866;
     color: #2ec866; }
 
+.newsPageSinglePanel:hover .textBox,
+.newsPageSinglePanel:hover .headerWrapper {
+  border-color: #2ec866;
+  color: #2ec866; }
+
 .textBox {
   padding-bottom: 10px;
   line-height: 2.5ex;
@@ -6001,7 +6006,8 @@ textarea {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical; }
+  -webkit-box-orient: vertical;
+  color: grey; }
 
 .roundpanel {
   border-radius: 10px;
