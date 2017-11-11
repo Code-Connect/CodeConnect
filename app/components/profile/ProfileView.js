@@ -10,7 +10,7 @@ class ProfileView extends React.Component {
 
   render() {
     return (
-      <div className="myWrapper row">
+      <div className="row">
         <Grid>
           <div className="show-grid pageHeader">
           <h1>Home > {this.props.name}</h1>

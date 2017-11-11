@@ -41,27 +41,28 @@ class Mentor extends React.Component {
     const addProjectMode = (this.state.addProjectToggle && !this.props.currentProjectList.isloading)
       ? (
         <div>
-          <MentorTable onClick={this.addProject.bind(this)} datatype="project" data={this.props.currentProjectList.addableProjects}/>
-          {/* <MentorTable onClick={() => {}} datatype="project" data={this.props.currentProjectList.projectList}/> */}
+          <MentorTable onClick={this.addProject.bind(this)} datatype="project" data={this.props.currentProjectList.addableProjects}/> {/* <MentorTable onClick={() => {}} datatype="project" data={this.props.currentProjectList.projectList}/> */}
           <Button onClick={this.toggleButton.bind(this)}>Done</Button>
         </div>
       )
       : (
         <div>
           <Button onClick={this.toggleButton.bind(this)}>
-            <div className ="btn">Import Github Project</div>
-            <img className ="imageWrapper" src={"https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png"}/>
+            <div className="btn">Import Github Project</div>
+            <img className="imageWrapper" src={"https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-512.png"}/>
           </Button>
         </div>
       );
     return (
-      <div className="myWrapper pageHeader">
-        <Row className="show-grid">
-          <div className="myWrapper">
-            <h1>Your Projects</h1>
-            {addProjectMode}
-          </div>
-          {this.props.currentProjectList.projectList.map((project, index) => {
+      <div>
+        <Row className="myWrapper row">
+          <h1>Your Projects</h1>
+          <h4 style={{
+            color: "grey"
+          }}>Edit Projects</h4>
+        </Row>
+
+        <Row>{this.props.currentProjectList.projectList.map((project, index) => {
             return (
               <Col md={4}>
                 <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}></ProjectCards>
@@ -70,6 +71,10 @@ class Mentor extends React.Component {
             )
           })}
         </Row>
+        <Row className="myWrapper row">
+          {addProjectMode}
+        </Row>
+        <hr/>
       </div>
     );
   }
