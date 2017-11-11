@@ -43,7 +43,7 @@ class Mentor extends React.Component {
       : (
         <div>
           <Button onClick={this.toggleButton.bind(this)}>
-            Import Projects from Github
+            Import Project
           </Button>
         </div>
       );

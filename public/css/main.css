@@ -1056,7 +1056,7 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: "Ubuntu", monospace;
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.57143;
   color: #333333;
@@ -5188,7 +5188,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Ubuntu", monospace;
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -5301,7 +5301,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Ubuntu", monospace;
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -5982,8 +5982,7 @@ textarea {
   border-radius: 10px; }
 
 .myWrapper {
-  padding-left: 10px;
-  padding-right: 10px; }
+  padding: 10px; }
 
 .newsPageSinglePanel {
   background: white;
@@ -6029,7 +6028,8 @@ textarea {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  max-width: auto; }
+  max-width: auto;
+  color: #1d7cf4; }
 
 .clear {
   clear: both; }

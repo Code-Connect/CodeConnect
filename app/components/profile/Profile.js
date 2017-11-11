@@ -6,33 +6,22 @@ import Mentor from "../mentor/Mentor";
 
 class Profile extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-4">
-                        <ProfileView name={this.props.user.name} email={this.props.user.email}/>
-                    </div>
-                    <div className="col-sm-8" style={{paddingTop:'20px', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px', background: "white", borderRadius: '10px'}}>
-                        <Tabs id="tabs" defaultActiveKey={1}>
-                            <Tab eventKey={1} title="Your Projects">
-                              <Mentor/>
-                            </Tab>
-                        </Tabs>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="container whiteContainer">
+        <ProfileView name={this.props.user.name}/>
+        <Mentor/>
+      </div>
+    );
+  }
 }
 
-
 const mapStateToProps = (state) => {
-    return {user: state.user.github};
+  return {user: state.user.github};
 };
 
 export default connect(mapStateToProps)(Profile);

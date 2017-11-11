@@ -32,9 +32,7 @@ class NewsPage extends Component {
           {this.props.projects.projectList.map((project) => {
             return (
               <Col md={4}>
-                <Panel  className="newsPageSinglePanel" onClick={() => this.onClick(project.project_id)}>
-                  <ProjectCards project={project}/>
-                </Panel>
+                  <ProjectCards project={project}  onClick={() => this.onClick(project.project_id)}/>
               </Col>
             )
           })
