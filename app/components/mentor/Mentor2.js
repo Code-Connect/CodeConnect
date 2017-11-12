@@ -27,12 +27,8 @@ import {browserHistory} from 'react-router';
 class Mentor2 extends React.Component {
   constructor(props) {
     super(props);
-    // var getIndex = this.props.projects.findIndex((item) => {return item.project_id == this.props.params.project});
     this.state = {
       inputfield: ''
-      // ,
-      // tasks: this.props.projects[getIndex].tasks.map((item)=>{
-      //   return this.props.tasks[item]})
     };
   }
 
@@ -40,15 +36,6 @@ class Mentor2 extends React.Component {
     this.props.dispatch(getProject(this.props.params.project_id));
     this.props.dispatch(getTasks(this.props.params.project_id));
   }
-
-  // componentWillReceiveProps(nextProps){
-  //   var getIndex = nextProps.projects.findIndex((item) => {return item.project_id == this.props.params.project});
-  //   this.setState({
-  //     inputfield: '',
-  //     tasks: nextProps.projects[getIndex].tasks.map((item)=>{
-  //       return nextProps.tasks[item]})
-  //   });
-  // }
 
   saveTask(task) {
     this.props.dispatch(updateTask(task, this.props.params.project));

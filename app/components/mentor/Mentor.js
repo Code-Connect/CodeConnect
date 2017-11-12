@@ -56,10 +56,10 @@ class Mentor extends React.Component {
     return (
       <div>
         <Row className="myWrapper row">
-          <h2>Your Projects</h2>
+          <h2>Edit your Projects</h2>
           <h4 style={{
             color: "grey"
-          }}>Click on Project to edit</h4>
+          }}>Click to edit</h4>
         </Row>
 
         <Row>{this.props.currentProjectList.projectList.map((project, index) => {

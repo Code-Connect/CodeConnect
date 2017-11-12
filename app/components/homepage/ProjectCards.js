@@ -17,7 +17,7 @@ class ProjectCards extends React.Component {
         this.props.onClick()
       }}>
         <div className="col">
-          <img className="avatar rounded-2 imageWrapper" height="50" src={"/img/Logo.png"} width="50"/>
+          <img className="avatar rounded-2 imageWrapper" height="50" src={this.props.project.image} width="50"/>
         </div>
         <div className="col">
           <h3 className="headerWrapper">{this.props.project.name}</h3>

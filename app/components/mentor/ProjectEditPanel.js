@@ -23,13 +23,19 @@ class ProjectEditPanel extends React.Component {
     this.state = {
       toggle: false,
       chatroom: this.props.project.chatroom,
-      description: this.props.project.description
+      description: this.props.project.description,
+      image: this.props.project.image
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props != nextProps) {
-      this.setState({project_id: nextProps.project.project_id, chatroom: nextProps.project.chatroom, description: nextProps.project.description});
+      this.setState({
+        project_id: nextProps.project.project_id,
+         chatroom: nextProps.project.chatroom,
+         description: nextProps.project.description,
+         image: nextProps.project.image
+       });
     }
   }
 
@@ -41,7 +47,12 @@ class ProjectEditPanel extends React.Component {
 
   saveChange(event) {
     this.toggleButton(event);
-    this.props.saveProject({project_id: this.props.project.project_id, chatroom: this.state.chatroom, description: this.state.description});
+    this.props.saveProject({
+      project_id: this.props.project.project_id,
+      chatroom: this.state.chatroom,
+      description: this.state.description,
+      image:this.state.image
+    });
   }
 
   deleteProject(event) {
@@ -85,11 +96,15 @@ class ProjectEditPanel extends React.Component {
           background: "white"
         }}>
           {editOrSaveButton}
-          <h1>
-            {this.props.project.name}
-          </h1>
+          <div>
+            <img className="imageWrapper" src={this.props.project.image}/>
+            <h1>
+              {this.props.project.name}
+            </h1>
+          </div>
+          {/* TODO add image */}
           {this.createPanel("chatroom")}
-          {/* {this.createPanel("mentor")} */}
+          {this.createPanel("image")}
           {this.createPanel("description")}
         </div>
       </div>
