@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import ProfileView from "./ProfileView";
-import {Tab, Tabs} from 'react-bootstrap';
+import {Tab, Tabs, Grid, Row, Col} from 'react-bootstrap';
 import Mentor from "../mentor/Mentor";
 
 class Profile extends React.Component {
@@ -12,11 +12,17 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div className="container whiteContainer">
-        <ProfileView name={this.props.user.name}/>
-        <hr/>
-        <Mentor/>
-      </div>
+      <Grid className="container whiteContainer">
+        <Row className="show-grid">
+          <Col xs={6} md={3}>
+            <ProfileView name={this.props.user.name}/>
+          </Col>
+          <Col xs={6} md={9}>
+            <Mentor/>
+          </Col>
+        </Row>
+
+      </Grid>
     );
   }
 }

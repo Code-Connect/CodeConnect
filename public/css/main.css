@@ -6057,6 +6057,10 @@ textarea {
   display: block;
   float: right; }
 
+.profilView {
+  margin: auto;
+  padding-top: 40px; }
+
 .ReactCodeMirror {
   border: 1px solid #ccc;
   width: 85%;
