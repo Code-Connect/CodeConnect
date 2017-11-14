@@ -1,87 +1,103 @@
-import React, {Component} from "react";
-import {browserHistory} from 'react-router';
-import {Button, Panel} from 'react-bootstrap';
-import {connect} from "react-redux";
+import React from 'react';
+import {connect} from 'react-redux'
+import {
+  Button,
+  FormGroup,
+  InputGroup,
+  FormControl,
+  Grid,
+  Row,
+  Col
+} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
-import {getProject} from '../../actions/projectActions';
+import EditPanel from '../baukasten/EditPanel.js';
+import Editor from '../baukasten/Editor.js';
+import {updateTask, addTask, deleteTask} from '../../actions/taskActions';
+import {updateProject, deleteProject, getProject} from '../../actions/projectActions';
 import {getTasks} from '../../actions/taskActions';
+import TaskPanel from './TaskPanel';
+import MentorTable from './MentorTable';
+import jsonQuery from 'json-query';
+import ProjectEditPanel from './ProjectEditPanel'
+import {getAddedProjects} from "./../stateConverter.js"
+import {browserHistory} from 'react-router';
 
-/*
-** Required Parameters: tags: [string], contributors: [{name: string, email: string}], tasks: [Tasks], title: string
- */
 
-class ProjectView extends Component {
-
+//Mentor Edit Page for single Project(Important)
+class ProjectView extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      inputfield: ''
+    };
   }
 
   componentDidMount() {
-    var project_id = this.props.params.project_id;
-    this.props.dispatch(getProject(project_id));
-    this.props.dispatch(getTasks(project_id));
+    this.props.dispatch(getProject(this.props.params.project_id));
+    this.props.dispatch(getTasks(this.props.params.project_id));
+  }
+
+  saveTask(task) {
+    this.props.dispatch(updateTask(task, this.props.params.project));
+  }
+
+  saveProject(project){
+    this.props.dispatch(updateProject(project));
+  }
+
+  deleteTask(task, project_id) {
+    this.props.dispatch(deleteTask(task, this.props.params.project_id));
+  }
+
+  deleteProject(event) {
+    this.props.dispatch(deleteProject(this.props.params.project_id));
+    browserHistory.push('/');
+  }
+
+  updateTaskAttribute(task_id, fieldtype, newCode) {
+    this.props.dispatch({type: 'UPDATE_ATTRIBUTE', task_id: task_id, fieldtype: fieldtype, newCode: newCode});
+  }
+
+  addTask(event) {
+    this.props.dispatch(addTask(this.state.inputfield, this.props.params.project_id));
+  }
+
+  handleInputChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   render() {
-    const projectPanel = this.props.currentProject.isloading
-      ? <div>isloading</div>
-      : <ProjectPanel project={this.props.currentProject.project}></ProjectPanel>;
-
-    const taskPanel = this.props.currentTasks.isloading
-      ? <div>isloading</div>
-      : <div>{this.props.currentTasks.tasks.map((item) => {
-          return (<TaskPanel task={item}/>)
-        })}</div>;
-        
     return (
-      <div >
-        <h1>Project:
-        </h1>
-        {projectPanel}
-        <hr/>
-        <h1>Task:
-        </h1>
-        {taskPanel}
+      <div className="container" style={{
+        borderRadius: '10px',
+        background: 'white',
+        padding: '50px'
+      }}>
+
+        <Row className="show-grid">
+          <Col xs={12} md={4}>
+            <MentorTable onClick={() => {}} datatype="task" data={this.props.currentTasks.tasks}/>
+          </Col>
+          <Col xs={12} md={8}>
+          <ProjectEditPanel
+            project={this.props.currentProject.project}/>
+            {this.props.currentTasks.tasks.map((task) => {
+              return (
+                  <TaskPanel updateTaskAttribute={this.updateTaskAttribute.bind(this)} task={task} deleteTask={this.deleteTask.bind(this)} saveChange={this.saveTask.bind(this)}/>
+              )
+            })}
+          </Col>
+        </Row>
       </div>
-    )
-  }
-}
-
-class ProjectPanel extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Panel>
-        {this.props.project.name}
-      </Panel>
-    )
-  }
-}
-
-class TaskPanel extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Panel>
-        <h3>{this.props.task.name}</h3>
-        <br/> {this.props.task.input}
-        <br/> {this.props.task.output}
-        <br/> {this.props.task.description}
-      </Panel>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {currentProject: state.currentProject, currentTasks: state.currentTasks};
+  return {currentTasks: state.currentTasks, currentProject: state.currentProject};
 };
 
-export default connect(mapStateToProps)(ProjectView)
+
+export default connect(mapStateToProps)(ProjectView);

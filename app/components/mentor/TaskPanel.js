@@ -109,9 +109,9 @@ class TaskPanel extends React.Component {
             </InputGroup.Button>
           </InputGroup>
         </FormGroup>
-      : <h1>
+      : <h2>
         {this.props.task.name}
-      </h1>
+      </h2>
 
     return (
       <div>
