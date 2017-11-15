@@ -6051,7 +6051,7 @@ textarea {
   border-color: grey;
   max-width: 400px;
   height: 210px;
-  margin: 10px auto 0px auto;
+  margin: 10px auto 0;
   position: relative;
   cursor: pointer; }
   .panel-pCards:hover {
@@ -6070,7 +6070,10 @@ textarea {
 
 .footer-text-pCards {
   text-align: center;
-  vertical-align: middle; }
+  vertical-align: middle;
+  cursor: pointer; }
+  .footer-text-pCards:hover {
+    color: blue; }
 
 .headerWrapper {
   overflow: hidden;
@@ -6080,17 +6083,14 @@ textarea {
   text-align: center;
   color: #1d7cf4; }
 
-.panel-pCards:hover .textBox,
-.panel-pCards:hover .headerWrapper {
+.parent-pCards:hover .headerWrapper,
+.parent-pCards:hover .textBox {
   border-color: #2ec866;
   color: #2ec866; }
 
-.headerWrapper {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: auto;
-  color: #1d7cf4; }
+.parent-pCards:hover .footer-pCards {
+  border-color: #2ec866;
+  background: #2ec866; }
 
 .infoWrapper {
   padding-left: 15px;
@@ -6106,9 +6106,6 @@ textarea {
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   color: grey; }
-  .textBox:hover {
-    background-color: white;
-    overflow: visible; }
 
 .ReactCodeMirror {
   border: 1px solid #ccc;

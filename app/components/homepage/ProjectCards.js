@@ -8,12 +8,17 @@ class ProjectCards extends React.Component {
     super(props);
   }
 
+  getToUserProfil(){
+    //TODO hier muss man zu anderen Profilen kommen können
+    // browserHistory.push('/project/' + project_id);
+  }
+
   render() {
     const description = this.props.project.description
       ? this.props.project.description
       : "";
     return (
-      <div>
+      <div className ="parent-pCards">
         <div className="panel-pCards container-pCards" onClick={() => {
           this.props.onClick()
         }}>
@@ -24,7 +29,7 @@ class ProjectCards extends React.Component {
           </div>
         </div>
         <div className="footer-pCards">
-          <p className ="footer-text-pCards">by {this.props.project.mentor_name}</p>
+          <p className ="footer-text-pCards" onClick={() => this.getToUserProfil(this.props.project.mentor_id)}>by {this.props.project.mentor_name}</p>
         </div>
       </div>
     );
