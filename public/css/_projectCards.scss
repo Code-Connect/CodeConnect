@@ -77,4 +77,8 @@
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   color: grey;
+  &:hover{
+    background-color: white;
+    overflow: visible;
+  }
 }

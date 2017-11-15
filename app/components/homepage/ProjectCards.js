@@ -20,7 +20,7 @@ class ProjectCards extends React.Component {
           <h3 className="headerWrapper">{this.props.project.name}</h3>
           <div className ="infoWrapper">
             <img className="imageWrapper" src={this.props.project.image}/>
-            <ReactMarkdown className="ellipsis" source={this.props.project.description}/>
+            <ReactMarkdown className="textBox" source={this.props.project.description}/>
           </div>
         </div>
         <div className="footer-pCards">

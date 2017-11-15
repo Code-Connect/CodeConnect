@@ -6106,6 +6106,9 @@ textarea {
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   color: grey; }
+  .textBox:hover {
+    background-color: white;
+    overflow: visible; }
 
 .ReactCodeMirror {
   border: 1px solid #ccc;
