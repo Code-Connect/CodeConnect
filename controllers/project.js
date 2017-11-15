@@ -49,15 +49,21 @@ exports.getOwnProjects = function(req, res) {
 
 //returns all projects
 exports.getAllProjects = function(req, res) {
-  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').then(function(rows) {
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image', 'github.name as mentor_name', 'github.id as mentor_id').from('projects').join('isMentor', function() {
+    this.on('projects.project_id', '=', 'isMentor.project_id')
+  }).join('github', function() {
+    this.on('github.id', '=', 'isMentor.user_id')
+  }).then(function(rows) {
     //ich versuche alle sachen zu triggern und am ende dann tasks innerhalb von den projekten wiederfinden kann
     return res.send(rows);
   });
 }
 
 exports.getUserProject = function(req, res){
-  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image').from('projects').join('isMentor', function() {
+  return knex.select('projects.project_id', 'projects.name', 'projects.chatroom', 'projects.repourl', 'projects.description', 'projects.follower', 'projects.image', 'github.name as mentor_name', 'github.id as mentor_id').from('projects').join('isMentor', function() {
     this.on('projects.project_id', '=', 'isMentor.project_id')
+  }).join('github', function() {
+    this.on('github.id', '=', 'isMentor.user_id')
   }).where('isMentor.user_id', '=', req.params.user_id).then(function(rows) {
     return res.send(rows);
   });

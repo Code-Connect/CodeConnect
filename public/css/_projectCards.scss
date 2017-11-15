@@ -1,0 +1,80 @@
+// .container-pCards {
+//   // width: 980px;
+//   margin-right: auto;
+//   margin-left: auto;
+// }
+
+.panel-pCards {
+  padding: 5px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1.5px;
+  border-color: grey;
+  max-width: 400px;
+  height: 210px;
+  margin: 10px auto 0px auto;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #2ec866;
+    color: #2ec866;
+  }
+}
+
+.footer-pCards {
+  height: 40px;
+  width: auto;
+  margin-top:-1.5px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1.5px;
+  border-color: grey;
+  background: #FBDA54;
+}
+
+.footer-text-pCards {
+  text-align:center;
+  vertical-align: middle;
+}
+
+.headerWrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: auto;
+  text-align: center;
+  color: #1d7cf4;
+}
+
+.panel-pCards:hover .textBox,
+.panel-pCards:hover .headerWrapper
+ {
+  border-color: #2ec866;
+  color: #2ec866;
+}
+
+.headerWrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: auto;
+  color: #1d7cf4;
+}
+
+.infoWrapper {
+  padding-left:15px;
+  padding-right:15px;
+}
+
+.textBox {
+  padding-bottom: 10px;
+  line-height: 2.5ex;
+  height: 15ex;
+  /* 2.5ex for each visible line */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  color: grey;
+}
