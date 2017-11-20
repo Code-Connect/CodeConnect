@@ -6057,6 +6057,8 @@ textarea {
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 100%; }
+  .parent-pCards .textBox:hover p {
+    white-space: normal; }
   .parent-pCards .headerWrapper {
     display: -webkit-box;
     display: -webkit-flex;
