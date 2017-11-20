@@ -23,7 +23,7 @@ class NewsPage extends Component {
 
   render() {
     return (
-      <Grid className="container whiteContainer">
+      <Grid className="container">
         <Row className="show-grid pageHeader">
           <h1>Dashboard</h1>
         </Row>
