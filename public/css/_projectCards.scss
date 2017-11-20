@@ -5,6 +5,11 @@
   background-image: -webkit-linear-gradient(270deg, #fff, #fff);
   background-image: linear-gradient(180deg, #fff, #fff);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .06);
+  cursor: pointer;
+
+  &:hover {
+    color: #2ec866;
+  }
 
   .headerWrapper h3,
   .textBox p {

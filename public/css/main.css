@@ -6044,13 +6044,15 @@ textarea {
   padding-top: 40px; }
 
 .parent-pCards {
-  width: 90%;
   margin-top: 3%;
   margin-bottom: 3%;
   border-radius: 10px;
   background-image: -webkit-linear-gradient(270deg, #fff, #fff);
   background-image: linear-gradient(180deg, #fff, #fff);
-  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.06); }
+  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.06);
+  cursor: pointer; }
+  .parent-pCards:hover {
+    color: #2ec866; }
   .parent-pCards .headerWrapper h3,
   .parent-pCards .textBox p {
     overflow: hidden;
