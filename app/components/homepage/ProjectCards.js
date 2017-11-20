@@ -24,7 +24,7 @@ class ProjectCards extends React.Component {
         }}>
           <div className="headerWrapper">
               <img className="imageWrapper" src={this.props.project.image}/>
-              <h3>{this.props.project.name}</h3>
+              <h3 title={this.props.project.name} >{this.props.project.name}</h3>
           </div>
           <div className ="infoWrapper">
             <ReactMarkdown className="textBox" source={this.props.project.description}/>
