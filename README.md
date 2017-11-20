@@ -35,3 +35,8 @@ You should create an .env file in the root directory with your arguments of
 
 ## Start Swagger Doc  
    swagger project edit
+
+
+## Start PostgreSQL on Linux
+
+    sudo systemctl start postgresql
