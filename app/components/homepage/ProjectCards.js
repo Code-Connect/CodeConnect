@@ -22,9 +22,9 @@ class ProjectCards extends React.Component {
         <div className="panel-pCards container-pCards" onClick={() => {
           this.props.onClick()
         }}>
+          <img className="imageWrapper" src={this.props.project.image}/>
           <h3 className="headerWrapper">{this.props.project.name}</h3>
           <div className ="infoWrapper">
-            <img className="imageWrapper" src={this.props.project.image}/>
             <ReactMarkdown className="textBox" source={this.props.project.description}/>
           </div>
         </div>
