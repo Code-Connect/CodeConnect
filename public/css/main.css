@@ -6051,6 +6051,12 @@ textarea {
   background-image: -webkit-linear-gradient(270deg, #fff, #fff);
   background-image: linear-gradient(180deg, #fff, #fff);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.06); }
+  .parent-pCards .headerWrapper h3,
+  .parent-pCards .textBox p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%; }
   .parent-pCards .headerWrapper {
     display: -webkit-box;
     display: -webkit-flex;
@@ -6063,11 +6069,6 @@ textarea {
     -ms-flex-align: center;
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-    .parent-pCards .headerWrapper h3 {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      width: 100%; }
     .parent-pCards .headerWrapper .imageWrapper {
       width: auto;
       max-height: 100%;

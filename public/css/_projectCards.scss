@@ -7,13 +7,15 @@
   background-image: linear-gradient(180deg, #fff, #fff);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .06);
 
-  .headerWrapper {
-    h3{
+  .headerWrapper h3,
+  .textBox p {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
       width: 100%;
-    }
+  }
+
+  .headerWrapper {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
