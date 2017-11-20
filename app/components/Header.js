@@ -24,9 +24,12 @@ class Header extends React.Component {
                         </a>
                         <ul className="dropdown-menu">
                             <li>
-                                <Link to="/account">My Account</Link>
+                                <Link to="/profile">Profile</Link>
                             </li>
                             <li className="divider"></li>
+                            <li>
+                                <a href="/logout">Log out</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

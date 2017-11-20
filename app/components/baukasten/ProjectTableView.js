@@ -30,23 +30,6 @@ class ProjectTableView extends Component {
                 : this.default
         };
 
-        this.labels = [
-            {
-                labelName: "Project",
-                labelSize: "3"
-            }, {
-                labelName: "#Task",
-                labelSize: "3"
-            }
-            /*, {
-                labelName: "#Contributor",
-                labelSize: "1"
-            }, {
-                labelName: "Status",
-                labelSize: "1"
-            }*/
-        ];
-        console.log(this.props.projects);
         var data = this.props.projects.map((item) => {
             return {
                 id: item.project_id,
@@ -109,7 +92,6 @@ class ProjectTableView extends Component {
                                     setActiveElement={this.setActiveElement.bind(this)}
                                     omit={true}
                                     route={""}
-                                    labelList={this.labels}
                                     dataList={this.state.data}/>
                 </div>
 
@@ -122,7 +104,6 @@ class ProjectTableView extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(getAllProjects(state));
     return {projects: getAllProjects(state), tasks: state.projects.tasks};
 };
 

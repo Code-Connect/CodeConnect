@@ -1,36 +1,34 @@
 import React from "react";
 import {connect} from "react-redux";
 import ProfileView from "./ProfileView";
-import {Tab, Tabs} from 'react-bootstrap';
+import {Tab, Tabs, Grid, Row, Col} from 'react-bootstrap';
 import Mentor from "../mentor/Mentor";
 
 class Profile extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-4">
-                        <ProfileView name={this.props.user.name} email={this.props.user.email}/>
-                    </div>
-                    <div className="col-sm-8" style={{paddingTop:'20px', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px', background: "white", borderRadius: '10px'}}>
-                        <Tabs id="tabs" defaultActiveKey={1}>
-                            <Tab eventKey={1} title="Mentor Projects"><Mentor/></Tab>
-                        </Tabs>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <Grid className="container whiteContainer">
+        <Row className="show-grid">
+          <Col xs={6} md={3}>
+            <ProfileView name={this.props.user.name}/>
+          </Col>
+          <Col xs={6} md={9}>
+            <Mentor/>
+          </Col>
+        </Row>
+
+      </Grid>
+    );
+  }
 }
 
-
 const mapStateToProps = (state) => {
-    return {projects: state.projects.addedProjects, user: state.user.github};
+  return {user: state.user.github};
 };
 
 export default connect(mapStateToProps)(Profile);

@@ -1,43 +1,61 @@
-.container{
-  width: 980px;
+.container {
+  // width: 980px;
   margin-right: auto;
   margin-left: auto;
 }
 
-.roundpanel{
+.whiteContainer {
+  background: white;
   border-radius: 10px;
-  padding: 50px;
-  padding-top: 0px;
+}
+
+.myWrapper {
+  padding: 10px;
+}
+
+.newsPageSinglePanel {
+  background: white;
+  max-width: 400px;
+  margin: 10px auto;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #2ec866;
+    color: #2ec866;
+  }
+}
+
+.newsPageSinglePanel:hover .textBox,
+.newsPageSinglePanel:hover .headerWrapper
+ {
+  border-color: #2ec866;
+  color: #2ec866;
+}
+
+.roundpanel {
+  border-radius: 10px;
+  padding: 0 50px 50px;
 }
 
 .pageHeader {
   margin-left: 0;
 }
 
-.newsPageSinglePanel {
-  border-radius: 3px;
-  background: white;
-  padding: 2px;
-  cursor: pointer;
-}
-
-.newsPageSinglePanel .panel-heading, .newsPageSinglePanel .panel-body {
+.newsPageSinglePanel .panel-body,
+.newsPageSinglePanel .panel-heading {
   padding: 20px 15px;
 }
 
 .newsPageSinglePanel .panel-body {
-  min-height: 200px;
-
+  height: 200px;
 }
 
 .imageWrapper {
   display: inline;
-  width: 60px;
+  width: 75px;
+  height: 75px;
   float: left;
-}
-.headerWrapper {
-  display: inline;
-  float: left;
+  margin: auto 10px auto auto;
 }
 
 .clear {
@@ -62,4 +80,9 @@
   margin: 0 auto;
   display: block;
   float: right;
+}
+
+.profilView{
+  margin: auto;
+  padding-top: 40px;
 }

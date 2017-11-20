@@ -5,33 +5,34 @@ import {connect} from 'react-redux';
 import {Panel, Col, Row, Grid} from 'react-bootstrap';
 import {browserHistory} from 'react-router';
 import ProjectCards from "./ProjectCards";
+import {getPublicProjects} from '../../actions/projectActions';
 
 class NewsPage extends Component {
 
   constructor(props) {
     super(props);
-    console.log("gets called");
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getPublicProjects());
   }
 
   onClick(project_id) {
-    browserHistory.push('/contributor/projects/' + project_id);
+    browserHistory.push('/project/' + project_id);
   }
 
   render() {
     return (
-      <Grid className="container" style={{
-        'background': 'white'
-      }} fluid>
+      <Grid className="container whiteContainer">
         <Row className="show-grid pageHeader">
-          <h1>Discover Projects</h1>
+          <h1>Dashboard</h1>
         </Row>
+        <br/>
         <Row className="show-grid ">
-          {this.props.projects.map((project) => {
+          {this.props.projects.projectList.map((project) => {
             return (
-              <Col md={4} className="newsPageSingleCol">
-                <Panel className="newsPageSinglePanel" onClick={() => this.onClick(project.project_id)}>
-                  <ProjectCards project={project}/>
-                </Panel>
+              <Col md={4}>
+                  <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}/>
               </Col>
             )
           })
@@ -43,8 +44,7 @@ class NewsPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("change detected")
-  return {projects: getAllProjects(state)};
+  return {projects: state.currentProjectList};
 };
 
 export default connect(mapStateToProps)(NewsPage);

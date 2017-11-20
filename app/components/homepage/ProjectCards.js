@@ -1,12 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {Button, Panel, Table, Image} from "react-bootstrap";
+import {Button, Panel, Col} from "react-bootstrap";
 import ReactMarkdown from 'react-markdown';
-
 
 class ProjectCards extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  getToUserProfil(){
+    //TODO hier muss man zu anderen Profilen kommen können
+    // browserHistory.push('/project/' + project_id);
   }
 
   render() {
@@ -14,17 +18,18 @@ class ProjectCards extends React.Component {
       ? this.props.project.description
       : "";
     return (
-      <div>
-        <div className="headerWrapper">
-          <h3>{this.props.project.name}</h3>
+      <div className ="parent-pCards">
+        <div className="panel-pCards container-pCards" onClick={() => {
+          this.props.onClick()
+        }}>
+          <h3 className="headerWrapper">{this.props.project.name}</h3>
+          <div className ="infoWrapper">
+            <img className="imageWrapper" src={this.props.project.image}/>
+            <ReactMarkdown className="textBox" source={this.props.project.description}/>
+          </div>
         </div>
-        <br/>
-        <br/>
-        <ReactMarkdown source={this.props.project.description}/>
-        <img className="avatar rounded-2" height="50" src={"/img/Logo.png"} width="50"/>
-
-        <div className="btn-wrapper">
-          <span className="btn btn-default newsPageProjektButton">To Project</span>
+        <div className="footer-pCards">
+          <p className ="footer-text-pCards" onClick={() => this.getToUserProfil(this.props.project.mentor_id)}>by {this.props.project.mentor_name}</p>
         </div>
       </div>
     );

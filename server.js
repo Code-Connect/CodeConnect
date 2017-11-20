@@ -72,7 +72,7 @@ const store2 = new KnexSessionStore({
 app.use(session({
   secret: process.env.SECRET,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 8 // 8 hours
+    maxAge: 1000 * 60 * 60 * 30 // 30 hours
   },
   store: store2,
   resave: false,
@@ -93,22 +93,22 @@ app.get('/logout', function(req, res) {
 var projectController = require('./controllers/project');
 var taskController = require('./controllers/task');
 var passportGithub = require('./controllers/gitlogin');
-var helper = require('./controllers/help');
-
-// app.post('/postccrepo', projectController.saveProject);
-// app.post('/addproject', projectController.addProject);
-// app.post('/updateproject', projectController.updateProject);
-// app.delete('/deleteproject', projectController.deleteProject);
 
 //The new REST API
-app.get('/project', projectController.getProjects);
+app.get('/projects/all', projectController.getAllProjects);
+//TODO get user projects not own
+app.get('/projects/user/:user_id', projectController.getUserProject);
+app.get('/projects', projectController.getOwnProjects);
+app.get('/projects/:id', projectController.getProject)
 app.post('/projects', projectController.addProject);
 app.put('/projects/:id', projectController.updateProject);
 app.delete('/projects/:id', projectController.deleteProject);
 
-app.post('/updatetask', taskController.updateTask);
-app.post('/addtask', taskController.addTask);
-app.delete('/deletetask', taskController.deleteTask);
+app.get('/projects/:id/tasks', taskController.getTask);
+app.post('/projects/:id/tasks', taskController.addTask);
+app.put('/projects/:id/tasks/:task_id', taskController.updateTask);
+app.delete('/projects/:id/tasks/:task_id', taskController.deleteTask);
+
 app.post('/participate', taskController.participateTask);
 
 app.get('/auth/github', passportGithub.authenticate('github'));
@@ -121,54 +121,47 @@ app.get('/auth/github/callback', passportGithub.authenticate('github', {failureR
 
 // React server rendering
 app.use(function(req, res) {
-  projectController.getYourProjects(req.user).then((addedProjects) => {
-    projectController.getProjectsAndTasks().then((projects) => {
-      return taskController.getTasks().then((tasks) => {
-        var taskDict = helper.createTaskDict(tasks);
-        var projectDict = helper.createProjectDict(projects);
-        var publicProjects = helper.getAddedProjects(projects);
-        return {taskDict: taskDict, projectDict: projectDict, publicProjects: publicProjects, addedProjects: addedProjects};
+  var initialState = {
+    user: req.user,
+    currentProjectList: {
+      projectList: [],
+      error: null,
+      loading: true
+    },
+    currentProject: {
+      project: {},
+      error: null,
+      loading: true
+    },
+    currentTasks: {
+      tasks: [],
+      error: null,
+      loading: true
+    }
+  };
+  var store = configureStore(initialState);
+
+  Router.match({
+    routes: routes.default(store),
+    location: req.url
+  }, function(err, redirectLocation, renderProps) {
+    if (err) {
+      res.status(500).send(err.message);
+    } else if (redirectLocation) {
+      res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      var html = ReactDOM.renderToString(React.createElement(Provider, {
+        store: store,
+        exists: false
+      }, React.createElement(Router.RouterContext, renderProps)));
+      res.render('layout', {
+        html: html,
+        initialState: store.getState()
       });
-    }).then(function(item) {
-      console.log("req.user");
-      console.log(req.user);
-      var initialState = {
-        user: req.user,
-        projects: {
-          addableProjects: [],
-          addedProjects: item.addedProjects,
-          projectDict: item.projectDict,
-          publicProjects: item.publicProjects,
-          tasks: item.taskDict
-        }
-      };
-      var store = configureStore(initialState);
-
-      Router.match({
-        routes: routes.default(store),
-        location: req.url
-      }, function(err, redirectLocation, renderProps) {
-        if (err) {
-          res.status(500).send(err.message);
-        } else if (redirectLocation) {
-          res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
-        } else if (renderProps) {
-          var html = ReactDOM.renderToString(React.createElement(Provider, {
-            store: store,
-            exists: false
-          }, React.createElement(Router.RouterContext, renderProps)));
-          res.render('layout', {
-            html: html,
-            initialState: store.getState()
-          });
-        } else {
-          res.sendStatus(404);
-        }
-      });
-    });
-
-  })
-
+    } else {
+      res.sendStatus(404);
+    }
+  });
 });
 
 // Production error handler

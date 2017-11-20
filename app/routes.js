@@ -9,29 +9,31 @@ import Editor from "./components/baukasten/Editor";
 import TaskView from "./components/taskView/TaskView";
 import About from "./components/about/About";
 import ProjectTableView from './components/baukasten/ProjectTableView';
+import ProjectView from './components/project/ProjectView';
 import TaskTableView from './components/baukasten/TaskTableView';
 import Profile from "./components/profile/Profile";
 
 export default function getRoutes(store) {
 
     const clearMessages = () => {
-        store.dispatch({type: 'CLEAR_HEADER'});
+        store.dispatch({type: 'CLEAR_CURRENT_PROJECT'});
     };
 
     return (
         <Route path="/" component={App}>
             <IndexRoute component={HomePage} onLeave={clearMessages}/>
             <Route path="/profile" component={Profile} onLeave={clearMessages}/>
-            <Route path="/mentor/:project" component={MentorTask} onLeave={clearMessages}/>
+            <Route path="/mentor/:project_id" component={MentorTask} onLeave={clearMessages}/>
+            <Route path="/project/:project_id" component={ProjectView} onLeave={clearMessages}/>
+
             {/* <Route path="/mentor2" component={MentorTask} onLeave={clearMessages}/> */}
             {/* <Route path="/home" component={HomePage} onLeave={clearMessages}/> */}
-
             <Route path="/contributor" component={Contributor} onLeave={clearMessages}>
                 <IndexRoute component={ProjectTableView} onLeave={clearMessages}/>
 
-                <Route path="projects/:id" component={TaskTableView} onLeave={clearMessages}/>
+                <Route path="project/:id" component={TaskTableView} onLeave={clearMessages}/>
 
-                <Route path="projects" component={ProjectTableView}/>
+                <Route path="project" component={ProjectTableView}  onLeave={clearMessages}/>
 
                 {/* <Route path="tasks" component={TaskTableView}/> */}
             </Route>

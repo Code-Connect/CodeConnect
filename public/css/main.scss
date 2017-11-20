@@ -6,7 +6,7 @@ $link-hover-decoration: none;
 $brand-success: #29b35b;
 $brand-danger: #b61b17;
 
-$font-family-base: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-base: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $headings-font-weight: 600;
 
 $alert-info-border: #31708f;
@@ -33,6 +33,7 @@ $panel-body-padding: 30px;
 @import "vendor/bootstrap";
 @import "bootstrap";
 @import "base";
+@import "projectCards";
 @import "codemirror";
 @import "vendor/susy/susy";
 @import "about";

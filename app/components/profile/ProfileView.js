@@ -1,25 +1,24 @@
 import React from "react";
 import {connect} from "react-redux";
+import {Panel, Col, Row, Grid} from 'react-bootstrap';
 
 class ProfileView extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return (
-            <div style={{paddingTop:'20px', paddingLeft: '20px', paddingRight: '20px', paddingBottom: '20px', background: "white", borderRadius: '10px'}}>
-                <div className="col">
-                    <img src={"https://avatars.githubusercontent.com/"+this.props.name} style={{maxWidth: '100%'}} alt=""/>
-                    <h3>{this.props.name}</h3>
-                    <h4><small>{this.props.email}</small></h4>
-                </div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className ="profilView">
+          <img src={"https://avatars.githubusercontent.com/" + this.props.name} style={{
+            width: '270px',
+            height: 'auto'
+          }}/>
+          <h1><a href={"https://github.com/" + this.props.name}>{this.props.name}</a></h1>
+      </div>
+    );
+  }
 }
 
-
 export default ProfileView;
-
