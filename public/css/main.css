@@ -6065,6 +6065,10 @@ textarea {
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
 
+.imageWrapper {
+  width: auto;
+  max-height: 100%; }
+
 .ReactCodeMirror {
   border: 1px solid #ccc;
   width: 85%;
