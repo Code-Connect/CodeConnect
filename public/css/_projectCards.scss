@@ -7,3 +7,17 @@
   background-image: linear-gradient(180deg, #fff, #fff);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .06);
 }
+
+.headerWrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 8vh;
+  padding: 7.5%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
