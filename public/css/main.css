@@ -6043,69 +6043,14 @@ textarea {
   margin: auto;
   padding-top: 40px; }
 
-.panel-pCards {
-  padding: 5px;
-  border-style: solid;
-  border-radius: 5px;
-  border-width: 1.5px;
-  border-color: grey;
-  max-width: 400px;
-  height: 210px;
-  margin: 10px auto 0;
-  position: relative;
-  cursor: pointer; }
-  .panel-pCards:hover {
-    border-color: #2ec866;
-    color: #2ec866; }
-
-.footer-pCards {
-  height: 40px;
-  width: auto;
-  margin-top: -1.5px;
-  border-style: solid;
-  border-radius: 5px;
-  border-width: 1.5px;
-  border-color: grey;
-  background: #FBDA54; }
-
-.footer-text-pCards {
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer; }
-  .footer-text-pCards:hover {
-    color: blue; }
-
-.headerWrapper {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: auto;
-  text-align: center;
-  color: #1d7cf4; }
-
-.parent-pCards:hover .headerWrapper,
-.parent-pCards:hover .textBox {
-  border-color: #2ec866;
-  color: #2ec866; }
-
-.parent-pCards:hover .footer-pCards {
-  border-color: #2ec866;
-  background: #2ec866; }
-
-.infoWrapper {
-  padding-left: 15px;
-  padding-right: 15px; }
-
-.textBox {
-  padding-bottom: 10px;
-  line-height: 2.5ex;
-  height: 15ex;
-  /* 2.5ex for each visible line */
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  color: grey; }
+.parent-pCards {
+  width: 90%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-radius: 10px;
+  background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+  background-image: linear-gradient(180deg, #fff, #fff);
+  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.06); }
 
 .ReactCodeMirror {
   border: 1px solid #ccc;
