@@ -6051,48 +6051,44 @@ textarea {
   background-image: -webkit-linear-gradient(270deg, #fff, #fff);
   background-image: linear-gradient(180deg, #fff, #fff);
   box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.06); }
-
-.headerWrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 8vh;
-  padding: 1.5%;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-  .headerWrapper h3 {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 100%; }
-
-.imageWrapper {
-  width: auto;
-  max-height: 100%;
-  margin: 0; }
-
-.infoWrapper {
-  padding: 5%;
-  font-family: Lato, sans-serif;
-  color: rgba(0, 0, 0, 0.66);
-  font-weight: 300; }
-
-.footer-pCards {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  padding: 2vh 1vw;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+  .parent-pCards .headerWrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 8vh;
+    padding: 1.5%;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    .parent-pCards .headerWrapper h3 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%; }
+    .parent-pCards .headerWrapper .imageWrapper {
+      width: auto;
+      max-height: 100%;
+      margin: 0; }
+  .parent-pCards .infoWrapper {
+    padding: 5%;
+    font-family: Lato, sans-serif;
+    color: rgba(0, 0, 0, 0.66);
+    font-weight: 300; }
+  .parent-pCards .footer-pCards {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    padding: 2vh 1vw;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
 .ReactCodeMirror {
   border: 1px solid #ccc;
