@@ -6069,6 +6069,12 @@ textarea {
   width: auto;
   max-height: 100%; }
 
+.infoWrapper {
+  padding: 5%;
+  font-family: Lato, sans-serif;
+  color: rgba(0, 0, 0, 0.66);
+  font-weight: 300; }
+
 .ReactCodeMirror {
   border: 1px solid #ccc;
   width: 85%;
