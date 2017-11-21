@@ -2,4 +2,12 @@
   .col-md-4{
     min-height: 280px;
   }
+  .show-grid{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .project {
+    width: 33.33%;
+    flex: 0 1 33.33%;
+  }
 }

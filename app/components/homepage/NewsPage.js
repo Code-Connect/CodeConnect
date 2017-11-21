@@ -28,16 +28,16 @@ class NewsPage extends Component {
           <h1>Dashboard</h1>
         </Row>
         <br/>
-        <Row className="show-grid ">
+        <div className="show-grid">
           {this.props.projects.projectList.map((project) => {
             return (
-              <Col md={4}>
+              <div className="project">
                   <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}/>
-              </Col>
+              </div>
             )
           })
 }
-        </Row>
+        </div>
       </Grid>
     );
   }

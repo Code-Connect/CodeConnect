@@ -6710,4 +6710,12 @@ span.CodeMirror-selectedtext {
         border: none; } }
 
 .news-page .col-md-4 {
-  min-height: 270px; }
+  min-height: 280px; }
+
+.news-page .show-grid {
+  display: flex;
+  flex-wrap: wrap; }
+
+.news-page .project {
+  width: 33.33%;
+  flex: 0 1 33.33%; }
