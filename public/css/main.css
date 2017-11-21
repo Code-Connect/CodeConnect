@@ -6716,5 +6716,5 @@ span.CodeMirror-selectedtext {
   flex-wrap: wrap; }
 
 .news-page .project {
-  width: 33.33%;
-  flex: 0 1 33.33%; }
+  width: 300px;
+  flex: 1 1 300px; }
