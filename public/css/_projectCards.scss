@@ -9,6 +9,9 @@
 
   &:hover {
     color: #2ec866;
+    .textBox p {
+      white-space: normal;
+    }
   }
 
   .headerWrapper h3,
@@ -17,9 +20,6 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       width: 100%;
-  }
-  .textBox:hover p {
-      white-space: normal;
   }
 
   .headerWrapper {
