@@ -6708,9 +6708,6 @@ span.CodeMirror-selectedtext {
         position: absolute;
         border: none; } }
 
-.news-page .col-md-4 {
-  min-height: 280px; }
-
 .news-page .show-grid {
   display: flex;
   flex-wrap: wrap; }

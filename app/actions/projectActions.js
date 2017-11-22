@@ -211,7 +211,11 @@ export function getGithubProjects(user) {
         'Authorization': 'token ' + user.token
       }
     }).then((response) => {
-      return response.json();
+      if (response.ok) {
+        return response.json();
+      } else {
+        return [];
+      }
     }).then(function(orgs) {
       orgs.push({
         repos_url: 'https://api.github.com/users/' + user.name + '/repos'
@@ -232,7 +236,11 @@ export function getGithubProjects(user) {
       return fetch('/projects/user/' + user.id, {
         credentials: 'same-origin' // By default, fetch won't send any cookies to the server
       }).then((response) => {
-        return response.json();
+        if (response.ok) {
+          return response.json();
+        } else {
+          return [];
+        }
       }).then(function(repos) {
         //filter github Repos with the already added projects
         var a = gitRepos;
