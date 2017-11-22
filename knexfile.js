@@ -18,8 +18,19 @@ let knexfile = {
         }
     },
     production: {
-        client: 'pg',
-        connection: process.env.DATABASE_URL
+        client: 'mssql',
+        connection: {
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            server: process.env.DB_SERVER,
+            database: process.env.DB_DATABASE,
+            options: {
+                encrypt: true,
+            },
+        },
+        migrations: {
+            tableName: 'knex_migrations'
+        }
     }
 };
 module.exports = knexfile[env];
