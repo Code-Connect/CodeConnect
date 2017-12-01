@@ -16,7 +16,7 @@
   .headerWrapper h3,
   .textBox p {
       overflow: hidden;
-      white-space: nowrap;
+      white-space: normal;
       text-overflow: ellipsis;
       width: 100%;
   }
@@ -26,7 +26,7 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    height: 8vh;
+    height: 75px;
     padding: 1.5%;
     -webkit-box-align: center;
     -webkit-align-items: center;

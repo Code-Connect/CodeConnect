@@ -56,10 +56,10 @@ class Header extends React.Component {
             : (
                 <div></div>
             );
-        const navbarStyle = {backgroundColor: "#FFD480"};
+        const navbarStyle = {backgroundColor: "#115180"};
 
         return (
-            <nav className="navbar navbar-default navbar-static-top" style={navbarStyle}>
+            <nav className="navbar navbar-default navbar-static-top navFont" style={navbarStyle}>
                 <div className="container">
                     <div className="navbar-header">
                         <button type="button" data-toggle="collapse" data-target="#navbar" className="navbar-toggle collapsed">
