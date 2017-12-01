@@ -1,58 +1,10 @@
 .news-page {
-  div{
-    width: 100%;
-  }
-
-  #TableComponent{
-    display: none;
-  }
-  #ProjectPreview{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-  }
-
-  .well {
-    width: 300px;
-    height: 300px;
+  .show-grid{
     display: flex;
-
-    hr,
-    div {
-    display: none;
-    }
-
-    .short-preview {
-      display: block;
-
-      .logo {
-        display: block;
-        height: auto;
-        padding: 0;
-        img {
-          width: 100%;
-          max-height: 300px;
-          position: absolute;
-        }
-      }
-
-      .title {
-        display: flex;
-        height: 100%;
-        overflow: hidden;
-        text-align: center;
-        align-items: center;
-        padding: 0;
-        h1 {
-          font-size: 30px;
-          width: 100%;
-          text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-        }
-        p {
-          position: absolute;
-          align-self: start;
-        }
-      }
-    }
+    flex-wrap: wrap;
+  }
+  .project {
+    width: 300px;
+    flex: 1 1 300px;
   }
 }

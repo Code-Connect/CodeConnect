@@ -3,38 +3,48 @@ import ProjectTableView from "../baukasten/ProjectTableView";
 import {getAllProjects} from '../stateConverter';
 import {connect} from 'react-redux';
 import {Panel, Col, Row, Grid} from 'react-bootstrap';
-import ReactMarkdown from 'react-markdown';
+import {browserHistory} from 'react-router';
+import ProjectCards from "./ProjectCards";
+import {getPublicProjects} from '../../actions/projectActions';
 
 class NewsPage extends Component {
-    render() {
-        return (
-            <Grid style={{'background': 'white'}}>
-                <Row className="show-grid"><h1>Recent Projects</h1></Row>
-                <Row className="show-grid">
-                    {
-                        this.props.projects.map(
-                            (project) => {
-                                const description = project.description ?
-                                    project.description: "";
-                                return (
-                                    <Col md={4}>
-                                        <Panel header={<h1>{project.name}</h1>}>
-                                            <ReactMarkdown source={description.substring(0,200)+'...'}/>
-                                        </Panel>
-                                    </Col>
-                                )
-                            }
-                        )
-                    }
-                </Row>
-            </Grid>
-        );
-    }
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getPublicProjects());
+  }
+
+  onClick(project_id) {
+    browserHistory.push('/project/' + project_id);
+  }
+
+  render() {
+    return (
+      <Grid className="news-page container">
+        <Row className="show-grid pageHeader">
+          <h1>Dashboard</h1>
+        </Row>
+        <br/>
+        <div className="show-grid">
+          {this.props.projects.projectList.map((project) => {
+            return (
+              <div className="project">
+                  <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}/>
+              </div>
+            )
+          })
+}
+        </div>
+      </Grid>
+    );
+  }
 }
 
-
 const mapStateToProps = (state) => {
-    return {projects: getAllProjects(state)};
+  return {projects: state.currentProjectList};
 };
 
 export default connect(mapStateToProps)(NewsPage);

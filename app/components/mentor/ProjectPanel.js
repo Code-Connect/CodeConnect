@@ -24,22 +24,10 @@ class ProjectPanel extends React.Component {
       <div style={{
         background: "white",
       }} ref="Parent">
-      <div className="row">
-        <div className="col-sm-9"><h5>
-          <small style={tagStyle}>
-            <b>Tags coming soon{this.props.project.tags != undefined?this.props.project.tags.map((tag) => {
-                return tag + " "
-              }):null}</b>
-          </small>
-        </h5>
-        </div>
-        <div className="col-sm-3">
-        </div>
-        </div>
 
         <div style={divStyle} className="row">
           <div className="col-sm-2">
-            <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="icon"/>
+            <img src="/img/Logo.png" height="48px" alt="icon"/>
           </div>
           <div className="col-sm-10">
             <Link to={"/mentor/"+this.props.project.project_id}><h4 style={{

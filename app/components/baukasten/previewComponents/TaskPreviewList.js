@@ -30,7 +30,6 @@ class TaskPreviewList extends Component {
 
 
     onClick(task){
-      console.log(task);
       this.props.onClick(task);
     }
 

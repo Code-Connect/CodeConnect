@@ -14,7 +14,6 @@ class ListItem extends Component {
     }
 
     redirect() {
-        console.log("g2" + this.props.goTo)
         goToAnchor(this.props.goTo + "" + this.props.id)
     }
 

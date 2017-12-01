@@ -24,9 +24,12 @@ class Header extends React.Component {
                         </a>
                         <ul className="dropdown-menu">
                             <li>
-                                <Link to="/account">My Account</Link>
+                                <Link to="/profile">Profile</Link>
                             </li>
                             <li className="divider"></li>
+                            <li>
+                                <a href="/logout">Log out</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -35,9 +38,6 @@ class Header extends React.Component {
                 <ul className="nav navbar-nav navbar-right">
                     <li>
                         <Link href="/auth/github" activeStyle={active}>Log in</Link>
-                    </li>
-                    <li>
-                        <Link to="/signup" activeStyle={active}>Sign up</Link>
                     </li>
                 </ul>
             );
@@ -48,9 +48,6 @@ class Header extends React.Component {
                         <Link to="/profile" activeStyle={active}>Profile</Link>
                     </li>
                     <li>
-                        <Link to="/contributor" activeStyle={active}>Contributor</Link>
-                    </li>
-                    <li>
                         <Link to="/about" activeStyle={active}>About</Link>
                     </li>
                 </ul>
@@ -59,10 +56,10 @@ class Header extends React.Component {
             : (
                 <div></div>
             );
-        const navbarStyle = {backgroundColor: "#FFD480"};
+        const navbarStyle = {backgroundColor: "#115180"};
 
         return (
-            <nav className="navbar navbar-default navbar-static-top" style={navbarStyle}>
+            <nav className="navbar navbar-default navbar-static-top navFont" style={navbarStyle}>
                 <div className="container">
                     <div className="navbar-header">
                         <button type="button" data-toggle="collapse" data-target="#navbar" className="navbar-toggle collapsed">

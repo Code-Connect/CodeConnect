@@ -1,8 +1,9 @@
-import React, {Component} from "react"
-import {browserHistory} from 'react-router'
-import {ListGroup, ListGroupItem} from 'react-bootstrap'
+import React, {Component} from "react";
+import {browserHistory} from 'react-router';
+import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import {connect} from "react-redux";
 import ReactMarkdown from 'react-markdown';
+import {getProject} from '../../../actions/projectActions';
 
 
 
@@ -20,8 +21,8 @@ class ProjectPreview extends Component {
     }
 
     redirectDetails() {
-        browserHistory.push('/contributor/projects/' + this.props.id);
-        console.log("redi")
+        // browserHistory.push('/contributor/projects/' + this.props.id);
+        this.props.dispatch(getProject(this.props.id));
     }
 
     render() {
@@ -44,8 +45,7 @@ class ProjectPreview extends Component {
 
                 <div className="short-preview row">
                     <div className="col-sm-2 logo">
-                        <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png"
-                             alt="icon"/>
+                        <img src="/img/Logo.png" height="48px" alt="icon"/>
                     </div>
                     <div className="col-sm-10 title" style={{display: "flex"}}>
                         <h1 style={{
@@ -76,8 +76,6 @@ class ProjectPreview extends Component {
                         <ListGroup fill>
                             {
                                 this.props.tasks.map((task, index) => {
-                                    console.log("t" + task);
-                                    console.log("s" + this.props.taskDict["1"]);
                                     return (
                                         <ListGroupItem key={index}><span style={{
                                             fontWeight: 'bold',
