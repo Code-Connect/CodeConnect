@@ -7,9 +7,8 @@
   display: -ms-flexbox;
   display: flex;
   //width: 20vw;
-  height: 36vh;
-  margin-right: 2vh;
-  margin-left: 2vh;
+  min-height: 36vh;
+  margin: 2vh;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -96,7 +95,7 @@
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      height: 45%;
+      //height: 45%;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       -webkit-flex-direction: column;
