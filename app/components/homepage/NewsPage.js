@@ -31,9 +31,7 @@ class NewsPage extends Component {
         <div className="show-grid">
           {this.props.projects.projectList.map((project) => {
             return (
-              <div className="project">
                   <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}/>
-              </div>
             )
           })
 }

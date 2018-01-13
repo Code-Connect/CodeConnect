@@ -6047,24 +6047,44 @@ textarea {
   margin: auto;
   padding-top: 40px; }
 
-.parent-pCards {
-  margin: 3%;
-  border-radius: 10px;
+.card {
+  width: 300px;
+  flex: 1 1 300px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 36vh;
+  margin-right: 2vh;
+  margin-left: 2vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 5px;
   background-image: -webkit-linear-gradient(270deg, #fff, #fff);
   background-image: linear-gradient(180deg, #fff, #fff);
-  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.06);
-  cursor: pointer; }
-  .parent-pCards:hover {
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1); }
+  .card:hover {
     color: #2ec866; }
-    .parent-pCards:hover .textBox p {
+    .card:hover .textBox p {
       white-space: normal; }
-  .parent-pCards .headerWrapper h3,
-  .parent-pCards .textBox p {
+  .card .headerWrapper h3,
+  .card .textBox p {
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
     width: 100%; }
-  .parent-pCards .headerWrapper {
+  .card .headerWrapper {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -6076,16 +6096,16 @@ textarea {
     -ms-flex-align: center;
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-    .parent-pCards .headerWrapper .imageWrapper {
+    .card .headerWrapper .imageWrapper {
       width: auto;
       max-height: 100%;
       margin: 0; }
-  .parent-pCards .infoWrapper {
+  .card .infoWrapper {
     padding: 5%;
     font-family: Lato, sans-serif;
     color: rgba(0, 0, 0, 0.66);
     font-weight: 300; }
-  .parent-pCards .footer-pCards {
+  .card .footer-pCards {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -6715,7 +6735,3 @@ span.CodeMirror-selectedtext {
 .news-page .show-grid {
   display: flex;
   flex-wrap: wrap; }
-
-.news-page .project {
-  width: 300px;
-  flex: 1 1 300px; }

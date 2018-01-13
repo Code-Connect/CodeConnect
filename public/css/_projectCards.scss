@@ -1,10 +1,32 @@
-.parent-pCards {
-  margin: 3%;
-  border-radius: 10px;
+.card {
+  width: 300px;
+  flex: 1 1 300px;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  //width: 20vw;
+  height: 36vh;
+  margin-right: 2vh;
+  margin-left: 2vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 5px;
   background-image: -webkit-linear-gradient(270deg, #fff, #fff);
   background-image: linear-gradient(180deg, #fff, #fff);
-  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .06);
-  cursor: pointer;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .1);
 
   &:hover {
     color: #2ec866;

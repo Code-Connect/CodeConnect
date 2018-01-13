@@ -18,7 +18,7 @@ class ProjectCards extends React.Component {
       ? this.props.project.description
       : "";
     return (
-      <div className ="parent-pCards">
+      <div className ="card">
         <div className="panel-pCards container-pCards" onClick={() => {
           this.props.onClick()
         }}>
