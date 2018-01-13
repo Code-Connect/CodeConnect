@@ -34,10 +34,6 @@ class ProjectCards extends React.Component {
                   </div>
               </div>
               <a href="#" className="cardbutton w-button">Contribute</a>
-
-        <div className="footer-pCards">
-          <p className ="footer-text-pCards" onClick={() => this.getToUserProfil(this.props.project.mentor_id)}>by {this.props.project.mentor_name}</p>
-        </div>
       </div>
     );
   }
