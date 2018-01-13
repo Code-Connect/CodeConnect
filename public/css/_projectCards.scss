@@ -31,6 +31,7 @@
     color: #2ec866;
     .textBox p {
       white-space: normal;
+      max-height: 100vh;
     }
   }
 
@@ -40,6 +41,10 @@
     white-space: normal;
     text-overflow: ellipsis;
     width: 100%;
+  }
+  .textBox p {
+    max-height: 22px;
+    transition: max-height 2s;
   }
 
   .cardbody {

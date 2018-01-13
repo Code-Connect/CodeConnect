@@ -6076,13 +6076,17 @@ textarea {
   .card:hover {
     color: #2ec866; }
     .card:hover .textBox p {
-      white-space: normal; }
+      white-space: normal;
+      max-height: 100vh; }
   .card .headerWrapper h2,
   .card .textBox p {
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
     width: 100%; }
+  .card .textBox p {
+    max-height: 22px;
+    transition: max-height 2s; }
   .card .cardbody {
     display: -webkit-box;
     display: -webkit-flex;
