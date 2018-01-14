@@ -1,8 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {IndexLink, Link} from "react-router";
-import {Navbar, LinkContainer} from "react-bootstrap";
-
+import {LinkContainer} from "react-bootstrap";
 
 
 class Header extends React.Component {
@@ -45,10 +44,10 @@ class Header extends React.Component {
             ? (
                 <ul className="nav navbar-nav navbar-right">
                     <li>
-                        <Link to="/profile" activeStyle={active}>Profile</Link>
+                        <Link to="/profile" activeStyle={active}><h2 className="title_menu_element">Profile</h2></Link>
                     </li>
                     <li>
-                        <Link to="/about" activeStyle={active}>About</Link>
+                        <Link to="/about" activeStyle={active}><h2 className="title_menu_element">About</h2></Link>
                     </li>
                 </ul>
 
@@ -59,8 +58,8 @@ class Header extends React.Component {
         const navbarStyle = {backgroundColor: "#115180"};
 
         return (
-            <nav className="navbar navbar-default navbar-static-top navFont" style={navbarStyle}>
-                <div className="container">
+            <nav className="menubar navbar navbar-default navbar-static-top navFont">
+                <div className="menubarleft">
                     <div className="navbar-header">
                         <button type="button" data-toggle="collapse" data-target="#navbar" className="navbar-toggle collapsed">
                             <span className="sr-only">Toggle navigation</span>
@@ -68,15 +67,13 @@ class Header extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <IndexLink to="/" className="navbar-brand"><b>Code Connect</b></IndexLink>
+                        <IndexLink to="/" className="navbar-brand">
+                            <h4 className="titlelogo">Code Connect</h4>
+                        </IndexLink>
                     </div>
-                    <div id="navbar" className="navbar-collapse collapse">
-                        <ul className="nav navbar-nav">
-                            {mentorNav}
-                        </ul>
-                        {rightNav}
-                    </div>
+                    {mentorNav}
                 </div>
+                {rightNav}
             </nav>
         );
     }
