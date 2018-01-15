@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {IndexLink, Link} from "react-router";
+import {LinkContainer} from "react-bootstrap";
 
 
 class Header extends React.Component {
@@ -15,27 +16,29 @@ class Header extends React.Component {
         const rightNav = this.props.user
             ? (
                 <div className="menubarright">
-                    <ul className="nav navbar-nav navbar-right">
-                        <li className="dropdown">
-                            <a href="#" data-toggle="dropdown" className="dropdown-toggle">
-                                <i className="caret"></i>
-                                <h2 className="title_menu_element right">
-                                    {' '}{this.props.user.name || this.props.user.email || this.props.user.id}{' '}
-                                </h2>
-                                <img className="div-block"
-                                     src={'https://avatars.githubusercontent.com/u/' + this.props.user.id}/>
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li>
-                                    <Link to="/profile">Profile</Link>
-                                </li>
-                                <li className="divider"></li>
-                                <li>
-                                    <a href="/logout">Log out</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                <ul className="nav navbar-nav navbar-right">
+                    <li className="dropdown">
+                        <a href="#" data-toggle="dropdown" className="dropdown-toggle">
+                            <i className="caret"></i>
+                            <h2 className="title_menu_element right">
+                                {' '}{this.props.user.name || this.props.user.email || this.props.user.id}{' '}
+                            </h2>
+                            <img className="div-block" src={'https://avatars.githubusercontent.com/u/' + this.props.user.id}/>
+                        </a>
+                        <ul className="dropdown-menu">
+                            <li>
+                                <Link to="/profile">Profile</Link>
+                            </li>
+                            <li className="divider"></li>
+                            <li>
+                                <a href="/logout">Log out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                    {/*<h2 className="title_menu_element right">Tash Sultana</h2>*/}
+                    {/*<div className="div-block"></div>*/}
                 </div>
             )
             : (
@@ -60,6 +63,8 @@ class Header extends React.Component {
             : (
                 <div></div>
             );
+        const navbarStyle = {backgroundColor: "#115180"};
+
         return (
             <nav className="menubar navbar navbar-default navbar-static-top navFont">
                 <div className="menubarleft">
@@ -76,6 +81,8 @@ class Header extends React.Component {
                     </div>
                     {mentorNav}
                 </div>
+
+
                 {rightNav}
             </nav>
         );
