@@ -1,5 +1,8 @@
 import React, {Component} from "react";
+import ProjectTableView from "../baukasten/ProjectTableView";
+import {getAllProjects} from '../stateConverter';
 import {connect} from 'react-redux';
+import {Panel, Col, Row, Grid} from 'react-bootstrap';
 import {browserHistory} from 'react-router';
 import ProjectCards from "./ProjectCards";
 import {getPublicProjects} from '../../actions/projectActions';
@@ -20,21 +23,20 @@ class NewsPage extends Component {
 
   render() {
     return (
-        <div className="news-page">
-            <div className="header">
-                <h1 className="titlepage container">Dashboard</h1>
-            </div>
-            <div className="body">
-                <div className="show-grid container">
-                    {this.props.projects.projectList.map((project) => {
-                        return (
-                            <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}/>
-                        )
-                    })
-                    }
-                </div>
-            </div>
+      <Grid className="news-page container">
+        <Row className="show-grid pageHeader">
+          <h1>Dashboard</h1>
+        </Row>
+        <br/>
+        <div className="show-grid">
+          {this.props.projects.projectList.map((project) => {
+            return (
+                  <ProjectCards project={project} onClick={() => this.onClick(project.project_id)}/>
+            )
+          })
+}
         </div>
+      </Grid>
     );
   }
 }
