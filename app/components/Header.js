@@ -15,15 +15,11 @@ class Header extends React.Component {
         };
         const rightNav = this.props.user
             ? (
-                <div className="menubarright">
                 <ul className="nav navbar-nav navbar-right">
                     <li className="dropdown">
-                        <a href="#" data-toggle="dropdown" className="dropdown-toggle">
+                        <a href="#" data-toggle="dropdown" className="navbar-avatar dropdown-toggle">
+                            <img src={'https://avatars.githubusercontent.com/u/' + this.props.user.id}/> {' '}{this.props.user.name || this.props.user.email || this.props.user.id}{' '}
                             <i className="caret"></i>
-                            <h2 className="title_menu_element right">
-                                {' '}{this.props.user.name || this.props.user.email || this.props.user.id}{' '}
-                            </h2>
-                            <img className="div-block" src={'https://avatars.githubusercontent.com/u/' + this.props.user.id}/>
                         </a>
                         <ul className="dropdown-menu">
                             <li>
@@ -36,10 +32,6 @@ class Header extends React.Component {
                         </ul>
                     </li>
                 </ul>
-
-                    {/*<h2 className="title_menu_element right">Tash Sultana</h2>*/}
-                    {/*<div className="div-block"></div>*/}
-                </div>
             )
             : (
                 <ul className="nav navbar-nav navbar-right">
@@ -81,8 +73,6 @@ class Header extends React.Component {
                     </div>
                     {mentorNav}
                 </div>
-
-
                 {rightNav}
             </nav>
         );
