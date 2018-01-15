@@ -1,64 +1,257 @@
-.parent-pCards {
-  margin: 3%;
-  border-radius: 10px;
+.card {
+  width: 300px;
+  flex: 1 1 300px;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  //width: 20vw;
+  min-height: 36vh;
+  margin: 2vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 5px;
   background-image: -webkit-linear-gradient(270deg, #fff, #fff);
   background-image: linear-gradient(180deg, #fff, #fff);
-  box-shadow: 0 3px 15px 0 rgba(0, 0, 0, .06);
-  cursor: pointer;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .1);
 
   &:hover {
     color: #2ec866;
     .textBox p {
       white-space: normal;
+      max-height: 100vh;
     }
   }
 
-  .headerWrapper h3,
+  .headerWrapper h2,
   .textBox p {
-      overflow: hidden;
-      white-space: normal;
-      text-overflow: ellipsis;
-      width: 100%;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+  .textBox p {
+    max-height: 22px;
+    transition: max-height 2s;
   }
 
-  .headerWrapper {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    height: 75px;
-    padding: 1.5%;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-
-    .imageWrapper {
-      width: auto;
-      max-height: 100%;
-      margin: 0;
-    }
-  }
-
-  .infoWrapper {
-    padding: 5%;
-    font-family: Lato, sans-serif;
-    color: rgba(0, 0, 0, .66);
-    font-weight: 300;
-  }
-
-  .footer-pCards {
+  .cardbody {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     width: 100%;
-    padding: 2vh 1vw;
+    //height: 60%;
+    padding: 1vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    border-top: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(0, 0, 0, .07);
+
+    .mentor_logo_holder {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      height: 50%;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: end;
+      -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+
+      .mentorlogo {
+        width: 8vh;
+        height: 8vh;
+        border-radius: 999px;
+        background-position: 50% 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2);
+      }
+    }
+
+    .card_body_bottom {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      //height: 45%;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+
+      .projecttitle {
+        margin-top: 0px;
+        margin-bottom: 5px;
+        font-family: Ubuntu, Helvetica, sans-serif;
+        color: #000;
+        font-size: 1.5em;
+        line-height: 1.5em;
+        //font-weight: 500;
+        text-align: center;
+      }
+
+      .projectdescription {
+        padding-right: 1vw;
+        padding-left: 1vw;
+        font-family: Ubuntu, Helvetica, sans-serif;
+        color: rgba(0, 0, 0, .33);
+        font-size: 1em;
+        line-height: 1.5em;
+        font-weight: 400;
+        text-align: center;
+      }
+    }
+  }
+
+  .cardactivity {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 20%;
+    margin-bottom: 4%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+
+
+    .tasks {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      height: 100%;
+      margin-left: 0.5vw;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: start;
+      -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+
+      .open_task_title {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-family: Ubuntu, Helvetica, sans-serif;
+        color: rgba(0, 0, 0, .66);
+        font-size: 1.5em;
+        line-height: 1em;
+        font-weight: 500;
+        text-align: left;
+      }
+
+      .task {
+        font-family: Ubuntu, Helvetica, sans-serif;
+        color: rgba(0, 0, 0, .33);
+        font-size: 1em;
+        line-height: 1.5em;
+        font-weight: 400;
+        text-align: left;
+      }
+    }
+  }
+
+
+  .w-button {
+    display: inline-block;
+    padding: 9px 15px;
+    background-color: #3898EC;
+    color: white;
+    border: 0;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 0;
+  }
+
+  .cardbutton {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 45%;
+    height: 12%;
+    margin-bottom: 3px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, .05);
+    border-radius: 999px;
+    background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+    background-image: linear-gradient(180deg, #fff, #fff);
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .05);
+    font-family: Ubuntu, Helvetica, sans-serif;
+    color: rgba(0, 0, 0, .66);
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: 400;
+
+    &:hover {
+      border-style: none;
+      background-image: -webkit-linear-gradient(270deg, #3f3ff5, #3f3ff5);
+      background-image: linear-gradient(180deg, #3f3ff5, #3f3ff5);
+      box-shadow: 0 4px 10px 0 rgba(54, 54, 219, .4);
+      color: #fff;
+    }
   }
 }

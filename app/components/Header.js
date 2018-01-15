@@ -1,8 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import {IndexLink, Link} from "react-router";
-import {Navbar, LinkContainer} from "react-bootstrap";
-
 
 
 class Header extends React.Component {
@@ -16,23 +14,29 @@ class Header extends React.Component {
         };
         const rightNav = this.props.user
             ? (
-                <ul className="nav navbar-nav navbar-right">
-                    <li className="dropdown">
-                        <a href="#" data-toggle="dropdown" className="navbar-avatar dropdown-toggle">
-                            <img src={'https://avatars.githubusercontent.com/u/' + this.props.user.id}/> {' '}{this.props.user.name || this.props.user.email || this.props.user.id}{' '}
-                            <i className="caret"></i>
-                        </a>
-                        <ul className="dropdown-menu">
-                            <li>
-                                <Link to="/profile">Profile</Link>
-                            </li>
-                            <li className="divider"></li>
-                            <li>
-                                <a href="/logout">Log out</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <div className="menubarright">
+                    <ul className="nav navbar-nav navbar-right">
+                        <li className="dropdown">
+                            <a href="#" data-toggle="dropdown" className="dropdown-toggle">
+                                <i className="caret"></i>
+                                <h2 className="title_menu_element right">
+                                    {' '}{this.props.user.name || this.props.user.email || this.props.user.id}{' '}
+                                </h2>
+                                <img className="div-block"
+                                     src={'https://avatars.githubusercontent.com/u/' + this.props.user.id}/>
+                            </a>
+                            <ul className="dropdown-menu">
+                                <li>
+                                    <Link to="/profile">Profile</Link>
+                                </li>
+                                <li className="divider"></li>
+                                <li>
+                                    <a href="/logout">Log out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             )
             : (
                 <ul className="nav navbar-nav navbar-right">
@@ -45,10 +49,10 @@ class Header extends React.Component {
             ? (
                 <ul className="nav navbar-nav navbar-right">
                     <li>
-                        <Link to="/profile" activeStyle={active}>Profile</Link>
+                        <Link to="/profile" activeStyle={active}><h2 className="title_menu_element">Profile</h2></Link>
                     </li>
                     <li>
-                        <Link to="/about" activeStyle={active}>About</Link>
+                        <Link to="/about" activeStyle={active}><h2 className="title_menu_element">About</h2></Link>
                     </li>
                 </ul>
 
@@ -56,11 +60,9 @@ class Header extends React.Component {
             : (
                 <div></div>
             );
-        const navbarStyle = {backgroundColor: "#115180"};
-
         return (
-            <nav className="navbar navbar-default navbar-static-top navFont" style={navbarStyle}>
-                <div className="container">
+            <nav className="menubar navbar navbar-default navbar-static-top navFont">
+                <div className="menubarleft">
                     <div className="navbar-header">
                         <button type="button" data-toggle="collapse" data-target="#navbar" className="navbar-toggle collapsed">
                             <span className="sr-only">Toggle navigation</span>
@@ -68,15 +70,13 @@ class Header extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <IndexLink to="/" className="navbar-brand"><b>Code Connect</b></IndexLink>
+                        <IndexLink to="/" className="navbar-brand">
+                            <h4 className="titlelogo">Code Connect</h4>
+                        </IndexLink>
                     </div>
-                    <div id="navbar" className="navbar-collapse collapse">
-                        <ul className="nav navbar-nav">
-                            {mentorNav}
-                        </ul>
-                        {rightNav}
-                    </div>
+                    {mentorNav}
                 </div>
+                {rightNav}
             </nav>
         );
     }
