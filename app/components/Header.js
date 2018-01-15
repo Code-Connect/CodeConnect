@@ -56,7 +56,7 @@ class Header extends React.Component {
             : (
                 <div></div>
             );
-        const navbarStyle = {backgroundColor: "#115180"};
+        const navbarStyle = {backgroundColor: "rgba(0, 0, 0, .66)"};
 
         return (
             <nav className="navbar navbar-default navbar-static-top navFont" style={navbarStyle}>
