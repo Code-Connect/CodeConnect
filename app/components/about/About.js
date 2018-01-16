@@ -3,6 +3,7 @@ import {Button, Col, Grid, OverlayTrigger, Row, Tooltip} from "react-bootstrap";
 import Logo from "./Logo";
 import ContributorTutorial from "./ContributorTutorial";
 import MentorTutorial from "./MentorTutorial";
+import RaisedButton from 'material-ui/RaisedButton';
 
 class About extends Component {
     constructor(props) {
@@ -22,25 +23,13 @@ class About extends Component {
                             textAlign: 'right'
                         }}>
                             <OverlayTrigger placement="left" overlay={this.buildTooltipContributor()}>
-                                <Button onClick={this.contributor.bind(this)}
-                                        href={"#tutorial"}
-                                        bsStyle="success" style={{
-                                    minWidth: '30%',
-                                }} bsSize="large">
-                                    Contributor
-                                </Button>
+                              <RaisedButton label="Contributor" primary={true}/>
                             </OverlayTrigger>
                         </Col>
                         <Col xs={6} md={6} sm={6} lg={6}>
 
                             <OverlayTrigger placement="right" overlay={this.buildTooltipMentor()}>
-                                <Button onClick={this.mentor.bind(this)}
-                                        href={"#tutorial"}
-                                        bsStyle="warning" style={{
-                                    minWidth: '30%',
-                                }} bsSize="large">
-                                    Mentor
-                                </Button>
+                              <RaisedButton label="Mentor" primary={true}/>
                             </OverlayTrigger>
                         </Col>
                     </Row>
