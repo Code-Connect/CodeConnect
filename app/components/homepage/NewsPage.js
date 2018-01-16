@@ -22,7 +22,7 @@ class NewsPage extends Component {
     return (
         <div className="news-page">
             <div className="news-page-header">
-                <h1 className="titlepage container">Dashboard</h1>
+                <h1 className="titlepage">Dashboard</h1>
             </div>
             <div className="body">
                 <div className="cardheader">
