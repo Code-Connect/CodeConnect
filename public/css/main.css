@@ -6881,3 +6881,7 @@ span.CodeMirror-selectedtext {
 .news-page .show-grid {
   display: flex;
   flex-wrap: wrap; }
+
+.header.navbar-default .navbar-brand,
+.header.navbar-default .navbar-nav > li > a {
+  color: rgba(0, 0, 0, 0.66); }
