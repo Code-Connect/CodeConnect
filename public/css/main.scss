@@ -1,4 +1,4 @@
-$body-bg: #f4f4f4;
+$body-bg: white;
 $line-height-base: 1.57142857;
 $link-color: #1d7cf4;
 $link-hover-decoration: none;
@@ -41,3 +41,4 @@ $panel-body-padding: 30px;
 @import "vendor/susy/susy";
 @import "about";
 @import "news-page";
+@import "header";
