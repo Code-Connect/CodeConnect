@@ -6882,6 +6882,156 @@ span.CodeMirror-selectedtext {
   display: flex;
   flex-wrap: wrap; }
 
+.news-page .news-page-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 15vh;
+  padding-bottom: 15px;
+  padding-left: 3vw;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end; }
+  .news-page .news-page-header .titlepage {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: Ubuntu, Helvetica, sans-serif;
+    color: #000;
+    font-size: 3.5em;
+    line-height: 1em;
+    font-weight: 700; }
+
+.news-page .body {
+  min-height: 75vh;
+  background-image: -webkit-linear-gradient(270deg, #f5f5f5, #f5f5f5);
+  background-image: linear-gradient(180deg, #f5f5f5, #f5f5f5);
+  box-shadow: 0 -1px 6px 0 rgba(0, 0, 0, 0.1); }
+  .news-page .body .cardheader {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 10vh;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .news-page .body .cardheader .w-button {
+      display: inline-block;
+      padding: 9px 15px;
+      background-color: #3898EC;
+      color: white;
+      border: 0;
+      line-height: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 0; }
+    .news-page .body .cardheader .third {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      width: 33vw;
+      height: 100%;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center; }
+      .news-page .body .cardheader .third.leftthird {
+        padding-left: 4vw; }
+      .news-page .body .cardheader .third.middlethird {
+        width: 34vw;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center; }
+      .news-page .body .cardheader .third.rightthird {
+        padding-right: 4vw;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end; }
+    .news-page .body .cardheader .cardtitle {
+      margin-top: 0px;
+      margin-right: 1vw;
+      margin-bottom: 5px;
+      font-family: Ubuntu, Helvetica, sans-serif;
+      color: rgba(0, 0, 0, 0.33);
+      font-size: 1em;
+      line-height: 1em;
+      font-weight: 400;
+      text-align: justify; }
+      .news-page .body .cardheader .cardtitle.clicked {
+        margin-top: 5px;
+        margin-bottom: 0px;
+        padding-bottom: 5px;
+        border-bottom: 5px solid blue;
+        color: #000; }
+      .news-page .body .cardheader .cardtitle.button {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        width: 7vw;
+        height: 4vh;
+        margin-right: 0vw;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-style: solid;
+        border-width: 1px;
+        border-color: rgba(0, 0, 0, 0.1);
+        background-image: -webkit-linear-gradient(270deg, #f5f5f5, #f5f5f5);
+        background-image: linear-gradient(180deg, #f5f5f5, #f5f5f5); }
+      .news-page .body .cardheader .cardtitle.newest_hottest_clicked {
+        border-style: none;
+        background-image: -webkit-linear-gradient(270deg, #fff, #fff);
+        background-image: linear-gradient(180deg, #fff, #fff);
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+        color: rgba(0, 0, 0, 0.66); }
+      .news-page .body .cardheader .cardtitle.button.left {
+        padding-right: 20px;
+        padding-left: 25px;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        border-top-left-radius: 2vh;
+        border-bottom-left-radius: 2vh; }
+      .news-page .body .cardheader .cardtitle.button.right {
+        padding-right: 25px;
+        padding-left: 20px;
+        border-color: rgba(0, 0, 0, 0.1);
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-top-right-radius: 2vh;
+        border-bottom-right-radius: 2vh; }
+    .news-page .body .cardheader .searchicon {
+      width: 1em;
+      height: 1em;
+      margin-right: 5px;
+      margin-bottom: 4px;
+      background-position: 50% 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      opacity: 0.33; }
+    .news-page .body .cardheader .search {
+      font-style: italic;
+      font-weight: 300; }
+
 .header {
   background-image: -webkit-linear-gradient(270deg, #f5f5f5, #f5f5f5);
   background-image: linear-gradient(180deg, #f5f5f5, #f5f5f5);
