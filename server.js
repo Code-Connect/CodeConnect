@@ -126,17 +126,17 @@ app.use(function(req, res) {
     currentProjectList: {
       projectList: [],
       error: null,
-      loading: true
+      isloading: true
     },
     currentProject: {
       project: {},
       error: null,
-      loading: true
+      isloading: true
     },
     currentTasks: {
       tasks: [],
       error: null,
-      loading: true
+      isloading: true
     }
   };
   var store = configureStore(initialState);

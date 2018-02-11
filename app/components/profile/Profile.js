@@ -1,7 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
 import ProfileView from "./ProfileView";
-import {Tab, Tabs, Grid, Row, Col} from 'react-bootstrap';
+import ProjectList from "./ProjectList";
+import {Grid} from 'react-bootstrap';
+import {getGithubProjects} from './../../actions/projectActions';
+
 import Mentor from "../mentor/Mentor";
 
 class Profile extends React.Component {
@@ -10,25 +13,33 @@ class Profile extends React.Component {
     super(props);
   }
 
-  render() {
-    return (
-      <Grid className="container whiteContainer">
-        <Row className="show-grid">
-          <Col xs={6} md={3}>
-            <ProfileView name={this.props.user.name}/>
-          </Col>
-          <Col xs={6} md={9}>
-            <Mentor/>
-          </Col>
-        </Row>
+  componentDidMount() {
+    this.props.dispatch(getGithubProjects(this.props.user));
+  }
 
+  render() {
+    const panelbox = this.props.projectWrapper.isloading
+      ? (
+        <div>isloading</div>
+      )
+      : (
+        <div className="profile-panel contentbox">
+          <h4>Your Projects</h4>
+          <ProjectList list={this.props.projectWrapper.projectList}/>
+          <h4>Add Projects from Github</h4>
+          <ProjectList list={this.props.projectWrapper.addableProjects}/>
+        </div>
+      );
+    return (
+      <Grid>
+        <ProfileView name={this.props.user.name}/> {panelbox}
       </Grid>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {user: state.user.github};
+  return {user: state.user.github, projectWrapper: state.currentProjectList};
 };
 
 export default connect(mapStateToProps)(Profile);

@@ -1,0 +1,22 @@
+.profile-panel {
+  .name-box {
+    margin-left: 30px;
+    display: inline-block;
+  }
+
+  &.contentbox {
+    background-color: white;
+    margin-top: 30px;
+    box-shadow: 0 -1px 6px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 30px 20px;
+  }
+}
+
+.profile-background {
+  background-color: black;
+}
+
+.avatar-border {
+  border: 1px solid rgb(189, 189, 189);
+}

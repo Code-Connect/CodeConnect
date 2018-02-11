@@ -14,9 +14,9 @@ export default function messages(state = {}, action) {
         isloading: false
       });
     case 'GET_PROJECT_FAILURE':
-      return {project: {}, error: null, isloading: true};
+    return Object.assign({},{project: {}, error: null, isloading: true});
     case 'CLEAR_CURRENT_PROJECT':
-      return {project: {}, error: null, isloading: true};
+      return Object.assign({},{project: {}, error: null, isloading: true});
     default:
       return state;
   }

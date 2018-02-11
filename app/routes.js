@@ -17,6 +17,7 @@ export default function getRoutes(store) {
 
     const clearMessages = () => {
         store.dispatch({type: 'CLEAR_CURRENT_PROJECT'});
+        store.dispatch({type: 'CLEAR_PROJECT_LIST'});
     };
 
     return (

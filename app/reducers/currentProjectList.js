@@ -7,9 +7,17 @@ export default function messages(state = {}, action) {
         isloading: false
       });
     case 'CLEAR_PROJECT_LIST':
-      return {projectList: [], error: null, isloading: true};
+      return Object.assign({}, {
+        project: {},
+        error: null,
+        isloading: true
+      });
     case 'GET_PROJECT_LIST_ERROR':
-      return {projectList: [], error: null, isloading: true};
+      return Object.assign({}, {
+        project: {},
+        error: null,
+        isloading: true
+      });
     case 'GET_GITREPOS_SUCCESSFUL':
       return Object.assign({}, {
         projectList: action.projectList,

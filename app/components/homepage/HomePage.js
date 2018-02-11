@@ -11,7 +11,7 @@ class HomePage extends Component {
     render() {
         const page = this.props.user ? <NewsPage/> : <About/>;
         return (
-            <div className="HomePage">
+            <div>
                 {page}
             </div>
         );
