@@ -9,7 +9,7 @@ class ProfileView extends React.Component {
 
   render() {
     return (
-      <div className ="profile-panel">
+      <div>
           <img className = "avatar-border" src={"https://avatars.githubusercontent.com/" + this.props.name} style={{
             width: '100px',
             height: 'auto'
