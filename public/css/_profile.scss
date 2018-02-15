@@ -1,4 +1,11 @@
 .profile-panel {
+  vertical-align: middle;
+
+  .activityChart{
+    vertical-align: middle;
+    display: inline-block;
+  }
+
   .name-box {
     margin-left: 30px;
     display: inline-block;
@@ -12,11 +19,21 @@
     padding: 30px 20px;
   }
 
-  .projects-tab{
-    border: 5px solid red;
+  .projects-tab {
+    .table-cell {
+      vertical-align: middle;
+
+      .demo-btn {
+        width: 100%;
+      }
+    }
+
+    .table-header {
+      color: #a3a5ab;
+      // color: #c1c3c8;
+    }
   }
 }
-
 
 .avatar-border {
   border: 1px solid rgb(189, 189, 189);

@@ -32,7 +32,9 @@ class Profile extends React.Component {
       )
       : (
         <div>
+          <br/>
           <ProjectList list={this.props.projectWrapper.projectList} onClick={this.onClick.bind(this)}/>
+          <hr/>
           <h4>Add Projects from Github</h4>
           <ProjectList list={this.props.projectWrapper.addableProjects} onClick={this.onClick.bind(this)}/>
         </div>
@@ -41,7 +43,7 @@ class Profile extends React.Component {
     return (
       <Grid className="profile-panel">
         <ProfileView name={this.props.user.name}/>
-        <Tabs className="contentbox" defaultActiveKey={1} id="uncontrolled-tab-example">
+        <Tabs className="contentbox projects-tab" defaultActiveKey={1} id="uncontrolled-tab-example">
           <Tab eventKey={1} title="Projects">
             <div>
               <h2>Your Projects</h2>

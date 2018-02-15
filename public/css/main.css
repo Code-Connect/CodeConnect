@@ -7032,19 +7032,26 @@ span.CodeMirror-selectedtext {
       font-style: italic;
       font-weight: 300; }
 
-.profile-panel .name-box {
-  margin-left: 30px;
-  display: inline-block; }
-
-.profile-panel .contentbox {
-  background-color: white;
-  margin-top: 30px;
-  box-shadow: 0 -1px 6px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
-  padding: 30px 20px; }
-
-.profile-panel .projects-tab {
-  border: 5px solid red; }
+.profile-panel {
+  vertical-align: middle; }
+  .profile-panel .activityChart {
+    vertical-align: middle;
+    display: inline-block; }
+  .profile-panel .name-box {
+    margin-left: 30px;
+    display: inline-block; }
+  .profile-panel .contentbox {
+    background-color: white;
+    margin-top: 30px;
+    box-shadow: 0 -1px 6px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 30px 20px; }
+  .profile-panel .projects-tab .table-cell {
+    vertical-align: middle; }
+    .profile-panel .projects-tab .table-cell .demo-btn {
+      width: 100%; }
+  .profile-panel .projects-tab .table-header {
+    color: #a3a5ab; }
 
 .avatar-border {
   border: 1px solid #bdbdbd; }
