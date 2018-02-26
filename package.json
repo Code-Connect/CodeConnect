@@ -57,6 +57,7 @@
     "react": "^15.5.4",
     "react-bootstrap": "^0.30.5",
     "react-bootstrap-slider": "^2.0.1",
+    "react-calendar-heatmap": "^1.6.3",
     "react-codemirror": "^1.0.0",
     "react-cookie": "^0.4.5",
     "react-dom": "^15.5.4",

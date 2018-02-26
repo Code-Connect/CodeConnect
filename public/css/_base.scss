@@ -92,3 +92,12 @@
   margin: auto;
   padding-top: 40px;
 }
+
+.table{
+    table-layout: fixed;
+    width: 100%;
+}
+
+th, td {
+    width: 100px;
+}

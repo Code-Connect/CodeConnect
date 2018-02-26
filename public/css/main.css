@@ -6047,6 +6047,75 @@ textarea {
   margin: auto;
   padding-top: 40px; }
 
+.table {
+  table-layout: fixed;
+  width: 100%; }
+
+th, td {
+  width: 100px; }
+
+/*
+ * react-calendar-heatmap styles
+ *
+ * All of the styles in this file are optional and configurable!
+ * The github and gitlab color scales are provided for reference.
+ */
+.react-calendar-heatmap text {
+  font-size: 10px;
+  fill: #aaa; }
+
+.react-calendar-heatmap .react-calendar-heatmap-small-text {
+  font-size: 5px; }
+
+.react-calendar-heatmap rect:hover {
+  stroke: #555;
+  stroke-width: 1px; }
+
+/*
+ * Default color scale
+ */
+.react-calendar-heatmap .color-empty {
+  fill: #eeeeee; }
+
+.react-calendar-heatmap .color-filled {
+  fill: #8cc665; }
+
+/*
+ * Github color scale
+ */
+.react-calendar-heatmap .color-github-0 {
+  fill: #eeeeee; }
+
+.react-calendar-heatmap .color-github-1 {
+  fill: #d6e685; }
+
+.react-calendar-heatmap .color-github-2 {
+  fill: #8cc665; }
+
+.react-calendar-heatmap .color-github-3 {
+  fill: #44a340; }
+
+.react-calendar-heatmap .color-github-4 {
+  fill: #1e6823; }
+
+/*
+ * Gitlab color scale
+ */
+.react-calendar-heatmap .color-gitlab-0 {
+  fill: #ededed; }
+
+.react-calendar-heatmap .color-gitlab-1 {
+  fill: #acd5f2; }
+
+.react-calendar-heatmap .color-gitlab-2 {
+  fill: #7fa8d1; }
+
+.react-calendar-heatmap .color-gitlab-3 {
+  fill: #49729b; }
+
+.react-calendar-heatmap .color-gitlab-4 {
+  fill: #254e77; }
+
 .card {
   width: 350px;
   flex: 0 1 350px;
@@ -6125,7 +6194,6 @@ textarea {
       .card .cardbody .mentor_logo_holder .mentorlogo {
         width: 8vh;
         height: 8vh;
-        border-radius: 999px;
         background-position: 50% 50%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -7039,7 +7107,9 @@ span.CodeMirror-selectedtext {
     display: inline-block; }
   .profile-panel .name-box {
     margin-left: 30px;
-    display: inline-block; }
+    display: inline-block;
+    vertical-align: middle;
+    float: none; }
   .profile-panel .contentbox {
     background-color: white;
     margin-top: 30px;
