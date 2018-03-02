@@ -20,7 +20,7 @@ class ProjectList extends React.Component {
               <th className="table-header">Name</th>
               <th className="table-header">No. Commits</th>
               <th className="table-header">Last Update</th>
-              <th className="table-header">Languages</th>
+              <th className="table-header">Tags</th>
               <th className="table-header">Try it</th>
             </tr>
           </thead>
