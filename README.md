@@ -40,3 +40,8 @@ You should create an .env file in the root directory with your arguments of
 ## Start PostgreSQL on Linux
 
     sudo systemctl start postgresql
+    
+# Stack
+Frontend: React.js and Redux  
+Backend: express.js  
+Database: PostgreSQL  
